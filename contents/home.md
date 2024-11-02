@@ -1,16 +1,15 @@
 
 
-[![senli1073](https://img.shields.io/badge/senli1073-github-blue?logo=github)](https://github.com/senli1073)
+[![zhang](https://img.shields.io/badge/zzzzza-github-blue?logo=github)]([azureovo (zzzzza)](https://github.com/azureovo))
 
-He is currently pursuing a Master's Degree in Computer Science, at School of Computer Science and Technology, China University of Mining and Technology, China.
+waiting to add.
 
 #### Email
-sli[at]cumt.edu.cn
+zhangqan@mail2.sysu.edu.cn
 
 #### Education
-M.E., Computer Science and Technology, China University of Mining and Technology, 2022—2025 (expected).\
-B.E., Data Science and Big Data Technology, China University of Mining and Technology, 2018—2022.
+M.E., Computer Technology, Sun Yat-sen University, 2024—2027 (expected).\
+	B.E., Software engineering, University of Electronic Science and Technology of China, 2019—2024.
 
 #### Research Interests
-Deep Learning, Artificial Intelligence Seismology, Mine Microseismic.
-
+vision and computer graphics.
