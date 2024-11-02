@@ -1,9 +1,2 @@
-- First-prize Academic Scholarship, 2023.
-
-- Freshman Academic Scholarship, 2022.
-
-- Excellent Graduation Project of Jiangsu Province, 2022.
-
-- First-prize Enterprise Scholarship, 2021.
-
-- First-prize Academic Scholarship, 2019.
+- 电子科技大学优秀毕业生, 2024.
+- 中国大学生计算机大赛网络技术挑战赛国赛二等奖, 2023.
