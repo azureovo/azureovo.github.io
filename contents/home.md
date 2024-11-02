@@ -1,18 +1,21 @@
 ### Qing‘an Zhang（张清安）
 
-[![zhang](https://img.shields.io/badge/zzzzza-github-blue?logo=github)]()(https://github.com/azureovo))
+[![zhang](https://img.shields.io/badge/zzzzza-github-blue?logo=github)]
 
-还在痛苦学习中的一名CSer
+还在痛苦学习中的一名CSer。
 
-#### Email
-zhangqan@mail2.sysu.edu.cn
+#### ※ Contact
 
-#### Education
+WeChat：Oo0--b
+
+E-mail：zhangqan@mail2.sysu.edu.cn
+
+#### ※ Education
 master of engineering, Computer Technology, Sun Yat-sen University, 2024—2027 (expected).
 
 \
 	Bachelor of Engineering, Software engineering, University of Electronic Science and Technology of China, 2019—2024.
 
-#### Research Interests
+#### ※ Research Interests
 vision and computer graphics.
 
