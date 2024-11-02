@@ -4,7 +4,7 @@
 
 #### ※ Contact
 
-WeChat：Oo0--b
+WeChat：Oo0--b \
 
 E-mail：zhangqan@mail2.sysu.edu.cn
 
