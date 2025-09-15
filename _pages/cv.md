@@ -17,10 +17,10 @@ Education
 
 Work experience
 ======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+* 2024.07-2024.10: 原神游戏测试
+  * “在《XX》游戏为期一年的深度测试中，我全面参与了多个重大版本的测试周期。我不仅被动执行测试用例，更主动设计了针对【某个您熟悉的系统，如：‘元素反应’战斗系统、‘联机副本’或‘UI界面’】的专项测试方案，累计编写并执行了【数字】+条测试用例。
+  * 在此期间，我共提交了【数字】个有效Bug，其中【数字】个被开发团队认定为高优先级（P0/P1）的核心问题，例如【举一个最典型的例子，如：‘角色在特定场景下触发闪退的严重故障’、‘某项技能伤害计算错误的数值问题’】，并通过JIRA等工具进行全生命周期跟踪直至闭环。​
+  * 通过系统性的兼容性测试、压力测试和回归测试，我有效地保障了所负责模块的稳定性，缺陷漏出率显著降低，为项目的质量保障和用户体验提升做出了实质贡献。这段经历让我深入理解了敏捷测试流程和游戏开发中QA工作的核心价值。”​
 
 * Fall 2015: Research Assistant
   * GitHub University
