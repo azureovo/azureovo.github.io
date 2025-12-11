@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Z7A的个人空间"
+title: "title: "Z7A personal websites"
 author_profile: true
 redirect_from: 
   - /about/
