@@ -17,15 +17,16 @@ main:
   #- title: "Teaching"
   #  url: /teaching/    
     
+  - title: "简历"
+    url: /cv/
+
   - title: "旅程"
     url: /portfolio/
         
   #- title: "Blog Posts"
   #  url: /year-archive/
-    
-  - title: "简历"
-    url: /cv/
-    
+
+
   # - title: "CV"
   #   url: /cv-json/
     
