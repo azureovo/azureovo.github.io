@@ -16,7 +16,7 @@ redirect_from:
   * 方向：图形学
 * **电子科技大学** / 2024应届生 / 本科
   * 专业：软件工程
-  * 方向排名：**5** / 121（其实是 4 / 121，新排名开具待找。前 **4%** <a href="/files/transcript_uestc.pdf" target="_blank">[排名]</a> ）
+  * 方向排名：**5** / 121（其实是 **4** / 121，新排名开具不知道丢哪个文件夹了。前 **4%** <a href="/files/transcript_uestc.pdf" target="_blank">[排名]</a> ）
 
 工作经历
 ======
