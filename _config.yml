@@ -24,13 +24,13 @@ repository               : "azureovo/azureovo.github.io"
 author:
   # Biographic information
   avatar           : "profile.png"
-  name             : "Your Sidebar Name"
+  name             : "张清安"
   pronouns         : # example: "she/her"  
-  bio              : "Short biography for the left-hand sidebar"
-  location         : "Earth"
-  employer         : "Red Brick University"
+  bio              : "一本正经，万事游戏。"
+  location         : "中国·广州"
+  employer         : "Uestc👉Sysu"
   uri              : # URL
-  email            : "none@example.org" 
+  email            : "zhangqan@mail2.sysu.edu.cn" 
 
   # Academic websites
   academia         : # URL
