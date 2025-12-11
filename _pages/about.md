@@ -8,11 +8,8 @@ redirect_from:
 ---
 
 
-
-关于我
-======
 <p>
-  I am a second-year Master's student at the <strong>School of Computer Science and Engineering, Sun Yat-sen University</strong>.
+  I am a second-year Master's student at the School of Computer Science and Engineering, Sun Yat-sen University.
 </p>
 
 <p>
