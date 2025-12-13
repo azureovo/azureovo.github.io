@@ -35,9 +35,7 @@ redirect_from:
 
 项目相关
 ======
-* **互联大师·工业智能网关及管理平台（从0到1全栈产品） / 产品设计及项目管理 / 2023年08月 – 2023年12月**  <video width="100%" controls style="max-width: 500px; border-radius: 8px; margin-top: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-    <source src="/files/projectc4_demo.mp4" type="video/mp4">
-    您的浏览器不支持视频播放，请<a href="/files/projectc4_demo.mp4">下载观看</a>。
+* **互联大师·工业智能网关及管理平台（从0到1全栈产品） / 产品设计及项目管理 / 2023年08月 – 2023年12月**  <a href="/files/project4_demo.mp4" target="_blank">[项目演示视频]</a>
   </video>
   * **痛点分析**：通过调研工业现场，发现Modbus、Fins、PPI等异构协议无法互通，导致设备上云成本高昂。
   * **协议设计**：设计并定义了ICCP通用工控协议标准，实现了N种私有协议的统一映射，将协议转换复杂度O(N)，极大提升了系统的扩展性。完成整个PRD文件的撰写。
