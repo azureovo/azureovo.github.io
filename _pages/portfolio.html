@@ -10,7 +10,7 @@ author_profile: true
   <p>请输入密码查看生活记录：</p>
   <div style="display: flex; gap: 10px; justify-content: center;">
     <input type="password" id="passwordInput" placeholder="在此输入密码" style="padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
-    <button onclick="checkPassword()" style="padding: 8px 15px; border-radius: 4px; background-color: #333; color: white; border: none; cursor: pointer;">进入</button>
+    <button id="loginBtn" type="button" style="padding: 8px 15px; border-radius: 4px; background-color: #333; color: white; border: none; cursor: pointer;">进入</button>
   </div>
   <p id="error-message" style="color: red; display: none; margin-top: 10px;">密码错误，请重试。</p>
 </div>
@@ -25,28 +25,18 @@ author_profile: true
   </div>
 
   <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-
     <div style="flex: 1; min-width: 100px; max-width: 48%;">
       <img src="{{ site.baseurl }}/images/shenzhen250418/1.jpg" alt="深圳照片1" style="width: 100%; border-radius: 8px;">
-      <div style="text-align: center;">
-        <small>窝了好久终于回深圳走走，不知道是到哪里了。</small>
-      </div>
+      <div style="text-align: center;"><small>窝了好久终于回深圳走走。</small></div>
     </div>
-
     <div style="flex: 1; min-width: 100px; max-width: 48%;">
       <img src="{{ site.baseurl }}/images/shenzhen250418/3.jpg" alt="深圳照片3" style="width: 100%; border-radius: 8px;">
-      <div style="text-align: center;">
-        <small>想坐上去。</small>
-      </div>
+      <div style="text-align: center;"><small>想坐上去。</small></div>
     </div>
-
     <div style="flex: 1; min-width: 100px; max-width: 48%;">
       <img src="{{ site.baseurl }}/images/shenzhen250418/2.jpg" alt="深圳照片2" style="width: 100%; border-radius: 8px;">
-      <div style="text-align: center;">
-        <small>被朋友拍得头有点像什么！</small>
-      </div>
+      <div style="text-align: center;"><small>被朋友拍得头有点像什么！</small></div>
     </div>
-
   </div>
 
   <hr>
@@ -55,13 +45,10 @@ author_profile: true
     <strong>2025年3月20日</strong><br>
     新的生活
   </div>
-
   <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
     <div style="flex: 1; min-width: 300px; max-width: 400px;">
       <img src="{{ site.baseurl }}/images/birth/2.png" alt="分手" style="width: 100%; border-radius: 8px;">
-      <div style="text-align: center;">
-        <small>因为两次分手加上换手机，很多经历都清了，反正都是双人照也没有留着的必要。但是时间还有很长，后面的生活一样会继续重新被覆写。</small>
-      </div>
+      <div style="text-align: center;"><small>时间还有很长，后面的生活一样会继续重新被覆写。</small></div>
     </div>
   </div> 
 
@@ -71,30 +58,19 @@ author_profile: true
     <strong>2024年11月1日</strong><br>
     去广州第二届IPA啤酒节
   </div>
-
   <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-
     <div style="flex: 1; min-width: 100px; max-width: 48%;">
       <img src="{{ site.baseurl }}/images/hejiu251101/1.jpg" alt="喝酒照片1" style="width: 100%; border-radius: 8px;">
-      <div style="text-align: center;">
-        <small>和舍友。从此开始天天喝酒。</small>
-      </div>
+      <div style="text-align: center;"><small>和舍友。从此开始天天喝酒。</small></div>
     </div>
-
     <div style="flex: 1; min-width: 100px; max-width: 48%;">
       <img src="{{ site.baseurl }}/images/hejiu251101/2.jpg" alt="喝酒照片2" style="width: 100%; border-radius: 8px;">
-      <div style="text-align: center;">
-        <small>说实话真都挺好喝的。</small>
-      </div>
+      <div style="text-align: center;"><small>说实话真都挺好喝的。</small></div>
     </div>
-
     <div style="flex: 1; min-width: 100px; max-width: 48%;">
       <img src="{{ site.baseurl }}/images/hejiu251101/3.jpg" alt="喝酒照片3" style="width: 100%; border-radius: 8px;">
-      <div style="text-align: center;">
-        <small>虽然架着病手喝酒很好笑。</small>
-      </div>
+      <div style="text-align: center;"><small>虽然架着病手喝酒很好笑。</small></div>
     </div>
-
   </div>
 
   <hr>
@@ -103,23 +79,15 @@ author_profile: true
     <strong>2024年9月6日</strong><br>
     开学第一天 骨折咯
   </div>
-
   <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-
     <div style="flex: 1; min-width: 100px; max-width: 48%;">
       <img src="{{ site.baseurl }}/images/guzhe/1.jpg" alt="骨折照片1" style="width: 100%; border-radius: 8px;">
-      <div style="text-align: center;">
-        <small>当时还很壮，还记得卧推还能推75kg。</small>
-      </div>
+      <div style="text-align: center;"><small>当时还很壮，还记得卧推还能推75kg。</small></div>
     </div>
-
     <div style="flex: 1; min-width: 100px; max-width: 48%;">
       <img src="{{ site.baseurl }}/images/guzhe/2.jpg" alt="骨折照片2" style="width: 100%; border-radius: 8px;">
-      <div style="text-align: center;">
-        <small>住进43329。</small>
-      </div>
+      <div style="text-align: center;"><small>住进43329。</small></div>
     </div>
-
   </div>
 
   <hr>
@@ -128,51 +96,53 @@ author_profile: true
     <strong>2002年3月20日</strong><br>
     魔童来噜
   </div>
-
   <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
     <div style="flex: 1; min-width: 300px; max-width: 400px;">
       <img src="{{ site.baseurl }}/images/birth/1.png" alt="出生1年骑小车" style="width: 100%; border-radius: 8px;">
-      <div style="text-align: center;">
-        <small>拍摄于出生满1年，所以其实从小就高额头（但是是不脱发的）。</small>
-      </div>
+      <div style="text-align: center;"><small>拍摄于出生满1年。</small></div>
     </div>
   </div>
-
-</div>
+  </div>
 
 <script>
-  function checkPassword() {
-    var password = document.getElementById("passwordInput").value;
-    var errorMessage = document.getElementById("error-message");
-    var content = document.getElementById("protected-content");
-    var loginContainer = document.getElementById("password-container");
+(function() {
+// 定义密码
+var CORRECT_PASSWORD = "20020320"; 
 
-    // ==========================================
-    // 在这里修改你的密码 👇
-    // 现在的密码是: 20020320
-    // ==========================================
-    var correctPassword = "20010320"; 
+function unlockPage() {
+var pwdInput = document.getElementById("passwordInput");
+var errMsg = document.getElementById("error-message");
+if (pwdInput.value === CORRECT_PASSWORD) {
+document.getElementById("protected-content").style.display = "block";
+document.getElementById("password-container").style.display = "none";
+sessionStorage.setItem("lifePageUnlocked", "true");
+} else {
+errMsg.style.display = "block";
+pwdInput.style.borderColor = "red";
+}
+}
 
-    if (password === correctPassword) {
-      // 密码正确：显示内容，隐藏登录框
-      content.style.display = "block";
-      loginContainer.style.display = "none";
-      
-      // (可选) 记住登录状态，刷新页面不用重输
-      sessionStorage.setItem("lifePageUnlocked", "true");
-    } else {
-      // 密码错误：显示错误信息
-      errorMessage.style.display = "block";
-      // 抖动效果（可选）
-      document.getElementById("passwordInput").style.borderColor = "red";
-    }
-  }
+// 绑定点击事件
+var btn = document.getElementById("loginBtn");
+if(btn){
+btn.addEventListener("click", unlockPage);
+}
 
-  // 页面加载时检查是否已经登录过
-  window.onload = function() {
-    if (sessionStorage.getItem("lifePageUnlocked") === "true") {
-      document.getElementById("protected-content").style.display = "block";
-      document.getElementById("password-container").style.display = "none";
-    }
-  };
+// 绑定回车键事件
+var input = document.getElementById("passwordInput");
+if(input){
+input.addEventListener("keypress", function(event) {
+if (event.key === "Enter") {
+event.preventDefault();
+unlockPage();
+}
+});
+}
+
+// 检查是否已登录
+if (sessionStorage.getItem("lifePageUnlocked") === "true") {
+document.getElementById("protected-content").style.display = "block";
+document.getElementById("password-container").style.display = "none";
+}
+})();
 </script>
