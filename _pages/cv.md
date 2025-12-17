@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "简历"
+title: "简历待润色版"
 permalink: /cv/
 author_profile: true
 redirect_from:
@@ -34,7 +34,7 @@ redirect_from:
   * **落地价值**：验证了方案在实时渲染场景下的可行性，大幅缩短3D资产生产周期，为AIGC在游戏资产生成的工业化落地提供了可执行的技术底座。
 
 * **基于生成式先验的稀疏视角重建算法研究 / 论文一作 / ACM MM 2026 (在投)** <a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
-  * **痛点洞察**：稀疏视角重建，在研中。
+  * **痛点洞察**：稀疏视角重建，在研，待补充。
 
 项目经历
 ======
@@ -67,6 +67,7 @@ redirect_from:
   * 优秀学生奖学金<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
   * 天空安全卫士企业奖学金<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
   * 数字天空优秀学员实习直通<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
+  * 待补充
 * **产品技能**：熟练撰写PRD/MRD，精通Axure/墨刀，擅长SQL数据分析。
 * **技术栈**：Python/PyTorch (熟练)，熟悉Transformer/Diffusion模型原理，了解LLM微调与RAG应用。
 
