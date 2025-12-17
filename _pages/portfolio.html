@@ -5,35 +5,76 @@ permalink: /life/
 author_profile: true
 ---
 
-<div id="password-container" style="text-align: center; margin-top: 50px; padding: 20px;">
-  <h3>🔒 该页面内容受保护</h3>
-  <p>请输入密码查看生活记录：</p>
+{% raw %}
+<div id="password-wrapper" style="text-align: center; margin-top: 50px;">
+  <h3>🔒 生活记录</h3>
+  <p>请输入密码：</p>
   
-  <div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
-    <input type="password" id="passwordInput" placeholder="在此输入密码" 
-           style="padding: 10px; border-radius: 4px; border: 1px solid #ccc; font-size: 16px;">
+  <div style="display: flex; gap: 10px; justify-content: center;">
+    <input type="password" id="myPassField" placeholder="输入密码" 
+           style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
     
-    <button type="button" onclick="window.verifyLifePassword()" 
-            style="padding: 10px 20px; border-radius: 4px; background-color: #333; color: white; border: none; cursor: pointer; font-size: 16px;">
+    <button id="myEnterBtn" type="button" 
+            style="padding: 8px 15px; background: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer;">
       进入
     </button>
   </div>
-
-  <p id="error-message" style="color: red; display: none; margin-top: 15px;">密码错误，请重试。</p>
+  <p id="myErrorMsg" style="color: red; display: none; margin-top: 10px;">密码错误</p>
 </div>
+{% endraw %}
 
-<div id="protected-content" style="display: none;">
+<div id="mySecretContent" style="display: none;">
 
   <hr>
   <div style="text-align: center; margin-bottom: 15px;">
     <strong>2025年4月18日</strong><br>回到呆了半年的地方散心
   </div>
+
   <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
     <div style="flex: 1; min-width: 100px; max-width: 48%;">
       <img src="{{ site.baseurl }}/images/shenzhen250418/1.jpg" style="width: 100%; border-radius: 8px;">
     </div>
     <div style="flex: 1; min-width: 100px; max-width: 48%;">
       <img src="{{ site.baseurl }}/images/shenzhen250418/3.jpg" style="width: 100%; border-radius: 8px;">
+    </div>
+    <div style="flex: 1; min-width: 100px; max-width: 48%;">
+      <img src="{{ site.baseurl }}/images/shenzhen250418/2.jpg" style="width: 100%; border-radius: 8px;">
+    </div>
+  </div>
+
+  <hr>
+  <div style="text-align: center; margin-bottom: 15px;">
+    <strong>2025年3月20日</strong><br>新的生活
+  </div>
+  <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+    <div style="flex: 1; min-width: 300px; max-width: 400px;">
+      <img src="{{ site.baseurl }}/images/birth/2.png" style="width: 100%; border-radius: 8px;">
+    </div>
+  </div> 
+
+  <hr>
+  <div style="text-align: center; margin-bottom: 15px;">
+    <strong>2024年11月1日</strong><br>去广州第二届IPA啤酒节
+  </div>
+  <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+    <div style="flex: 1; min-width: 100px; max-width: 48%;">
+      <img src="{{ site.baseurl }}/images/hejiu251101/1.jpg" style="width: 100%; border-radius: 8px;">
+    </div>
+    <div style="flex: 1; min-width: 100px; max-width: 48%;">
+      <img src="{{ site.baseurl }}/images/hejiu251101/2.jpg" style="width: 100%; border-radius: 8px;">
+    </div>
+  </div>
+
+  <hr>
+  <div style="text-align: center; margin-bottom: 15px;">
+    <strong>2024年9月6日</strong><br>开学第一天 骨折咯
+  </div>
+  <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+    <div style="flex: 1; min-width: 100px; max-width: 48%;">
+      <img src="{{ site.baseurl }}/images/guzhe/1.jpg" style="width: 100%; border-radius: 8px;">
+    </div>
+    <div style="flex: 1; min-width: 100px; max-width: 48%;">
+      <img src="{{ site.baseurl }}/images/guzhe/2.jpg" style="width: 100%; border-radius: 8px;">
     </div>
   </div>
 
@@ -47,63 +88,61 @@ author_profile: true
     </div>
   </div>
 
-</div>
+  </div>
 
+{% raw %}
 <script>
-  // 1. 定义真实密码
-  var MY_PASSWORD = "20020320";
+// 使用立即执行函数，避免变量污染
+(function() {
+  console.log("生活页脚本已加载...");
 
-  // 2. 将函数绑定到 window 对象，确保全局可访问
-  window.verifyLifePassword = function() {
-    console.log("正在尝试验证密码..."); // 用于调试
-    
-    var input = document.getElementById("passwordInput");
-    var passArea = document.getElementById("password-container");
-    var contentArea = document.getElementById("protected-content");
-    var errorMsg = document.getElementById("error-message");
+  var REAL_PW = "20020320"; // 你的密码
 
-    if (input.value === MY_PASSWORD) {
-      // 成功
-      passArea.style.display = "none";
-      contentArea.style.display = "block";
-      // 写入缓存
-      sessionStorage.setItem("lifePageUnlocked", "true");
+  // 核心验证函数
+  function doCheck() {
+    var input = document.getElementById("myPassField");
+    var wrapper = document.getElementById("password-wrapper");
+    var secret = document.getElementById("mySecretContent");
+    var err = document.getElementById("myErrorMsg");
+
+    if (input.value === REAL_PW) {
+      console.log("密码正确！");
+      wrapper.style.display = "none";
+      secret.style.display = "block";
+      sessionStorage.setItem("life_unlocked", "yes");
     } else {
-      // 失败
-      errorMsg.style.display = "block";
+      console.log("密码错误！");
+      err.style.display = "block";
       input.style.border = "2px solid red";
     }
-  };
+  }
 
-  // 3. 页面加载完成后，检查是否已登录 (自动执行)
-  // 使用 setInterval 确保即使脚本加载慢也能执行
-  var checkLoginInterval = setInterval(function() {
-    if (sessionStorage.getItem("lifePageUnlocked") === "true") {
-      var passArea = document.getElementById("password-container");
-      var contentArea = document.getElementById("protected-content");
-      
-      // 确保元素已加载
-      if(passArea && contentArea) {
-        passArea.style.display = "none";
-        contentArea.style.display = "block";
-        clearInterval(checkLoginInterval); // 停止检查
-      }
-    } else {
-      // 如果没登录，也清除定时器，避免死循环
-      clearInterval(checkLoginInterval);
-    }
-  }, 100);
+  // 绑定事件 (比 onclick 更稳定)
+  var btn = document.getElementById("myEnterBtn");
+  var input = document.getElementById("myPassField");
 
-  // 4. 绑定回车键 (可选)
-  document.addEventListener('DOMContentLoaded', function() {
-    var input = document.getElementById("passwordInput");
-    if(input) {
-        input.addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                event.preventDefault();
-                window.verifyLifePassword();
-            }
-        });
+  if (btn) {
+    btn.addEventListener("click", doCheck);
+  } else {
+    console.error("找不到按钮！");
+  }
+
+  if (input) {
+    input.addEventListener("keypress", function(e) {
+      if (e.key === "Enter") doCheck();
+    });
+  }
+
+  // 检查缓存
+  if (sessionStorage.getItem("life_unlocked") === "yes") {
+    var wrapper = document.getElementById("password-wrapper");
+    var secret = document.getElementById("mySecretContent");
+    if(wrapper && secret) {
+        wrapper.style.display = "none";
+        secret.style.display = "block";
     }
-  });
+  }
+
+})();
 </script>
+{% endraw %}
