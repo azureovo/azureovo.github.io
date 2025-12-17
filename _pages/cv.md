@@ -68,8 +68,14 @@ redirect_from:
   * 天空安全卫士企业奖学金<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
   * 数字天空优秀学员实习直通<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
   * 待补充
-* **产品技能**：熟练撰写PRD/MRD，精通Axure/墨刀，擅长SQL数据分析。
-* **技术栈**：Python/PyTorch (熟练)，熟悉Transformer/Diffusion模型原理，了解LLM微调与RAG应用。
+* **产品技能**：
+  * 熟练撰写PRD/MRD
+  * 精通Axure/墨刀
+  * 擅长SQL数据分析
+* **技术栈**：
+  * Python/PyTorch (熟练)
+  * 熟悉Transformer/Diffusion模型原理
+  * 了解LLM微调与RAG应用
 
 社会实践
 ======
