@@ -11,9 +11,10 @@ redirect_from:
 
 教育经历
 ======
-* **中山大学** / 计算机技术（图形学方向） / 硕士（2027年应届）
-  * **核心优势**：专业方向为3DGS+CV，具备AI知识且具备阅读复现CVPR等顶会论文（SOTA基线）的技术视野，能够从底层算法逻辑评估产品可行性。
-* **电子科技大学** / 软件工程 / 本科（2024年应届）
+* **中山大学** / 计算机技术（图形学＆AI） / 硕士（2027年应届）
+  * **核心优势**：专业方向为3DGS＆CV，具备AI知识且具备阅读复现CVPR等顶会论文（SOTA基线）的技术视野，能够从底层算法逻辑评估产品可行性。
+* **电子科技大学** / 软件工程（图形学＆AI） / 本科（2024年应届）
+  * **核心课程**：图形学Ⅰ（95）、图形学Ⅱ（98）、数字图像处理（94）、人工智能（91）<a href="/files/transcript_uestc.pdf" target="_blank">[成绩单]</a>
   * **核心优势**：本科期间在电子科技大学星辰工作室产品组学习，了解PM基本工作逻辑；参与各项比赛主担前端及整个项目文档的书写，熟悉从0到1项目的框架逻辑。
   * **学业表现**：专业排名 **5 / 121 (Top 4%)** <a href="/files/transcript_uestc.pdf" target="_blank">[成绩单]</a>，获**优秀毕业生**称号<a href="/files/transcript_uestc.pdf" target="_blank">[待补充]</a>。
   * **四六级成绩**：四级571/六级455<a href="/files/transcript_uestc.pdf" target="_blank">[待补充]</a>。
@@ -55,6 +56,10 @@ redirect_from:
 
 社会实践
 ======
-* 2025年中山大学图形学课程助教（负责技术辅导与Code Review）<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
-* 2025-2026年度中山大学量二党支部组织委员<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
+* 2019年回家乡支教，任宣传副主席，协助开展家乡的汇演活动及推送撰写<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
+* 2020年支教，负责未央支教队宣传组组长工作，负责团队推文撰写<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
 * 2021-2023年度电子科技大学软件学院第三党支部支委<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
+* 2023-2024年电子科技大学软件学院软件e声公众号宣传组成员，负责推推文撰写<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
+* 2022-2024年电子科技大学沙河校区学生自律管理委员会数据处理主席，负责整个校区的数据清理和成绩合计，熟悉vlookup，协助各年级综测评分核算。<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
+* 2025年中山大学图形学课程助教（负责技术辅导与Code Review，熟悉图形学任课知识）<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
+* 2025-2026年度中山大学量二党支部组织委员<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
