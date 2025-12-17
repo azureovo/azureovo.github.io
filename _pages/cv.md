@@ -16,8 +16,8 @@ redirect_from:
 * **电子科技大学** / 软件工程（图形学＆AI） / 本科（2024年应届）
   * **核心课程**：图形学Ⅰ（95）、图形学Ⅱ（98）、数字图像处理（94）、人工智能（91）<a href="/files/transcript_uestc.pdf" target="_blank">[成绩单]</a>
   * **核心优势**：本科期间在电子科技大学星辰工作室**产品组**学习，了解PM基本工作逻辑；参与各项比赛主担前端及**所有项目PRD文档的撰写**，熟悉从0到1项目的框架逻辑。
-  * **学业表现**：专业排名 **5 / 121 (Top 4%)** <a href="/files/transcript_uestc.pdf" target="_blank">[成绩单]</a>。
-  * **四六级成绩**：四级571/六级455<a href="/files/transcript_uestc.pdf" target="_blank">[待补充]</a>。
+  * **学业表现**：专业排名 **5** / 121 (Top 4%) <a href="/files/transcript_uestc.pdf" target="_blank">[成绩单]</a>。
+  * **四六级成绩**：四级571/六级455（大一考完）<a href="/files/transcript_uestc.pdf" target="_blank">[待补充]</a>。
 
 工作经历
 ======
