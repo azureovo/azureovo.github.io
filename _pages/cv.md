@@ -61,27 +61,25 @@ redirect_from:
 获奖与技能
 ======
 * **荣誉奖项**：
-  * 电子科技大学支教优秀个人<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
-  * 中国高校计算机大赛网络技术挑战赛全国二等奖<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
-  * 大学生计算机设计大赛全国三等奖<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
-  * 电子科技大学优秀毕业生<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
-  * 优秀学生奖学金<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
-  * 天空安全卫士企业奖学金<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
-  * 数字天空优秀学员实习直通<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
-  * 待补充
+  * 电子科技大学支教优秀个人<a href="/files/未央.pdf" target="_blank">[公示]</a>
+  * 中国高校计算机大赛网络技术挑战赛全国二等奖<a href="/files/c4比赛证书.pdf" target="_blank">[证书]</a>
+  * 大学生计算机设计大赛全国三等奖<a href="/files/c3.pdf" target="_blank">[证书]</a>
+  * 电子科技大学优秀毕业生
+  * 电子科技大学校优秀学生奖学金
+  * 天空安全卫士企业奖学金
+  * 数字天空优秀学员实习直通证明
 * **产品技能**：
   * 熟练撰写PRD/MRD
   * 精通Axure/墨刀
   * 擅长SQL数据分析
 * **技术栈**：
-  * Python/PyTorch (熟练)
-  * 熟悉Transformer/Diffusion模型原理
-  * 了解LLM微调与RAG应用
+  * Python/PyTorch
+  * 熟悉3DGS/Diffusion模型原理
 
 社会实践
 ======
-* 2019年回家乡支教，任宣传副主席，协助开展家乡的汇演活动及推送撰写<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
-* 2020年支教，负责未央支教队宣传组组长工作，负责团队推文撰写<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
+* 2019年回家乡支教，任宣传副主席，协助开展家乡的汇演活动及推送撰写
+* 2020年支教，负责未央支教队宣传组组长工作，负责团队推文撰写
 * 2021-2023年度电子科技大学软件学院第三党支部支委<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
 * 2023-2024年电子科技大学软件学院软件e声公众号宣传组成员，负责推推文撰写<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
 * 2022-2024年电子科技大学沙河校区学生自律管理委员会数据处理主席，负责整个校区的数据清理和成绩合计，熟悉vlookup，协助各年级综测评分核算。<a href="/files/project4_demo.mp4" target="_blank">[演示]</a>
