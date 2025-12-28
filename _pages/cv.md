@@ -14,7 +14,8 @@ redirect_from:
 * **姓名**：张清安
 * **生日**：2001年03月20日
 * **电话**：18150070267
-* **社交**：1132830680（QQ号）或者 Oo0--b（微信号）
+* **社交平台**：1132830680（QQ号）或者 Oo0--b（微信号）
+* **个人网站**：<a href="https://azureovo.github.io/cv/" target="_blank">[戳这里]</a>。
 * **邮箱**：zhangqan@mail2.sysu.edu.cn 或者 1132830680@qq.com
 
 
