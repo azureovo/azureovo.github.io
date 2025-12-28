@@ -17,7 +17,7 @@ redirect_from:
 * **邮箱**：zhangqan@mail2.sysu.edu.cn 或者 1132830680@qq.com
 * **社交平台**：1132830680（QQ号）或者 Oo0--b（微信号）
 * **个人网站**：<a href="https://azureovo.github.io/" target="_blank">[戳这里]</a>
-* **个人网站**：<a href="/files/251228个人简历/" target="_blank">[251228版本]</a>
+* **个人网站**：<a href="/files/251228个人简历/" target="_blank">[2025年12月28日版本]</a>
 
 
 
