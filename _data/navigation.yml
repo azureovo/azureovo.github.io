@@ -20,8 +20,8 @@ main:
   - title: "简历"
     url: /cv/
 
-  #- title: "生活"
-  #  url: /life/
+  - title: "生活"
+    url: /life/
         
   #- title: "Blog Posts"
   #  url: /year-archive/
