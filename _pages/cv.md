@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "简历【更新至251228】"
+title: "简历【更新时间：251228】"
 permalink: /cv/
 author_profile: true
 redirect_from:
