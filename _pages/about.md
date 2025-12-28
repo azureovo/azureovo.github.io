@@ -11,6 +11,10 @@ redirect_from:
 <p>
   I am a second-year Master's student at the School of Computer Science and Engineering, Sun Yat-sen University.
   You can find my contact information in the sidebar on the left.<br>
-  For my professional background, please visit my <a href="https://azureovo.github.io/cv/">CV page</a>.<br>
-  之所以还会有这个页签是因为其他小页签先注释掉了，只留下简历的小页签，所以略微显得有点冗余。
+  For my professional background, please visit my <a href="https://azureovo.github.io/cv/">CV page</a>.<br><br>
+  
+  Currently, I am a member of the <a href="https://www.sysu-imsl.com/" target="_blank">IMSL Lab</a>, supervised by Prof. <a href="https://cse.sysu.edu.cn/teacher/GaoChengying" target="_blank">Chengying Gao</a>. 
+  I would also like to express my sincere gratitude to Prof. <a href="https://sise.uestc.edu.cn/info/1036/5685.htm" target="_blank">Yuanzhe Yao</a> and Prof. <a href="https://sise.uestc.edu.cn/info/1036/5690.htm" target="_blank">Jia Wu</a> for their guidance during my undergraduate studies.<br><br>
+  
+  <span style="color: gray; font-size: 0.9em;">(Note: This tab remains visible because I have temporarily hidden other sections, leaving only the CV link, which might make the layout appear slightly redundant.)</span>
 </p>
