@@ -86,6 +86,7 @@ redirect_from:
 <ul style="list-style-type: disc; padding-left: 20px;">
   <li style="margin-bottom: 35px;">
     <strong>智慧农业：荔枝采摘机器人视觉感知与控制系统 / AI产品经理 / 2025年10月 – 2025年12月</strong>  <a href="/files/人工智能论文.pdf" target="_blank">[需求文档]</a>
+    <img src="/images/lizhi.png" alt="荔枝目标识别图" style="width: 100%; max-width: 700px; height: auto; display: block; margin: 12px auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
     <ul style="margin-top: 8px; line-height: 1.6; color: #333;">
       <li><strong>产品定位与痛点分析</strong>：针对农业“用工荒”及非结构化环境作业难的行业痛点，主导设计了一款全天候自动化采摘机器人的感知系统。确立了以解决自然光照多变、果实拟态及枝叶遮挡为核心的产品路标，实现了从“视觉感知”到“机械臂执行”的自动化业务闭环。</li>
       <li><strong>技术选型与性能策略</strong>：基于实时性与精度的权衡，定义了基于 YOLO11m-seg 的细粒度实例分割方案。针对“结果母枝”极细且易被遮挡的 Edge Case（长尾场景），制定了 1024×1024 高分辨率输入策略，并引入 C2PSA 机制处理复杂背景噪声，成功解决了“看且看不准”的感知瓶颈，确保工业级可用性。</li>
