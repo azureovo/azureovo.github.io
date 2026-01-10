@@ -95,7 +95,7 @@ redirect_from:
   </li>
 
   <li style="margin-bottom: 35px;">
-    <strong>互联大师：工业智能网关平台 / 产品经理 / 2023年05月 – 2023年12月</strong> <a href="/files/互联大师演示视频.mp4" download="互联大师演示视频.mp4" target="_blank">[演示]</a><a href="/files/c4比赛证书.pdf" target="_blank">[证书]</a><a href="/files/互联大师-工业互联网智能网关-作品设计文档.pdf" target="_blank">[比赛报告]</a>
+    <strong>互联大师：工业智能网关平台 / 产品经理 / 2023年08月 – 2023年10月</strong> <a href="/files/互联大师演示视频.mp4" download="互联大师演示视频.mp4" target="_blank">[演示]</a><a href="/files/c4比赛证书.pdf" target="_blank">[证书]</a><a href="/files/互联大师-工业互联网智能网关-作品设计文档.pdf" target="_blank">[比赛报告]</a>
     <ul style="margin-top: 8px; line-height: 1.6; color: #333;">
       <li><strong>场景与竞品分析</strong>：深入工业现场调研，发现现场设备存在Modbus、Fins等多协议“孤岛效应”，导致设备上云成本极高。对标现有竞品，确立了“低代码+通用映射”的差异化竞争策略。</li>
       <li><strong>标准化协议定义</strong>：协助设计并定义了ICCP通用工控协议标准，通过构建统一映射层，将N种私有协议的转换复杂度降至N，极大提升了SaaS平台的设备兼容性与扩展性，主笔完全负责撰写万字PRD文档。</li>
@@ -105,7 +105,7 @@ redirect_from:
   </li>
 
   <li style="margin-bottom: 35px;">
-    <strong>慧创文旅：一站式文创设计供应链平台 / 产品经理 / 2022年12月 - 2023年04月</strong> <a href="/files/慧创文旅.pdf" target="_blank">[项目ppt]</a>
+    <strong>慧创文旅：一站式文创设计供应链平台 / 产品经理 / 2022年12月 - 2023年03月</strong> <a href="/files/慧创文旅.pdf" target="_blank">[项目ppt]</a>
     <ul style="margin-top: 8px; line-height: 1.6; color: #333;">
       <li><strong>项目内容描述</strong>：致力于重构文创产业价值链，通过数字化平台连接B端景区、设计师与生产工厂，解决供需不匹配与供应链管理混乱的问题。</li>
       <li><strong>双边平台设计</strong>：构建B2B2C商业闭环。B端为景区/企业提供定制化AI设计工具，降低设计预算；C端为独立设计师提供变现渠道。设计了包含设计费、生产佣金、供应链管理费在内的多维度盈利模型。</li>
@@ -115,7 +115,7 @@ redirect_from:
   </li>
 
   <li style="margin-bottom: 30px;">
-    <strong>高校智慧校园：一站式服务小程序 / 产品经理 / 2020年08月 – 2020年12月</strong> <a href="/files/产品需求文档v1.4.pdf" target="_blank">[需求文档]</a>
+    <strong>高校智慧校园：一站式服务小程序 / 产品经理 / 2020年09月 – 2020年11月</strong> <a href="/files/产品需求文档v1.4.pdf" target="_blank">[需求文档]</a>
     <ul style="margin-top: 8px; line-height: 1.6; color: #333;">
       <li><strong>项目概要描述</strong>：针对校园信息碎片化、高频服务（如课表、校车）入口分散的痛点，构建基于微信小程序的校园生活服务平台，整合教务、通勤、社交及工具四大模块。</li>
       <li><strong>全局架构设计</strong>：负责产品从0到1的架构规划，定义用户权限体系（已绑定/未绑定学号的双状态差异化交互），设计全局异常处理机制（断网/报错流程）及页面间交互规范，确保系统稳定性。</li>
