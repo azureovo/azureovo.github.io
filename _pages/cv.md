@@ -24,13 +24,13 @@ redirect_from:
 <ul style="list-style-type: disc; padding-left: 20px; line-height: 1.6;">
   <li style="margin-bottom: 15px;">
     <strong>🏫 中山大学</strong> / 计算机技术（图形学＆AI） / 硕士（2027年应届）
-    <ul style="margin-top: 5px; color: #444;">
+    <ul style="margin-top: 5px;">
       <li><strong>核心优势</strong>：专业方向为3DGS＆CV，具备基本的AI知识且具备阅读且快速复现CVPR等顶会论文的技术视野，具备快速学习新知识的能力，能够从底层算法逻辑评估产品可行性。</li>
     </ul>
   </li>
   <li style="margin-bottom: 15px;">
     <strong>🏫 电子科技大学</strong> / 软件工程（图形学） / 本科（2024年应届）
-    <ul style="margin-top: 5px; color: #444;">
+    <ul style="margin-top: 5px;">
       <li><strong>核心课程</strong>：图形学Ⅰ（95） / 图形学Ⅱ（98） / 数字图像处理（93） / 人工智能（91）<a href="/files/成绩单.pdf" target="_blank">[成绩]</a>。</li>
       <li><strong>核心优势</strong>：本科期间在电子科技大学星辰工作室<strong>产品组</strong>学习，了解PM基本工作逻辑；参与各项比赛主担前端及<strong>所有项目PRD文档的撰写</strong>，熟悉从0到1项目的框架逻辑。</li>
       <li><strong>学业表现</strong>：以专业排名 <strong>5</strong> / 121 (Top 4%) <a href="/files/transcript_uestc.pdf" target="_blank">[排名]</a>，保研至中大。四级571 / 六级455（大一即全部考完）<a href="/files/四六级.pdf" target="_blank">[成绩]</a>。</li>
@@ -44,7 +44,7 @@ redirect_from:
   <li style="margin-bottom: 35px;">
     <strong>🎮 某知名游戏头部公司（上海） / 产品体验分析与策略优化 / 2025年01月 – 2025年12月</strong>
     <img src="/images/游戏产品.png" alt="游戏产品" style="width: 100%; max-width: 700px; height: auto; display: block; margin: 12px auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-    <ul style="margin-top: 8px; line-height: 1.6; color: #333;">
+    <ul style="margin-top: 8px; line-height: 1.6;">
       <li><strong>用户旅程优化</strong>：参与千万级用户规模产品的体验评估，从用户全生命周期视角拆解核心玩法与新手引导逻辑；通过梳理由点到面的交互路径，累计输出10+份定性体验优化报告，多次评为优秀报告。</li>
       <li><strong>需求闭环管理</strong>：参与“体验问题-痛点分析-需求转化”的闭环机制。不局限于Bug发现，而是针对交互断点与逻辑冗余提出产品侧改进方案，协助产研团队提升核心功能易用性。</li>
       <li><strong>风险策略控制</strong>：在敏捷开发流程中定义边界场景的验收标准，通过高强度的场景化模拟，有效拦截上线前的体验降级风险，保障核心业务指标即留存和转化的稳定性。</li>
@@ -58,7 +58,7 @@ redirect_from:
   <li style="margin-bottom: 35px;">
     <strong>☀️ 基于生成式先验的光照算法研究 / 论文一作 / <span style="color: red;">CVPR 2026 (CCF-A在投)</span></strong>
     <img src="/images/cvpr2026.png" alt="CVPR 2026项目架构图" style="width: 100%; max-width: 700px; height: auto; display: block; margin: 12px auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-    <ul style="margin-top: 10px; line-height: 1.6; color: #333;">
+    <ul style="margin-top: 10px; line-height: 1.6;">
       <li><strong>痛点洞察</strong>：针对光照场景材质丢失、人工修复成本高的行业痛点，确立了以物理感知逆渲染为核心的技术产品路径，旨在实现3D资产的自动化低成本生成。</li>
       <li><strong>模型设计</strong>：设计包含多模块的端到端技术架构。成功解决了传统方案中材质与光照无法解耦的算法瓶颈，将技术指标（PSNR）提升超越SOTA水平。</li>
       <li><strong>落地价值</strong>：验证了方案在实时渲染场景下的可行性，大幅缩短3D资产生产周期，为AIGC在游戏资产生成的工业化落地提供了可执行的技术底座。</li>
@@ -67,7 +67,7 @@ redirect_from:
 
   <li style="margin-bottom: 35px;">
     <strong>📷 基于生成式先验的稀疏视角重建研究 / 论文一作 / <span style="color: red;">ACM MM 2026 (CCF-A在投)</span></strong>
-    <ul style="margin-top: 10px; line-height: 1.6; color: #333;">
+    <ul style="margin-top: 10px; line-height: 1.6;">
       <li><strong>痛点洞察</strong>：传统稀疏重建其输入数量级无法降至可能性最低，过低无法进行全景重建，针对该痛点实现生成式稀疏视角框架实现质量重建并将输入泛化性提升至最高。</li>
       <li><strong>模型设计</strong>：待完全发表后补全核心信息。</li>
     </ul>
@@ -75,7 +75,7 @@ redirect_from:
 
   <li style="margin-bottom: 35px;">
     <strong>🤖 基于多智能体投票辩论的研究 / 论文二作 / <span style="color: red;">ECCV 2026 (CCF-A在投)</span></strong>
-    <ul style="margin-top: 10px; line-height: 1.6; color: #333;">
+    <ul style="margin-top: 10px; line-height: 1.6;">
       <li><strong>痛点洞察</strong>：通过大模型多智能体答辩投票得到图文最佳Sota。</li>
       <li><strong>模型设计</strong>：待完全发表后补全核心信息。</li>
     </ul>
@@ -88,7 +88,7 @@ redirect_from:
   <li style="margin-bottom: 35px;">
     <strong>🍚 智慧农业：荔枝采摘机器人视觉感知与控制系统 / AI产品经理 / 2025年10月 – 2025年12月</strong>  <a href="/files/人工智能论文.pdf" target="_blank">[需求文档]</a><a href="/files/高级人工智能ppt.pdf" target="_blank">[PPT]</a><a href="/files/视频1.mp4" download="抓取母枝.mp4" target="_blank">[抓取母枝]</a><a href="/files/视频2.mp4" download="抓取果实.mp4" target="_blank">[抓取果实]</a>
     <img src="/images/lizhi.png" alt="荔枝目标识别图" style="width: 100%; max-width: 700px; height: auto; display: block; margin: 12px auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-    <ul style="margin-top: 8px; line-height: 1.6; color: #333;">
+    <ul style="margin-top: 8px; line-height: 1.6;">
       <li><strong>产品定位与痛点分析</strong>：针对农业“用工荒”及非结构化环境作业难的行业痛点，主导设计了一款全天候自动化采摘机器人的感知系统。确立了以解决自然光照多变、果实拟态及枝叶遮挡为核心的产品路标，实现了从“视觉感知”到“机械臂执行”的自动化业务闭环。</li>
       <li><strong>技术选型与性能策略</strong>：基于实时性与精度的权衡，定义了基于 YOLO11m-seg 的细粒度实例分割方案。针对“结果母枝”极细且易被遮挡的 Edge Case（长尾场景），制定了 1024×1024 高分辨率输入策略，并引入 C2PSA 机制处理复杂背景噪声，成功解决了“看且看不准”的感知瓶颈，确保工业级可用性。</li>
       <li><strong>业务逻辑与鲁棒性设计</strong>：确立符合农艺标准的“抓枝剪梗”标准化作业流程（SOP）。设计了从 2D 视觉到 3D 物理坐标系的映射逻辑，并引入 Depth Anything V2 深度估计模型作为冗余方案，修复硬件传感器在极端光照下的深度断层问题，实现了“所见即所得”的精准操控。</li>
@@ -99,7 +99,7 @@ redirect_from:
   <li style="margin-bottom: 35px;">
     <strong>互联大师：工业智能网关平台 / 产品经理 / 2023年08月 – 2023年10月</strong> <a href="/files/互联大师演示视频.mp4" download="互联大师演示视频.mp4" target="_blank">[演示视频]</a><a href="/files/c4比赛证书.pdf" target="_blank">[证书]</a><a href="/files/互联大师-工业互联网智能网关-作品设计文档.pdf" target="_blank">[比赛报告]</a>
     <img src="/images/hulian.png" alt="互联大师" style="width: 100%; max-width: 700px; height: auto; display: block; margin: 12px auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-    <ul style="margin-top: 8px; line-height: 1.6; color: #333;">
+    <ul style="margin-top: 8px; line-height: 1.6;">
       <li><strong>场景与竞品分析</strong>：深入工业现场调研，发现现场设备存在Modbus、Fins等多协议“孤岛效应”，导致设备上云成本极高。对标现有竞品，确立了“低代码+通用映射”的差异化竞争策略。</li>
       <li><strong>标准化协议定义</strong>：协助设计并定义了ICCP通用工控协议标准，通过构建统一映射层，将N种私有协议的转换复杂度降至N，极大提升了SaaS平台的设备兼容性与扩展性，主笔完全负责撰写万字PRD文档。</li>
       <li><strong>端到端架构规划</strong>：规划了“边缘计算网关 + 云端管理中台 + 移动端监控”的完整IoT产品矩阵，实现了设备远程监控、日志审计及黑名单安全策略等B端核心功能。</li>
@@ -109,7 +109,7 @@ redirect_from:
 
   <li style="margin-bottom: 35px;">
     <strong>慧创文旅：一站式文创设计供应链平台 / 产品经理 / 2022年12月 - 2023年03月</strong> <a href="/files/慧创文旅.pdf" target="_blank">[项目ppt]</a>
-    <ul style="margin-top: 8px; line-height: 1.6; color: #333;">
+    <ul style="margin-top: 8px; line-height: 1.6;">
       <li><strong>项目内容描述</strong>：致力于重构文创产业价值链，通过数字化平台连接B端景区、设计师与生产工厂，解决供需不匹配与供应链管理混乱的问题。</li>
       <li><strong>双边平台设计</strong>：构建B2B2C商业闭环。B端为景区/企业提供定制化AI设计工具，降低设计预算；C端为独立设计师提供变现渠道。设计了包含设计费、生产佣金、供应链管理费在内的多维度盈利模型。</li>
       <li><strong>供应链数字化</strong>：搭建“云工厂”后台管理系统，打通AI设计端与工厂生产端的数据接口。实现订单自动分发与柔性生产，将传统数周的文创开发周期缩短至数天，显著提升供应链效率。</li>
@@ -119,7 +119,7 @@ redirect_from:
 
   <li style="margin-bottom: 30px;">
     <strong>高校智慧校园：一站式服务小程序 / 产品经理 / 2020年09月 – 2020年11月</strong> <a href="/files/产品需求文档v1.4.pdf" target="_blank">[需求文档]</a>
-    <ul style="margin-top: 8px; line-height: 1.6; color: #333;">
+    <ul style="margin-top: 8px; line-height: 1.6;">
       <li><strong>项目概要描述</strong>：针对校园信息碎片化、高频服务（如课表、校车）入口分散的痛点，构建基于微信小程序的校园生活服务平台，整合教务、通勤、社交及工具四大模块。</li>
       <li><strong>全局架构设计</strong>：负责产品从0到1的架构规划，定义用户权限体系（已绑定/未绑定学号的双状态差异化交互），设计全局异常处理机制（断网/报错流程）及页面间交互规范，确保系统稳定性。</li>
       <li><strong>消息分发系统</strong>：设计多维度的全局消息通知逻辑（红点机制），定义了社区互动、校车公告、系统通知在不同Tab及层级下的即时同步与消除逻辑，解决消息触达滞后问题。</li>
