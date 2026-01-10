@@ -23,13 +23,13 @@ redirect_from:
 ======
 <ul style="list-style-type: disc; padding-left: 20px; line-height: 1.6;">
   <li style="margin-bottom: 15px;">
-    <strong>中山大学</strong> / 计算机技术（图形学＆AI） / 硕士（2027年应届）
+    <strong>🏫 中山大学</strong> / 计算机技术（图形学＆AI） / 硕士（2027年应届）
     <ul style="margin-top: 5px; color: #444;">
       <li><strong>核心优势</strong>：专业方向为3DGS＆CV，具备基本的AI知识且具备阅读且快速复现CVPR等顶会论文的技术视野，具备快速学习新知识的能力，能够从底层算法逻辑评估产品可行性。</li>
     </ul>
   </li>
   <li style="margin-bottom: 15px;">
-    <strong>电子科技大学</strong> / 软件工程（图形学） / 本科（2024年应届）
+    <strong>🏫 电子科技大学</strong> / 软件工程（图形学） / 本科（2024年应届）
     <ul style="margin-top: 5px; color: #444;">
       <li><strong>核心课程</strong>：图形学Ⅰ（95） / 图形学Ⅱ（98） / 数字图像处理（93） / 人工智能（91）<a href="/files/成绩单.pdf" target="_blank">[成绩单]</a>。</li>
       <li><strong>核心优势</strong>：本科期间在电子科技大学星辰工作室<strong>产品组</strong>学习，了解PM基本工作逻辑；参与各项比赛主担前端及<strong>所有项目PRD文档的撰写</strong>，熟悉从0到1项目的框架逻辑。</li>
