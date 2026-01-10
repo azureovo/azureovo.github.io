@@ -41,8 +41,8 @@ redirect_from:
 工作经历
 ======
 <ul style="list-style-type: disc; padding-left: 20px;">
-  <li style="margin-bottom: 30px;">
-    <strong>某知名游戏头部公司（上海） / 产品体验分析与策略优化 / 2025年01月 – 2025年12月</strong>
+  <li style="margin-bottom: 35px;">
+    <strong>🎮 某知名游戏头部公司（上海） / 产品体验分析与策略优化 / 2025年01月 – 2025年12月</strong>
     <ul style="margin-top: 8px; line-height: 1.6; color: #333;">
       <li><strong>用户旅程优化</strong>：参与千万级用户规模产品的体验评估，从用户全生命周期视角拆解核心玩法与新手引导逻辑；通过梳理由点到面的交互路径，累计输出10+份定性体验优化报告，多次评为优秀报告。</li>
       <li><strong>需求闭环管理</strong>：参与“体验问题-痛点分析-需求转化”的闭环机制。不局限于Bug发现，而是针对交互断点与逻辑冗余提出产品侧改进方案，协助产研团队提升核心功能易用性。</li>
