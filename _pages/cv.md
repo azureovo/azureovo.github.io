@@ -1,5 +1,4 @@
 ---
----
 layout: archive
 title: "简历"
 permalink: /cv/
@@ -17,7 +16,7 @@ redirect_from:
 * **电话**：18150070267
 * **邮箱**：zhangqan@mail2.sysu.edu.cn 或者 1132830680@qq.com
 * **社交平台**：1132830680（QQ号）或者 Oo0--b（微信号，中间是两条小杠）
-* **个人网站**：<a href="https://azureovo.github.io/" target="_blank">[戳这里，其实就是主页面]</a>
+* **个人网站**：<a href="https://azureovo.github.io/" target="_blank">[戳这里]</a>
 * **简历附件**：<a href="/files/260102简历.pdf" target="_blank">[2026年01月02日版本]</a>
 
 教育经历
