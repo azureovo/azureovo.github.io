@@ -40,7 +40,7 @@ redirect_from:
 算法经历
 ======
 <li> **基于生成式先验的光照算法研究 / 论文一作 / CVPR 2026 (在投)**
-  <img src="project_cvpr.png" alt="CVPR 2026项目架构图" style="width: 100%; max-width: 700px; height: auto; display: block; margin: 12px 0; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+  <img src="images/cvpr2026.png" alt="CVPR 2026项目架构图" style="width: 100%; max-width: 700px; height: auto; display: block; margin: 12px 0; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
   <ul>
   <li> **痛点洞察**：针对光照场景材质丢失、人工修复成本高的行业痛点，确立了以物理感知逆渲染为核心的技术产品路径，旨在实现3D资产的自动化低成本生成。</li>
   <li> **模型设计**：设计包含多模块的端到端技术架构。成功解决了传统方案中材质与光照无法解耦的算法瓶颈，将技术指标（PSNR）提升超越SOTA水平。</li>
