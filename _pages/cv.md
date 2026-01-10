@@ -33,7 +33,7 @@ redirect_from:
     <ul style="margin-top: 5px; color: #444;">
       <li><strong>核心课程</strong>：图形学Ⅰ（95） / 图形学Ⅱ（98） / 数字图像处理（93） / 人工智能（91）<a href="/files/成绩单.pdf" target="_blank">[成绩单]</a>。</li>
       <li><strong>核心优势</strong>：本科期间在电子科技大学星辰工作室<strong>产品组</strong>学习，了解PM基本工作逻辑；参与各项比赛主担前端及<strong>所有项目PRD文档的撰写</strong>，熟悉从0到1项目的框架逻辑。</li>
-      <li><strong>学业表现</strong>：以专业排名 <strong>5</strong> / 121 (Top 4%) <a href="/files/transcript_uestc.pdf" target="_blank">[排名证明]</a>，保研至中大。四级571 / 六级455（大一考完）<a href="/files/四六级.pdf" target="_blank">[成绩证明]</a>。</li>
+      <li><strong>学业表现</strong>：以专业排名 <strong>5</strong> / 121 (Top 4%) <a href="/files/transcript_uestc.pdf" target="_blank">[排名证明]</a>，保研至中大。四级571 / 六级455（大一即全部考完）<a href="/files/四六级.pdf" target="_blank">[成绩证明]</a>。</li>
     </ul>
   </li>
 </ul>
