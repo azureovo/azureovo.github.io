@@ -96,7 +96,7 @@ redirect_from:
   </li>
 
   <li style="margin-bottom: 35px;">
-    <strong>互联大师：工业智能网关平台 / 产品经理 / 2023年08月 – 2023年10月</strong> <a href="/files/互联大师演示视频.mp4" download="互联大师演示视频.mp4" target="_blank">[演示]</a><a href="/files/c4比赛证书.pdf" target="_blank">[证书]</a><a href="/files/互联大师-工业互联网智能网关-作品设计文档.pdf" target="_blank">[比赛报告]</a>
+    <strong>互联大师：工业智能网关平台 / 产品经理 / 2023年08月 – 2023年10月</strong> <a href="/files/互联大师演示视频.mp4" download="互联大师演示视频.mp4" target="_blank">[演示视频]</a><a href="/files/c4比赛证书.pdf" target="_blank">[证书]</a><a href="/files/互联大师-工业互联网智能网关-作品设计文档.pdf" target="_blank">[比赛报告]</a>
     <img src="/images/hulian.png" alt="互联大师" style="width: 100%; max-width: 700px; height: auto; display: block; margin: 12px auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
     <ul style="margin-top: 8px; line-height: 1.6; color: #333;">
       <li><strong>场景与竞品分析</strong>：深入工业现场调研，发现现场设备存在Modbus、Fins等多协议“孤岛效应”，导致设备上云成本极高。对标现有竞品，确立了“低代码+通用映射”的差异化竞争策略。</li>
