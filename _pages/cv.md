@@ -44,7 +44,7 @@ redirect_from:
   <li style="margin-bottom: 30px;">
     <strong>某知名游戏头部公司（上海） / 产品体验分析与策略优化 / 2025年01月 – 2025年12月</strong>
     <ul style="margin-top: 8px; line-height: 1.6; color: #333;">
-      <li><strong>用户旅程优化</strong>：参与千万级用户规模产品的早期体验评估，从用户全生命周期视角拆解核心玩法与新手引导逻辑；通过梳理由点到面的交互路径，累计输出10+份定性体验优化报告，多次评为优秀报告。</li>
+      <li><strong>用户旅程优化</strong>：参与千万级用户规模产品的体验评估，从用户全生命周期视角拆解核心玩法与新手引导逻辑；通过梳理由点到面的交互路径，累计输出10+份定性体验优化报告，多次评为优秀报告。</li>
       <li><strong>需求闭环管理</strong>：参与“体验问题-痛点分析-需求转化”的闭环机制。不局限于Bug发现，而是针对交互断点与逻辑冗余提出产品侧改进方案，协助产研团队提升核心功能易用性。</li>
       <li><strong>风险策略控制</strong>：在敏捷开发流程中定义边界场景的验收标准，通过高强度的场景化模拟，有效拦截上线前的体验降级风险，保障核心业务指标即留存和转化的稳定性。</li>
     </ul>
@@ -56,7 +56,7 @@ redirect_from:
 <ul style="list-style-type: disc; padding-left: 20px;">
   <li style="margin-bottom: 35px;">
     <strong>基于生成式先验的光照算法研究 / 论文一作 / CVPR 2026 (在投)</strong>
-    <img src="images/cvpr2026.png" alt="CVPR 2026项目架构图" style="width: 100%; max-width: 700px; height: auto; display: block; margin: 12px 0; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+    <img src="/images/cvpr2026.png" alt="CVPR 2026项目架构图" style="width: 100%; max-width: 700px; height: auto; display: block; margin: 12px 0; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
     <ul style="margin-top: 10px; line-height: 1.6; color: #333;">
       <li><strong>痛点洞察</strong>：针对光照场景材质丢失、人工修复成本高的行业痛点，确立了以物理感知逆渲染为核心的技术产品路径，旨在实现3D资产的自动化低成本生成。</li>
       <li><strong>模型设计</strong>：设计包含多模块的端到端技术架构。成功解决了传统方案中材质与光照无法解耦的算法瓶颈，将技术指标（PSNR）提升超越SOTA水平。</li>
@@ -67,7 +67,7 @@ redirect_from:
   <li style="margin-bottom: 30px;">
     <strong>基于生成式先验的稀疏视角重建研究 / 论文一作 / ACM MM 2026 (在投)</strong>
     <ul style="margin-top: 8px; line-height: 1.6; color: #333;">
-      <li><strong>痛点洞察</strong>：传统稀疏重建其输入数量级无法降至可能性最低，过低无法进行全景重建。针对该痛点实现生成式稀疏视角框架实现质量重建并将输入泛化性提升至最高。</li>
+      <li><strong>痛点洞察</strong>：传统稀疏重建其输入数量级无法降至可能性最低，过低无法进行全景重建，针对该痛点实现生成式稀疏视角框架实现质量重建并将输入泛化性提升至最高。</li>
       <li><strong>模型设计</strong>：待完全发表后补全核心信息。</li>
     </ul>
   </li>
@@ -75,6 +75,7 @@ redirect_from:
   <li style="margin-bottom: 30px;">
     <strong>基于多智能体投票辩论的研究 / 论文二作 / ECCV 2026 (在投)</strong>
     <ul style="margin-top: 8px; line-height: 1.6; color: #333;">
+      <li><strong>痛点洞察</strong>：通过大模型多智能体答辩投票得到图文最佳sota。</li>
       <li><strong>模型设计</strong>：待完全发表后补全核心信息。</li>
     </ul>
   </li>
