@@ -56,13 +56,14 @@ redirect_from:
 <ul style="list-style-type: disc; padding-left: 20px;">
   <li style="margin-bottom: 35px;">
     <strong>基于生成式先验的光照算法研究 / 论文一作 / CVPR 2026 (在投)</strong>
-    <img src="/images/cvpr2026.png" alt="CVPR 2026项目架构图" style="width: 100%; max-width: 700px; height: auto; display: block; margin: 12px 0; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+    <img src="/images/cvpr2026.png" alt="CVPR 2026项目架构图" style="width: 100%; max-width: 700px; height: auto; display: block; margin: 12px auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
     <ul style="margin-top: 10px; line-height: 1.6; color: #333;">
       <li><strong>痛点洞察</strong>：针对光照场景材质丢失、人工修复成本高的行业痛点，确立了以物理感知逆渲染为核心的技术产品路径，旨在实现3D资产的自动化低成本生成。</li>
       <li><strong>模型设计</strong>：设计包含多模块的端到端技术架构。成功解决了传统方案中材质与光照无法解耦的算法瓶颈，将技术指标（PSNR）提升超越SOTA水平。</li>
       <li><strong>落地价值</strong>：验证了方案在实时渲染场景下的可行性，大幅缩短3D资产生产周期，为AIGC在游戏资产生成的工业化落地提供了可执行的技术底座。</li>
     </ul>
   </li>
+</ul>
 
   <li style="margin-bottom: 30px;">
     <strong>基于生成式先验的稀疏视角重建研究 / 论文一作 / ACM MM 2026 (在投)</strong>
