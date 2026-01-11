@@ -66,7 +66,7 @@ redirect_from:
   </li>
 
   <li style="margin-bottom: 35px;">
-    <strong>📷 基于生成式先验的稀疏视角重建研究 / 论文一作 / <span style="color: red;">ACM MM 2026 (CCF-A在投)</span></strong>
+    <strong>📷 基于生成式先验的稀疏视角重建研究 / 论文一作 / <span style="color: red;">(CCF-A在投)</span></strong>
     <ul style="margin-top: 10px; line-height: 1.6;">
       <li><strong>痛点洞察</strong>：传统稀疏重建其输入数量级无法降至可能性最低，过低无法进行全景重建，针对该痛点实现生成式稀疏视角框架实现质量重建并将输入泛化性提升至最高。</li>
       <li><strong>模型设计</strong>：待完全发表后补全核心信息。</li>
@@ -74,7 +74,7 @@ redirect_from:
   </li>
 
   <li style="margin-bottom: 35px;">
-    <strong>🤖 基于多智能体投票辩论的研究 / 论文二作 / <span style="color: red;">ECCV 2026 (CCF-A在投)</span></strong>
+    <strong>🤖 基于多智能体投票辩论的研究 / 论文二作 / <span style="color: red;">(CCF-A在投)</span></strong>
     <ul style="margin-top: 10px; line-height: 1.6;">
       <li><strong>痛点洞察</strong>：通过大模型多智能体答辩投票得到图文最佳Sota。</li>
       <li><strong>模型设计</strong>：待完全发表后补全核心信息。</li>
