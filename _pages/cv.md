@@ -15,7 +15,7 @@ redirect_from:
 * **生日**：2001年03月20日
 * **电话**：18150070267
 * **邮箱**：zhangqan@mail2.sysu.edu.cn 或者 1132830680@qq.com
-* **社交平台**：1132830680（QQ号）或者 Oo0--b（微信号，中间是两条小杠）
+* **社交平台**：1132830680（QQ号）或者 18150070267（微信号）
 * **个人网站**：<a href="https://azureovo.github.io/" target="_blank">[戳这里]</a>
 * <span style="color: red;">**简历文档**：<a href="/files/260102简历.pdf" target="_blank">[2026年01月02日版本]</a></span>
 
