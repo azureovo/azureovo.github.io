@@ -49,11 +49,11 @@ redirect_from:
       <li><strong>Part 2</strong>：待入职补充。</li>
     </ul>
   </li>
-
+</ul>
 
 <ul style="list-style-type: disc; padding-left: 20px;">
   <li style="margin-bottom: 35px;">
-    <strong>🎮 某知名游戏头部公司（上海） / 产品体验分析与策略优化 / 2025年06月 – 2025年10月</strong>
+    <strong>🎮 某知名游戏头部公司（上海） / 产品体验分析与策略优化 / 2025年07月 – 2025年11月</strong>
     <ul style="margin-top: 10px; line-height: 1.6;">
       <li><strong>用户旅程优化</strong>：参与千万级用户规模RPG产品的体验评估，从用户全生命周期视角拆解新版本核心玩法与引导的迭代优劣体验，累计输出10+份定性体验优化报告。</li>
       <li><strong>需求闭环转化</strong>：参与新CRPG项目Idea的“体验问题-痛点分析-需求转化”的闭环机制，提出产品侧想法实现和改进方案，协助产研团队提升核心玩法的鲁棒性。</li>
