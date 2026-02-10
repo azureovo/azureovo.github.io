@@ -105,7 +105,6 @@ redirect_from:
   * **熟练撰写PRD/MRD，方向涉猎广泛，能快速理解新领域专业术语。**
   * 精通Axure/墨刀
   * 擅长SQL数据分析
-* **技术栈**：
   * Python/PyTorch
   * 熟悉3DGS/Diffusion模型原理
 * **社会实践**：
