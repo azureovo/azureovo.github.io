@@ -54,8 +54,7 @@ redirect_from:
 <ul style="list-style-type: disc; padding-left: 20px;">
   <li style="margin-bottom: 35px;">
     <strong>🎮 某知名游戏头部公司（上海） / 产品体验分析与策略优化 / 2025年06月 – 2025年10月</strong>
-    <img src="/images/游戏产品.png" alt="游戏产品" style="width: 100%; max-width: 700px; height: auto; display: block; margin: 12px auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-    <ul style="margin-top: 8px; line-height: 1.6;">
+    <ul style="margin-top: 10px; line-height: 1.6;">
       <li><strong>用户旅程优化</strong>：参与千万级用户规模RPG产品的体验评估，从用户全生命周期视角拆解新版本核心玩法与引导的迭代优劣体验，累计输出10+份定性体验优化报告。</li>
       <li><strong>需求闭环转化</strong>：参与新CRPG项目Idea的“体验问题-痛点分析-需求转化”的闭环机制，提出产品侧想法实现和改进方案，协助产研团队提升核心玩法的鲁棒性。</li>
       <li><strong>风险策略控制</strong>：在敏捷开发流程中定义边界场景的验收标准，通过高强度的场景化模拟，有效拦截上线前的体验降级风险，保障核心业务指标即留存和转化的稳定性。</li>
@@ -67,7 +66,7 @@ redirect_from:
 ======
 <ul style="list-style-type: disc; padding-left: 20px;">
   <li style="margin-bottom: 35px;">
-    <strong>☀️ 基于生成式先验的光照算法研究 / 论文一作 / <span style="color: red;">CVPR 2026 (CCF-A在投)</span></strong>
+    <strong>☀️ 基于生成式先验的光照算法研究 / 论文一作 / <span style="color: red;">CVPR 2026 (CCF-A)</span></strong>
     <ul style="margin-top: 10px; line-height: 1.6;">
       <li><strong>痛点洞察</strong>：针对光照场景材质丢失、人工修复成本高的行业痛点，确立了以物理感知逆渲染为核心的技术产品路径，旨在实现3D资产的自动化低成本生成。</li>
       <li><strong>模型设计</strong>：设计包含多模块的端到端技术架构。成功解决了传统方案中材质与光照无法解耦的算法瓶颈，将技术指标（PSNR）提升超越SOTA水平。</li>
@@ -76,7 +75,7 @@ redirect_from:
   </li>
 
   <li style="margin-bottom: 35px;">
-    <strong>📷 基于生成式先验的稀疏视角重建研究 / 论文一作 / <span style="color: red;">(CCF-A在投)</span></strong>
+    <strong>📷 基于生成式先验的稀疏视角重建研究 / 论文一作 / <span style="color: red;">(在投)</span></strong>
     <ul style="margin-top: 10px; line-height: 1.6;">
       <li><strong>痛点洞察</strong>：传统稀疏重建其输入数量级无法降至可能性最低，过低无法进行全景重建，针对该痛点实现生成式稀疏视角框架实现质量重建并将输入泛化性提升至最高。</li>
       <li><strong>模型设计</strong>：待完全发表后补全核心信息。</li>
@@ -84,7 +83,7 @@ redirect_from:
   </li>
 
   <li style="margin-bottom: 35px;">
-    <strong>🤖 基于多智能体投票辩论的研究 / 论文二作 / <span style="color: red;">(CCF-A在投)</span></strong>
+    <strong>🤖 基于多智能体投票辩论的研究 / 论文二作 / <span style="color: red;">(ECCV在投)</span></strong>
     <ul style="margin-top: 10px; line-height: 1.6;">
       <li><strong>痛点洞察</strong>：通过大模型多智能体答辩投票得到图文最佳Sota。</li>
       <li><strong>模型设计</strong>：待完全发表后补全核心信息。</li>
