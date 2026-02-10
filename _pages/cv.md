@@ -25,24 +25,35 @@ redirect_from:
   <li style="margin-bottom: 15px;">
     <strong>🏫 中山大学</strong> / 计算机技术（图形学＆AI） / 硕士（2027年应届）
     <ul style="margin-top: 5px;">
-      <li><strong>核心优势</strong>：专业方向为3DGS＆CV，具备基本的AI知识且具备阅读且快速复现CVPR等顶会论文的技术视野，具备快速学习新知识的能力，能够从底层算法逻辑评估产品可行性。</li>
+      <li><strong>核心优势</strong>：专业方向为3DGS＆CV，具备基本的AI知识，具备快速阅读复现CVPR等顶会论文的技术视野，具备快速学习新知识的能力，能够从底层算法逻辑的角度评估产品可行性。</li>
     </ul>
   </li>
   <li style="margin-bottom: 15px;">
     <strong>🏫 电子科技大学</strong> / 软件工程（图形学） / 本科（2024年应届）
     <ul style="margin-top: 5px;">
-      <li><strong>核心课程</strong>：图形学Ⅰ（95） / 图形学Ⅱ（98） / 数字图像处理（93） / 人工智能（91）<a href="/files/成绩单.pdf" target="_blank">[成绩]</a>。</li>
-      <li><strong>核心优势</strong>：本科期间在电子科技大学星辰工作室<strong>产品组</strong>学习，了解PM基本工作逻辑；参与各项比赛主担前端及<span style="color: red;"><strong>所有项目PRD文档的撰写</strong></span>，熟悉从0到1项目的框架逻辑。</li>
-      <li><strong>学业表现</strong>：以专业排名 <strong>5</strong> / 121 (Top 4%) <a href="/files/transcript_uestc.pdf" target="_blank">[排名]</a>，保研至中大。四级571 / 六级455（大一即全部考完）<a href="/files/四六级.pdf" target="_blank">[成绩]</a>。</li>
+      <li><strong>核心课程</strong>：图形学Ⅰ（95） / 图形学Ⅱ（98） / 数字图像处理（93） / 人工智能（91）<a href="/files/成绩单.pdf" target="_blank">[成绩单]</a>。</li>
+      <li><strong>核心优势</strong>：本科期间在电子科技大学星辰工作室<strong>产品组</strong>学习，了解PM基本工作流，参与各项比赛主担前端及<span style="color: red;"><strong>所有项目PRD文档的撰写</strong></span>，熟悉从0到1项目的框架逻辑。</li>
+      <li><strong>学业表现</strong>：以专业排名 <strong>5</strong> / 121 (Top 4%) <a href="/files/transcript_uestc.pdf" target="_blank">[排名]</a>，保研至中大。四级571 / 六级455（大一时全部考完）<a href="/files/四六级.pdf" target="_blank">[成绩]</a>。</li>
     </ul>
   </li>
 </ul>
 
 工作经历
 ======
+
 <ul style="list-style-type: disc; padding-left: 20px;">
   <li style="margin-bottom: 35px;">
-    <strong>🎮 某知名游戏头部公司（上海） / 产品体验分析与策略优化 / 2025年01月 – 2025年12月</strong>
+    <strong>🎮 腾讯IEG / 产品经理（技术背景） / 2026年02月 – 至今</strong>
+    <ul style="margin-top: 10px; line-height: 1.6;">
+      <li><strong>Part 1</strong>：</li>
+      <li><strong>Part 2</strong>：</li>
+    </ul>
+  </li>
+
+
+<ul style="list-style-type: disc; padding-left: 20px;">
+  <li style="margin-bottom: 35px;">
+    <strong>🎮 某知名游戏头部公司（上海） / 产品体验分析与策略优化 / 2025年06月 – 2025年10月</strong>
     <img src="/images/游戏产品.png" alt="游戏产品" style="width: 100%; max-width: 700px; height: auto; display: block; margin: 12px auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
     <ul style="margin-top: 8px; line-height: 1.6;">
       <li><strong>用户旅程优化</strong>：参与千万级用户规模产品的体验评估，从用户全生命周期视角拆解核心玩法与新手引导逻辑；通过梳理由点到面的交互路径，累计输出10+份定性体验优化报告，多次评为优秀报告。</li>
