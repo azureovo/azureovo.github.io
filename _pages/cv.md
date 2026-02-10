@@ -45,8 +45,8 @@ redirect_from:
   <li style="margin-bottom: 35px;">
     <strong>🎮 腾讯IEG / 产品经理（技术背景） / 2026年02月 – 至今</strong>
     <ul style="margin-top: 10px; line-height: 1.6;">
-      <li><strong>Part 1</strong>：</li>
-      <li><strong>Part 2</strong>：</li>
+      <li><strong>Part 1</strong>：待入职补充。</li>
+      <li><strong>Part 2</strong>：待入职补充。</li>
     </ul>
   </li>
 
@@ -56,8 +56,8 @@ redirect_from:
     <strong>🎮 某知名游戏头部公司（上海） / 产品体验分析与策略优化 / 2025年06月 – 2025年10月</strong>
     <img src="/images/游戏产品.png" alt="游戏产品" style="width: 100%; max-width: 700px; height: auto; display: block; margin: 12px auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
     <ul style="margin-top: 8px; line-height: 1.6;">
-      <li><strong>用户旅程优化</strong>：参与千万级用户规模产品的体验评估，从用户全生命周期视角拆解核心玩法与新手引导逻辑；通过梳理由点到面的交互路径，累计输出10+份定性体验优化报告，多次评为优秀报告。</li>
-      <li><strong>需求闭环管理</strong>：参与“体验问题-痛点分析-需求转化”的闭环机制。不局限于Bug发现，而是针对交互断点与逻辑冗余提出产品侧改进方案，协助产研团队提升核心功能易用性。</li>
+      <li><strong>用户旅程优化</strong>：参与千万级用户规模RPG产品的体验评估，从用户全生命周期视角拆解新版本核心玩法与引导的迭代优劣体验，累计输出10+份定性体验优化报告。</li>
+      <li><strong>需求闭环转化</strong>：参与新CRPG项目Idea的“体验问题-痛点分析-需求转化”的闭环机制，提出产品侧想法实现和改进方案，协助产研团队提升核心玩法的鲁棒性。</li>
       <li><strong>风险策略控制</strong>：在敏捷开发流程中定义边界场景的验收标准，通过高强度的场景化模拟，有效拦截上线前的体验降级风险，保障核心业务指标即留存和转化的稳定性。</li>
     </ul>
   </li>
