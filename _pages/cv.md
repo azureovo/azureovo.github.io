@@ -83,9 +83,9 @@ redirect_from:
   </li>
 
   <li style="margin-bottom: 35px;">
-    <strong>🤖 基于多智能体投票辩论的研究 / 论文二作 / <span style="color: red;">ECCV在投 (CCF-B)</span></strong>
+    <strong>🤖 基于VLM幻觉自信优化研究 / 论文二作 / <span style="color: red;">ECCV在投 (CCF-B)</span></strong>
     <ul style="margin-top: 10px; line-height: 1.6;">
-      <li><strong>痛点洞察</strong>：通过大模型多智能体答辩投票得到图文最佳Sota。</li>
+      <li><strong>痛点洞察</strong>：待完全发表后补全核心信息。</li>
       <li><strong>模型设计</strong>：待完全发表后补全核心信息。</li>
     </ul>
   </li>
