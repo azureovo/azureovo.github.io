@@ -41,3 +41,14 @@
     "vendor/font-awesome/solid",
     "vendor/font-awesome/brands"
 ;
+
+/* 让页面内容宽一点，更像 academicpages */
+.page__inner-wrap {
+  width: 100%;
+  max-width: 1280px; /* 调整最大宽度 */
+}
+
+/* 调整标题字体 */
+h1, h2, h3 {
+  font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+}
