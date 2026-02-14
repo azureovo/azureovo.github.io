@@ -2,17 +2,40 @@
 permalink: /
 title: "About Me"
 excerpt: "About Me"
-author_profile: true
+author_profile: false  # 👈 关键修改：设置为 false 以隐藏左侧侧边栏
 redirect_from: 
   - /about/
   - /about.html
 ---
 
-我是中山大学计算机学院（CSE）的博士生（2025年转博），师从[高成英教授](https://cse.sysu.edu.cn/teacher/GaoChengying)。此前，我在电子科技大学完成了本科学业。
+<div class="profile-header" style="display: flex; gap: 40px; align-items: flex-start; margin-bottom: 40px; flex-wrap: wrap;">
+  
+  <div class="profile-avatar" style="flex: 0 0 200px;">
+    <img src="/images/profile.png" alt="张清安" style="width: 100%; border-radius: 10%; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  </div>
 
-我的研究兴趣主要集中在**多模态大模型（Vision-Language Models）**、**多智能体系统（Multi-Agent Systems）**以及**模型幻觉（Hallucination）**的缓解。目前我正在进行关于 VLM 幻觉抑制的研究 (Project HERO)。
+  <div class="profile-info" style="flex: 1;">
+    <h1 style="margin-top: 0; font-size: 2.5em; border-bottom: none;">张清安</h1>
+    
+    <p style="font-size: 1.1em; color: #555; margin-bottom: 1em;">
+      <strong>一本正经，万事游戏。</strong>
+    </p>
 
-您可以点击这里查看我的 [详细简历 (CV)](/cv/) 或访问我的 [GitHub](https://github.com/azureovo)。
+    <div style="font-size: 0.95em; line-height: 1.8;">
+      <p style="margin: 0;"><i class="fas fa-map-marker-alt" style="width: 20px; text-align: center;"></i> 中国·广州</p>
+      <p style="margin: 0;"><i class="fas fa-university" style="width: 20px; text-align: center;"></i> Uestc 👉 Sysu</p>
+      <p style="margin: 0;"><i class="fas fa-envelope" style="width: 20px; text-align: center;"></i> <a href="mailto:zhangqan@mail2.sysu.edu.cn">zhangqan@mail2.sysu.edu.cn</a></p>
+      <p style="margin: 0;"><i class="fab fa-github" style="width: 20px; text-align: center;"></i> <a href="https://github.com/azureovo">GitHub: azureovo</a></p>
+    </div>
+
+    <p style="margin-top: 1.5em;">
+      我是中山大学计算机学院（CSE）的博士生（2025年转博），师从<a href="https://cse.sysu.edu.cn/teacher/GaoChengying">高成英教授</a>。此前，我在电子科技大学完成了本科学业。
+    </p>
+    <p>
+      我的研究兴趣主要集中在**多模态大模型（Vision-Language Models）**、**多智能体系统（Multi-Agent Systems）**以及**模型幻觉（Hallucination）**的缓解。目前我正在进行关于 VLM 幻觉抑制的研究 (Project HERO)。
+    </p>
+  </div>
+</div>
 
 ---
 
