@@ -59,9 +59,7 @@ redirect_from:
 
 ## 🔥 News
 
-* **[2026.02]** 论文 *HERO: Hallucination-Entropy Regulated Optimization* 正在投稿 CVPR 2026。
-* **[2025.12]** 此时我正在进行多模态多智能体系统的探索。
-* **[2025.09]** 成为中山大学计算机学院博士研究生。
+* **[2024.09]** 保研至中山大学！
 
 ---
 
