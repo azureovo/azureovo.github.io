@@ -167,8 +167,8 @@
     /* [修改] 头像进一步缩小 */
     .author__avatar img {
         /* 写 100px，实际显示 50px */
-        width: 100px !important;    
-        max-width: 100px !important;
+        width: 80px !important;    
+        max-width: 80px !important;
         height: auto !important;
         display: inline-block !important;
     }
@@ -228,7 +228,7 @@
     /* 针对文章内容里的图片，限制宽度并居中 */
     .page__content img, 
     .archive__item-teaser img {
-        max-width: 60% !important;  /* 图片最大只占容器的 60% (实显屏幕宽的 60%) */
+        max-width: 50% !important;  /* 图片最大只占容器的 60% (实显屏幕宽的 60%) */
         height: auto !important;
         display: block !important;
         margin: 10px auto !important; /* 上下留白，水平居中 */
