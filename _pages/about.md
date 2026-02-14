@@ -73,9 +73,6 @@ redirect_from:
   {% include archive-publication.html %}
 {% endfor %}
 
-* **HERO: Hallucination-Entropy Regulated Optimization for Large Vision-Language Models** **Yang Xiongfeng**, et al.  
-  *Under Review at CVPR 2026* [[PDF]](#) [[Code]](https://github.com/azureovo)
-
 <div style="clear:both;"></div>
 
 ---
