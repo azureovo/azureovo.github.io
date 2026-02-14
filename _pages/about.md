@@ -18,13 +18,13 @@ redirect_from:
     <h1 style="margin-top: 0; margin-bottom: 0.1em; font-size: 2.8em; font-weight: 700; color: #222;">张清安</h1>
     
     <p style="font-size: 1.2em; color: #555; margin-bottom: 1em; font-weight: 500;">
-      一本正经，万事游戏。
+      不想要每次都是触底反弹。
     </p>
 
     <div style="display: flex; flex-wrap: wrap; gap: 15px; font-size: 0.95em; color: #666; margin-bottom: 1.5em; line-height: 1.6; align-items: center;">
       
       <span style="display: flex; align-items: center; white-space: nowrap;">
-        <i class="fas fa-map-marker-alt" style="margin-right: 6px;"></i> 中国·广州
+        <i class="fas fa-map-marker-alt" style="margin-right: 6px;"></i> 广州↔深圳
       </span>
       
       <span style="color: #ddd;">|</span> <span style="display: flex; align-items: center; white-space: nowrap;">
