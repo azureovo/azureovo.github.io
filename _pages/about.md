@@ -99,23 +99,23 @@ redirect_from:
 
 {% include experience-item.html
    logo="/images/tencent.png"
-   company="腾讯互娱IEG"
    role="产品经理(技术背景)"
+   company="腾讯互娱IEG"
    date="2026.02 - 至今"
 %}
 
 {% include experience-item.html
    logo="/images/mhylogo.png"
-   company="米哈游(MiHoYo)"
    role="产品体验分析与策略优化"
+   company="米哈游(MiHoYo)"
    date="2025.06 - 2025.12"
 %}
 
 
 {% include experience-item.html
    logo="/images/天空logo黑色.png"
-   company="数字天空 (Digital Sky)"
    role="产品经理"
+   company="数字天空 (Digital Sky)"
    date="2021.06 - 2021.09"
 %}
 
