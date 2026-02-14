@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "About Me"  # 或者写 "Short Bio"
+title: "About Me"
 excerpt: "About Me"
 author_profile: true
 redirect_from: 
@@ -27,11 +27,13 @@ redirect_from:
 ## 📝 Selected Publications
 
 {% for post in site.publications reversed %}
-  {% include archive-single.html type="grid" %}
+  {% include archive-single.html type="list" %}
 {% endfor %}
 
 * **HERO: Hallucination-Entropy Regulated Optimization for Large Vision-Language Models** **Yang Xiongfeng**, et al.  
-    *Under Review at CVPR 2026* [[PDF]](#) [[Code]](https://github.com/azureovo)
+  *Under Review at CVPR 2026* [[PDF]](#) [[Code]](https://github.com/azureovo)
+
+<div style="clear:both;"></div>
 
 ---
 
