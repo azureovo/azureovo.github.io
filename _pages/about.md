@@ -11,7 +11,7 @@ redirect_from:
 <div class="profile-header" style="display: flex; gap: 40px; align-items: center; margin-bottom: 40px; flex-wrap: wrap;">
   
   <div class="profile-avatar" style="flex: 0 0 320px;">
-    <img src="/images/profile.png" alt="张清安" style="width: 100%; border-radius: 8%; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+    <img src="/images/profile.png" alt="张清安" style="box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
   </div>
 
   <div class="profile-info" style="flex: 1; min-width: 300px;">
@@ -21,25 +21,30 @@ redirect_from:
       一本正经，万事游戏。
     </p>
 
-    <div style="display: flex; flex-wrap: wrap; gap: 15px; font-size: 0.95em; color: #666; margin-bottom: 1.5em; line-height: 1.6;">
+    <div style="display: flex; flex-wrap: wrap; gap: 15px; font-size: 0.95em; color: #666; margin-bottom: 1.5em; line-height: 1.6; align-items: center;">
+      
       <span style="display: flex; align-items: center; white-space: nowrap;">
         <i class="fas fa-map-marker-alt" style="margin-right: 6px;"></i> 中国·广州
       </span>
-      <span style="color: #ccc;">|</span> <span style="display: flex; align-items: center; white-space: nowrap;">
+      
+      <span style="color: #ddd;">|</span> <span style="display: flex; align-items: center; white-space: nowrap;">
         <i class="fas fa-university" style="margin-right: 6px;"></i> Uestc 👉 Sysu
       </span>
-      <span style="color: #ccc;">|</span>
+      
+      <span style="color: #ddd;">|</span>
       
       <span style="display: flex; align-items: center; white-space: nowrap;">
         <i class="fas fa-envelope" style="margin-right: 6px;"></i> 
-        <a href="mailto:zhangqan@mail2.sysu.edu.cn">zhangqan@mail2.sysu.edu.cn</a>
+        <a href="mailto:zhangqan@mail2.sysu.edu.cn" style="color: #555; text-decoration: none; border-bottom: 1px dotted #999;">zhangqan@mail2.sysu.edu.cn</a>
       </span>
-      <span style="color: #ccc;">|</span>
+      
+      <span style="color: #ddd;">|</span>
       
       <span style="display: flex; align-items: center; white-space: nowrap;">
         <i class="fab fa-github" style="margin-right: 6px;"></i> 
-        <a href="https://github.com/azureovo">GitHub</a>
+        <a href="https://github.com/azureovo" style="color: #555; text-decoration: none; border-bottom: 1px dotted #999;">GitHub</a>
       </span>
+
     </div>
 
     <div style="font-size: 1.05em; line-height: 1.7; color: #333;">
