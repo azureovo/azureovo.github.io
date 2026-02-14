@@ -129,72 +129,77 @@ h2 {
 }
 
 /* =======================================
-   MOBILE ADAPTATION: 手机端适配优化
+   MOBILE ADAPTATION: 手机端极简小字体版
    ======================================= */
 
    @media screen and (max-width: 768px) {
-    /* 1. 字体与排版还原 */
-    /* 手机屏幕较小，18px 太拥挤，恢复标准 16px */
+    /* 1. 基础排版：全局字体调小 */
     body {
-        font-size: 16px !important;
+        font-size: 14px !important; /* 从 16px 降到 14px */
         line-height: 1.6 !important;
     }
 
-    /* 缩小标题字号，避免换行过多 */
+    /* 2. 标题进一步缩小 */
     h1 {
-        font-size: 1.8em !important;
+        font-size: 1.5em !important; /* 约 21px */
         margin-bottom: 0.3em !important;
+        line-height: 1.2 !important;
     }
 
     h2 {
-        font-size: 1.4em !important;
-        margin-top: 1.2em !important;
-        padding-bottom: 8px !important;
+        font-size: 1.25em !important; /* 约 17.5px */
+        margin-top: 1.5em !important;
+        padding-bottom: 6px !important;
+        border-bottom-width: 1px !important; /* 下划线变细 */
     }
 
     h3 {
-        font-size: 1.2em !important;
+        font-size: 1.1em !important; /* 约 15.4px */
+        font-weight: bold !important;
     }
 
-    /* 2. 布局空间优化 */
-    /* 手机端左右边距调小，利用 95% 的宽度 */
-    .page__inner-wrap {
-        width: 95% !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
+    /* 3. 个人简介区域 (Profile) 更加紧凑 */
+    .profile-header {
+        margin-bottom: 20px !important; 
+        text-align: center;
+        padding-bottom: 15px !important;
     }
 
-    /* 3. 个人头像修复 (关键) */
-    /* 取消电脑端的 width: 100% 强制撑满，防止手机上头像巨大 */
     .profile-avatar img {
-        width: 150px !important;      /* 限制头像尺寸 */
-        max-width: 50% !important;    /* 或者是屏幕的一半 */
+        width: 120px !important;      /* 头像再缩小一点 (原150px) */
+        max-width: 40% !important;
         height: auto !important;
-        margin: 0 auto 15px auto !important; /* 居中显示 */
+        margin: 0 auto 10px auto !important;
         display: block;
     }
 
-    /* 4. 个人信息区域调整 */
-    .profile-header {
-        margin-bottom: 30px !important; /* 减少头部留白 */
-        text-align: center; /* 手机端居中对齐看起来更协调 */
-    }
-
     .profile-info p {
-        font-size: 1em !important; /* 简介文字调小 */
+        font-size: 0.95em !important; /* 简介文字比正文稍小一点 */
+        line-height: 1.5 !important;
+        margin-bottom: 0.5em !important;
     }
 
-    /* 5. 导航栏调整 */
-    /* 手机端取消固定顶部，防止遮挡内容或占用宝贵的屏幕高度 */
-    .masthead {
-        position: relative !important;
+    /* 4. 布局微调 */
+    .page__inner-wrap {
+        width: 96% !important; /* 边距再窄一点，留给文字更多空间 */
+        padding: 0 !important;
     }
     
-    /* 6. 表格适配 */
-    /* 如果有论文列表表格，允许横向滚动 */
+    .masthead {
+        position: relative !important; /* 导航栏不固定 */
+        font-size: 0.9em !important;   /* 导航栏文字也调小 */
+    }
+
+    /* 5. 列表项调整 */
+    li {
+        margin-bottom: 0.2em !important; /* 列表间距收紧 */
+    }
+    
+    /* 6. 表格允许横向滚动 */
     table {
         display: block;
         width: 100%;
         overflow-x: auto;
+        font-size: 0.9em !important; /* 表格内容字号缩小 */
     }
 }
