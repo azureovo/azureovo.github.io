@@ -79,9 +79,19 @@ redirect_from:
 
 ## 🎓 Education
 
-* **计算机技术，硕士**，中山大学，2024 - Present
-* **软件工程，学士**，电子科技大学，2020 - 2024
+{% include education-item.html
+   logo="/images/500x300.png"
+   institution="Sun Yat-sen University (中山大学)"
+   title="Ph.D. in Computer Science (计算机技术，硕士转博)"
+   date="2024 - Present"
+%}
 
+{% include education-item.html
+   logo="/images/500x300.png"
+   institution="University of Electronic Science and Technology of China (电子科技大学)"
+   title="B.E. in Software Engineering (软件工程，学士)"
+   date="2020 - 2024"
+%}
 ---
 
 ## 💻 Experience

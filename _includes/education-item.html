@@ -1,0 +1,28 @@
+<div class="education-item" style="display: flex; gap: 25px; align-items: flex-start; margin-bottom: 20px;">
+  
+    <div class="education-logo" style="flex: 0 0 80px; width: 80px; padding-top: 5px;">
+      <img src="{{ include.logo }}" alt="{{ include.institution }}" style="width: 100%; height: auto; object-fit: contain;">
+    </div>
+  
+    <div class="education-body" style="flex: 1; border-bottom: 1px solid #f0f0f0; padding-bottom: 20px;">
+      
+      <h3 style="margin: 0; font-size: 1.15em; font-weight: bold; color: #222;">
+        {{ include.institution }}
+      </h3>
+      
+      <div style="font-size: 1.05em; color: #444; margin-top: 5px; font-weight: 500;">
+        {{ include.title }}
+      </div>
+      
+      <div style="font-size: 0.9em; color: #777; margin-top: 3px; font-style: italic;">
+        <i class="fas fa-calendar-alt" style="margin-right: 5px;"></i>{{ include.date }}
+      </div>
+  
+      {% if include.description %}
+        <div style="font-size: 0.95em; color: #666; margin-top: 8px; line-height: 1.6;">
+          {{ include.description }}
+        </div>
+      {% endif %}
+      
+    </div>
+  </div>
