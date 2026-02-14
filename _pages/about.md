@@ -58,7 +58,7 @@ redirect_from:
 
 
 
-## 🔥 研究生以来的News
+## 🔥 News Since Grad School
 
 * **[2026.02]** 进入<a href="https://ieg.tencent.com/2023/index.html" style="color: #0056b3;">腾讯IEG</a>上班，开始技术产品路线！
 * **[2025.12]** 给<a href="https://www.yuanshen.com/#/" style="color: #0056b3;">米哈游</a>外包产测一年了！
