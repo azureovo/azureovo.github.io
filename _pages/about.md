@@ -14,7 +14,7 @@ redirect_from:
     <img src="/images/profile.png" alt="张清安" style="box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
   </div>
 
-  <div class="profile-info" style="flex: 1; min-width: 250px;">
+  <div class="profile-info" style="flex: 1; min-width: 320px;">
     <h1 style="margin-top: 0; margin-bottom: 0.1em; font-size: 2.8em; font-weight: 700; color: #222;">张清安</h1>
     
     <p style="font-size: 1.2em; color: #555; margin-bottom: 1em; font-weight: 500;">
@@ -49,7 +49,10 @@ redirect_from:
 
     <div style="font-size: 1.05em; line-height: 1.7; color: #333;">
       <p style="margin-bottom: 0.8em;">
-        我是中山大学计算机学院（CSE）的硕士生（2027应届），师从<a href="https://cse.sysu.edu.cn/teacher/GaoChengying" style="color: #0056b3;">高成英教授</a>。此前，我在电子科技大学完成了本科学业。我的研究兴趣主要集中在三维重建、多模态系统幻觉的缓解。同时有丰富的产品从事经验。正在寻找AI产品相关岗位。
+        我是中山大学计算机学院（CSE）的硕士生（2027应届），师从<a href="https://cse.sysu.edu.cn/teacher/GaoChengying" style="color: #0056b3;">高成英教授</a>。此前，我在电子科技大学完成了本科学业。
+      </p>
+      <p style="margin-bottom: 0.1em;">
+        我的研究兴趣主要集中在三维重建、多模态系统幻觉的缓解。同时有丰富的产品从事经验。目前正在寻找AI产品相关岗位（很爱当🐂🐎）。
       </p>
     </div>
   </div>
