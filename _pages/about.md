@@ -100,7 +100,7 @@ redirect_from:
 {% include experience-item.html
    logo="/images/tencent.png"
    role="产品经理(技术背景)"
-   company="腾讯互娱IEG"
+   company="腾讯互娱(IEG)"
    date="2026.02 - 至今"
 %}
 
