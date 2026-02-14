@@ -24,7 +24,7 @@ redirect_from:
     <div style="display: flex; flex-wrap: wrap; gap: 15px; font-size: 0.95em; color: #666; margin-bottom: 1.5em; line-height: 1.6; align-items: center;">
       
       <span style="display: flex; align-items: center; white-space: nowrap;">
-        <i class="fas fa-map-marker-alt" style="margin-right: 6px;"></i> 广州↔深圳
+        <i class="fas fa-map-marker-alt" style="margin-right: 6px;"></i> 广州＆深圳
       </span>
       
       <span style="color: #ddd;">|</span> <span style="display: flex; align-items: center; white-space: nowrap;">
