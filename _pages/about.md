@@ -82,8 +82,8 @@ redirect_from:
 
 ## 🎓 Education
 
-* **M.S. in Computer Technology**, Sun Yat-sen University (SYSU), 2024 - Present
-* **B.E. in Software Engineering**, UESTC, 2020 - 2024
+* **计算机技术，硕士**，中山大学，2024 - Present
+* **软件工程，学士**，电子科技大学，2020 - 2024
 
 ---
 
