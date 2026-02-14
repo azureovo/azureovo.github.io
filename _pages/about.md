@@ -82,8 +82,7 @@ redirect_from:
 
 ## 🎓 Education
 
-* **Ph.D. in Computer Science**, Sun Yat-sen University (SYSU), 2025 - Present
-* **M.S. in Computer Technology**, Sun Yat-sen University (SYSU), 2024 - 2025
+* **M.S. in Computer Technology**, Sun Yat-sen University (SYSU), 2024 - Present
 * **B.E. in Software Engineering**, UESTC, 2020 - 2024
 
 ---
