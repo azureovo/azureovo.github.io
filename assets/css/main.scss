@@ -108,7 +108,7 @@
 
 
 /* =======================================
-   MOBILE SUPER SCALE: 手机端暴力缩放版
+   MOBILE SUPER SCALE: 手机端暴力缩放版 (含图片微缩)
    ======================================= */
    @media screen and (max-width: 768px) {
     
@@ -119,26 +119,22 @@
         transform-origin: 0 0;  /* 以左上角为基准缩放 */
         overflow-x: hidden;     /* 防止横向滚动条 */
         
-        /* 这里的字号 12px 实际上会被显示为 6px 
-           如果要更小，可以设为 10px (显示为 5px)
-        */
+        /* 这里的字号 12px 实际上会被显示为 6px */
         font-size: 10px !important; 
         line-height: 1.2 !important;
         margin: 0 !important;
         min-height: 200vh;      /* 保证高度足够 */
     }
 
-    /* 2. 布局调整 (配合缩放环境) */
-    .masthead {
-        position: relative !important;
-    }
+    /* 2. 布局调整 */
+    .masthead { position: relative !important; }
     
     .page__inner-wrap {
         width: 100% !important;
-        padding: 0 10px !important; /* 边缘留一点点缝隙 */
+        padding: 0 10px !important; 
     }
 
-    /* 3. 标题调整 (数值看起来大，实际显示只有一半) */
+    /* 3. 标题调整 */
     h1 { 
         font-size: 2.4em !important;   /* 实显 12px */
         margin-bottom: 10px !important; 
@@ -149,11 +145,9 @@
         padding-bottom: 5px !important; 
         border-bottom-width: 1px !important;
     }
-    h3 { 
-        font-size: 1.4em !important;   /* 实显 7px */
-    }
+    h3 { font-size: 1.4em !important; }
 
-    /* 4. 侧边栏与头像 (垂直居中) */
+    /* 4. 侧边栏与头像 */
     .sidebar {
         display: flex !important;
         flex-direction: column !important;
@@ -170,11 +164,11 @@
         text-align: center !important;
     }
     
-    /* 头像大小控制 */
+    /* [修改] 头像进一步缩小 */
     .author__avatar img {
-        /* 写 160px，实际显示 80px */
-        width: 160px !important;    
-        max-width: 160px !important;
+        /* 写 100px，实际显示 50px */
+        width: 100px !important;    
+        max-width: 100px !important;
         height: auto !important;
         display: inline-block !important;
     }
@@ -193,7 +187,7 @@
         margin-bottom: 15px !important;
     }
 
-    /* 5. 联系方式：四行居中 (保持之前的逻辑) */
+    /* 5. 联系方式 */
     .author__urls-wrapper {
         width: 100% !important;
         padding: 0 !important;
@@ -214,7 +208,6 @@
         justify-content: center !important;
         align-items: center !important;
         width: 100% !important;
-        /* 写 20px，实际行高 10px，极度紧凑 */
         margin-bottom: 4px !important; 
         font-size: 1.2em !important;   /* 实显 6px */
     }
@@ -226,16 +219,25 @@
     }
 
     .author__urls.social-icons li i {
-        margin-right: 10px !important; /* 实显 5px 间距 */
+        margin-right: 10px !important; 
     }
 
-    /* 隐藏按钮 */
     .author__urls-wrapper button { display: none !important; }
 
-    /* 6. 其他元素微调 */
+    /* 6. [新增] 全局内容图片缩小限制 */
+    /* 针对文章内容里的图片，限制宽度并居中 */
+    .page__content img, 
+    .archive__item-teaser img {
+        max-width: 60% !important;  /* 图片最大只占容器的 60% (实显屏幕宽的 60%) */
+        height: auto !important;
+        display: block !important;
+        margin: 10px auto !important; /* 上下留白，水平居中 */
+    }
+
+    /* 7. 表格微调 */
     table {
         display: block;
         width: 100%;
-        font-size: 1.2em !important; /* 表格字号微调 */
+        font-size: 1.2em !important; 
     }
 }
