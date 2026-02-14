@@ -81,14 +81,14 @@ redirect_from:
 
 {% include education-item.html
    logo="/images/中山大学-logo-2048px.png"
-   institution="中山大学（Sun Yat-sen University）"
+   institution="中山大学（SYSU）"
    title="计算机技术，硕士"
    date="2024 - Present"
 %}
 
 {% include education-item.html
    logo="/images/电子科技大学-logo-2048px.png"
-   institution="电子科技大学（University of Electronic Science and Technology of China）"
+   institution="电子科技大学（UESTC）"
    title="软件工程，学士"
    date="2020 - 2024"
 %}
