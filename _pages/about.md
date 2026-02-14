@@ -11,7 +11,7 @@ redirect_from:
 <div class="profile-header" style="display: flex; gap: 40px; align-items: center; margin-bottom: 40px; flex-wrap: wrap;">
   
   <div class="profile-avatar" style="flex: 0 0 280px;">
-    <img src="/images/profile.png" alt="张清安" style="box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+    <img src="/images/profile.png" alt="张清安" style="box-shadow: 0 4px 9px rgba(0,0,0,0.1);">
   </div>
 
   <div class="profile-info" style="flex: 1; min-width: 250px;">
@@ -70,7 +70,7 @@ redirect_from:
 ## 📝 Publications
 
 {% for post in site.publications reversed %}
-  {% include archive-single.html type="list" %}
+  {% include archive-publication.html %}
 {% endfor %}
 
 * **HERO: Hallucination-Entropy Regulated Optimization for Large Vision-Language Models** **Yang Xiongfeng**, et al.  
