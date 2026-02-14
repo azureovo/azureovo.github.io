@@ -108,129 +108,119 @@
 
 
 /* =======================================
-   MOBILE ADAPTATION: 手机端基础适配
+   MOBILE EXTREME COMPACT: 手机端超小字体高密度版
    ======================================= */
-@media screen and (max-width: 768px) {
-    /* 1. 字体还原：手机上 18px 太大，改回 14px */
+   @media screen and (max-width: 768px) {
+    /* 1. 全局极小字体 */
     body {
-        font-size: 7px !important; 
-        line-height: 1.6 !important;
+        font-size: 12px !important;    /* 极限小字体 */
+        line-height: 1.4 !important;   /* 行距收紧 */
     }
 
-    h1 { font-size: 1.6em !important; margin-bottom: 0.5em !important; }
-    h2 { font-size: 1.3em !important; border-bottom-width: 1px !important; }
-    h3 { font-size: 1.1em !important; }
+    /* 2. 标题大幅缩小 */
+    h1 { 
+        font-size: 1.4em !important;   /* 约 16.8px */
+        margin-bottom: 0.2em !important; 
+    }
+    h2 { 
+        font-size: 1.2em !important;   /* 约 14.4px */
+        margin-top: 1em !important; 
+        padding-bottom: 4px !important; 
+        border-bottom-width: 1px !important;
+    }
+    h3 { 
+        font-size: 1.1em !important;   /* 约 13.2px */
+        margin-top: 0.8em !important;
+    }
 
+    /* 3. 页面边距收紧 */
     .page__inner-wrap {
-        width: 95% !important;
+        width: 98% !important;         /* 几乎贴边 */
+        padding: 0 2px !important;     /* 极窄边距 */
     }
     
-    /* 表格横向滚动 */
-    table {
-        display: block;
-        width: 100%;
-        overflow-x: auto;
-    }
-}
-
-
-/* =======================================
-   MOBILE PROFILE FIX: 终极居中修复版 (手机端)
-   ======================================= */
-@media screen and (max-width: 768px) {
-    /* 1. 侧边栏容器：变成弹性盒子，垂直排列，水平居中 */
+    /* 4. 侧边栏与头像：极致压缩 */
     .sidebar {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important; 
         width: 100% !important;
-        margin: 0 auto 20px auto !important;
-        text-align: center !important;
-        padding: 0 !important;
+        margin: 0 auto 10px auto !important; /* 减少底部留白 */
+        padding: 5px 0 !important;
     }
 
-    /* 2. 个人信息区域包裹器 */
-    div[itemscope] {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        width: 100% !important;
-    }
-
-    /* 3. 头像强制居中 & 缩小 */
+    /* 头像变很小 */
     .author__avatar {
-        display: block !important;
-        width: 100% !important;
-        text-align: center !important;
-        margin: 0 auto 15px auto !important;
+        margin: 0 auto 5px auto !important;
     }
     .author__avatar img {
-        display: inline-block !important;
-        margin: 0 auto !important;
-        max-width: 120px !important; /* 手机端头像限制为 120px */
-        width: auto !important;
+        max-width: 80px !important;    /* 头像缩小到 80px */
+        width: 80px !important;
+        border-radius: 50% !important; /* 保持圆形 */
     }
 
-    /* 4. 名字和简介 */
-    .author__content {
-        display: block !important;
-        width: 100% !important;
-        text-align: center !important;
-        padding: 0 !important;
+    /* 名字和简介 */
+    .author__name {
+        font-size: 1.3em !important;   /* 名字稍微大一点点 */
+        margin-bottom: 2px !important;
     }
-    .author__name, 
-    .author__bio,
-    .author__pronouns {
-        text-align: center !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
+    .author__bio {
+        font-size: 0.9em !important;   /* 简介非常小 (约 10.8px) */
+        margin-bottom: 5px !important;
+        line-height: 1.2 !important;
     }
 
-    /* 5. 核心：联系方式列表 (四行信息) */
+    /* 5. 联系方式：四行紧凑排列 */
     .author__urls-wrapper {
-        display: block !important;
         width: 100% !important;
+        padding: 0 !important;
     }
 
     .author__urls.social-icons {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
-        justify-content: center !important;
         padding: 0 !important;
         margin: 0 !important;
-        list-style: none !important;
-        width: 100% !important;
         background: transparent !important;
         box-shadow: none !important;
         border: none !important;
-        position: static !important;
     }
 
-    /* 列表项 */
     .author__urls.social-icons li {
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
         width: 100% !important;
-        margin-bottom: 8px !important;
-        text-align: center !important;
+        margin-bottom: 2px !important;  /* 行间距极小 */
+        font-size: 0.9em !important;    /* 字体缩小 */
+        height: auto !important;
+        line-height: 1.2 !important;
+        padding: 0 !important;
     }
 
-    /* 列表内的链接和文字 */
     .author__urls.social-icons li a,
     .author__urls.social-icons li span {
         display: flex !important;
-        justify-content: center !important;
         align-items: center !important;
-        text-align: center !important;
+        padding: 2px 0 !important;
     }
 
     .author__urls.social-icons li i {
-        margin-right: 8px !important;
+        font-size: 0.9em !important;    /* 图标也缩小 */
+        margin-right: 4px !important;   /* 图标和字的间距变小 */
     }
-    
+
+    /* 隐藏按钮 */
     .author__urls-wrapper button {
         display: none !important;
+    }
+
+    /* 6. 列表和表格优化 */
+    li {
+        margin-bottom: 0.1em !important; /* 列表更加紧凑 */
+    }
+    table {
+        font-size: 0.85em !important;    /* 表格字更小 */
     }
 }
