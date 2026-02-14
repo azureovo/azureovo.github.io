@@ -8,24 +8,38 @@ redirect_from:
   - /about.html
 ---
 
-<div class="profile-header" style="display: flex; gap: 50px; align-items: center; margin-bottom: 60px; flex-wrap: wrap; border-bottom: 1px solid #eaeaea; padding-bottom: 40px;">
+<div class="profile-header" style="display: flex; gap: 40px; align-items: center; margin-bottom: 40px; flex-wrap: wrap;">
   
-  <div class="profile-avatar" style="flex: 0 0 180px;">
-    <img src="/images/profile.png" alt="张清安" style="width: 100%; border-radius: 8%; box-shadow: 0 6px 12px rgba(0,0,0,0.15);">
+  <div class="profile-avatar" style="flex: 0 0 320px;">
+    <img src="/images/profile.png" alt="张清安" style="width: 100%; border-radius: 8%; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
   </div>
 
   <div class="profile-info" style="flex: 1; min-width: 300px;">
-    <h1 style="margin-top: 0; margin-bottom: 0.2em; font-size: 2.8em; font-weight: 700; color: #222;">张清安</h1>
+    <h1 style="margin-top: 0; margin-bottom: 0.1em; font-size: 2.8em; font-weight: 700; color: #222;">张清安</h1>
     
-    <p style="font-size: 1.2em; color: #555; margin-bottom: 1.2em; font-weight: 500;">
+    <p style="font-size: 1.2em; color: #555; margin-bottom: 1em; font-weight: 500;">
       一本正经，万事游戏。
     </p>
 
-    <div style="display: flex; flex-wrap: wrap; gap: 20px; font-size: 0.95em; color: #666; margin-bottom: 1.5em; align-items: center;">
-      <span style="display: flex; align-items: center;"><i class="fas fa-map-marker-alt" style="margin-right: 8px; color: #888;"></i> 中国·广州</span>
-      <span style="display: flex; align-items: center;"><i class="fas fa-university" style="margin-right: 8px; color: #888;"></i> Uestc 👉 Sysu</span>
-      <span style="display: flex; align-items: center;"><i class="fas fa-envelope" style="margin-right: 8px; color: #888;"></i> <a href="mailto:zhangqan@mail2.sysu.edu.cn" style="color: #666; text-decoration: none; border-bottom: 1px dotted #999;">zhangqan@mail2.sysu.edu.cn</a></span>
-      <span style="display: flex; align-items: center;"><i class="fab fa-github" style="margin-right: 8px; color: #888;"></i> <a href="https://github.com/azureovo" style="color: #666; text-decoration: none; border-bottom: 1px dotted #999;">GitHub: azureovo</a></span>
+    <div style="display: flex; flex-wrap: wrap; gap: 15px; font-size: 0.95em; color: #666; margin-bottom: 1.5em; line-height: 1.6;">
+      <span style="display: flex; align-items: center; white-space: nowrap;">
+        <i class="fas fa-map-marker-alt" style="margin-right: 6px;"></i> 中国·广州
+      </span>
+      <span style="color: #ccc;">|</span> <span style="display: flex; align-items: center; white-space: nowrap;">
+        <i class="fas fa-university" style="margin-right: 6px;"></i> Uestc 👉 Sysu
+      </span>
+      <span style="color: #ccc;">|</span>
+      
+      <span style="display: flex; align-items: center; white-space: nowrap;">
+        <i class="fas fa-envelope" style="margin-right: 6px;"></i> 
+        <a href="mailto:zhangqan@mail2.sysu.edu.cn">zhangqan@mail2.sysu.edu.cn</a>
+      </span>
+      <span style="color: #ccc;">|</span>
+      
+      <span style="display: flex; align-items: center; white-space: nowrap;">
+        <i class="fab fa-github" style="margin-right: 6px;"></i> 
+        <a href="https://github.com/azureovo">GitHub</a>
+      </span>
     </div>
 
     <div style="font-size: 1.05em; line-height: 1.7; color: #333;">
@@ -33,7 +47,7 @@ redirect_from:
         我是中山大学计算机学院（CSE）的博士生（2025年转博），师从<a href="https://cse.sysu.edu.cn/teacher/GaoChengying" style="color: #0056b3;">高成英教授</a>。此前，我在电子科技大学完成了本科学业。
       </p>
       <p style="margin-bottom: 0;">
-        我的研究兴趣主要集中在**多模态大模型（Vision-Language Models）**、**多智能体系统（Multi-Agent Systems）**以及**模型幻觉（Hallucination）**的缓解。目前我正在进行关于 VLM 幻觉抑制的研究 (Project HERO)。
+        我的研究兴趣主要集中在**多模态大模型**、**多智能体系统**以及**模型幻觉**的缓解。目前我正在进行关于 VLM 幻觉抑制的研究 (Project HERO)。
       </p>
     </div>
   </div>
@@ -65,7 +79,7 @@ redirect_from:
 ## 🎓 Education
 
 * **Ph.D. in Computer Science**, Sun Yat-sen University (SYSU), 2025 - Present
-* **M.S. in Computer Technology**, Sun Yat-sen University (SYSU), 2024 - 2025 (Transferred to Ph.D.)
+* **M.S. in Computer Technology**, Sun Yat-sen University (SYSU), 2024 - 2025
 * **B.E. in Software Engineering**, UESTC, 2020 - 2024
 
 ---

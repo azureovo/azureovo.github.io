@@ -101,37 +101,34 @@ h2 {
     padding-bottom: 12px;
 }
 
-/* 3. 个人信息头部样式 (Profile Header) */
-/* 配合你在 _pages/about.md 里写的 HTML 使用 */
+/* 3. 个人信息头部 (Profile Header) 的样式优化 */
 .profile-header {
-    margin-top: 20px;
-    margin-bottom: 60px !important; 
-    padding-bottom: 40px;
-    border-bottom: 1px solid #eaeaea; 
+  margin-top: 20px;
+  margin-bottom: 60px !important; 
+  padding-bottom: 40px;
+  border-bottom: 1px solid #eaeaea; 
 }
 
-/* 调整头像大小 */
+/* ✅ 关键修改：让图片撑满容器，而不是锁死 220px */
 .profile-avatar img {
-    width: 220px !important; 
-    height: auto;
-    border-radius: 8px; /* 轻微圆角 */
+  width: 100% !important;  /* 改为 100%，图片就会跟随容器变大了 */
+  height: auto;
+  border-radius: 8px; 
+  object-fit: cover; /* 防止图片比例变形 */
 }
 
-/* 个人简介区域文字 */
 .profile-info p {
-    font-size: 1.1em !important;
+  font-size: 1.1em !important;
 }
 
-/* 链接颜色微调 */
 a {
-    color: #0071bc; /* 学术蓝 */
-    text-decoration: none;
+  color: #0071bc; 
+  text-decoration: none;
 }
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-/* 4. 消除潜在的侧边栏干扰 */
 .sidebar {
-    display: none !important; /* 彻底隐藏侧边栏容器，防止占位 */
+  display: none !important; 
 }
