@@ -43,98 +43,95 @@
 ;
 
 /* =======================================
-   CUSTOM CSS: 宽屏布局修正 & 字体优化 (仿 mo-haoran.com)
+   CUSTOM CSS: 宽屏布局修正 (Force Full Width)
    ======================================= */
 
-/* 1. 暴力撑开页面宽度 (Wider Layout) */
-
-/* 针对内容容器：去除默认的窄屏限制，强制占据屏幕 90% */
+/* 1. 核心布局重置：强制撑开页面宽度 */
+/* 覆盖主题默认的 .page__inner-wrap 限制 */
 .page__inner-wrap {
     float: none !important;      /* 禁止浮动 */
     margin: 0 auto !important;   /* 保持居中 */
-    width: 90% !important;       /* 核心：将宽度强制设为屏幕的 90% */
-    max-width: 1400px !important;/* 设置一个最大上限，防止在超宽屏上太宽 */
+    width: 92% !important;       /* 核心：将内容宽度设为屏幕的 92% (两边留一点缝隙更美观) */
+    max-width: 1600px !important;/* 设置一个超大上限，防止在 4K 屏上过宽 */
     padding-right: 0 !important; /* 移除右侧默认留白 */
 }
 
-/* 针对大屏幕断点：移除 Minimal Mistakes 主题自带的网格束缚 */
+/* 针对大屏幕断点：移除 Minimal Mistakes 主题自带的网格/侧边栏预留空间 */
 @media (min-width: 64em) {
     .page {
         float: none !important;
         width: 100% !important;
         padding-right: 0 !important;
+        margin-right: 0 !important;
     }
     .archive {
         width: 100% !important;
         padding-right: 0 !important;
         float: none !important;
+        margin-right: 0 !important;
     }
 }
 
-/* 2. 字体与排版调整 (Typography) */
-
-/* 增大全局基础字体，让页面看起来更"满"且易读 */
+/* 2. 字体与排版优化 (Typography) */
+/* 既然页面变宽了，字体和行距也要相应增大，否则会显得很空 */
 body {
-    font-size: 18px; /* 原默认为 16px */
-    line-height: 1.7; /* 增加行间距 */
+    font-size: 18px; /* 增大基础字号 (默认是16px) */
+    line-height: 1.7; /* 增加行间距，提升阅读体验 */
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-/* 调整标题的大小和间距 */
+/* 标题样式增强 */
 h1, h2, h3 {
     font-weight: 700;
-    color: #222; /* 字体颜色加深 */
+    color: #111; /* 标题颜色加深 */
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-/* 页面大标题（你的名字） */
+/* 你的名字 (H1) */
 h1 {
     font-size: 2.5em !important; 
     margin-bottom: 0.5em;
 }
 
-/* 各个版块标题（如 News, Publications） */
+/* 各版块标题 (News, Publications) */
 h2 {
     font-size: 1.8em !important;
-    margin-top: 1.5em; /* 增加版块之间的距离 */
-    border-bottom: 2px solid #f2f3f3; /* 加粗下划线 */
-    padding-bottom: 10px;
+    margin-top: 1.5em; 
+    border-bottom: 2px solid #f0f0f0; /* 加粗下划线 */
+    padding-bottom: 12px;
 }
 
-h3 {
-    font-size: 1.4em !important;
-}
-
-/* 列表项调整：让列表不那么拥挤 */
-.page__content li {
-    margin-bottom: 0.5em; 
-}
-
-/* 3. 针对个人信息头部 (Profile Header) 的样式优化 */
-/* 配合 _pages/about.md 里的 <div class="profile-header"> 使用 */
+/* 3. 个人信息头部样式 (Profile Header) */
+/* 配合你在 _pages/about.md 里写的 HTML 使用 */
 .profile-header {
     margin-top: 20px;
-    margin-bottom: 60px !important; /* 增加头部和下方内容的距离 */
+    margin-bottom: 60px !important; 
     padding-bottom: 40px;
-    border-bottom: 1px solid #eaeaea; /* 添加一条淡淡的分隔线 */
+    border-bottom: 1px solid #eaeaea; 
 }
 
-/* 调整头像在宽屏下的显示 */
+/* 调整头像大小 */
 .profile-avatar img {
-    width: 220px !important; /* 头像稍微调大 */
+    width: 220px !important; 
     height: auto;
+    border-radius: 8px; /* 轻微圆角 */
 }
 
-/* 个人简介文字大小 */
+/* 个人简介区域文字 */
 .profile-info p {
     font-size: 1.1em !important;
 }
 
-/* 链接颜色微调，更符合学术风格 */
+/* 链接颜色微调 */
 a {
-    color: #0077b6; /* 使用一种专业的蓝色 */
+    color: #0071bc; /* 学术蓝 */
     text-decoration: none;
 }
 a:hover {
     text-decoration: underline;
+}
+
+/* 4. 消除潜在的侧边栏干扰 */
+.sidebar {
+    display: none !important; /* 彻底隐藏侧边栏容器，防止占位 */
 }
