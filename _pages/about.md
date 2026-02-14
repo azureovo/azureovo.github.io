@@ -96,24 +96,26 @@ redirect_from:
 
 ## 💻 Experience
 
-{% include experience-item.html
-   logo="/images/mhylogo.png"
-   company="MiHoYo (米哈游)"
-   role="Product Manager (产品经理)"
-   date="2024.06 - Present"
-%}
 
 {% include experience-item.html
    logo="/images/tencent.png"
-   company="Tencent Games (腾讯游戏)"
-   role="Product Manager (产品经理)"
-   date="2022.06 - 2024.05"
+   company="腾讯互娱IEG"
+   role="产品经理(技术背景)"
+   date="2026.02 - 至今"
 %}
 
 {% include experience-item.html
+   logo="/images/mhylogo.png"
+   company="米哈游(MiHoYo)"
+   role="产品体验分析与策略优化"
+   date="2025.06 - 2025.12"
+%}
+
+
+{% include experience-item.html
    logo="/images/天空logo黑色.png"
-   company="Digital Sky (数字天空)"
-   role="Product Manager (产品经理)"
-   date="2021.06 - 2022.05"
+   company="数字天空 (Digital Sky)"
+   role="产品经理"
+   date="2021.06 - 2021.09"
 %}
 
