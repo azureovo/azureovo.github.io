@@ -3,9 +3,6 @@
 
 /*
  * This file controls what is imported from /_sass
- *
- * Note that the files are processed in the order they are imported, so they are partly
- * sorted by the dependencies. Also, the first two lines of the file are required by Jekyll.
  */
 
 @import
@@ -43,21 +40,21 @@
 ;
 
 /* =======================================
-   CUSTOM CSS: 宽屏布局修正 (Force Full Width)
+   CUSTOM CSS: 宽屏布局修正 (PC端优化)
    ======================================= */
 
 /* 1. 核心布局重置：强制撑开页面宽度 */
-/* 覆盖主题默认的 .page__inner-wrap 限制 */
 .page__inner-wrap {
-    float: none !important;      /* 禁止浮动 */
-    margin: 0 auto !important;   /* 保持居中 */
-    width: 92% !important;       /* 核心：将内容宽度设为屏幕的 92% (两边留一点缝隙更美观) */
-    max-width: 1600px !important;/* 设置一个超大上限，防止在 4K 屏上过宽 */
-    padding-right: 0 !important; /* 移除右侧默认留白 */
+    float: none !important;
+    margin: 0 auto !important;
+    width: 92% !important;        /* 电脑端宽度 92% */
+    max-width: 1600px !important; /* 限制最大宽度 */
+    padding-right: 0 !important;
 }
 
-/* 针对大屏幕断点：移除 Minimal Mistakes 主题自带的网格/侧边栏预留空间 */
+/* 2. 针对大屏幕的排版优化 (仅限 PC/宽屏) */
 @media (min-width: 64em) {
+    /* 移除 PC 端侧边栏和网格的默认限制 */
     .page {
         float: none !important;
         width: 100% !important;
@@ -70,74 +67,82 @@
         float: none !important;
         margin-right: 0 !important;
     }
+
+    /* 字体与排版优化：仅在宽屏下增大字体 */
+    body {
+        font-size: 18px; /* 电脑端 18px */
+        line-height: 1.7;
+    }
+    
+    h1, h2, h3 {
+        font-weight: 700;
+        color: #111;
+    }
+    
+    h1 { font-size: 2.5em !important; margin-bottom: 0.5em; }
+    h2 { font-size: 1.8em !important; margin-top: 1.5em; border-bottom: 2px solid #f0f0f0; padding-bottom: 12px; }
+
+    /* 个人信息头部优化 (PC端) */
+    .profile-header {
+        margin-top: 20px;
+        margin-bottom: 60px !important; 
+        padding-bottom: 40px;
+        border-bottom: 1px solid #eaeaea; 
+    }
+    
+    /* PC端头像宽度限制解除 */
+    .profile-avatar img {
+        width: 100% !important;  
+        height: auto;
+        border-radius: 8px; 
+        object-fit: cover; 
+        display: block;
+    }
+    
+    .profile-info p {
+        font-size: 1.1em !important;
+    }
+    
+    /* 注意：我删除了 .sidebar { display: none }，因为你说过电脑端不要变 */
 }
 
-/* 2. 字体与排版优化 (Typography) */
-/* 既然页面变宽了，字体和行距也要相应增大，否则会显得很空 */
-body {
-    font-size: 18px; /* 增大基础字号 (默认是16px) */
-    line-height: 1.7; /* 增加行间距，提升阅读体验 */
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-}
-
-/* 标题样式增强 */
-h1, h2, h3 {
-    font-weight: 700;
-    color: #111; /* 标题颜色加深 */
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-}
-
-/* 你的名字 (H1) */
-h1 {
-    font-size: 2.5em !important; 
-    margin-bottom: 0.5em;
-}
-
-/* 各版块标题 (News, Publications) */
-h2 {
-    font-size: 1.8em !important;
-    margin-top: 1.5em; 
-    border-bottom: 2px solid #f0f0f0; /* 加粗下划线 */
-    padding-bottom: 12px;
-}
-
-/* 3. 个人信息头部样式优化 */
-.profile-header {
-  margin-top: 20px;
-  margin-bottom: 60px !important; 
-  padding-bottom: 40px;
-  border-bottom: 1px solid #eaeaea; 
-}
-
-/* ✅ 核心修改：把宽度改为 100%，解除 220px 的封印 */
-/* 这样你在 HTML 里把容器设多大，图片就会显示多大 */
-.profile-avatar img {
-  width: 100% !important;  
-  height: auto;
-  border-radius: 8px; 
-  object-fit: cover; 
-  display: block; /* 防止图片底部出现莫名其妙的空隙 */
-}
-
-.profile-info p {
-  font-size: 1.1em !important;
-}
-
-/* 隐藏侧边栏 */
-.sidebar {
-  display: none !important; 
-}
 
 /* =======================================
-   MOBILE PROFILE FIX: 终极居中修复版
+   MOBILE ADAPTATION: 手机端基础适配
    ======================================= */
+@media screen and (max-width: 768px) {
+    /* 1. 字体还原：手机上 18px 太大，改回 14px */
+    body {
+        font-size: 14px !important; 
+        line-height: 1.6 !important;
+    }
 
-   @media screen and (max-width: 768px) {
+    h1 { font-size: 1.6em !important; margin-bottom: 0.5em !important; }
+    h2 { font-size: 1.3em !important; border-bottom-width: 1px !important; }
+    h3 { font-size: 1.1em !important; }
+
+    .page__inner-wrap {
+        width: 95% !important;
+    }
+    
+    /* 表格横向滚动 */
+    table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+}
+
+
+/* =======================================
+   MOBILE PROFILE FIX: 终极居中修复版 (手机端)
+   ======================================= */
+@media screen and (max-width: 768px) {
     /* 1. 侧边栏容器：变成弹性盒子，垂直排列，水平居中 */
     .sidebar {
         display: flex !important;
         flex-direction: column !important;
-        align-items: center !important; /* 核心：子元素水平居中 */
+        align-items: center !important; 
         width: 100% !important;
         margin: 0 auto 20px auto !important;
         text-align: center !important;
@@ -152,7 +157,7 @@ h2 {
         width: 100% !important;
     }
 
-    /* 3. 头像强制居中 */
+    /* 3. 头像强制居中 & 缩小 */
     .author__avatar {
         display: block !important;
         width: 100% !important;
@@ -162,7 +167,8 @@ h2 {
     .author__avatar img {
         display: inline-block !important;
         margin: 0 auto !important;
-        max-width: 150px !important; 
+        max-width: 120px !important; /* 手机端头像限制为 120px */
+        width: auto !important;
     }
 
     /* 4. 名字和简介 */
@@ -180,32 +186,32 @@ h2 {
         margin-right: auto !important;
     }
 
-    /* 5. 核心：联系方式列表 (那四行信息) */
+    /* 5. 核心：联系方式列表 (四行信息) */
     .author__urls-wrapper {
         display: block !important;
         width: 100% !important;
     }
 
     .author__urls.social-icons {
-        display: flex !important;           /* 使用 Flex 布局 */
-        flex-direction: column !important;  /* 垂直排列 */
-        align-items: center !important;     /* 子元素水平居中 */
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
         justify-content: center !important;
-        padding: 0 !important;              /* 去除默认列表左缩进 */
+        padding: 0 !important;
         margin: 0 !important;
         list-style: none !important;
         width: 100% !important;
-        background: transparent !important; /* 去掉可能的背景框 */
-        box-shadow: none !important;        /* 去掉阴影 */
+        background: transparent !important;
+        box-shadow: none !important;
         border: none !important;
-        position: static !important;        /* 防止绝对定位干扰 */
+        position: static !important;
     }
 
     /* 列表项 */
     .author__urls.social-icons li {
-        display: flex !important;           /* 让 li 也是弹性盒子 */
-        justify-content: center !important; /* 内部内容居中 */
-        align-items: center !important;     /* 垂直居中 */
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
         width: 100% !important;
         margin-bottom: 8px !important;
         text-align: center !important;
@@ -214,18 +220,16 @@ h2 {
     /* 列表内的链接和文字 */
     .author__urls.social-icons li a,
     .author__urls.social-icons li span {
-        display: flex !important;           /* 也是弹性盒子，为了图标和文字对齐 */
+        display: flex !important;
         justify-content: center !important;
         align-items: center !important;
         text-align: center !important;
     }
 
-    /* 图标微调 */
     .author__urls.social-icons li i {
         margin-right: 8px !important;
     }
     
-    /* 隐藏不需要的按钮 */
     .author__urls-wrapper button {
         display: none !important;
     }
