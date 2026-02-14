@@ -129,78 +129,104 @@ h2 {
 }
 
 /* =======================================
-   MOBILE PROFILE FIX: 手机端个人信息居中与分行
+   MOBILE PROFILE FIX: 终极居中修复版
    ======================================= */
 
    @media screen and (max-width: 768px) {
-    /* 1. 强制显示并居中侧边栏容器 */
+    /* 1. 侧边栏容器：变成弹性盒子，垂直排列，水平居中 */
     .sidebar {
-        display: block !important; /* 确保不被隐藏 */
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important; /* 核心：子元素水平居中 */
         width: 100% !important;
-        float: none !important;
+        margin: 0 auto 20px auto !important;
         text-align: center !important;
-        margin-bottom: 20px !important;
+        padding: 0 !important;
     }
 
-    /* 2. 头像居中 */
+    /* 2. 个人信息区域包裹器 */
+    div[itemscope] {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+    }
+
+    /* 3. 头像强制居中 */
     .author__avatar {
         display: block !important;
+        width: 100% !important;
         text-align: center !important;
         margin: 0 auto 15px auto !important;
     }
     .author__avatar img {
-        display: inline-block !important; /* 内联块级以便居中 */
+        display: inline-block !important;
         margin: 0 auto !important;
-        max-width: 150px !important; /* 限制头像大小，避免手机上过大 */
+        max-width: 150px !important; 
     }
 
-    /* 3. 名字与简介居中 */
+    /* 4. 名字和简介 */
     .author__content {
         display: block !important;
-        text-align: center !important;
         width: 100% !important;
+        text-align: center !important;
         padding: 0 !important;
     }
-    .author__name {
-        margin-top: 10px !important;
+    .author__name, 
+    .author__bio,
+    .author__pronouns {
         text-align: center !important;
-    }
-    .author__bio {
-        text-align: center !important;
-        margin-bottom: 15px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
 
-    /* 4. 核心：联系方式强制分行并居中 */
+    /* 5. 核心：联系方式列表 (那四行信息) */
     .author__urls-wrapper {
         display: block !important;
-        text-align: center !important;
         width: 100% !important;
     }
-    
+
     .author__urls.social-icons {
-        display: block !important;
-        text-align: center !important;
-        padding: 0 !important;
+        display: flex !important;           /* 使用 Flex 布局 */
+        flex-direction: column !important;  /* 垂直排列 */
+        align-items: center !important;     /* 子元素水平居中 */
+        justify-content: center !important;
+        padding: 0 !important;              /* 去除默认列表左缩进 */
         margin: 0 !important;
+        list-style: none !important;
+        width: 100% !important;
+        background: transparent !important; /* 去掉可能的背景框 */
+        box-shadow: none !important;        /* 去掉阴影 */
+        border: none !important;
+        position: static !important;        /* 防止绝对定位干扰 */
     }
 
-    /* 这里的 li 设置 display: block 就是让它们分列四行的关键 */
+    /* 列表项 */
     .author__urls.social-icons li {
-        display: block !important; 
+        display: flex !important;           /* 让 li 也是弹性盒子 */
+        justify-content: center !important; /* 内部内容居中 */
+        align-items: center !important;     /* 垂直居中 */
         width: 100% !important;
+        margin-bottom: 8px !important;
         text-align: center !important;
-        margin-bottom: 8px !important; /* 行间距 */
-        border: none !important;
+    }
+
+    /* 列表内的链接和文字 */
+    .author__urls.social-icons li a,
+    .author__urls.social-icons li span {
+        display: flex !important;           /* 也是弹性盒子，为了图标和文字对齐 */
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    /* 图标微调 */
+    .author__urls.social-icons li i {
+        margin-right: 8px !important;
     }
     
-    /* 确保图标和文字垂直居中对齐 */
-    .author__urls.social-icons li a,
-    .author__urls.social-icons li {
-        justify-content: center !important;
-    }
-
-    /* 隐藏 Follow 按钮 (可选，如果不需要的话) */
+    /* 隐藏不需要的按钮 */
     .author__urls-wrapper button {
-        margin: 0 auto 15px auto !important;
+        display: none !important;
     }
 }
