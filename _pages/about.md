@@ -14,7 +14,7 @@ redirect_from:
     <img src="/images/profile.png" alt="张清安" style="box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
   </div>
 
-  <div class="profile-info" style="flex: 1; min-width: 300px;">
+  <div class="profile-info" style="flex: 1; min-width: 250px;">
     <h1 style="margin-top: 0; margin-bottom: 0.1em; font-size: 2.8em; font-weight: 700; color: #222;">张清安</h1>
     
     <p style="font-size: 1.2em; color: #555; margin-bottom: 1em; font-weight: 500;">
