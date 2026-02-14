@@ -25,12 +25,12 @@ author:
   # Biographic information
   avatar           : "profile.png"
   name             : "张清安"
-  pronouns         : # example: "she/her"  
-  bio              : "一本正经，万事游戏。"
-  location         : "中国·广州"
-  employer         : "Uestc👉Sysu"
-  uri              : # URL
-  email            : "zhangqan@mail2.sysu.edu.cn" 
+  # ... 其他不变 ...
+  location         : "广州＆深圳"         # 修改这里：对应第一行
+  phone            : "+86 18150070267"  # 新增这里：对应第二行
+  wechat           : "18150070267"      # 新增这里：对应第三行
+  email            : "zhangqan@mail2.sysu.edu.cn" # 对应第四行
+  # ... 其他不变 ...
 
   # Academic websites
   academia         : # URL

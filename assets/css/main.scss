@@ -129,77 +129,78 @@ h2 {
 }
 
 /* =======================================
-   MOBILE ADAPTATION: 手机端极简小字体版
+   MOBILE PROFILE FIX: 手机端个人信息居中与分行
    ======================================= */
 
    @media screen and (max-width: 768px) {
-    /* 1. 基础排版：全局字体调小 */
-    body {
-        font-size: 14px !important; /* 从 16px 降到 14px */
-        line-height: 1.6 !important;
+    /* 1. 强制显示并居中侧边栏容器 */
+    .sidebar {
+        display: block !important; /* 确保不被隐藏 */
+        width: 100% !important;
+        float: none !important;
+        text-align: center !important;
+        margin-bottom: 20px !important;
     }
 
-    /* 2. 标题进一步缩小 */
-    h1 {
-        font-size: 1.5em !important; /* 约 21px */
-        margin-bottom: 0.3em !important;
-        line-height: 1.2 !important;
+    /* 2. 头像居中 */
+    .author__avatar {
+        display: block !important;
+        text-align: center !important;
+        margin: 0 auto 15px auto !important;
+    }
+    .author__avatar img {
+        display: inline-block !important; /* 内联块级以便居中 */
+        margin: 0 auto !important;
+        max-width: 150px !important; /* 限制头像大小，避免手机上过大 */
     }
 
-    h2 {
-        font-size: 1.25em !important; /* 约 17.5px */
-        margin-top: 1.5em !important;
-        padding-bottom: 6px !important;
-        border-bottom-width: 1px !important; /* 下划线变细 */
-    }
-
-    h3 {
-        font-size: 1.1em !important; /* 约 15.4px */
-        font-weight: bold !important;
-    }
-
-    /* 3. 个人简介区域 (Profile) 更加紧凑 */
-    .profile-header {
-        margin-bottom: 20px !important; 
-        text-align: center;
-        padding-bottom: 15px !important;
-    }
-
-    .profile-avatar img {
-        width: 120px !important;      /* 头像再缩小一点 (原150px) */
-        max-width: 40% !important;
-        height: auto !important;
-        margin: 0 auto 10px auto !important;
-        display: block;
-    }
-
-    .profile-info p {
-        font-size: 0.95em !important; /* 简介文字比正文稍小一点 */
-        line-height: 1.5 !important;
-        margin-bottom: 0.5em !important;
-    }
-
-    /* 4. 布局微调 */
-    .page__inner-wrap {
-        width: 96% !important; /* 边距再窄一点，留给文字更多空间 */
+    /* 3. 名字与简介居中 */
+    .author__content {
+        display: block !important;
+        text-align: center !important;
+        width: 100% !important;
         padding: 0 !important;
     }
-    
-    .masthead {
-        position: relative !important; /* 导航栏不固定 */
-        font-size: 0.9em !important;   /* 导航栏文字也调小 */
+    .author__name {
+        margin-top: 10px !important;
+        text-align: center !important;
+    }
+    .author__bio {
+        text-align: center !important;
+        margin-bottom: 15px !important;
     }
 
-    /* 5. 列表项调整 */
-    li {
-        margin-bottom: 0.2em !important; /* 列表间距收紧 */
+    /* 4. 核心：联系方式强制分行并居中 */
+    .author__urls-wrapper {
+        display: block !important;
+        text-align: center !important;
+        width: 100% !important;
     }
     
-    /* 6. 表格允许横向滚动 */
-    table {
-        display: block;
-        width: 100%;
-        overflow-x: auto;
-        font-size: 0.9em !important; /* 表格内容字号缩小 */
+    .author__urls.social-icons {
+        display: block !important;
+        text-align: center !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* 这里的 li 设置 display: block 就是让它们分列四行的关键 */
+    .author__urls.social-icons li {
+        display: block !important; 
+        width: 100% !important;
+        text-align: center !important;
+        margin-bottom: 8px !important; /* 行间距 */
+        border: none !important;
+    }
+    
+    /* 确保图标和文字垂直居中对齐 */
+    .author__urls.social-icons li a,
+    .author__urls.social-icons li {
+        justify-content: center !important;
+    }
+
+    /* 隐藏 Follow 按钮 (可选，如果不需要的话) */
+    .author__urls-wrapper button {
+        margin: 0 auto 15px auto !important;
     }
 }
