@@ -96,5 +96,26 @@ redirect_from:
 
 ## 💻 Experience
 
-* **User Experience Engineer**, Major Gaming Company (Shanghai), 2025.01 - 2025.12
-* **Product Manager Intern**, HuiChuang Cultural Tourism, 2022.12 - 2023.04
+{% include experience-item.html
+   logo="/images/mhylogo.png"
+   company="MiHoYo (米哈游)"
+   role="Product Manager (产品经理)"
+   date="2024.06 - Present"
+   location="Shanghai, China"
+%}
+
+{% include experience-item.html
+   logo="/images/tencent.png"
+   company="Tencent Games (腾讯游戏)"
+   role="Product Manager (产品经理)"
+   date="2022.06 - 2024.05"
+   location="Shenzhen, China"
+%}
+
+{% include experience-item.html
+   logo="/images/天空logo黑色.png"
+   company="Digital Sky (数字天空)"
+   role="Product Manager (产品经理)"
+   date="2021.06 - 2022.05"
+   location="Chengdu, China"
+%}
