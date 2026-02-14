@@ -18,7 +18,7 @@ redirect_from:
     <h1 style="margin-top: 0; margin-bottom: 0.1em; font-size: 2.8em; font-weight: 700; color: #222;">张清安</h1>
     
     <p style="font-size: 1.2em; color: #555; margin-bottom: 1em; font-weight: 500;">
-      不想每次都在触底反弹，所以要时刻有战斗意识。
+      不想每次都在触底反弹，所以要时刻保持意识。
     </p>
 
     <div style="display: flex; flex-wrap: wrap; gap: 15px; font-size: 0.95em; color: #666; margin-bottom: 1.5em; line-height: 1.6; align-items: center;">
