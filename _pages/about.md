@@ -49,10 +49,7 @@ redirect_from:
 
     <div style="font-size: 1.05em; line-height: 1.7; color: #333;">
       <p style="margin-bottom: 0.8em;">
-        我是中山大学计算机学院（CSE）的硕士生（2027应届），师从<a href="https://cse.sysu.edu.cn/teacher/GaoChengying" style="color: #0056b3;">高成英教授</a>。此前，我在电子科技大学完成了本科学业。
-      </p>
-      <p style="margin-bottom: 0;">
-        我的研究兴趣主要集中在三维重建、多模态系统幻觉的缓解。同时有丰富的产品从事经验。正在寻找AI产品相关岗位。
+        我是中山大学计算机学院（CSE）的硕士生（2027应届），师从<a href="https://cse.sysu.edu.cn/teacher/GaoChengying" style="color: #0056b3;">高成英教授</a>。此前，我在电子科技大学完成了本科学业。我的研究兴趣主要集中在三维重建、多模态系统幻觉的缓解。同时有丰富的产品从事经验。正在寻找AI产品相关岗位。
       </p>
     </div>
   </div>
