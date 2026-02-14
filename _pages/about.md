@@ -22,13 +22,21 @@ redirect_from:
     </p>
 
     <div style="display: flex; flex-wrap: wrap; gap: 15px; font-size: 0.95em; color: #666; margin-bottom: 1.5em; line-height: 1.6; align-items: center;">
-      
+    
       <span style="display: flex; align-items: center; white-space: nowrap;">
         <i class="fas fa-map-marker-alt" style="margin-right: 6px;"></i> 广州＆深圳
       </span>
       
-      <span style="color: #ddd;">|</span> <span style="display: flex; align-items: center; white-space: nowrap;">
-        <i class="fas fa-university" style="margin-right: 6px;"></i> Uestc👉Sysu
+      <span style="color: #ddd;">|</span>
+
+      <span style="display: flex; align-items: center; white-space: nowrap;">
+        <i class="fas fa-phone" style="margin-right: 6px;"></i> +86 18150070267
+      </span>
+      
+      <span style="color: #ddd;">|</span>
+
+      <span style="display: flex; align-items: center; white-space: nowrap;">
+        <i class="fab fa-weixin" style="margin-right: 6px;"></i> 18150070267
       </span>
       
       <span style="color: #ddd;">|</span>
@@ -36,13 +44,6 @@ redirect_from:
       <span style="display: flex; align-items: center; white-space: nowrap;">
         <i class="fas fa-envelope" style="margin-right: 6px;"></i> 
         <a href="mailto:zhangqan@mail2.sysu.edu.cn" style="color: #555; text-decoration: none; border-bottom: 1px dotted #999;">zhangqan@mail2.sysu.edu.cn</a>
-      </span>
-      
-      <span style="color: #ddd;">|</span>
-      
-      <span style="display: flex; align-items: center; white-space: nowrap;">
-        <i class="fab fa-github" style="margin-right: 6px;"></i> 
-        <a href="https://github.com/azureovo" style="color: #555; text-decoration: none; border-bottom: 1px dotted #999;">GitHub</a>
       </span>
 
     </div>
