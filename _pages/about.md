@@ -67,7 +67,7 @@ redirect_from:
 
 ---
 
-## 📝 Selected Publications
+## 📝 Publications
 
 {% for post in site.publications reversed %}
   {% include archive-single.html type="list" %}
