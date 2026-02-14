@@ -1,28 +1,20 @@
-<div class="experience-item" style="display: flex; gap: 25px; align-items: stretch; margin-bottom: 25px; min-height: 100px;">
+<div class="experience-item" style="display: flex; gap: 20px; align-items: center; margin-bottom: 25px;">
   
-    <div class="experience-logo" style="flex: 0 0 100px; width: 100px; display: flex; align-items: center; justify-content: center;">
-      <img src="{{ include.logo }}" alt="{{ include.company }}" style="width: 100%; height: auto; max-height: 80px; object-fit: contain;">
+    <div class="experience-logo" style="flex: 0 0 72px; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center;">
+      <img src="{{ include.logo }}" alt="{{ include.company }}" style="width: 100%; height: 100%; object-fit: contain; border-radius: 6px;">
     </div>
   
-    <div class="experience-body" style="flex: 1; display: flex; flex-direction: column; justify-content: center; border-bottom: 1px solid #f0f0f0; padding: 10px 0;">
+    <div class="experience-body" style="flex: 1; border-bottom: 1px solid #f7f7f7; padding-bottom: 15px;">
       
-      <h3 style="margin: 0; font-size: 1.2em; font-weight: bold; color: #222; line-height: 1.3;">
-        {{ include.company }}
+      <h3 style="margin: 0; font-size: 1.2em; font-weight: bold; color: #222; margin-bottom: 6px;">
+        {{ include.role }}
       </h3>
       
-      <div style="font-size: 1.1em; color: #444; margin-top: 5px; font-weight: 500;">
-        {{ include.role }}
-      </div>
-      
-      <div style="font-size: 0.95em; color: #888; margin-top: 4px; font-style: italic;">
-        <i class="fas fa-calendar-alt" style="margin-right: 6px;"></i>{{ include.date }}
+      <div style="font-size: 1em; color: #555; font-family: -apple-system, BlinkMacSystemFont, Roboto, sans-serif;">
+        <span style="color: #333; font-weight: 500;">{{ include.company }}</span>
+        <span style="margin: 0 8px; color: #ccc;">·</span>
+        <span style="color: #888; font-style: italic;">{{ include.date }}</span>
       </div>
   
-      {% if include.location %}
-        <div style="font-size: 0.9em; color: #999; margin-top: 4px;">
-          <i class="fas fa-map-marker-alt" style="margin-right: 6px;"></i>{{ include.location }}
-        </div>
-      {% endif %}
-      
     </div>
   </div>

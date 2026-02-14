@@ -101,7 +101,6 @@ redirect_from:
    company="MiHoYo (米哈游)"
    role="Product Manager (产品经理)"
    date="2024.06 - Present"
-   location="Shanghai, China"
 %}
 
 {% include experience-item.html
@@ -109,7 +108,6 @@ redirect_from:
    company="Tencent Games (腾讯游戏)"
    role="Product Manager (产品经理)"
    date="2022.06 - 2024.05"
-   location="Shenzhen, China"
 %}
 
 {% include experience-item.html
@@ -117,5 +115,5 @@ redirect_from:
    company="Digital Sky (数字天空)"
    role="Product Manager (产品经理)"
    date="2021.06 - 2022.05"
-   location="Chengdu, China"
 %}
+
