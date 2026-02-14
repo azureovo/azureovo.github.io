@@ -84,7 +84,7 @@ redirect_from:
    logo="/images/中山大学-logo-2048px.png"
    institution="中山大学(SYSU)"
    title="计算机技术，硕士"
-   date="2024 - Present"
+   date="2024 - 至今"
 %}
 
 {% include education-item.html
