@@ -108,54 +108,52 @@
 
 
 /* =======================================
-   MOBILE ZOOM FIX: 手机端微缩+消除底部空白
+   MOBILE SUPER SCALE: 手机端暴力缩放版 (含图片微缩)
    ======================================= */
    @media screen and (max-width: 768px) {
-    /* 1. 使用 zoom 替代 transform，完美解决底部空白问题 */
+    
+    /* 1. 核心缩放黑科技 */
     body {
-        zoom: 0.5;                /* 核心：缩放 0.5 倍 */
-        width: 200% !important;   /* 宽度设为 200%，配合 zoom 缩放后刚好占满屏 */
+        width: 200%;            /* 宽度设为双倍 */
+        transform: scale(0.5);  /* 整体缩小一半 */
+        transform-origin: 0 0;  /* 以左上角为基准缩放 */
+        overflow-x: hidden;     /* 防止横向滚动条 */
         
-        /* 重置之前的 transform 设置，防止冲突 */
-        transform: none !important; 
-        min-height: auto !important; /* 去除强制高度 */
+        /* 这里的字号 12px 实际上会被显示为 6px */
+        font-size: 10px !important; 
+        line-height: 1.2 !important;
         margin: 0 !important;
-        overflow-x: hidden;
-        
-        /* 字体设置：因为 zoom 了 0.5，所以这里写 20px 实际显示就是 10px */
-        font-size: 20px !important; 
-        line-height: 1.3 !important;
-        background-color: var(--global-bg-color); /* 确保背景色填充 */
+        min-height: 200vh;      /* 保证高度足够 */
     }
 
-    /* 2. 布局容器适配 */
+    /* 2. 布局调整 */
+    .masthead { position: relative !important; }
+    
     .page__inner-wrap {
         width: 100% !important;
-        padding: 0 10px !important;
+        padding: 0 10px !important; 
     }
-    
-    .masthead { position: relative !important; }
 
-    /* 3. 字体大小适配 (数值 * 0.5 = 实际显示大小) */
+    /* 3. 标题调整 */
     h1 { 
-        font-size: 3.2em !important;   /* 实显 ~32px */
-        margin-bottom: 10px !important;
+        font-size: 2.4em !important;   /* 实显 12px */
+        margin-bottom: 10px !important; 
     }
     h2 { 
-        font-size: 2.6em !important;   /* 实显 ~26px */
-        margin-top: 30px !important;
-        padding-bottom: 10px !important;
-        border-bottom-width: 2px !important;
+        font-size: 1.8em !important;   /* 实显 9px */
+        margin-top: 15px !important; 
+        padding-bottom: 5px !important; 
+        border-bottom-width: 1px !important;
     }
-    h3 { font-size: 2.2em !important; } /* 实显 ~22px */
+    h3 { font-size: 1.4em !important; }
 
-    /* 4. 个人信息区域优化 */
+    /* 4. 侧边栏与头像 */
     .sidebar {
         display: flex !important;
         flex-direction: column !important;
-        align-items: center !important;
+        align-items: center !important; 
         width: 100% !important;
-        margin: 20px auto !important;
+        margin: 10px auto !important;
         padding: 0 !important;
         position: static !important;
     }
@@ -166,31 +164,35 @@
         text-align: center !important;
     }
     
+    /* [修改] 头像进一步缩小 */
     .author__avatar img {
-        width: 200px !important;      /* 实显 100px */
-        max-width: 200px !important;
+        /* 写 100px，实际显示 50px */
+        width: 100px !important;    
+        max-width: 100px !important;
         height: auto !important;
         display: inline-block !important;
     }
 
+    /* 名字和简介 */
     .author__content {
         text-align: center !important;
         width: 100% !important;
     }
     .author__name {
-        font-size: 3.5em !important;  /* 实显 ~35px */
-        margin-bottom: 10px !important;
+        font-size: 2.5em !important;   /* 实显 12.5px */
+        margin-bottom: 5px !important;
     }
     .author__bio {
-        font-size: 2.0em !important;  /* 实显 ~20px */
-        margin-bottom: 20px !important;
+        font-size: 1.4em !important;   /* 实显 7px */
+        margin-bottom: 15px !important;
     }
 
-    /* 5. 联系方式列表 */
+    /* 5. 联系方式 */
     .author__urls-wrapper {
         width: 100% !important;
         padding: 0 !important;
     }
+
     .author__urls.social-icons {
         display: flex !important;
         flex-direction: column !important;
@@ -200,46 +202,42 @@
         border: none !important;
         box-shadow: none !important;
     }
+
     .author__urls.social-icons li {
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
         width: 100% !important;
-        margin-bottom: 8px !important;
-        font-size: 1.8em !important;  /* 实显 ~18px */
-    }
-    .author__urls.social-icons li i {
-        margin-right: 15px !important;
-    }
-    .author__urls-wrapper button { display: none !important; }
-
-    /* 6. 图片限制 */
-    .page__content img, 
-    .archive__item-teaser img {
-        max-width: 60% !important;
-        height: auto !important;
-        display: block !important;
-        margin: 20px auto !important;
+        margin-bottom: 4px !important; 
+        font-size: 1.2em !important;   /* 实显 6px */
     }
 
-    /* 7. 底部 Footer 紧凑修正 */
-    .page__footer {
-        margin-top: 20px !important;
-        padding-top: 10px !important;
-        padding-bottom: 20px !important; /* 底部留少量空隙即可 */
-        margin-bottom: 0 !important;     /* 去除底部外边距 */
-    }
-    
-    .page__footer footer {
-        float: none !important;
-        margin: 0 !important;
-        width: 100% !important;
+    .author__urls.social-icons li a {
+        display: flex !important;
+        align-items: center !important;
         padding: 0 !important;
     }
 
-    .page__footer-copyright {
-        font-size: 1.8em !important; /* 实显 ~18px */
-        line-height: 1.5 !important;
-        padding-bottom: 10px !important;
+    .author__urls.social-icons li i {
+        margin-right: 10px !important; 
+    }
+
+    .author__urls-wrapper button { display: none !important; }
+
+    /* 6. [新增] 全局内容图片缩小限制 */
+    /* 针对文章内容里的图片，限制宽度并居中 */
+    .page__content img, 
+    .archive__item-teaser img {
+        max-width: 60% !important;  /* 图片最大只占容器的 60% (实显屏幕宽的 60%) */
+        height: auto !important;
+        display: block !important;
+        margin: 10px auto !important; /* 上下留白，水平居中 */
+    }
+
+    /* 7. 表格微调 */
+    table {
+        display: block;
+        width: 100%;
+        font-size: 1.2em !important; 
     }
 }
