@@ -10,7 +10,7 @@ redirect_from:
 
 <div class="profile-header" style="display: flex; gap: 50px; align-items: center; margin-bottom: 60px; flex-wrap: wrap; border-bottom: 1px solid #eaeaea; padding-bottom: 40px;">
   
-  <div class="profile-avatar" style="flex: 0 0 280px;">
+  <div class="profile-avatar" style="flex: 0 0 380px;">
     <img src="/images/profile.png" alt="张清安" style="width: 100%; border-radius: 8%; box-shadow: 0 6px 12px rgba(0,0,0,0.15);">
   </div>
 
