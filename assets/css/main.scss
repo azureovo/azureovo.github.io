@@ -274,54 +274,77 @@ html, body {
 
 
 /* =======================================
-   MOBILE ADAPTATION: 手机端深度适配 (微信专修版)
+   6. 手机端深度适配 (强制两列 + 防溢出)
    ======================================= */
-@media screen and (max-width: 1200px) {
-    /* 强制重置内边距 */
-    .page__inner-wrap { width: 100% !important; padding: 0 !important; }
+   @media screen and (max-width: 768px) {
+    
+    /* 1. 容器修复：防止左右贴边或溢出 */
+    .page__inner-wrap {
+        width: 100% !important;
+        padding: 0 4px !important; /* 两侧留极小的缝隙 */
+    }
 
+    /* 2. 网格布局：强制两列 */
     .life-grid-wrapper {
         display: grid;
+        /* ✅ 核心修改：强制两列，不设最小宽度限制 */
         grid-template-columns: repeat(2, 1fr) !important; 
-        gap: 10px !important;
+        gap: 8px !important;       /* 间距调小，给卡片留出更多空间 */
         margin-top: 15px !important;
         
-        /* ✅ 微信修复核心：
-           1. width: auto 配合 margin-right，让浏览器自己算剩余空间
-           2. 强制右边留出 15% 的空地，谁也别想占
-           3. max-width: 100vw 物理封顶
-        */
-        width: auto !important;
+        width: 100% !important;    /* 占满容器 */
         margin-left: 0 !important;
-        margin-right: 15% !important; /* 强制右侧留白 15% */
-        padding-right: 0 !important;  /* 去掉 padding，防止算错 */
-        
-        max-width: 100vw !important;  /* 无论如何不能超过屏幕宽 */
+        margin-right: 0 !important;
+        padding-right: 0 !important;
         box-sizing: border-box !important;
     }
 
-    /* 图片适配 */
-    .life-grid-wrapper .archive__item-teaser { height: 100px !important; } 
+    /* 3. 防止卡片被撑大 (关键) */
+    .life-grid-wrapper .grid__item {
+        min-width: 0 !important;   /* 允许内容缩小，防止长标题撑破布局 */
+        width: 100% !important;
+    }
+
+    /* 4. 卡片样式微调 */
+    .life-grid-wrapper .archive__item {
+        border-radius: 8px !important; 
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2) !important;
+    }
+
+    /* 5. 图片强制填满卡片 (覆盖全局的 60% 限制) */
+    .life-grid-wrapper .archive__item-teaser img {
+        width: 100% !important;
+        max-width: 100% !important; /* 确保图片不缩水 */
+        height: 100px !important;   /* 高度固定，防止参差不齐 */
+        margin: 0 !important;
+    }
+
+    /* 6. 字体大小适配 */
+    .life-grid-wrapper .archive__item-title {
+        font-size: 1.0em !important; 
+        margin: 6px 0 4px 0 !important;
+        white-space: normal !important; /* 允许换行 */
+        line-height: 1.3 !important;
+    }
     
-    .life-grid-wrapper .archive__item-title { 
-        font-size: 1.05em !important; 
-        margin: 8px 0 4px 0 !important; 
-        white-space: normal !important; 
-    }
-    .life-grid-wrapper .page__meta { 
-        display: block !important; 
+    .life-grid-wrapper .page__meta {
         font-size: 0.8em !important; 
-        margin-bottom: 5px !important; 
+        margin-bottom: 4px !important;
+        display: block !important;
     }
-    .life-grid-wrapper .archive__item-excerpt { 
+
+    .life-grid-wrapper .archive__item-excerpt {
         font-size: 0.8em !important; 
-        display: -webkit-box; 
-        -webkit-line-clamp: 3; 
-        -webkit-box-orient: vertical; 
-        overflow: hidden; 
+        margin: 0 4px 8px 4px !important;
+        line-height: 1.4 !important;
+        
+        /* 限制显示行数，保持整洁 */
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 }
-
 
 /* =======================================
    BUTTON STYLE: 返回首页按钮
