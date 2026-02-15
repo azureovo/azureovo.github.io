@@ -286,7 +286,7 @@
     overflow: hidden;
     position: relative;
     margin: 0;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #d2cbcb;
 }
 
 .life-grid-wrapper .archive__item-teaser img {
@@ -308,13 +308,13 @@
 .life-grid-wrapper .archive__item-title {
     margin: 15px 15px 5px 15px;
     font-size: 1.2em;
-    color: #fff !important;      /* ✅ 直接把白色加给标题，而不是 a 标签 */
+    color: #1c1a1a !important;      /* ✅ 直接把白色加给标题，而不是 a 标签 */
     cursor: default;             /* ✅ 鼠标放上去变成箭头，而不是手指(不让用户以为能点) */
 }
 
 /* 这一段可以删掉了，因为没有 a 标签了，留着也没事 */
 .life-grid-wrapper .archive__item-title a {
-    color: #fff !important;
+    color: #3f3b3b !important;
     text-decoration: none;
 }
 
