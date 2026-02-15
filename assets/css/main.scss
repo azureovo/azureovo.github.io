@@ -341,3 +341,68 @@ html, body {
     }
 }
 
+/* =======================================
+   FORCE LIGHT MODE: 强制锁定白天模式
+   ======================================= */
+/* 这里的代码会覆盖系统的夜间模式设置 */
+@media (prefers-color-scheme: dark) {
+    
+    /* 1. 强制背景变回白色，文字变回深色 */
+    body, html {
+        background-color: #fff !important;
+        color: #333 !important;
+    }
+
+    /* 2. 强制内容区域背景 */
+    .page, .page__content, .archive {
+        background-color: #fff !important;
+    }
+
+    /* 3. 强制标题变回黑色 */
+    h1, h2, h3, h4, h5, h6 {
+        color: #111 !important;
+    }
+
+    /* 4. 强制链接和段落颜色 */
+    p, li, dl, address, table {
+        color: #333 !important;
+    }
+    
+    a {
+        color: #333 !important; /* 链接颜色 */
+    }
+    
+    /* 鼠标悬停时链接变蓝 (保持交互感) */
+    a:hover {
+        color: #000 !important;
+        text-decoration: underline;
+    }
+
+    /* 5. 强制侧边栏/个人信息栏变白 */
+    .sidebar, .author__urls-wrapper {
+        background-color: #fff !important;
+        color: #333 !important;
+    }
+
+    /* ==================================================
+       ⚠️ 关键：保护“大学生活”暗黑卡片不被变成白色
+       我们要让这部分特意保持“夜间感”
+       ================================================== */
+    .life-grid-wrapper .archive__item {
+        background-color: #2b2b2b !important; /* 保持深灰背景 */
+        border-color: #3a3a3a !important;
+        color: #fff !important;               /* 保持白色文字 */
+    }
+
+    .life-grid-wrapper .archive__item-title {
+        color: #fff !important;
+    }
+
+    .life-grid-wrapper .page__meta {
+        color: #aaa !important;
+    }
+
+    .life-grid-wrapper .archive__item-excerpt {
+        color: #ccc !important;
+    }
+}
