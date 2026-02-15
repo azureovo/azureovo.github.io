@@ -244,30 +244,29 @@
 
 
 /* =======================================
-   LIFE GRID: 大学生活暗黑卡片版 (终极修正)
+   LIFE GRID: 大学生活暗黑卡片版 (全端完美适配)
    ======================================= */
 
-/* 1. 核心布局修复：强制清除左侧留白 */
-/* 只要是宽屏模式下，就强制取消归档页面的左边距 */
-@media (min-width: 64em) {
-    .wide .archive, 
-    .archive {
-        width: 100% !important;
-        float: none !important;
-        margin-left: 0 !important;  /* ✅ 核心修复：清除左侧预留空间 */
-        margin-right: 0 !important;
-        padding-left: 0 !important; /* ✅ 核心修复 */
-        padding-right: 0 !important;
-    }
+/* 1. 核心布局修复：清除所有端的左侧留白 */
+/* 无论是手机还是电脑，都强制清除归档页面的默认边距 */
+.wide .archive, 
+.archive {
+    width: 100% !important;
+    float: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
 
 /* 2. 网格容器 */
 .life-grid-wrapper {
     display: grid;
+    /* 电脑端默认 3 列 */
     grid-template-columns: repeat(3, 1fr); 
     gap: 30px;
     margin-top: 30px;
-    width: 100%; /* 确保容器也是满宽 */
+    width: 100%;
 }
 
 /* 3. 卡片基础样式 */
@@ -296,7 +295,7 @@
 
 /* 4. 图片区域 */
 .life-grid-wrapper .archive__item-teaser {
-    height: 180px;
+    height: 180px; /* 电脑端图片高度 */
     overflow: hidden;
     position: relative;
     margin: 0;
@@ -315,15 +314,12 @@
     transform: scale(1.05);
 }
 
-/* 5. 文字内容区域 (标题变小 + 白色 + 居中) */
+/* 5. 文字内容区域 */
 .life-grid-wrapper .archive__item-title {
     margin: 15px 15px 5px 15px;
-    
-    /* ✅ 字体修改：0.95em (变小), 白色 */
     font-size: 0.95em !important; 
     font-weight: bold !important;
     color: #fff !important;      
-    
     cursor: default;
     text-align: center !important;
 }
@@ -343,13 +339,43 @@
     text-align: center !important;
 }
 
-/* 6. 手机端适配 */
+/* =======================================
+   6. 手机端深度适配 (重点修改)
+   ======================================= */
 @media screen and (max-width: 768px) {
-    .life-grid-wrapper {
-        grid-template-columns: repeat(1, 1fr);
-        gap: 20px;
+    /* 修复布局：确保容器不被挤压 */
+    .page__inner-wrap {
+        width: 96% !important; /* 手机两侧留一点点缝隙 */
+        padding: 0 !important;
     }
+
+    /* 网格调整：自动适应 */
+    .life-grid-wrapper {
+        /* 智能布局：能放下两个就放两个(如横屏)，放不下就放一个 */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important; 
+        gap: 15px !important; /* 手机端间距调小 */
+        margin-top: 20px !important;
+    }
+
+    /* 卡片微调 */
     .life-grid-wrapper .archive__item {
-        border-radius: 15px; 
+        border-radius: 12px !important; /* 圆角稍微小一点，更精致 */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2) !important; /* 阴影变淡，性能更好 */
+    }
+
+    /* 图片高度调整 */
+    .life-grid-wrapper .archive__item-teaser {
+        height: 160px !important; /* 手机端图片稍微矮一点 */
+    }
+
+    /* 字体调整 */
+    .life-grid-wrapper .archive__item-title {
+        font-size: 1.05em !important; /* 手机端标题稍微大一点，易读 */
+        margin-top: 12px !important;
+    }
+    
+    .life-grid-wrapper .archive__item-excerpt {
+        font-size: 0.85em !important; /* 简介字号适中 */
+        margin-bottom: 15px !important;
     }
 }
