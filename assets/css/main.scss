@@ -244,19 +244,16 @@
 
 
 /* =======================================
-   LIFE GRID: 大学生活暗黑卡片版 (全端完美适配)
+   LIFE GRID: 大学生活暗黑卡片版 (全端适配修正)
    ======================================= */
 
-/* 1. 核心布局修复：清除所有端的左侧留白 */
-/* 无论是手机还是电脑，都强制清除归档页面的默认边距 */
+/* 1. 强制清除归档页面的边距限制 */
 .wide .archive, 
 .archive {
     width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
     float: none !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
 }
 
 /* 2. 网格容器 */
@@ -265,15 +262,12 @@
     /* 电脑端默认 3 列 */
     grid-template-columns: repeat(3, 1fr); 
     gap: 30px;
-    margin-top: 30px;
     width: 100%;
+    margin-top: 30px;
 }
 
-/* 3. 卡片基础样式 */
-.life-grid-wrapper .grid__item {
-    margin-bottom: 0;
-    width: 100%;
-}
+/* 3. 卡片样式 */
+.life-grid-wrapper .grid__item { width: 100%; margin-bottom: 0; }
 
 .life-grid-wrapper .archive__item {
     background: #2b2b2b;
@@ -281,101 +275,63 @@
     border-radius: 20px;
     overflow: hidden;            
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 100%;                
-    display: flex;
+    transition: transform 0.3s ease;
+    display: flex; 
     flex-direction: column;
 }
 
 .life-grid-wrapper .archive__item:hover {
-    transform: translateY(-8px); 
-    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    transform: translateY(-5px);
     border-color: #555;
 }
 
-/* 4. 图片区域 */
+/* 图片区域 */
 .life-grid-wrapper .archive__item-teaser {
-    height: 180px; /* 电脑端图片高度 */
-    overflow: hidden;
-    position: relative;
-    margin: 0;
+    height: 180px; 
+    overflow: hidden; 
+    margin: 0; 
     border-bottom: 1px solid #333;
 }
-
 .life-grid-wrapper .archive__item-teaser img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.5s ease;
+    width: 100%; height: 100%; object-fit: cover; display: block;
 }
 
-.life-grid-wrapper .archive__item:hover .archive__item-teaser img {
-    transform: scale(1.05);
-}
-
-/* 5. 文字内容区域 */
+/* 文字区域 */
 .life-grid-wrapper .archive__item-title {
     margin: 15px 15px 5px 15px;
     font-size: 0.95em !important; 
     font-weight: bold !important;
     color: #fff !important;      
-    cursor: default;
     text-align: center !important;
 }
-
 .life-grid-wrapper .page__meta {
     margin: 0 15px 10px 15px;
-    font-size: 0.85em;
-    color: #aaa !important;
-    text-align: center !important;
+    font-size: 0.85em; color: #aaa !important; text-align: center !important;
 }
-
 .life-grid-wrapper .archive__item-excerpt {
     margin: 0 15px 20px 15px;
-    font-size: 0.9em;
-    color: #ccc !important;
-    line-height: 1.6;
-    text-align: center !important;
+    font-size: 0.9em; color: #ccc !important; line-height: 1.6; text-align: center !important;
 }
 
 /* =======================================
-   6. 手机端深度适配 (重点修改)
+   6. 手机端深度适配 (兼容缩放模式)
    ======================================= */
 @media screen and (max-width: 768px) {
-    /* 修复布局：确保容器不被挤压 */
+    /* 修正布局容器，抵消缩放带来的边距问题 */
     .page__inner-wrap {
-        width: 96% !important; /* 手机两侧留一点点缝隙 */
-        padding: 0 !important;
+        width: 100% !important;
+        padding: 0 20px !important; /* 增加一点内边距防止贴边 */
     }
 
-    /* 网格调整：自动适应 */
     .life-grid-wrapper {
-        /* 智能布局：能放下两个就放两个(如横屏)，放不下就放一个 */
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important; 
-        gap: 15px !important; /* 手机端间距调小 */
+        /* 手机端强制 2 列 (配合你的缩小模式，2列会更好看) */
+        /* 如果觉得2列太挤，改成 repeat(1, 1fr) */
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 20px !important;
         margin-top: 20px !important;
     }
 
-    /* 卡片微调 */
-    .life-grid-wrapper .archive__item {
-        border-radius: 12px !important; /* 圆角稍微小一点，更精致 */
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2) !important; /* 阴影变淡，性能更好 */
-    }
-
-    /* 图片高度调整 */
-    .life-grid-wrapper .archive__item-teaser {
-        height: 160px !important; /* 手机端图片稍微矮一点 */
-    }
-
-    /* 字体调整 */
-    .life-grid-wrapper .archive__item-title {
-        font-size: 1.05em !important; /* 手机端标题稍微大一点，易读 */
-        margin-top: 12px !important;
-    }
-    
-    .life-grid-wrapper .archive__item-excerpt {
-        font-size: 0.85em !important; /* 简介字号适中 */
-        margin-bottom: 15px !important;
-    }
+    /* 字体和高度微调 */
+    .life-grid-wrapper .archive__item-teaser { height: 140px !important; }
+    .life-grid-wrapper .archive__item-title { font-size: 1.2em !important; margin-top: 10px !important;}
 }
