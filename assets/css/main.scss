@@ -244,18 +244,33 @@
 
 
 /* =======================================
-   LIFE GRID: 大学生活暗黑卡片版 (内容居中修正)
+   LIFE GRID: 大学生活暗黑卡片版 (终极修正)
    ======================================= */
 
-/* 1. 网格容器 */
+/* 1. 核心布局修复：强制清除左侧留白 */
+/* 只要是宽屏模式下，就强制取消归档页面的左边距 */
+@media (min-width: 64em) {
+    .wide .archive, 
+    .archive {
+        width: 100% !important;
+        float: none !important;
+        margin-left: 0 !important;  /* ✅ 核心修复：清除左侧预留空间 */
+        margin-right: 0 !important;
+        padding-left: 0 !important; /* ✅ 核心修复 */
+        padding-right: 0 !important;
+    }
+}
+
+/* 2. 网格容器 */
 .life-grid-wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
     gap: 30px;
     margin-top: 30px;
+    width: 100%; /* 确保容器也是满宽 */
 }
 
-/* 2. 单个卡片样式 */
+/* 3. 卡片基础样式 */
 .life-grid-wrapper .grid__item {
     margin-bottom: 0;
     width: 100%;
@@ -273,14 +288,13 @@
     flex-direction: column;
 }
 
-/* 悬停效果 */
 .life-grid-wrapper .archive__item:hover {
     transform: translateY(-8px); 
     box-shadow: 0 15px 30px rgba(0,0,0,0.5);
     border-color: #555;
 }
 
-/* 3. 图片区域 */
+/* 4. 图片区域 */
 .life-grid-wrapper .archive__item-teaser {
     height: 180px;
     overflow: hidden;
@@ -297,20 +311,17 @@
     transition: transform 0.5s ease;
 }
 
-/* 悬停时图片微放大 */
 .life-grid-wrapper .archive__item:hover .archive__item-teaser img {
     transform: scale(1.05);
 }
 
-/* 4. 文字内容区域 (适配暗色背景 + 居中) */
+/* 5. 文字内容区域 (标题变小 + 白色 + 居中) */
 .life-grid-wrapper .archive__item-title {
     margin: 15px 15px 5px 15px;
     
-    /* ✅ 修改1：字体调小 (原1.2em -> 1.0em 或 0.9em，根据你喜好) */
-    font-size: 1.0em !important; 
-    font-weight: bold !important; /* 可选：加粗一点更好看 */
-    
-    /* ✅ 修改2：强制白色 */
+    /* ✅ 字体修改：0.95em (变小), 白色 */
+    font-size: 0.95em !important; 
+    font-weight: bold !important;
     color: #fff !important;      
     
     cursor: default;
@@ -321,7 +332,7 @@
     margin: 0 15px 10px 15px;
     font-size: 0.85em;
     color: #aaa !important;
-    text-align: center !important; /* ✅ 核心修改：日期居中 */
+    text-align: center !important;
 }
 
 .life-grid-wrapper .archive__item-excerpt {
@@ -329,10 +340,10 @@
     font-size: 0.9em;
     color: #ccc !important;
     line-height: 1.6;
-    text-align: center !important; /* ✅ 核心修改：简介文字居中 */
+    text-align: center !important;
 }
 
-/* 5. 手机端适配 */
+/* 6. 手机端适配 */
 @media screen and (max-width: 768px) {
     .life-grid-wrapper {
         grid-template-columns: repeat(1, 1fr);
