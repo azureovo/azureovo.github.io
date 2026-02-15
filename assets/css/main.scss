@@ -244,83 +244,96 @@
 
 
 /* =======================================
-   LIFE GRID: 大学生活相册卡片样式
+   LIFE GRID: 大学生活暗黑卡片版
    ======================================= */
 
-/* 1. 网格容器：使用 CSS Grid 实现响应式三列布局 */
+/* 1. 网格容器 */
 .life-grid-wrapper {
     display: grid;
-    /* 默认 3 列，列宽相等；如果屏幕小则自动换行 */
     grid-template-columns: repeat(3, 1fr); 
-    gap: 30px; /* 卡片之间的间距 */
+    gap: 30px;
     margin-top: 30px;
 }
 
-/* 2. 单个卡片样式 */
+/* 2. 单个卡片样式 (暗黑圆角风) */
 .life-grid-wrapper .grid__item {
-    margin-bottom: 0; /* 移除默认下边距，由 grid gap 控制 */
-    width: 100%;      /* 填满格子 */
+    margin-bottom: 0;
+    width: 100%;
 }
 
 .life-grid-wrapper .archive__item {
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 12px;         /* 圆角 */
-    overflow: hidden;            /* 防止图片溢出圆角 */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* 轻微阴影 */
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    height: 100%;                /* 保证卡片高度一致 */
+    background: #2b2b2b;         /* ✅ 背景改为深灰色 */
+    border: 1px solid #3a3a3a;   /* 边框稍微亮一点点 */
+    border-radius: 20px;         /* ✅ 大弧度圆角 */
+    overflow: hidden;            
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3); /* 更深的阴影 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;                
     display: flex;
     flex-direction: column;
 }
 
-/* 鼠标悬停特效 */
+/* 悬停效果 */
 .life-grid-wrapper .archive__item:hover {
-    transform: translateY(-5px); /* 上浮效果 */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transform: translateY(-8px); 
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    border-color: #555;          /* 悬停时边框变亮 */
 }
 
 /* 3. 图片区域 */
 .life-grid-wrapper .archive__item-teaser {
-    height: 200px; /* 固定图片高度，防止参差不齐 */
+    height: 180px;               /* 图片高度 */
     overflow: hidden;
     position: relative;
-    margin: 0;     /* 移除默认边距 */
+    margin: 0;
+    border-bottom: 1px solid #333;
 }
 
 .life-grid-wrapper .archive__item-teaser img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* 核心：保证图片填满且不变形 */
+    object-fit: cover;
     display: block;
+    transition: transform 0.5s ease;
 }
 
-/* 4. 文字内容区域 */
+/* 悬停时图片微放大 */
+.life-grid-wrapper .archive__item:hover .archive__item-teaser img {
+    transform: scale(1.05);
+}
+
+/* 4. 文字内容区域 (适配暗色背景) */
 .life-grid-wrapper .archive__item-title {
-    margin: 15px 15px 5px 15px; /* 上右下左边距 */
+    margin: 15px 15px 5px 15px;
     font-size: 1.2em;
+}
+
+.life-grid-wrapper .archive__item-title a {
+    color: #fff !important;      /* ✅ 标题强制白色 */
+    text-decoration: none;
 }
 
 .life-grid-wrapper .page__meta {
     margin: 0 15px 10px 15px;
     font-size: 0.85em;
-    color: #888;
+    color: #aaa !important;      /* ✅ 日期改为浅灰色 */
 }
 
 .life-grid-wrapper .archive__item-excerpt {
     margin: 0 15px 20px 15px;
-    font-size: 0.95em;
-    color: #666;
-    line-height: 1.5;
-    flex-grow: 1; /* 让文字撑满剩余空间 */
+    font-size: 0.9em;
+    color: #ccc !important;      /* ✅ 简介改为银灰色 */
+    line-height: 1.6;
 }
 
-/* 5. 手机端适配：强制变回单列或双列 */
+/* 5. 手机端适配 */
 @media screen and (max-width: 768px) {
     .life-grid-wrapper {
-        grid-template-columns: repeat(1, 1fr); /* 手机上单列显示，图大更好看 */
+        grid-template-columns: repeat(1, 1fr); /* 手机单列 */
         gap: 20px;
     }
-    
-    /* 如果想手机上是双列，把上面改成 repeat(2, 1fr) 即可 */
+    /* 手机上卡片弧度稍微小一点，省空间 */
+    .life-grid-wrapper .archive__item {
+        border-radius: 15px; 
+    }
 }
