@@ -116,7 +116,7 @@ redirect_from:
    logo="/images/航天科工logo.png"
    role="软件工程师"
    company="四川航天技术研究院"
-   date="2023.05 - 2021.10"
+   date="2023.05 - 2023.10"
 %}
 
 {% include experience-item.html
