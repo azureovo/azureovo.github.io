@@ -143,7 +143,7 @@ redirect_from:
   </a>
   
   <a href="/files/四六级成绩.pdf" target="_blank" class="btn" style="background-color: #f2f3f3; color: #333; text-decoration: none; padding: 10px 20px; font-size: 0.95em; border-radius: 25px; display: flex; align-items: center; border: 1px solid #ddd;">
-    🇬🇧 四六级成绩
+    ✏ 四六级成绩
   </a>
   
   <a href="/files/比赛获奖.pdf" target="_blank" class="btn" style="background-color: #f2f3f3; color: #333; text-decoration: none; padding: 10px 20px; font-size: 0.95em; border-radius: 25px; display: flex; align-items: center; border: 1px solid #ddd;">
