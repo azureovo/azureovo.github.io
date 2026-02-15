@@ -130,7 +130,8 @@ redirect_from:
 
 ## 📸 University Life
 
-“进入我的大学生活”专栏，记录了我在电子科技大学期间的一些组织活动，当然，不全涵盖，只记录让我开心或者有价值的组织生活。其他的一些按钮记录我本科期间取得的成绩和荣誉。
+“进入我的大学生活”专栏，记录了我在电子科技大学期间的一些组织活动，当然，不全涵盖，只记录让我开心或者有价值的组织生活。
+其他的一些按钮记录我本科期间取得的成绩和荣誉。
 
 <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 25px;">
   
