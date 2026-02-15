@@ -305,10 +305,16 @@
 /* 4. 文字内容区域 (适配暗色背景 + 居中) */
 .life-grid-wrapper .archive__item-title {
     margin: 15px 15px 5px 15px;
-    font-size: 1.2em;
-    color: #fff !important;
+    
+    /* ✅ 修改1：字体调小 (原1.2em -> 1.0em 或 0.9em，根据你喜好) */
+    font-size: 1.0em !important; 
+    font-weight: bold !important; /* 可选：加粗一点更好看 */
+    
+    /* ✅ 修改2：强制白色 */
+    color: #fff !important;      
+    
     cursor: default;
-    text-align: center !important; /* ✅ 核心修改：标题居中 */
+    text-align: center !important;
 }
 
 .life-grid-wrapper .page__meta {
