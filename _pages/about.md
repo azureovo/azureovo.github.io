@@ -130,13 +130,12 @@ redirect_from:
 
 ## 📸 University Life
 
-“进入我的大学生活”专栏，记录了我在电子科技大学期间的一些组织活动，当然，不全涵盖，只记录让我开心或者有价值的组织生活。
-其他的一些按钮记录我本科期间取得的成绩和荣誉。
+“大学生活”专栏，记录我在电子科技大学一些组织活动，不全涵盖，只记录让我开心或者有价值的组织生活。其他的一些按钮记录我本科获奖情况。
 
 <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 25px;">
   
   <a href="/life/" class="btn btn-gray">
-    ✨ 进入我的大学生活
+    ✨ 大学生活
   </a>
 
   <a href="/files/成绩单.pdf" target="_blank" class="btn btn-gray">
@@ -144,7 +143,7 @@ redirect_from:
   </a>
   
   <a href="/files/四六级成绩.pdf" target="_blank" class="btn btn-gray">
-    ✏ 四六级成绩
+    ✏ 四六级
   </a>
   
   <a href="/files/比赛获奖.pdf" target="_blank" class="btn btn-gray">
