@@ -187,13 +187,11 @@
 
 
 /* =======================================
-   LIFE GRID: 大学生活暗黑卡片版 (iOS防溢出终极版)
+   LIFE GRID: 大学生活暗黑卡片版 (核心布局)
    ======================================= */
 
-/* 1. 布局基础重置 - 强制所有设备都不允许横向滚动 */
-html, body {
-    overflow-x: hidden !important;
-}
+/* 1. 布局基础重置 */
+html, body { overflow-x: hidden !important; }
 
 .wide .archive, .archive, .page {
     width: 100% !important;
@@ -203,28 +201,24 @@ html, body {
     max-width: 100% !important;
 }
 
-/* 2. 电脑端配置 (默认) */
+/* 2. 电脑端配置 (两列 + 右侧大留白) */
 .life-grid-wrapper {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: repeat(2, 1fr); /* 强制两列 */
     gap: 30px;
     
-    /* 电脑端逻辑：宽度 85%，靠左 */
+    /* ✅ 核心：宽度限制为 85%，右边自然留白 */
     width: 85% !important; 
     max-width: 1100px !important; 
     
     margin-top: 30px;
     margin-left: 0 !important;
-    margin-right: auto !important;
-    box-sizing: border-box !important; /* 防止 padding 撑大 */
+    margin-right: auto !important; /* 右侧自动留白 */
+    box-sizing: border-box !important;
 }
 
 /* 卡片通用样式 */
-.life-grid-wrapper .grid__item { 
-    width: 100%; 
-    margin-bottom: 0; 
-    min-width: 0 !important; /* ⚠️ 关键：防止 Grid 内容撑破容器 */
-}
+.life-grid-wrapper .grid__item { width: 100%; margin-bottom: 0; min-width: 0 !important; }
 
 .life-grid-wrapper .archive__item {
     background: #2b2b2b;
@@ -253,17 +247,14 @@ html, body {
     width: 100%; height: 100%; object-fit: cover; display: block;
 }
 
-/* 文字区域 */
+/* 文字区域 (默认白天模式下也是白色，因为卡片是黑底) */
 .life-grid-wrapper .archive__item-title {
     margin: 15px 15px 5px 15px;
     font-size: 1.1em !important; 
     font-weight: bold !important;
     color: #fff !important;      
     text-align: center !important;
-    
-    /* 防止长标题撑破 */
     word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
 }
 .life-grid-wrapper .page__meta {
     margin: 0 15px 10px 15px;
@@ -274,18 +265,12 @@ html, body {
     font-size: 0.95em; color: #ccc !important; line-height: 1.6; text-align: center !important;
 }
 
+
 /* =======================================
-   6. 手机端深度适配 (扩大范围 + 防溢出布局)
+   MOBILE ADAPTATION: 手机端深度适配 (iOS防溢出)
    ======================================= */
-/* ⚠️ 关键修改：把断点提高到 1200px，确保 iPhone Pro Max 缩放后也能吃到这套样式 */
 @media screen and (max-width: 1200px) {
-    
-    /* 重置容器内边距 */
-    .page__inner-wrap {
-        width: 100% !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
+    .page__inner-wrap { width: 100% !important; padding: 0 !important; }
 
     .life-grid-wrapper {
         display: grid;
@@ -293,176 +278,87 @@ html, body {
         gap: 10px !important;
         margin-top: 15px !important;
         
-        /* ✅ iOS 修复核心：
-           1. 宽度设为 100% (占满屏幕)
-           2. 用 padding-right 来制造“留白” (最安全的做法)
-           3. box-sizing 确保 padding 包含在宽度内
-        */
+        /* 手机端占满屏幕，但用 padding 制造留白 */
         width: 100% !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        
-        /* 这里控制留白大小：右边空出 40px (约10%) */
-        padding-right: 40px !important; 
+        padding-right: 40px !important; /* 右侧留白 40px */
         box-sizing: border-box !important;
     }
 
-    /* 手机端卡片样式 */
-    .life-grid-wrapper .archive__item {
-        border-radius: 8px !important; 
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2) !important;
-    }
-
-    /* 图片高度适配 */
-    .life-grid-wrapper .archive__item-teaser {
-        height: 110px !important; 
-    }
-
-    /* 字体适配 */
-    .life-grid-wrapper .archive__item-title {
-        font-size: 1.1em !important; 
-        margin: 8px 0 4px 0 !important;
-        white-space: normal !important;
-    }
-    
-    .life-grid-wrapper .page__meta {
-        display: block !important; 
-        font-size: 0.85em !important;
-        margin-bottom: 5px !important;
-    }
-
-    .life-grid-wrapper .archive__item-excerpt {
-        font-size: 0.85em !important; 
-        margin: 0 5px 10px 5px !important;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
+    .life-grid-wrapper .archive__item-teaser { height: 110px !important; }
+    .life-grid-wrapper .archive__item-title { font-size: 1.1em !important; margin: 8px 0 4px 0 !important; white-space: normal !important; }
+    .life-grid-wrapper .page__meta { display: block !important; font-size: 0.85em !important; margin-bottom: 5px !important; }
+    .life-grid-wrapper .archive__item-excerpt { font-size: 0.85em !important; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 }
 
-/* =======================================
-   DARK MODE ADAPTATION: 夜间模式自动适配
-   ======================================= */
-/* 当检测到用户的设备处于深色/夜间模式时执行 */
-@media (prefers-color-scheme: dark) {
-    
-    /* 1. 全局背景变黑，普通文字变白 */
-    body, html, .page, .page__inner-wrap, .archive {
-        background-color: #121212 !important; /* 推荐用深灰而不是纯黑，更护眼 */
-        color: #e0e0e0 !important;            /* 柔和的白色 */
-    }
-
-    /* 2. 核心标题强制变白 (覆盖之前的 #111 设置) */
-    h1, h2, h3, h4, h5, h6 {
-        color: #fff !important;
-        border-bottom-color: #333 !important; /* 标题下划线颜色变暗 */
-    }
-
-    /* 3. 段落、列表、正文内容的文字颜色 */
-    p, li, dl, address, table, .page__content {
-        color: #d1d1d1 !important;
-    }
-
-    /* 4. 链接颜色优化 */
-    /* 深色背景下，原本的深蓝色会看不清，改为亮蓝色 */
-    a {
-        color: #64b5f6 !important;
-    }
-    a:hover {
-        color: #9be7ff !important;
-        text-decoration: underline;
-    }
-    /* 去掉链接下划线干扰 (可视情况保留) */
-    .page__content a {
-        text-decoration: none;
-    }
-
-    /* 5. 侧边栏与个人信息修正 */
-    .sidebar, .profile-header, .author__content {
-        background-color: #121212 !important;
-        color: #eee !important;
-        border-bottom-color: #333 !important;
-    }
-    .profile-info p {
-        color: #aaa !important; /* 简介文字稍微灰一点 */
-    }
-
-    /* 6. 表格颜色修正 */
-    table, th, td {
-        border-color: #444 !important;
-        color: #eee !important;
-    }
-    thead {
-        background-color: #252525 !important;
-    }
-
-    /* 7. [关键] 适配“返回首页”按钮 */
-    .back-to-home-btn {
-        background-color: #333 !important; /* 按钮背景变深 */
-        color: #fff !important;            /* 按钮文字变白 */
-        box-shadow: 0 2px 5px rgba(255,255,255,0.1) !important;
-    }
-    .back-to-home-btn:hover {
-        background-color: #444 !important;
-    }
-
-    /* 8. 保护“大学生活”卡片样式 */
-    /* 它的背景本来就是深色 #2b2b2b，在夜间模式下保持原样即可 */
-    .life-grid-wrapper .archive__item {
-        background-color: #2b2b2b !important; 
-        border-color: #444 !important;
-    }
-    /* 确保卡片里的标题依然是亮白 */
-    .life-grid-wrapper .archive__item-title {
-        color: #fff !important;
-    }
-}
 
 /* =======================================
-   BUTTON STYLE: 返回首页按钮 (全端适配版)
+   BUTTON STYLE: 返回首页按钮
    ======================================= */
-
-/* 1. 基础样式 (白天模式默认) */
 .back-to-home-btn {
     display: inline-flex;
     align-items: center;
     margin-bottom: 20px;
     padding: 8px 16px;
-    background-color: #f2f3f3; /* 浅灰背景 */
-    color: #333 !important;    /* 强制深色文字 */
+    background-color: #f2f3f3;
+    color: #333 !important;
     border-radius: 20px;
     text-decoration: none !important;
     font-weight: bold;
     font-size: 0.95em;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     transition: all 0.2s ease;
-    border: 1px solid transparent; /* 预留边框位置 */
 }
-
-/* 鼠标悬停 */
 .back-to-home-btn:hover {
     background-color: #e0e0e0;
     transform: translateX(-3px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     color: #000 !important;
 }
 
-.back-to-home-btn i {
-    margin-right: 8px;
-}
 
-/* 2. 夜间模式适配 (自动变色) */
+/* =======================================
+   DARK MODE: 夜间模式自动适配 (智能变白)
+   ======================================= */
 @media (prefers-color-scheme: dark) {
-    .back-to-home-btn {
-        background-color: #333 !important; /* 背景变深 */
-        color: #fff !important;            /* ✅ 文字变白 (关键) */
-        border-color: #444 !important;
-        box-shadow: 0 2px 5px rgba(255,255,255,0.05) !important;
+    /* 全局背景变深灰，文字变柔白 */
+    body, html, .page, .page__inner-wrap, .archive, .masthead {
+        background-color: #121212 !important;
+        color: #e0e0e0 !important;
     }
+
+    /* 标题强制变白 */
+    h1, h2, h3, h4, h5, h6 { color: #fff !important; }
     
-    .back-to-home-btn:hover {
-        background-color: #444 !important; /* 悬停稍微变亮 */
-        color: #fff !important;
+    /* 正文和列表 */
+    p, li, dl, table, .page__content { color: #d1d1d1 !important; }
+
+    /* 链接变亮蓝 */
+    a { color: #64b5f6 !important; }
+    a:hover { color: #9be7ff !important; }
+    .page__content a { text-decoration: none; }
+
+    /* 侧边栏 */
+    .sidebar, .profile-header, .author__content {
+        background-color: #121212 !important;
+        color: #eee !important;
     }
+    .profile-info p { color: #aaa !important; }
+
+    /* 表格 */
+    table, th, td { border-color: #444 !important; color: #eee !important; }
+    thead { background-color: #252525 !important; }
+
+    /* 按钮适配：变深色底+白字 */
+    .back-to-home-btn {
+        background-color: #333 !important;
+        color: #fff !important;
+        border: 1px solid #444 !important;
+    }
+    .back-to-home-btn:hover { background-color: #444 !important; }
+
+    /* 保护黑卡片样式 (防止被全局白色覆盖) */
+    .life-grid-wrapper .archive__item {
+        background-color: #2b2b2b !important;
+        border-color: #444 !important;
+    }
+    .life-grid-wrapper .archive__item-title { color: #fff !important; }
 }
