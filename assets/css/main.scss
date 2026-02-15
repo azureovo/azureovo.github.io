@@ -302,30 +302,23 @@
     transform: scale(1.05);
 }
 
+/* ... 前面的代码不变 ... */
+
 /* 4. 文字内容区域 (适配暗色背景) */
 .life-grid-wrapper .archive__item-title {
     margin: 15px 15px 5px 15px;
     font-size: 1.2em;
+    color: #fff !important;      /* ✅ 直接把白色加给标题，而不是 a 标签 */
+    cursor: default;             /* ✅ 鼠标放上去变成箭头，而不是手指(不让用户以为能点) */
 }
 
+/* 这一段可以删掉了，因为没有 a 标签了，留着也没事 */
 .life-grid-wrapper .archive__item-title a {
-    color: #fff !important;      /* ✅ 标题强制白色 */
+    color: #fff !important;
     text-decoration: none;
 }
 
-.life-grid-wrapper .page__meta {
-    margin: 0 15px 10px 15px;
-    font-size: 0.85em;
-    color: #aaa !important;      /* ✅ 日期改为浅灰色 */
-}
-
-.life-grid-wrapper .archive__item-excerpt {
-    margin: 0 15px 20px 15px;
-    font-size: 0.9em;
-    color: #ccc !important;      /* ✅ 简介改为银灰色 */
-    line-height: 1.6;
-}
-
+/* ... 后面的代码不变 ... */
 /* 5. 手机端适配 */
 @media screen and (max-width: 768px) {
     .life-grid-wrapper {
