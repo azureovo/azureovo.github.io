@@ -326,7 +326,7 @@
     .life-grid-wrapper {
         /* 手机端强制 2 列 (配合你的缩小模式，2列会更好看) */
         /* 如果觉得2列太挤，改成 repeat(1, 1fr) */
-        grid-template-columns: repeat(2, 1fr) !important; 
+        grid-template-columns: repeat(1, 1fr) !important; 
         gap: 20px !important;
         margin-top: 20px !important;
     }
