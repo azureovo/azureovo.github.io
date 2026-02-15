@@ -418,3 +418,51 @@ html, body {
         color: #fff !important;
     }
 }
+
+/* =======================================
+   BUTTON STYLE: 返回首页按钮 (全端适配版)
+   ======================================= */
+
+/* 1. 基础样式 (白天模式默认) */
+.back-to-home-btn {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 8px 16px;
+    background-color: #f2f3f3; /* 浅灰背景 */
+    color: #333 !important;    /* 强制深色文字 */
+    border-radius: 20px;
+    text-decoration: none !important;
+    font-weight: bold;
+    font-size: 0.95em;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+    border: 1px solid transparent; /* 预留边框位置 */
+}
+
+/* 鼠标悬停 */
+.back-to-home-btn:hover {
+    background-color: #e0e0e0;
+    transform: translateX(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    color: #000 !important;
+}
+
+.back-to-home-btn i {
+    margin-right: 8px;
+}
+
+/* 2. 夜间模式适配 (自动变色) */
+@media (prefers-color-scheme: dark) {
+    .back-to-home-btn {
+        background-color: #333 !important; /* 背景变深 */
+        color: #fff !important;            /* ✅ 文字变白 (关键) */
+        border-color: #444 !important;
+        box-shadow: 0 2px 5px rgba(255,255,255,0.05) !important;
+    }
+    
+    .back-to-home-btn:hover {
+        background-color: #444 !important; /* 悬停稍微变亮 */
+        color: #fff !important;
+    }
+}
