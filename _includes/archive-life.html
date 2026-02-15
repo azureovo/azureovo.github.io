@@ -1,3 +1,5 @@
+{% include base_path %}
+
 {% if post.header.teaser %}
   {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
 {% else %}
@@ -15,29 +17,35 @@
     
     {% if include.type == "grid" and teaser %}
       <div class="archive__item-teaser">
-        <img src="{{ teaser }}" alt="{{ title }}">
+        <img src=
+          {% if teaser contains "://" %}
+            "{{ teaser }}"
+          {% else %}
+            "{{ teaser | prepend: "/images/" | prepend: base_path }}"
+          {% endif %}
+          alt="">
       </div>
     {% endif %}
 
-    <div class="archive__item-content">
+    <h2 class="archive__item-title" itemprop="headline">
+      {{ title }}
+    </h2>
+    
+    <p class="page__meta" style="margin-top: 5px; text-align: center !important; color: #aaa !important;">
+      <i class="far fa-calendar-alt" aria-hidden="true"></i> 
       
-      <h2 class="archive__item-title" itemprop="headline">
-        {{ title }}
-      </h2>
-      
-      {% if post.date %}
-        <p class="page__meta">
-          <i class="far fa-calendar-alt" aria-hidden="true"></i> 
-          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
-        </p>
+      {% if post.duration %}
+         <strong>{{ post.duration }}</strong>
+      {% elsif post.date %}
+         <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
       {% endif %}
+    </p>
 
-      {% if post.excerpt %}
-        <p class="archive__item-excerpt" itemprop="description">
-          {{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}
-        </p>
-      {% endif %}
-      
-    </div>
+    {% if post.excerpt %}
+      <p class="archive__item-excerpt" itemprop="description">
+        {{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}
+      </p>
+    {% endif %}
+
   </article>
 </div>
