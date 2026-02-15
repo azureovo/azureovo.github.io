@@ -112,6 +112,12 @@ redirect_from:
    date="2025.06 - 2025.12"
 %}
 
+{% include experience-item.html
+   logo="/images/航天科工logo.png"
+   role="软件工程师"
+   company="四川航天技术研究院"
+   date="2023.05 - 2021.10"
+%}
 
 {% include experience-item.html
    logo="/images/天空logo黑色.png"
