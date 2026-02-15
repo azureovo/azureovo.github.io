@@ -210,7 +210,7 @@ html, body {
     gap: 30px;
     
     /* 电脑端逻辑：宽度 85%，靠左 */
-    width: 85% !important; 
+    width: 80% !important; 
     max-width: 1100px !important; 
     
     margin-top: 30px;
@@ -298,7 +298,7 @@ html, body {
            2. 用 padding-right 来制造“留白” (最安全的做法)
            3. box-sizing 确保 padding 包含在宽度内
         */
-        width: 100% !important;
+        width: 80% !important;
         margin-left: 0 !important;
         margin-right: 0 !important;
         
