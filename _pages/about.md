@@ -136,7 +136,7 @@ redirect_from:
 <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 25px;">
   
   <a href="/life/" class="btn btn-gray">
-    ✨ 进入大学生活专栏
+    ✨ 进入我的大学生活
   </a>
 
   <a href="/files/成绩单.pdf" target="_blank" class="btn btn-gray">
