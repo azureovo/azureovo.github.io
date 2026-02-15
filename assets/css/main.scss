@@ -314,62 +314,62 @@
 }
 
 /* =======================================
-   6. 手机端深度适配 (网页缩小版 - 强制三列)
+   6. 手机端深度适配 (强制网页缩小版 - 一行三列)
    ======================================= */
    @media screen and (max-width: 768px) {
-    /* 1. 容器铺满：最大化利用屏幕宽度 */
+    /* 1. 容器铺满：最大化利用屏幕宽度，不留任何边距 */
     .page__inner-wrap {
         width: 100% !important;
-        padding: 0 2px !important; /* 几乎不留边距 */
+        padding: 0 2px !important; 
     }
 
     /* 2. 网格强制三列 (核心修改) */
     .life-grid-wrapper {
         display: grid;
-        grid-template-columns: repeat(3, 1fr) !important; /* 强制分为三列 */
-        gap: 6px !important; /* 间距极小，防止内容被挤压 */
-        margin-top: 15px !important;
+        /* 强制分为三列，不管屏幕多窄 */
+        grid-template-columns: repeat(3, 1fr) !important; 
+        gap: 4px !important; /* 间距压缩到极致 */
+        margin-top: 10px !important;
         width: 100% !important;
     }
 
     /* 3. 卡片微缩 */
     .life-grid-wrapper .archive__item {
-        border-radius: 6px !important; /* 圆角缩小 */
-        border-width: 0.5px !important;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.15) !important;
+        border-radius: 4px !important; /* 圆角缩小 */
+        box-shadow: 0 1px 3px rgba(0,0,0,0.15) !important;
+        min-height: auto !important;
     }
 
     /* 4. 图片高度适配 */
     /* 必须把图片压矮，否则三列布局下图片会显得细长难看 */
     .life-grid-wrapper .archive__item-teaser {
-        height: 70px !important; /* 设定一个较小的固定高度 */
+        height: 60px !important; /* 设定一个极小的固定高度 */
         border-bottom-width: 0.5px !important;
     }
 
     /* 5. 字体极小化 (关键：让文字能塞进小格子里) */
     .life-grid-wrapper .archive__item-title {
-        font-size: 0.7em !important; /* 标题约 10px */
-        margin: 4px 0 !important;
-        line-height: 1.2 !important;
+        font-size: 0.6em !important; /* 标题约 9-10px */
+        margin: 4px 0 2px 0 !important;
+        line-height: 1.1 !important;
         white-space: nowrap !important; /* 标题强制不换行 */
         overflow: hidden !important;
         text-overflow: ellipsis !important; /* 超出显示省略号 */
     }
     
     .life-grid-wrapper .page__meta {
-        font-size: 0.55em !important; /* 日期约 8px */
-        margin: 0 0 2px 0 !important;
-        transform: scale(0.9); /* 进一步视觉缩小 */
+        display: none !important; /* 手机太窄了，建议直接隐藏日期，或者设为 0.5em */
     }
 
     .life-grid-wrapper .archive__item-excerpt {
-        font-size: 0.55em !important; /* 简介约 8px */
-        line-height: 1.3 !important;
-        margin: 0 2px 6px 2px !important;
+        font-size: 0.5em !important; /* 简介约 8px，浏览器的极限 */
+        line-height: 1.2 !important;
+        margin: 0 2px 4px 2px !important;
+        padding: 0 !important;
         
-        /* 限制简介最多显示 3 行，防止卡片过长 */
+        /* 限制简介最多显示 2 行 */
         display: -webkit-box;
-        -webkit-line-clamp: 3;
+        -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
