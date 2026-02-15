@@ -287,8 +287,12 @@ html, body {
     /* 2. 网格布局：强制两列 */
     .life-grid-wrapper {
         display: grid;
-        /* ✅ 核心修改：强制两列，不设最小宽度限制 */
-        grid-template-columns: repeat(2, 1fr) !important; 
+        /* ✅ 核心修改点：
+           原代码: repeat(2, 1fr)
+           新代码: repeat(2, minmax(0, 1fr)) 
+           说明: minmax(0, 1fr) 强制格子在内容过宽时也必须缩放，完美修复微信溢出 
+        */
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important; 
         gap: 8px !important;       /* 间距调小，给卡片留出更多空间 */
         margin-top: 15px !important;
         
@@ -325,6 +329,9 @@ html, body {
         margin: 6px 0 4px 0 !important;
         white-space: normal !important; /* 允许换行 */
         line-height: 1.3 !important;
+        
+        /* ✅ 核心修改点2：增加强制断词，防止超长英文单词撑破微信布局 */
+        word-break: break-all !important; 
     }
     
     .life-grid-wrapper .page__meta {
