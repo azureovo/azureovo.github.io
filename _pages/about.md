@@ -121,9 +121,9 @@ redirect_from:
 
 {% include experience-item.html
    logo="/images/天空logo黑色.png"
-   role="产品经理"
+   role="游戏产策"
    company="数字天空(Digital Sky)"
-   date="2021.06 - 2021.09"
+   date="2021.09 - 2021.11"
 %}
 
 ---
