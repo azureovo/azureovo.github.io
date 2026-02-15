@@ -130,8 +130,28 @@ redirect_from:
 
 ## 📸 University Life
 
-进入我的大学生活专栏记录了我在电子科技大学期间的一些组织活动，当然，不全涵盖，只记录让我开心或者有价值的组织生活。其他的一些按钮点击可查看对应成绩。
+这里记录了我在电子科技大学期间的生活，以及本科期间取得的成绩与荣誉。
 
-<div style="text-align: center; margin-top: 20px;">
-  <a href="/life/" class="btn btn--primary btn--large" style="text-decoration: none; padding: 12px 24px; font-size: 1.1em; border-radius: 4px;">✨ 进入我的大学生活专栏</a>
+<div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 25px;">
+  
+  <a href="/life/" class="btn btn--primary" style="text-decoration: none; padding: 10px 20px; font-size: 1em; border-radius: 25px; display: flex; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+    ✨ 进入大学生活专栏
+  </a>
+
+  <a href="/files/成绩单.pdf" target="_blank" class="btn" style="background-color: #f2f3f3; color: #333; text-decoration: none; padding: 10px 20px; font-size: 0.95em; border-radius: 25px; display: flex; align-items: center; border: 1px solid #ddd;">
+    📄 成绩单
+  </a>
+  
+  <a href="/files/四六级成绩.pdf" target="_blank" class="btn" style="background-color: #f2f3f3; color: #333; text-decoration: none; padding: 10px 20px; font-size: 0.95em; border-radius: 25px; display: flex; align-items: center; border: 1px solid #ddd;">
+    🇬🇧 四六级成绩
+  </a>
+  
+  <a href="/files/比赛获奖.pdf" target="_blank" class="btn" style="background-color: #f2f3f3; color: #333; text-decoration: none; padding: 10px 20px; font-size: 0.95em; border-radius: 25px; display: flex; align-items: center; border: 1px solid #ddd;">
+    🏆 比赛获奖
+  </a>
+  
+  <a href="/files/其他获奖及证书.pdf" target="_blank" class="btn" style="background-color: #f2f3f3; color: #333; text-decoration: none; padding: 10px 20px; font-size: 0.95em; border-radius: 25px; display: flex; align-items: center; border: 1px solid #ddd;">
+    📜 其他获奖及证书
+  </a>
+
 </div>
