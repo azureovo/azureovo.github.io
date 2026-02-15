@@ -120,3 +120,12 @@ redirect_from:
    date="2021.06 - 2021.09"
 %}
 
+---
+
+## 📸 University Life
+
+这里记录了我在大学期间的精彩瞬间，包括社团活动、旅行见闻、生活点滴与摄影作品。我不希望生活只有代码，还有诗和远方。
+
+<div style="text-align: center; margin-top: 20px;">
+  <a href="/life/" class="btn btn--primary btn--large" style="text-decoration: none; padding: 12px 24px; font-size: 1.1em; border-radius: 4px;">✨ 进入我的大学生活专栏</a>
+</div>
