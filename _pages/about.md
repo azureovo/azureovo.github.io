@@ -134,23 +134,23 @@ redirect_from:
 
 <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 25px;">
   
-  <a href="/life/" class="btn btn--primary" style="text-decoration: none; padding: 10px 20px; font-size: 1em; border-radius: 25px; display: flex; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+  <a href="/life/" class="btn" style="background-color: #f2f3f3; color: #333; text-decoration: none; padding: 10px 20px; font-size: 0.95em; border-radius: 25px; display: flex; align-items: center; border: 1px solid #ddd; transition: all 0.2s ease;">
     ✨ 进入大学生活专栏
   </a>
 
-  <a href="/files/成绩单.pdf" target="_blank" class="btn" style="background-color: #f2f3f3; color: #333; text-decoration: none; padding: 10px 20px; font-size: 0.95em; border-radius: 25px; display: flex; align-items: center; border: 1px solid #ddd;">
+  <a href="/files/成绩单.pdf" target="_blank" class="btn" style="background-color: #f2f3f3; color: #333; text-decoration: none; padding: 10px 20px; font-size: 0.95em; border-radius: 25px; display: flex; align-items: center; border: 1px solid #ddd; transition: all 0.2s ease;">
     📄 成绩单
   </a>
   
-  <a href="/files/四六级成绩.pdf" target="_blank" class="btn" style="background-color: #f2f3f3; color: #333; text-decoration: none; padding: 10px 20px; font-size: 0.95em; border-radius: 25px; display: flex; align-items: center; border: 1px solid #ddd;">
+  <a href="/files/四六级成绩.pdf" target="_blank" class="btn" style="background-color: #f2f3f3; color: #333; text-decoration: none; padding: 10px 20px; font-size: 0.95em; border-radius: 25px; display: flex; align-items: center; border: 1px solid #ddd; transition: all 0.2s ease;">
     ✏ 四六级成绩
   </a>
   
-  <a href="/files/比赛获奖.pdf" target="_blank" class="btn" style="background-color: #f2f3f3; color: #333; text-decoration: none; padding: 10px 20px; font-size: 0.95em; border-radius: 25px; display: flex; align-items: center; border: 1px solid #ddd;">
+  <a href="/files/比赛获奖.pdf" target="_blank" class="btn" style="background-color: #f2f3f3; color: #333; text-decoration: none; padding: 10px 20px; font-size: 0.95em; border-radius: 25px; display: flex; align-items: center; border: 1px solid #ddd; transition: all 0.2s ease;">
     🏆 比赛获奖
   </a>
   
-  <a href="/files/其他获奖及证书.pdf" target="_blank" class="btn" style="background-color: #f2f3f3; color: #333; text-decoration: none; padding: 10px 20px; font-size: 0.95em; border-radius: 25px; display: flex; align-items: center; border: 1px solid #ddd;">
+  <a href="/files/其他获奖及证书.pdf" target="_blank" class="btn" style="background-color: #f2f3f3; color: #333; text-decoration: none; padding: 10px 20px; font-size: 0.95em; border-radius: 25px; display: flex; align-items: center; border: 1px solid #ddd; transition: all 0.2s ease;">
     📜 其他获奖及证书
   </a>
 
