@@ -342,67 +342,79 @@ html, body {
 }
 
 /* =======================================
-   FORCE LIGHT MODE: 强制锁定白天模式
+   DARK MODE ADAPTATION: 夜间模式自动适配
    ======================================= */
-/* 这里的代码会覆盖系统的夜间模式设置 */
+/* 当检测到用户的设备处于深色/夜间模式时执行 */
 @media (prefers-color-scheme: dark) {
     
-    /* 1. 强制背景变回白色，文字变回深色 */
-    body, html {
-        background-color: #fff !important;
-        color: #333 !important;
+    /* 1. 全局背景变黑，普通文字变白 */
+    body, html, .page, .page__inner-wrap, .archive {
+        background-color: #121212 !important; /* 推荐用深灰而不是纯黑，更护眼 */
+        color: #e0e0e0 !important;            /* 柔和的白色 */
     }
 
-    /* 2. 强制内容区域背景 */
-    .page, .page__content, .archive {
-        background-color: #fff !important;
-    }
-
-    /* 3. 强制标题变回黑色 */
+    /* 2. 核心标题强制变白 (覆盖之前的 #111 设置) */
     h1, h2, h3, h4, h5, h6 {
-        color: #111 !important;
+        color: #fff !important;
+        border-bottom-color: #333 !important; /* 标题下划线颜色变暗 */
     }
 
-    /* 4. 强制链接和段落颜色 */
-    p, li, dl, address, table {
-        color: #333 !important;
+    /* 3. 段落、列表、正文内容的文字颜色 */
+    p, li, dl, address, table, .page__content {
+        color: #d1d1d1 !important;
     }
-    
+
+    /* 4. 链接颜色优化 */
+    /* 深色背景下，原本的深蓝色会看不清，改为亮蓝色 */
     a {
-        color: #333 !important; /* 链接颜色 */
+        color: #64b5f6 !important;
     }
-    
-    /* 鼠标悬停时链接变蓝 (保持交互感) */
     a:hover {
-        color: #000 !important;
+        color: #9be7ff !important;
         text-decoration: underline;
     }
-
-    /* 5. 强制侧边栏/个人信息栏变白 */
-    .sidebar, .author__urls-wrapper {
-        background-color: #fff !important;
-        color: #333 !important;
+    /* 去掉链接下划线干扰 (可视情况保留) */
+    .page__content a {
+        text-decoration: none;
     }
 
-    /* ==================================================
-       ⚠️ 关键：保护“大学生活”暗黑卡片不被变成白色
-       我们要让这部分特意保持“夜间感”
-       ================================================== */
+    /* 5. 侧边栏与个人信息修正 */
+    .sidebar, .profile-header, .author__content {
+        background-color: #121212 !important;
+        color: #eee !important;
+        border-bottom-color: #333 !important;
+    }
+    .profile-info p {
+        color: #aaa !important; /* 简介文字稍微灰一点 */
+    }
+
+    /* 6. 表格颜色修正 */
+    table, th, td {
+        border-color: #444 !important;
+        color: #eee !important;
+    }
+    thead {
+        background-color: #252525 !important;
+    }
+
+    /* 7. [关键] 适配“返回首页”按钮 */
+    .back-to-home-btn {
+        background-color: #333 !important; /* 按钮背景变深 */
+        color: #fff !important;            /* 按钮文字变白 */
+        box-shadow: 0 2px 5px rgba(255,255,255,0.1) !important;
+    }
+    .back-to-home-btn:hover {
+        background-color: #444 !important;
+    }
+
+    /* 8. 保护“大学生活”卡片样式 */
+    /* 它的背景本来就是深色 #2b2b2b，在夜间模式下保持原样即可 */
     .life-grid-wrapper .archive__item {
-        background-color: #2b2b2b !important; /* 保持深灰背景 */
-        border-color: #3a3a3a !important;
-        color: #fff !important;               /* 保持白色文字 */
+        background-color: #2b2b2b !important; 
+        border-color: #444 !important;
     }
-
+    /* 确保卡片里的标题依然是亮白 */
     .life-grid-wrapper .archive__item-title {
         color: #fff !important;
-    }
-
-    .life-grid-wrapper .page__meta {
-        color: #aaa !important;
-    }
-
-    .life-grid-wrapper .archive__item-excerpt {
-        color: #ccc !important;
     }
 }
