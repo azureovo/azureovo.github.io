@@ -130,7 +130,7 @@ redirect_from:
 
 ## 📸 University Life
 
-这里记录了我在电子科技大学期间的生活。
+这里记录了我在电子科技大学期间的一些组织活动。
 
 <div style="text-align: center; margin-top: 20px;">
   <a href="/life/" class="btn btn--primary btn--large" style="text-decoration: none; padding: 12px 24px; font-size: 1.1em; border-radius: 4px;">✨ 进入我的大学生活专栏</a>
