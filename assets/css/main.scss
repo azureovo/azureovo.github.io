@@ -187,7 +187,7 @@
 
 
 /* =======================================
-   LIFE GRID: 大学生活暗黑卡片版 (右侧大留白版)
+   LIFE GRID: 大学生活暗黑卡片版 (全端右侧留白版)
    ======================================= */
 
 /* 1. 布局基础重置 */
@@ -199,26 +199,22 @@
     max-width: 100% !important;
 }
 
-/* 2. 网格容器 (核心修改区域) */
+/* 2. 网格容器 (电脑端配置) */
 .life-grid-wrapper {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 保持两列 */
+    grid-template-columns: repeat(2, 1fr); 
     gap: 30px;
     
-    /* ✅ 核心修改 1：宽度改为 85% (原100%)，这样卡片就会变窄 */
+    /* 电脑端宽度 85%，右边留白 */
     width: 85% !important; 
-    
-    /* ✅ 核心修改 2：限制最大宽度，防止在大屏上卡片过宽 */
     max-width: 1100px !important; 
     
     margin-top: 30px;
-    
-    /* ✅ 核心修改 3：左边不留白，右边自动留白 (靠左对齐) */
-    margin-left: 0 !important;
-    margin-right: auto !important; 
+    margin-left: 0 !important;      /* 靠左 */
+    margin-right: auto !important;  /* 右边自动留白 */
 }
 
-/* 3. 卡片样式 */
+/* 3. 卡片通用样式 */
 .life-grid-wrapper .grid__item { width: 100%; margin-bottom: 0; }
 
 .life-grid-wrapper .archive__item {
@@ -239,7 +235,7 @@
 
 /* 图片区域 */
 .life-grid-wrapper .archive__item-teaser {
-    height: 250px; /* 卡片变窄了，图片高度微调 */
+    height: 220px; 
     overflow: hidden; 
     margin: 0; 
     border-bottom: 1px solid #333;
@@ -266,7 +262,7 @@
 }
 
 /* =======================================
-   6. 手机端深度适配 (保持两列，微调宽度)
+   6. 手机端深度适配 (新增：右侧留白)
    ======================================= */
 @media screen and (max-width: 768px) {
     
@@ -276,12 +272,13 @@
         gap: 10px !important;
         margin-top: 15px !important;
         
-        /* 手机端稍微宽一点，利用屏幕空间 */
-        width: 96% !important; 
-        margin-left: auto !important; /* 手机端居中更好看 */
-        margin-right: auto !important;
+        /* ✅ 核心修改：宽度改为 90%，强制靠左 */
+        width: 90% !important; 
+        margin-left: 0 !important;      /* 紧贴左侧 (已有少量 padding) */
+        margin-right: auto !important;  /* 右侧留出 10% 空白 */
     }
 
+    /* 手机端卡片微调 */
     .life-grid-wrapper .archive__item {
         border-radius: 8px !important; 
         box-shadow: 0 2px 5px rgba(0,0,0,0.2) !important;
