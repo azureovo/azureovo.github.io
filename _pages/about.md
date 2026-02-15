@@ -134,24 +134,50 @@ redirect_from:
 
 <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 25px;">
   
-  <a href="/life/" class="btn" style="background-color: #f2f3f3; color: #333; text-decoration: none; padding: 10px 20px; font-size: 0.95em; border-radius: 25px; display: flex; align-items: center; border: 1px solid #ddd; transition: all 0.2s ease;">
+  <a href="/life/" class="btn btn-gray">
     ✨ 进入大学生活专栏
   </a>
 
-  <a href="/files/成绩单.pdf" target="_blank" class="btn" style="background-color: #f2f3f3; color: #333; text-decoration: none; padding: 10px 20px; font-size: 0.95em; border-radius: 25px; display: flex; align-items: center; border: 1px solid #ddd; transition: all 0.2s ease;">
+  <a href="/files/成绩单.pdf" target="_blank" class="btn btn-gray">
     📄 成绩单
   </a>
   
-  <a href="/files/四六级成绩.pdf" target="_blank" class="btn" style="background-color: #f2f3f3; color: #333; text-decoration: none; padding: 10px 20px; font-size: 0.95em; border-radius: 25px; display: flex; align-items: center; border: 1px solid #ddd; transition: all 0.2s ease;">
+  <a href="/files/四六级成绩.pdf" target="_blank" class="btn btn-gray">
     ✏ 四六级成绩
   </a>
   
-  <a href="/files/比赛获奖.pdf" target="_blank" class="btn" style="background-color: #f2f3f3; color: #333; text-decoration: none; padding: 10px 20px; font-size: 0.95em; border-radius: 25px; display: flex; align-items: center; border: 1px solid #ddd; transition: all 0.2s ease;">
+  <a href="/files/比赛获奖.pdf" target="_blank" class="btn btn-gray">
     🏆 比赛获奖
   </a>
   
-  <a href="/files/其他获奖及证书.pdf" target="_blank" class="btn" style="background-color: #f2f3f3; color: #333; text-decoration: none; padding: 10px 20px; font-size: 0.95em; border-radius: 25px; display: flex; align-items: center; border: 1px solid #ddd; transition: all 0.2s ease;">
+  <a href="/files/其他获奖及证书.pdf" target="_blank" class="btn btn-gray">
     📜 其他获奖及证书
   </a>
 
 </div>
+
+<style>
+.btn-gray {
+    /* 默认状态：深灰色背景 + 白色文字 */
+    background-color: #555 !important;
+    color: #fff !important;
+    
+    /* 统一的尺寸和形状 */
+    padding: 10px 22px !important;
+    font-size: 0.95em !important;
+    border-radius: 30px !important; /* 胶囊圆角 */
+    text-decoration: none !important;
+    display: flex !important;
+    align-items: center !important;
+    border: none !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    transition: all 0.2s ease !important;
+}
+
+/* 鼠标悬停状态：变得更深一点，浮起 */
+.btn-gray:hover {
+    background-color: #333 !important; /* 悬停变黑灰 */
+    transform: translateY(-2px);       /* 微微上浮 */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2) !important;
+}
+</style>
