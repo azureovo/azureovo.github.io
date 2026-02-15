@@ -152,7 +152,7 @@ redirect_from:
   </a>
   
   <a href="/files/其他获奖及证书.pdf" target="_blank" class="btn btn-gray">
-    📜 其他获奖及证书
+    📜 其他荣誉
   </a>
 
 </div>
