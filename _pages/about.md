@@ -50,7 +50,7 @@ redirect_from:
 
     <div style="font-size: 1.05em; line-height: 1.7; color: #333;">
       <p style="margin-bottom: 0.8em;">
-        我是<a href="https://cse.sysu.edu.cn/" style="color: #0056b3;">中山大学计算机学院</a>（CSE）<a href="https://www.sysu-imsl.com/" style="color: #0056b3;">智能与多媒体科学实验室</a>（2027应届）硕士生，师从<a href="https://cse.sysu.edu.cn/teacher/GaoChengying" style="color: #0056b3;">高成英教授</a>。此前，我在<a href="https://sise.uestc.edu.cn/" style="color: #0056b3;">电子科技大学信软学院</a>完成了本科学业。我的研究兴趣主要集中在三维重建、多模态幻觉缓解，等等。我同时有丰富的产品从事经验且热爱产品岗职，目前正在寻找AI产品相关岗位。
+        我是<a href="https://cse.sysu.edu.cn/" style="color: #0056b3;">中山大学计算机学院</a>（CSE）<a href="https://www.sysu-imsl.com/" style="color: #0056b3;">智能与多媒体科学实验室</a>（2027应届）硕士生，师从<a href="https://cse.sysu.edu.cn/teacher/GaoChengying" style="color: #0056b3;">高成英教授</a>。此前，我在<a href="https://sise.uestc.edu.cn/" style="color: #0056b3;">电子科技大学信软学院</a>完成了本科学业。我的研究兴趣主要集中在非受控极端场景物体三维重建、多模态幻觉缓解，等等。我同时有丰富的产品从事经验且热爱产品岗职，目前正在寻找AI产品相关岗位。
       </p>
     </div>
   </div>
