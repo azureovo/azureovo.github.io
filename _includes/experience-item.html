@@ -1,22 +1,76 @@
-<div class="experience-item" style="display: flex; gap: 20px; align-items: center; margin-bottom: 25px;">
+<div class="experience-item" style="display: flex; align-items: center; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #f0f0f0;">
   
-    <div class="experience-logo" style="flex: 0 0 72px; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center;">
-      <img src="{{ include.logo }}" alt="{{ include.company }}" style="width: 100%; height: 100%; object-fit: contain; border-radius: 6px;">
-    </div>
-  
-    <div class="experience-body" style="flex: 1; border-bottom: 1px solid #f7f7f7; padding-bottom: 15px;">
-      
-      <h3 style="margin: 0; font-size: 1.2em; font-weight: bold; color: #222; margin-bottom: 6px;">
-        {{ include.company }}
-      </h3>
-      
-      <div style="font-size: 1em; color: #555; font-family: -apple-system, BlinkMacSystemFont, Roboto, sans-serif;">
-        <span style="color: #333; font-weight: 500;">{{ include.role }}</span>
-        
-        <span style="margin: 0 8px; color: #ccc;">·</span>
-        
-        <span style="color: #888; font-style: italic;">{{ include.date }}</span>
-      </div>
-  
-    </div>
+  <div class="experience-logo" style="flex: 0 0 72px; margin-right: 20px;">
+    {% if include.logo %}
+      <img src="{{ include.logo }}" alt="{{ include.company }}" style="width: 72px; height: 72px; object-fit: contain; border-radius: 8px; border: 1px solid #eee; padding: 4px; background: #fff;">
+    {% endif %}
   </div>
+
+  <div class="experience-info" style="flex: 1; min-width: 0;">
+    
+    <div class="experience-company" style="font-size: 1.2em; font-weight: 700; color: #222; margin-bottom: 6px;">
+      {{ include.company }}
+    </div>
+
+    <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 8px; color: #666; font-size: 0.95em; line-height: 1.5;">
+      
+      <span style="font-weight: 500;">{{ include.role }}</span>
+      
+      <span style="color: #ccc;">·</span>
+      
+      <span>{{ include.date }}</span>
+
+      {% if include.details %}
+        <a href="{{ include.details }}" target="_blank" class="xp-btn">
+          我做了什么
+        </a>
+      {% endif %}
+
+    </div>
+
+  </div>
+</div>
+
+<style>
+.xp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f2f3f3; /* 浅灰背景 */
+    color: #555 !important;    /* 深灰文字 */
+    text-decoration: none !important;
+    
+    /* 尺寸控制：与文字等高 */
+    font-size: 0.85em;         
+    padding: 2px 10px;         
+    border-radius: 12px;       /* 胶囊状 */
+    
+    border: 1px solid #ddd;
+    margin-left: 5px;          /* 与日期拉开一点距离 */
+    transition: all 0.2s ease;
+    white-space: nowrap;       /* 防止按钮文字换行 */
+}
+
+.xp-btn:hover {
+    background-color: #555;    /* 悬停变深 */
+    color: #fff !important;    /* 文字变白 */
+    border-color: #555;
+    transform: translateY(-1px);
+}
+
+/* 夜间模式适配 */
+@media (prefers-color-scheme: dark) {
+    .experience-item { border-bottom-color: #333 !important; }
+    .experience-company { color: #fff !important; }
+    .experience-logo img { background: #fff !important; border-color: #444 !important; }
+    .xp-btn {
+        background-color: #333;
+        color: #ddd !important;
+        border-color: #444;
+    }
+    .xp-btn:hover {
+        background-color: #555;
+        color: #fff !important;
+    }
+}
+</style>
