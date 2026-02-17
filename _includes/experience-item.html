@@ -32,45 +32,54 @@
 </div>
 
 <style>
-.xp-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f2f3f3; /* 浅灰背景 */
-    color: #555 !important;    /* 深灰文字 */
-    text-decoration: none !important;
-    
-    /* 尺寸控制：与文字等高 */
-    font-size: 0.85em;         
-    padding: 2px 10px;         
-    border-radius: 12px;       /* 胶囊状 */
-    
-    border: 1px solid #ddd;
-    margin-left: 5px;          /* 与日期拉开一点距离 */
-    transition: all 0.2s ease;
-    white-space: nowrap;       /* 防止按钮文字换行 */
-}
-
-.xp-btn:hover {
-    background-color: #555;    /* 悬停变深 */
-    color: #fff !important;    /* 文字变白 */
-    border-color: #555;
-    transform: translateY(-1px);
-}
-
-/* 夜间模式适配 */
-@media (prefers-color-scheme: dark) {
-    .experience-item { border-bottom-color: #333 !important; }
-    .experience-company { color: #fff !important; }
-    .experience-logo img { background: #fff !important; border-color: #444 !important; }
-    .xp-btn {
-        background-color: #333;
-        color: #ddd !important;
-        border-color: #444;
-    }
-    .xp-btn:hover {
-        background-color: #555;
-        color: #fff !important;
-    }
-}
-</style>
+  .xp-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+  
+      /* ✅ 核心修改 1：颜色改为浅蓝 */
+      background-color: #e3f2fd; /* 浅蓝色背景 (Material Design Blue 50) */
+      color: #1976d2 !important; /* 深蓝色文字 (Blue 700) */
+      border: 1px solid #bbdefb; /* 浅蓝色边框 (Blue 100) */
+  
+      /* ✅ 核心修改 2：文字加粗 */
+      font-weight: 700 !important;
+  
+      text-decoration: none !important;
+      
+      /* 尺寸控制：与文字等高 */
+      font-size: 0.85em;         
+      padding: 3px 12px;         /* 稍微加了一点点内边距，更好看 */
+      border-radius: 15px;       /* 胶囊状 */
+      
+      margin-left: 8px;          /* 与日期拉开距离 */
+      transition: all 0.2s ease;
+      white-space: nowrap;       /* 防止按钮文字换行 */
+  }
+  
+  /* 鼠标悬停 */
+  .xp-btn:hover {
+      background-color: #1976d2; /* 悬停变深蓝背景 */
+      color: #fff !important;    /* 文字变白 */
+      border-color: #1565c0;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 5px rgba(25, 118, 210, 0.2); /* 加一点点投影 */
+  }
+  
+  /* 夜间模式适配 (自动变成深蓝底浅蓝字，不刺眼) */
+  @media (prefers-color-scheme: dark) {
+      .experience-item { border-bottom-color: #333 !important; }
+      .experience-company { color: #fff !important; }
+      .experience-logo img { background: #fff !important; border-color: #444 !important; }
+      
+      .xp-btn {
+          background-color: #152b3c; /* 深蓝背景 */
+          color: #64b5f6 !important; /* 亮蓝文字 */
+          border-color: #1e3a5f;
+      }
+      .xp-btn:hover {
+          background-color: #64b5f6;
+          color: #0d47a1 !important;
+      }
+  }
+  </style>
