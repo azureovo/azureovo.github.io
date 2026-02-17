@@ -1,6 +1,12 @@
 <div id="intro-overlay">
     <div class="animation-container">
       <div class="stars"></div>
+      <div class="sun">
+          <div class="face">
+              <div class="eyes"></div>
+              <div class="mouth"></div>
+          </div>
+      </div>
       <div class="arm left">
           <div>
               <div></div>
@@ -11,263 +17,154 @@
               <div></div>
           </div>
       </div>
-      <div class="sun">
-          <div class="face">
-              <div class="eyes"></div>
-              <div class="mouth"></div>
-          </div>
-      </div>
     </div>
     <div class="skip-hint">点击任意处跳过</div>
   </div>
   
   <style>
-  /* 1. 遮罩层容器样式 */
+  /* 1. 遮罩层容器样式 (强制全屏置顶) */
   #intro-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-color: #2A003F; /* 对应你 CSS 里的背景色 */
-      z-index: 99999; /* 保证在最顶层 */
+      background-color: #2A003F; /* 深紫背景 */
+      z-index: 999999; /* 确保层级最高 */
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: opacity 0.8s ease, visibility 0.8s ease; /* 淡出动画 */
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+      opacity: 1;
+      visibility: visible;
   }
   
-  /* 当添加 .hidden 类时，隐藏遮罩层 */
+  /* 隐藏状态 */
   #intro-overlay.hidden {
       opacity: 0;
       visibility: hidden;
-      pointer-events: none;
+      pointer-events: none; /* 穿透点击，不挡下面的网页 */
   }
   
-  /* 跳过提示文字 */
   .skip-hint {
       position: absolute;
-      bottom: 20px;
-      color: rgba(255,255,255,0.5);
-      font-size: 14px;
+      bottom: 50px;
+      color: rgba(255,255,255,0.6);
+      font-size: 16px;
       font-family: sans-serif;
+      z-index: 1000000;
   }
   
-  /* 2. 移植 style.css 的动画样式 */
-  /* 注意：这里把原 CSS 的 body 选择器改为了 #intro-overlay */
-  
-  #intro-overlay > div.animation-container {
+  /* 2. 动画核心样式 */
+  .animation-container {
       position: relative;
-      /* 缩放一下动画，防止在手机上太大 */
-      transform: scale(0.8); 
+      transform: scale(0.8); /* 整体缩放适配手机 */
   }
   
+  /* 星星背景 */
   .stars {
-      height: 5px;
-      width: 5px;
-      border-radius: 50%;
+      height: 5px; width: 5px; border-radius: 50%;
       background-color: #FAE62D;
       position: absolute;
-      top: -300px;
-      left: -200px;
-      box-shadow:
-          330px 25px 0 2px #FAE62D,
-          100px 50px 0 1px #3BEEED,
-          -75px 100px 0 1px #FAE62D,
-          450px 120px #FAE62D,
-          340px 140px #FAE62D,
-          -40px 240px 0 2px #FAE62D,
-          430px 260px 0 1px #FAE62D,
-          -110px 370px #FAE62D,
-          400px 400px 0 1px #FAE62D,
-          480px 440px #3BEEED,
-          -10px 450px #FAE62D,
-          100px 500px 0 2px #FAE62D;
+      top: -300px; left: -200px;
+      box-shadow: 
+          330px 25px 0 2px #FAE62D, 100px 50px 0 1px #3BEEED, -75px 100px 0 1px #FAE62D,
+          450px 120px #FAE62D, 340px 140px #FAE62D, -40px 240px 0 2px #FAE62D,
+          430px 260px 0 1px #FAE62D, -110px 370px #FAE62D, 400px 400px 0 1px #FAE62D,
+          480px 440px #3BEEED, -10px 450px #FAE62D, 100px 500px 0 2px #FAE62D;
       animation: stars 4s infinite ease;
   }
   
+  /* 太阳主体 */
   .sun {
-      width: 200px;
-      height: 200px;
+      width: 200px; height: 200px;
       background-color: #FAE62D;
       border-radius: 50%;
       position: relative;
       box-shadow: 0 0 0 20px rgba(250, 230, 45, 0.5), 0 0 0 40px rgba(250, 230, 45, 0.2);
       animation: sun 4s infinite ease;
+      z-index: 1;
   }
   
-  .face {
-      position: absolute;
-      top: 60px;
-      left: 45px;
-      animation: face 4s infinite ease;
-  }
-  
+  .face { position: absolute; top: 60px; left: 45px; animation: face 4s infinite ease; }
   .eyes {
-      width: 15px;
-      height: 15px;
-      background-color: #2A003F;
-      border-radius: 50%;
-      position: absolute;
-      box-shadow: 95px 0 0 #2A003F;
-      animation: eyes 4s infinite linear;
+      width: 15px; height: 15px; background-color: #2A003F; border-radius: 50%;
+      position: absolute; box-shadow: 95px 0 0 #2A003F; animation: eyes 4s infinite linear;
   }
-  
   .mouth {
-      width: 25px;
-      height: 12px;
-      border-radius: 0 0 25px 25px;
-      background-color: #2A003F;
-      position: absolute;
-      top: 65px;
-      left: 43px;
-      animation: mouth 4s infinite linear;
+      width: 25px; height: 12px; border-radius: 0 0 25px 25px; background-color: #2A003F;
+      position: absolute; top: 65px; left: 43px; animation: mouth 4s infinite linear;
   }
   
+  /* 手臂 */
   .arm {
-      width: 30px;
-      height: 100px;
-      background-color: #2A003F;
-      position: absolute;
-      left: -125px;
-      top: 50px;
-      border-radius: 50px;
-      transform: rotate(30deg);
-      transform-origin: top;
-      z-index: 2;
+      width: 30px; height: 100px; background-color: #2A003F;
+      position: absolute; border-radius: 50px;
+      transform-origin: top; z-index: 2;
   }
-  
   .arm > div {
-      width: 20px;
-      height: 50px;
-      border-radius: 10px;
-      background-color: #2A003F;
-      position: absolute;
-      transform-origin: top;
-      bottom: -40px;
+      width: 20px; height: 50px; border-radius: 10px; background-color: #2A003F;
+      position: absolute; bottom: -40px; transform-origin: top;
   }
-  
   .arm > div > div {
-      width: 15px;
-      height: 30px;
-      border-radius: 10px;
-      background-color: #2A003F;
-      position: absolute;
-      transform-origin: top;
-      bottom: -20px;
+      width: 15px; height: 30px; border-radius: 10px; background-color: #2A003F;
+      position: absolute; bottom: -20px; transform-origin: top;
   }
   
+  /* 左手 */
   .arm.left {
+      left: -15px; top: 50px;
       animation: leftArm 10s linear infinite;
   }
-  
+  /* 右手 */
   .arm.right {
-      left: initial;
-      right: -125px;
-      animation: rightArm 10s linear infinite, arm 0.6s alternate linear infinite;
-      transform: rotate(-140deg);
+      left: 185px; top: 50px; /* 位置调整到太阳右侧 */
+      animation: rightArm 10s linear infinite;
   }
   
-  .arm.right > div {
-      transform: rotate(-30deg);
-      left: -2px;
-      animation: forearm 0.6s alternate linear infinite;
-  }
-  
-  .arm.right > div > div {
-      transform: rotate(-20deg);
-      animation: hand 0.6s alternate linear infinite;
-  }
-  
-  /* 关键帧动画定义 */
-  @keyframes stars {
-      0% { transform: translateY(-100px); }
-      100% { transform: translateY(0px); }
-  }
-  
-  @keyframes sun {
-      50% { transform: translateY(-20px); }
-  }
-  
-  @keyframes eyes {
-      2% { height: 4px; top: 8px; }
-      4% { height: 20px; top: 0; }
-  }
-  
-  @keyframes face {
-      10% { left: 10px; }
-      20% { left: 10px; }
-      40% { left: 80px; }
-      50% { left: 80px; }
-      70% { left: 45px; }
-  }
-  
-  @keyframes mouth {
-      10% { height: 12px; border-radius: 0 0 25px 25px; }
-      20% { height: 25px; width: 25px; border-radius: 50%; top: 60px; }
-      30% { height: 12px; border-radius: 0 0 25px 25px; top: 65px; }
-  }
-  
-  @keyframes leftArm {
-      0% { transform: rotate(30deg); }
-      10% { transform: rotate(30deg); }
-      30% { transform: rotate(150deg); }
-      50% { transform: rotate(150deg); }
-      70% { transform: rotate(30deg); }
-  }
-  
-  @keyframes rightArm {
-      0% { transform: rotate(-140deg); }
-      10% { transform: rotate(-140deg); }
-      30% { transform: rotate(-30deg); }
-      50% { transform: rotate(-30deg); }
-      70% { transform: rotate(-140deg); }
-  }
-  
-  @keyframes arm {
-      0% { top: 50px; }
-      100% { top: 40px; }
-  }
-  
-  @keyframes forearm {
-      0% { transform: rotate(-30deg); }
-      100% { transform: rotate(-20deg); }
-  }
-  
-  @keyframes hand {
-      0% { transform: rotate(-20deg); }
-      100% { transform: rotate(-10deg); }
-  }
+  /* 关键帧动画 */
+  @keyframes stars { 0% { transform: translateY(-100px); } 100% { transform: translateY(0); } }
+  @keyframes sun { 50% { transform: translateY(-20px); } }
+  @keyframes eyes { 2% { height: 4px; top: 8px; } 4% { height: 20px; top: 0; } }
+  @keyframes face { 10%, 20% { left: 10px; } 40%, 50% { left: 80px; } 70% { left: 45px; } }
+  @keyframes mouth { 10% { height: 12px; border-radius: 0 0 25px 25px; } 20% { height: 25px; width: 25px; border-radius: 50%; top: 60px; } 30% { height: 12px; border-radius: 0 0 25px 25px; top: 65px; } }
+  @keyframes leftArm { 0%, 10%, 70% { transform: rotate(30deg); } 30%, 50% { transform: rotate(150deg); } }
+  @keyframes rightArm { 0%, 10%, 70% { transform: rotate(-30deg); } 30%, 50% { transform: rotate(-150deg); } }
   </style>
   
   <script>
-  document.addEventListener("DOMContentLoaded", function() {
-      // 检查是否在当前会话中已经显示过动画
-      // 如果你想每次刷新都看动画，请删掉 sessionStorage 相关的判断
+  (function() {
+      // 立即执行函数，防止变量污染
+      var overlay = document.getElementById('intro-overlay');
+      var isClosed = false;
+  
+      // 检查是否显示过 (调试期间可以注释掉下面这行)
       if (sessionStorage.getItem('introShown')) {
-          document.getElementById('intro-overlay').style.display = 'none';
-          return; 
+          overlay.style.display = 'none';
+          return;
       }
   
-      const overlay = document.getElementById('intro-overlay');
-  
-      // 定义关闭函数
       function closeIntro() {
-          if (!overlay.classList.contains('hidden')) {
-              overlay.classList.add('hidden');
-              // 标记已显示，防止刷新页面重复播放
-              sessionStorage.setItem('introShown', 'true');
-              // 动画结束后移除元素
-              setTimeout(function() {
-                  overlay.style.display = 'none';
-              }, 800);
-          }
+          if (isClosed) return;
+          isClosed = true;
+  
+          overlay.classList.add('hidden');
+          sessionStorage.setItem('introShown', 'true');
+  
+          // 动画结束后彻底移除 DOM
+          setTimeout(function() {
+              overlay.style.display = 'none';
+          }, 800);
       }
   
-      // 逻辑 1: 3秒后自动关闭
+      // 1. 设置 3 秒后自动关闭
       setTimeout(closeIntro, 3000);
   
-      // 逻辑 2: 点击任意处立即关闭
-      overlay.addEventListener('click', closeIntro);
-  });
+      // 2. 绑定全局点击事件 (确保点哪里都能关)
+      document.addEventListener('click', closeIntro);
+      document.addEventListener('touchstart', closeIntro); // 兼容手机触摸
+      
+      // 3. 绑定按键事件 (按任意键关闭)
+      document.addEventListener('keydown', closeIntro);
+  })();
   </script>
