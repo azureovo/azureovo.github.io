@@ -100,7 +100,7 @@ redirect_from:
 
 {% include experience-item.html
    logo="/images/tencent.png"
-   role="产品经理(技术背景)(实习)"
+   role="产品经理(技术背景)"
    company="腾讯互娱(IEG)"
    date="2026.02 - 至今"
    details="/files/成绩单.pdf"
@@ -108,7 +108,7 @@ redirect_from:
 
 {% include experience-item.html
    logo="/images/mhylogo.png"
-   role="产品体验分析与策略优化(外包)"
+   role="产品体验分析与策略优化"
    company="米哈游(MiHoYo)"
    date="2025.06 - 2025.12"
    details="/files/成绩单.pdf"
@@ -116,7 +116,7 @@ redirect_from:
 
 {% include experience-item.html
    logo="/images/航天科工logo.png"
-   role="软件工程师(实习)"
+   role="软件工程师"
    company="四川航天技术研究院(CASIC)"
    date="2023.05 - 2023.07"
    details="/files/成绩单.pdf"
@@ -124,7 +124,7 @@ redirect_from:
 
 {% include experience-item.html
    logo="/images/天空logo黑色.png"
-   role="游戏产策(实习课程)"
+   role="游戏产策"
    company="数字天空(Digital Sky)"
    date="2021.09 - 2021.11"
    details="/files/成绩单.pdf"
