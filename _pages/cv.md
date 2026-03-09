@@ -9,109 +9,180 @@ redirect_from:
 
 {% include base_path %}
 
-基本信息
-======
-* **姓名**：张清安
-* **生日**：2001年03月20日
-* **电话**：18150070267
-* **邮箱**：zhangqan@mail2.sysu.edu.cn 或者 1132830680@qq.com
-* **社交平台**：1132830680（QQ号）或者 18150070267（微信号）
-* **个人网站**：<a href="https://azureovo.github.io/" target="_blank">[戳这里]</a>
-* <span style="color: red;">**简历文档**：<a href="/files/260102简历.pdf" target="_blank">[2026年01月02日版本]</a></span>
-
-教育经历
-======
-<ul style="list-style-type: disc; padding-left: 20px; line-height: 1.6;">
-  <li style="margin-bottom: 15px;">
-    <strong>🏫 中山大学</strong> / 计算机技术（图形学＆AI） / 硕士（2027年应届）
-    <ul style="margin-top: 5px;">
-      <li><strong>核心优势</strong>：专业方向为3DGS＆CV，具备基本的AI知识，具备快速阅读复现CVPR等顶会论文的技术视野，具备快速学习新知识的能力，能够从底层算法逻辑的角度评估产品可行性。</li>
-    </ul>
-  </li>
-  <li style="margin-bottom: 15px;">
-    <strong>🏫 电子科技大学</strong> / 软件工程（图形学） / 本科（2024年应届）
-    <ul style="margin-top: 5px;">
-      <li><strong>核心课程</strong>：图形学Ⅰ（95） / 图形学Ⅱ（98） / 数字图像处理（93） / 人工智能（91）<a href="/files/成绩单.pdf" target="_blank">[成绩单]</a>。</li>
-      <li><strong>核心优势</strong>：本科期间在电子科技大学星辰工作室<strong>产品组</strong>学习，了解PM基本工作流，参与各项比赛主担前端及<span style="color: red;"><strong>所有项目PRD文档的撰写</strong></span>，熟悉从0到1项目的框架逻辑。</li>
-      <li><strong>学业表现</strong>：以专业排名 <strong>5</strong> / 121 (Top 4%) <a href="/files/transcript_uestc.pdf" target="_blank">[排名]</a>，保研至中大。四级571 / 六级455（大一时全部考完）<a href="/files/四六级.pdf" target="_blank">[成绩]</a>。</li>
-    </ul>
-  </li>
-</ul>
-
-工作经历
-======
-
-<ul style="list-style-type: disc; padding-left: 20px;">
-  <li style="margin-bottom: 35px;">
-    <strong>🎮 腾讯IEG / 产品经理（技术背景） / 2026年02月 – 至今</strong>
-    <ul style="margin-top: 10px; line-height: 1.6;">
-      <li><strong>Part 1</strong>：待入职补充。</li>
-      <li><strong>Part 2</strong>：待入职补充。</li>
-    </ul>
-  </li>
-</ul>
-
-<ul style="list-style-type: disc; padding-left: 20px;">
-  <li style="margin-bottom: 35px;">
-    <strong>🎮 某知名游戏头部公司（上海） / 产品体验分析与策略优化 / 2025年06月 – 2025年12月</strong>
-    <ul style="margin-top: 10px; line-height: 1.6;">
-      <li><strong>用户旅程优化</strong>：参与千万级用户规模RPG产品的体验评估，从用户全生命周期视角拆解新版本核心玩法与引导的迭代优劣，累计输出10+份定性体验优化报告。</li>
-      <li><strong>需求闭环转化</strong>：参与新CRPG项目Idea的“体验问题-痛点分析-需求转化”的闭环机制，提出产品侧想法实现和改进方案，协助产研团队提升核心玩法的鲁棒性。</li>
-      <li><strong>风险策略控制</strong>：在敏捷开发流程中定义边界场景的验收标准，通过高强度的场景化模拟，有效拦截上线前的体验降级风险，保障核心业务指标即留存和转化的稳定性。</li>
-    </ul>
-  </li>
-</ul>
-
-算法经历
-======
-<ul style="list-style-type: disc; padding-left: 20px;">
-  <li style="margin-bottom: 35px;">
-    <strong>☀️ 基于光照算法研究 / 论文一作 / <span style="color: red;">CVPR 2026 在投(CCF-A)</span></strong>
-    <ul style="margin-top: 10px; line-height: 1.6;">
-      <li><strong>痛点洞察</strong>：针对光照场景材质丢失、人工修复成本高的行业痛点，确立了以物理感知逆渲染为核心的技术产品路径，旨在实现3D资产的自动化低成本生成。</li>
-      <li><strong>模型设计</strong>：设计包含多模块的端到端技术架构。成功解决了传统方案中材质与光照无法解耦的算法瓶颈，将技术指标提升超越SOTA水平。</li>
-      <li><strong>落地价值</strong>：验证了方案在实时渲染场景下的可行性，大幅缩短3D资产生成周期，为AIGC在游戏资产生成的工业化落地提供了可执行的技术设计。</li>
-    </ul>
-  </li>
-
-  <li style="margin-bottom: 35px;">
-    <strong>📷 基于稀疏视角重建研究 / 论文一作 / <span style="color: red;">ACM MM在投 (CCF-A)</span></strong>
-    <ul style="margin-top: 10px; line-height: 1.6;">
-      <li><strong>痛点洞察</strong>：传统稀疏重建其输入数量级无法降至可能性最低，过低无法进行全景重建，针对该痛点实现生成式稀疏视角框架实现质量重建并将输入泛化性提升至最高。</li>
-      <li><strong>模型设计</strong>：待完全发表后补全核心信息。</li>
-    </ul>
-  </li>
-
-  <li style="margin-bottom: 35px;">
-    <strong>🤖 基于VLM幻觉自信优化研究 / 论文二作 / <span style="color: red;">ECCV在投 (CCF-B)</span></strong>
-    <ul style="margin-top: 10px; line-height: 1.6;">
-      <li><strong>痛点洞察</strong>：待完全发表后补全核心信息。</li>
-      <li><strong>模型设计</strong>：待完全发表后补全核心信息。</li>
-    </ul>
-  </li>
-</ul>
+<div class="profile-header" style="display: flex; gap: 40px; align-items: center; margin-bottom: 40px; flex-wrap: wrap;">
   
-获奖、技能、社会实践
-======
-* **荣誉奖项**：
-  * 2020年电子科技大学支教优秀个人<a href="/files/未央.pdf" target="_blank">[公示]</a>
-  * 2022年中国高校计算机大赛网络技术挑战赛全国二等奖<a href="/files/c4比赛证书.pdf" target="_blank">[证书]</a>
-  * 2022年大学生计算机设计大赛全国三等奖<a href="/files/c3.pdf" target="_blank">[证书]</a>
-  * 2024年电子科技大学优秀毕业生
-  * 2021、2022、2023年电子科技大学校优秀学生奖学金<a href="/files/优生证书.pdf" target="_blank">[证书]</a>
-  * 2023年天空安全卫士企业奖学金
-  * 2021年数字天空暑期实习优秀学员实习直通优秀学员
-* **产品技能**：
-  * **熟练撰写PRD/MRD，方向涉猎广泛，能快速理解新领域专业术语。**
-  * 精通Axure/墨刀
-  * 擅长SQL数据分析
-  * Python/PyTorch
-  * 熟悉3DGS/Diffusion模型原理
-* **社会实践**：
-  * 2019年支教，任宣传组副主席，协助开展家乡的汇演活动及推送撰写
-  * 2020年支教，负责未央支教队宣传组组长工作，负责团队推文撰写<a href="https://mp.weixin.qq.com/s/O4ZTWth2tYUk_UPP600kQw" target="_blank">[实例]</a>
-  * 2021-2023年电子科技大学软件学院第三党支部宣传委员
-  * 2023-2024年电子科技大学软件学院软件e声公众号宣传组成员，负责推推文撰写<a href="https://mp.weixin.qq.com/s/M-8e1CW27NJ0zHN6Zum2bw" target="_blank">[实例]</a>
-  * 2022-2024年电子科技大学沙河校区学生自律管理委员会数据处理主席，负责整个校区的宿舍数据清理和成绩合计，熟悉Excel，协助各年级综测评分核算
-  * 2025年中山大学图形学课程助教，负责技术辅导与Code Review，熟悉图形学任课知识
-  * 2025-2026年度中山大学计算机学院量子计算与软件所研究生第二党支部组织委员
+  <div class="profile-avatar" style="flex: 0 0 280px;">
+    <img src="/images/profile.png" alt="张清安" style="box-shadow: 0 4px 9px rgba(0,0,0,0.1);">
+  </div>
+
+  <div class="profile-info" style="flex: 1; min-width: 250px;">
+    <h1 style="margin-top: 0; margin-bottom: 0.1em; font-size: 2.8em; font-weight: 700; color: #222;">张清安</h1>
+    
+    <p style="font-size: 1.2em; color: #555; margin-bottom: 1em; font-weight: 500;">
+      不想每次都在触底反弹，所以要时刻保持意识。
+    </p>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 15px; font-size: 0.95em; color: #666; margin-bottom: 1.5em; line-height: 1.6; align-items: center;">
+    
+      <span style="display: flex; align-items: center; white-space: nowrap;">
+        <i class="fas fa-map-marker-alt" style="margin-right: 6px;"></i> 广州＆深圳
+      </span>
+      
+      <span style="color: #ddd;">|</span>
+
+      <span style="display: flex; align-items: center; white-space: nowrap;">
+        <i class="fas fa-phone" style="margin-right: 6px;"></i> +86 18150070267
+      </span>
+      
+      <span style="color: #ddd;">|</span>
+
+      <span style="display: flex; align-items: center; white-space: nowrap;">
+        <i class="fab fa-weixin" style="margin-right: 6px;"></i> 18150070267
+      </span>
+      
+      <span style="color: #ddd;">|</span>
+      
+      <span style="display: flex; align-items: center; white-space: nowrap;">
+        <i class="fas fa-envelope" style="margin-right: 6px;"></i> 
+        <a href="mailto:zhangqan@mail2.sysu.edu.cn" style="color: #555; text-decoration: none; border-bottom: 1px dotted #999;">zhangqan@mail2.sysu.edu.cn</a>
+      </span>
+
+    </div>
+
+    <div style="font-size: 1.05em; line-height: 1.7; color: #333;">
+      <p style="margin-bottom: 0.8em;">
+        我是<a href="https://cse.sysu.edu.cn/" style="color: #0056b3;">中山大学计算机学院</a>（CSE）<a href="https://www.sysu-imsl.com/" style="color: #0056b3;">智能与多媒体科学实验室</a>（2027应届）硕士生，师从<a href="https://cse.sysu.edu.cn/teacher/GaoChengying" style="color: #0056b3;">高成英教授</a>。此前，我在<a href="https://sise.uestc.edu.cn/" style="color: #0056b3;">电子科技大学信软学院</a>完成了本科学业。我的研究兴趣主要集中在非受控极端场景物体三维重建、多模态幻觉缓解，等等。我同时有丰富的产品从事经验且热爱产品岗职，目前正在寻找AI产品相关岗位。
+      </p>
+    </div>
+  </div>
+</div>
+
+
+
+## 🔥 Grad News
+
+* **[2026.02]** 进入<a href="https://ieg.tencent.com/2023/index.html" style="color: #0056b3;">腾讯IEG</a>，开始技术产品工作！
+* **[2025.12]** 给<a href="https://www.yuanshen.com/#/" style="color: #0056b3;">米哈游</a>外包产策一年了！
+* **[2025.09]** 当上了中山大学计算机学院量子计算与软件所研究生第二党支部组织委员。
+* **[2024.12]** 进入智能与多媒体科学实验室，开始学习三维重建相关内容。
+* **[2024.09]** 保研至中山大学。
+
+---
+
+## 📝 Publications
+
+{% for post in site.publications reversed %}
+  {% include archive-publication.html %}
+{% endfor %}
+
+<div style="clear:both;"></div>
+
+---
+
+## 🎓 Education
+
+{% include education-item.html
+   logo="/images/中山大学-logo-2048px.png"
+   institution="中山大学(SYSU)"
+   title="计算机技术，硕士"
+   date="2024 - 至今"
+%}
+
+{% include education-item.html
+   logo="/images/电子科技大学-logo-2048px.png"
+   institution="电子科技大学(UESTC)"
+   title="软件工程，学士"
+   date="2020 - 2024"
+%}
+---
+
+## 💻 Experience
+
+
+{% include experience-item.html
+   logo="/images/tencent.png"
+   role="产品经理(技术背景)"
+   company="腾讯互娱(IEG)"
+   date="2026.02 - 至今"
+   details="/files/成绩单.pdf"
+%}
+
+{% include experience-item.html
+   logo="/images/mhylogo.png"
+   role="产品体验分析与策略优化"
+   company="米哈游(MiHoYo)"
+   date="2025.06 - 2025.12"
+   details="/files/成绩单.pdf"
+%}
+
+{% include experience-item.html
+   logo="/images/航天科工logo.png"
+   role="软件工程师"
+   company="四川航天技术研究院(CASIC)"
+   date="2023.05 - 2023.07"
+   details="/files/成绩单.pdf"
+%}
+
+{% include experience-item.html
+   logo="/images/天空logo黑色.png"
+   role="游戏产策"
+   company="数字天空(Digital Sky)"
+   date="2021.09 - 2021.11"
+   details="/files/成绩单.pdf"
+%}
+
+---
+
+## 📸 University Life
+
+我在电子科技大学信软学院读的软件工程专业，最终保研成绩为92分，专业排名5/121。“大学生活”专栏，记录我在电子科技大学一些组织活动，不全涵盖，只记录让我开心或有价值的内容。其他一些按钮记录我本科获奖情况。
+
+<div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 25px;">
+  
+  <a href="/life/" class="btn btn-gray">
+    ✨ 大学生活
+  </a>
+
+  <a href="/files/成绩单.pdf" target="_blank" class="btn btn-gray">
+    📄 成绩单
+  </a>
+  
+  <a href="/files/四六级成绩.pdf" target="_blank" class="btn btn-gray">
+    ✏ 四六级
+  </a>
+  
+  <a href="/files/比赛获奖.pdf" target="_blank" class="btn btn-gray">
+    🏆 比赛获奖
+  </a>
+  
+  <a href="/files/其他获奖及证书.pdf" target="_blank" class="btn btn-gray">
+    📜 其他荣誉
+  </a>
+
+</div>
+
+<style>
+.btn-gray {
+    /* 默认状态：深灰色背景 + 白色文字 */
+    background-color: #555 !important;
+    color: #fff !important;
+    
+    /* 统一的尺寸和形状 */
+    padding: 10px 22px !important;
+    font-size: 0.95em !important;
+    border-radius: 30px !important; /* 胶囊圆角 */
+    text-decoration: none !important;
+    display: flex !important;
+    align-items: center !important;
+    border: none !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    transition: all 0.2s ease !important;
+}
+
+/* 鼠标悬停状态：变得更深一点，浮起 */
+.btn-gray:hover {
+    background-color: #333 !important; /* 悬停变黑灰 */
+    transform: translateY(-2px);       /* 微微上浮 */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2) !important;
+}
+</style>
