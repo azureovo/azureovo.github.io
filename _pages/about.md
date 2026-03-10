@@ -109,7 +109,7 @@ redirect_from:
 {% include experience-item.html
    logo="/images/mhylogo.png"
    role="产品体验分析与策略优化"
-   company="米哈游(MiHoYo)-对话框Agent小组"
+   company="米哈游(MiHoYo)-AI功能测试组"
    date="2025.06 - 2025.12"
    details="/files/成绩单.pdf"
 %}
