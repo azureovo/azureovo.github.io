@@ -100,8 +100,8 @@ redirect_from:
 
 {% include experience-item.html
    logo="/images/tencent.png"
-   role="产品经理(技术背景)"
-   company="腾讯互娱(IEG)"
+   role="技术产品"
+   company="腾讯互娱(IEG)-服务拓展组"
    date="2026.02 - 至今"
    details="/files/成绩单.pdf"
 %}
@@ -109,7 +109,7 @@ redirect_from:
 {% include experience-item.html
    logo="/images/mhylogo.png"
    role="产品体验分析与策略优化"
-   company="米哈游(MiHoYo)"
+   company="米哈游(MiHoYo)-对话框Agent小组"
    date="2025.06 - 2025.12"
    details="/files/成绩单.pdf"
 %}
