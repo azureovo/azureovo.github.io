@@ -1,0 +1,17 @@
+<div class="edu-card">
+  <div class="card-logo">
+    <img src="{{ include.logo }}" alt="{{ include.institution }}">
+  </div>
+  <div class="card-body">
+    <div class="card-title">{{ include.institution }}</div>
+    <div class="card-subtitle">{{ include.title }}</div>
+    <div class="card-date">
+      <i class="fas fa-calendar-alt" style="margin-right: 4px; color: var(--accent-light);"></i>{{ include.date }}
+    </div>
+    {% if include.description %}
+      <div style="font-size: 0.9em; color: var(--text-secondary); margin-top: 6px; line-height: 1.6;">
+        {{ include.description }}
+      </div>
+    {% endif %}
+  </div>
+</div>

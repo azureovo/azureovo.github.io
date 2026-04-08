@@ -1,0 +1,68 @@
+{% include base_path %}
+
+{% if post.header.teaser %}
+  {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
+{% else %}
+  {% assign teaser = site.teaser %}
+{% endif %}
+
+{% if teaser %}
+  {% capture teaser_url %}
+    {% if teaser contains "://" %}
+      {{ teaser }}
+    {% else %}
+      {{ teaser | prepend: "/images/" | prepend: base_path }}
+    {% endif %}
+  {% endcapture %}
+{% endif %}
+
+<div class="pub-card">
+  
+  {% if teaser_url %}
+  <div class="pub-thumb">
+    <img src="{{ teaser_url | strip }}" alt="{{ post.title }}">
+  </div>
+  {% endif %}
+
+  <div class="pub-body">
+    <div>
+      <div class="pub-title">{{ post.title }}</div>
+      
+      {% if post.authors %}
+      <div class="pub-authors">
+        {{ post.authors | markdownify | remove: '<p>' | remove: '</p>' }}
+      </div>
+      {% endif %}
+
+      {% if post.venue %}
+      <div class="pub-venue">
+        {{ post.venue }}
+        {% if post.date %} ({{ post.date | date: "%Y" }}){% endif %}
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="pub-links">
+      {% if post.paperurl %}
+        <a href="{{ post.paperurl }}" class="pub-link">
+          <i class="fas fa-file-pdf"></i> PDF
+        </a>
+      {% endif %}
+      {% if post.code %}
+        <a href="{{ post.code }}" class="pub-link">
+          <i class="fab fa-github"></i> Code
+        </a>
+      {% endif %}
+      {% if post.video %}
+        <a href="{{ post.video }}" class="pub-link">
+          <i class="fas fa-play-circle"></i> Video
+        </a>
+      {% endif %}
+      {% if post.project %}
+        <a href="{{ post.project }}" class="pub-link">
+          <i class="fas fa-globe"></i> Project
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</div>

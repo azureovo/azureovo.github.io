@@ -1,0 +1,23 @@
+<div class="exp-card">
+  <div class="card-logo">
+    {% if include.logo %}
+      <img src="{{ include.logo }}" alt="{{ include.company }}">
+    {% endif %}
+  </div>
+  <div class="card-body">
+    <div class="card-title">
+      {{ include.company }}
+    </div>
+    <div class="card-subtitle">
+      {{ include.role }}
+      {% if include.details %}
+        <a href="{{ include.details }}" target="_blank" class="card-badge">
+          <i class="fas fa-arrow-up-right-from-square" style="font-size: 0.8em;"></i> 详情
+        </a>
+      {% endif %}
+    </div>
+    <div class="card-date">
+      <i class="fas fa-calendar-alt" style="margin-right: 4px; color: var(--accent-light);"></i>{{ include.date }}
+    </div>
+  </div>
+</div>
