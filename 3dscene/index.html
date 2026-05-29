@@ -59,7 +59,7 @@
 </div>
 
 <div class="info-panel" id="infoPanel">
-    <div><span class="label">场景:</span><span class="value">Living Room (3DGS)</span></div>
+    <div><span class="label">场景:</span><span class="value">Outdoor (3DGS)</span></div>
     <div><span class="label">高斯点数:</span><span class="value" id="splatCount">--</span></div>
 </div>
 
@@ -347,7 +347,7 @@ async function loadSplat() {
     try {
         setProgress(0, '正在下载场景数据...');
 
-        const resp = await fetch('LivingRoom.splat');
+        const resp = await fetch('Outdoor.splat');
         if (!resp.ok) {
             throw new Error('文件加载失败 (HTTP ' + resp.status + ')');
         }
