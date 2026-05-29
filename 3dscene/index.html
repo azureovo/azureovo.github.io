@@ -9,27 +9,17 @@
         :root { --bg: #0a0a0f; --text: #e0e0e0; --accent: #64b5f6; --panel-bg: rgba(10,10,20,0.85); }
         * { margin:0; padding:0; box-sizing:border-box; }
         body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:var(--bg); color:var(--text); overflow:hidden; height:100vh; width:100vw; }
-        canvas { display:block; }
         .nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:12px 24px; display:flex; align-items:center; gap:24px; background:linear-gradient(180deg,rgba(0,0,0,0.7) 0%,transparent 100%); }
         .nav a { color:#aaa; text-decoration:none; font-size:14px; transition:color 0.2s; }
         .nav a:hover { color:#fff; }
         .nav a.brand { color:#fff; font-weight:600; font-size:16px; margin-right:auto; }
         .nav a.active { color:var(--accent); }
-        .loading-overlay { position:fixed; inset:0; z-index:200; background:var(--bg); display:flex; flex-direction:column; align-items:center; justify-content:center; transition:opacity 0.5s; }
-        .loading-overlay.hidden { opacity:0; pointer-events:none; }
-        .loader { width:48px; height:48px; border:3px solid #333; border-top-color:var(--accent); border-radius:50%; animation:spin 1s linear infinite; margin-bottom:16px; }
-        @keyframes spin { to { transform:rotate(360deg); } }
-        .loading-text { color:#888; font-size:14px; }
-        .progress-bar { width:240px; height:4px; background:#222; border-radius:2px; margin-top:12px; overflow:hidden; }
-        .progress-fill { height:100%; background:var(--accent); width:0%; transition:width 0.3s; }
         .hud { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); z-index:100; pointer-events:none; display:flex; flex-direction:column; align-items:center; gap:8px; }
         .controls-hint { background:var(--panel-bg); border-radius:8px; padding:8px 16px; font-size:12px; color:#888; backdrop-filter:blur(8px); }
         .controls-hint kbd { background:#333; color:#ccc; padding:2px 6px; border-radius:3px; font-family:monospace; font-size:11px; margin:0 2px; }
         .info-panel { position:fixed; top:80px; right:16px; z-index:100; background:var(--panel-bg); border-radius:8px; padding:12px 16px; font-size:12px; backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.1); pointer-events:none; }
         .info-panel .label { color:#666; } .info-panel .value { color:#ccc; margin-left:4px; }
-        .fps { position:fixed; bottom:16px; right:16px; z-index:100; font-size:11px; font-family:monospace; }
-        .fps.warn { color:#ff6644; }
-        .fps.good { color:#44ff66; }
+        .fps { position:fixed; bottom:16px; right:16px; z-index:100; font-size:11px; font-family:monospace; color:#666; }
     </style>
 </head>
 <body>
@@ -42,13 +32,6 @@
     <a href="/cv/">CV</a>
 </nav>
 
-<div class="loading-overlay" id="loading">
-    <div class="loader"></div>
-    <div class="loading-text" id="loadingText">加载 3D 场景数据...</div>
-    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-    <div id="loadingError" style="color:#ff6644;margin-top:12px;font-size:13px;display:none;"></div>
-</div>
-
 <div class="hud" id="hud">
     <div class="controls-hint">
         <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 移动 &nbsp;
@@ -58,129 +41,80 @@
     </div>
 </div>
 
-<div class="info-panel" id="infoPanel">
+<div class="info-panel">
     <div><span class="label">场景:</span><span class="value">Outdoor (3DGS)</span></div>
-    <div><span class="label">高斯点数:</span><span class="value" id="splatCount">--</span></div>
+    <div><span class="label">引擎:</span><span class="value">GaussianSplats3D v0.4.7</span></div>
 </div>
 
 <div class="fps" id="fpsCounter">FPS: --</div>
 
-<!-- Three.js from CDN (reliable) -->
 <script type="importmap">
-{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+{
+    "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+    }
+}
 </script>
 
 <script type="module">
 import * as THREE from 'three';
+import * as GaussianSplats3D from 'https://cdn.jsdelivr.net/npm/@mkkellogg/gaussian-splats-3d@0.4.7/build/gaussian-splats-3d.module.js';
 
 // ============================================================
 // DOM
 // ============================================================
-const loadingOverlay = document.getElementById('loading');
-const loadingText = document.getElementById('loadingText');
-const progressFill = document.getElementById('progressFill');
-const loadingError = document.getElementById('loadingError');
-const hud = document.getElementById('hud');
 const fpsEl = document.getElementById('fpsCounter');
-const splatCountEl = document.getElementById('splatCount');
+const hud = document.getElementById('hud');
 
 // ============================================================
-// Renderer
-// ============================================================
-let renderer;
-try {
-    renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false, powerPreference: 'high-performance' });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.2;
-    document.body.appendChild(renderer.domElement);
-} catch (e) {
-    showError('WebGL 初始化失败: ' + e.message);
-    throw e;
-}
-
-// Check WebGL support
-const gl = renderer.getContext();
-if (!gl) {
-    showError('您的浏览器不支持 WebGL，请使用 Chrome/Edge/Firefox 访问');
-}
-
-// ============================================================
-// Scene
+// Scene, Camera, Renderer
 // ============================================================
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x0d0d1a);
-scene.fog = new THREE.Fog(0x0d0d1a, 40, 100);
+scene.background = new THREE.Color(0x1a1a2e);
 
-const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 200);
-camera.position.set(0, 5, 20);
-camera.lookAt(0, 0, 0);
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+camera.position.set(0, 2, 8);
 
-// ============================================================
-// Lighting for non-splat objects
-// ============================================================
-scene.add(new THREE.AmbientLight(0x404060, 2.0));
-const dirLight = new THREE.DirectionalLight(0xffffff, 1.0);
-dirLight.position.set(10, 20, 10);
-scene.add(dirLight);
-
-// ============================================================
-// Ground & Grid
-// ============================================================
-const groundGeo = new THREE.PlaneGeometry(100, 100);
-const groundMat = new THREE.MeshStandardMaterial({ color: 0x1a1a2e, roughness: 0.9 });
-const ground = new THREE.Mesh(groundGeo, groundMat);
-ground.rotation.x = -Math.PI / 2;
-ground.position.y = -25;
-ground.receiveShadow = true;
-scene.add(ground);
-
-const grid = new THREE.GridHelper(80, 40, 0x333355, 0x1a1a33);
-grid.position.y = -24.99;
-scene.add(grid);
+const renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: 'high-performance' });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.prepend(renderer.domElement);
 
 // ============================================================
 // Character
 // ============================================================
 const charGroup = new THREE.Group();
-const bodyGeo = new THREE.CapsuleGeometry(0.3, 0.9, 4, 8);
-const bodyMat = new THREE.MeshStandardMaterial({ color: 0x4488ff, roughness: 0.4, metalness: 0.3 });
-const body = new THREE.Mesh(bodyGeo, bodyMat);
-body.position.y = 0.75;
-body.castShadow = true;
-charGroup.add(body);
-const headGeo = new THREE.SphereGeometry(0.22, 16, 16);
-const headMat = new THREE.MeshStandardMaterial({ color: 0xffcc99, roughness: 0.6 });
-const head = new THREE.Mesh(headGeo, headMat);
-head.position.y = 1.55;
-charGroup.add(head);
-const arrowCone = new THREE.ConeGeometry(0.1, 0.25, 8);
-const arrowMesh = new THREE.Mesh(arrowCone, new THREE.MeshStandardMaterial({ color: 0xff4444 }));
-arrowMesh.position.set(0, 0.75, 0.45);
-arrowMesh.rotation.x = -Math.PI / 2;
-charGroup.add(arrowMesh);
-
-charGroup.position.set(0, -24, 0);
+const bodyGeo = new THREE.CapsuleGeometry(0.12, 0.4, 4, 8);
+const bodyMat = new THREE.MeshStandardMaterial({ color: 0x4488ff, roughness: 0.4 });
+const bodyMesh = new THREE.Mesh(bodyGeo, bodyMat);
+bodyMesh.position.y = 0.3;
+charGroup.add(bodyMesh);
+const headGeo = new THREE.SphereGeometry(0.1, 16, 16);
+const headMesh = new THREE.Mesh(headGeo, new THREE.MeshStandardMaterial({ color: 0xffcc99 }));
+headMesh.position.y = 0.7;
+charGroup.add(headMesh);
+charGroup.position.set(0, -1, 3);
 scene.add(charGroup);
+
+// Light
+scene.add(new THREE.AmbientLight(0x404060, 2));
+const dl = new THREE.DirectionalLight(0xffffff, 1);
+dl.position.set(5, 10, 5);
+scene.add(dl);
 
 // ============================================================
 // State
 // ============================================================
 let mode3rdPerson = true;
-let splatPoints = null;
-let splatCount = 0;
-let splatPositions = null;
 const keys = {};
-let yaw = 0, pitch = 0.3;
-const speed = 8.0;
+let yaw = 0, pitch = 0.2;
+const speed = 3.0;
 const sensitivity = 0.002;
 
 // ============================================================
 // Mouse
 // ============================================================
-let dragging = false;
-let pmx = 0, pmy = 0;
+let dragging = false, pmx = 0, pmy = 0;
 renderer.domElement.addEventListener('pointerdown', e => {
     if (e.button === 0 || e.button === 2) { dragging = true; pmx = e.clientX; pmy = e.clientY; }
 });
@@ -193,9 +127,11 @@ window.addEventListener('pointermove', e => {
     pmx = e.clientX; pmy = e.clientY;
 });
 window.addEventListener('wheel', e => {
-    if (mode3rdPerson) return;
-    const fwd = new THREE.Vector3(); camera.getWorldDirection(fwd);
-    camera.position.addScaledVector(fwd, e.deltaY * 0.02);
+    if (mode3rdPerson) {
+        const fwd = new THREE.Vector3();
+        camera.getWorldDirection(fwd);
+        camera.position.addScaledVector(fwd, e.deltaY * 0.01);
+    }
 });
 
 // ============================================================
@@ -203,27 +139,22 @@ window.addEventListener('wheel', e => {
 // ============================================================
 window.addEventListener('keydown', e => {
     keys[e.code] = true;
-    if (e.code === 'Space') { e.preventDefault(); mode3rdPerson = !mode3rdPerson; updateModeUI(); }
+    if (e.code === 'Space') { e.preventDefault(); mode3rdPerson = !mode3rdPerson; hud.style.display = mode3rdPerson ? 'flex' : 'none'; }
 });
 window.addEventListener('keyup', e => { keys[e.code] = false; });
-
-function updateModeUI() {
-    hud.style.display = mode3rdPerson ? 'flex' : 'none';
-}
 
 // ============================================================
 // Camera
 // ============================================================
 function updateCamera() {
-    if (mode3rdPerson) {
-        const cp = charGroup.position;
-        const dist = 10;
-        const cx = cp.x + Math.sin(yaw) * Math.cos(pitch) * dist;
-        const cy = cp.y + 1.5 + Math.sin(pitch) * dist;
-        const cz = cp.z + Math.cos(yaw) * Math.cos(pitch) * dist;
-        camera.position.set(cx, cy, cz);
-        camera.lookAt(cp.x, cp.y + 1.2, cp.z);
-    }
+    if (!mode3rdPerson) return;
+    const cp = charGroup.position;
+    const dist = 6;
+    const cx = cp.x + Math.sin(yaw) * Math.cos(pitch) * dist;
+    const cy = cp.y + 0.8 + Math.sin(pitch) * dist;
+    const cz = cp.z + Math.cos(yaw) * Math.cos(pitch) * dist;
+    camera.position.lerp(new THREE.Vector3(cx, cy, cz), 0.1);
+    camera.lookAt(cp.x, cp.y + 0.6, cp.z);
 }
 
 // ============================================================
@@ -233,334 +164,31 @@ window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
-    if (splatPoints) {
-        splatPoints.material.uniforms.focal.value = 0.5 * window.innerHeight / Math.tan(0.5 * camera.fov * Math.PI / 180);
-    }
 });
 
 // ============================================================
-// Shaders
+// Load splat with GaussianSplats3D
 // ============================================================
-const vertShader = /* glsl */ `
-    attribute vec3 position;
-    attribute vec3 scale;
-    attribute vec4 color;
-    attribute vec4 rotation;
+const viewer = new GaussianSplats3D.Viewer({
+    'camera': camera,
+    'renderer': renderer,
+    'scene': scene,
+    'gpuAcceleratedSort': true,
+    'sharedMemoryForWorkers': false,
+    'controls': { 'disable': true },
+    'showInfo': false,
+    'cameraUp': [0, -1, 0],
+    'initialCameraPosition': [0, 2, 8],
+    'initialCameraLookAt': [0, 0, 0],
+});
 
-    varying vec4 vColor;
-    varying float vScreenRadius;
-    varying vec4 vInvCov;
+await viewer.addSplatScene('Outdoor.splat', {
+    'splatAlphaRemovalThreshold': 5,
+    'showLoadingUI': true,
+});
 
-    uniform mat4 projectionMatrix;
-    uniform mat4 modelViewMatrix;
-    uniform float focal;
-
-    mat3 quatToMat3(vec4 q) {
-        float x = q.x, y = q.y, z = q.z, w = q.w;
-        float x2 = x*x, y2 = y*y, z2 = z*z;
-        return mat3(
-            1.0 - 2.0*(y2 + z2), 2.0*(x*y - w*z),     2.0*(x*z + w*y),
-            2.0*(x*y + w*z),     1.0 - 2.0*(x2 + z2), 2.0*(y*z - w*x),
-            2.0*(x*z - w*y),     2.0*(y*z + w*x),     1.0 - 2.0*(x2 + y2)
-        );
-    }
-
-    void main() {
-        vec4 mvPos = modelViewMatrix * vec4(position, 1.0);
-        float depth = -mvPos.z;
-        float pixelScale = focal / max(depth, 0.01);
-
-        mat3 R = quatToMat3(rotation);
-        vec3 s2 = scale * scale;
-
-        float c00 = R[0][0]*R[0][0]*s2.x + R[0][1]*R[0][1]*s2.y + R[0][2]*R[0][2]*s2.z;
-        float c01 = R[0][0]*R[1][0]*s2.x + R[0][1]*R[1][1]*s2.y + R[0][2]*R[1][2]*s2.z;
-        float c11 = R[1][0]*R[1][0]*s2.x + R[1][1]*R[1][1]*s2.y + R[1][2]*R[1][2]*s2.z;
-
-        float ps2 = pixelScale * pixelScale;
-        c00 = c00 * ps2 + 0.3;
-        c11 = c11 * ps2 + 0.3;
-        c01 = c01 * ps2;
-
-        float det = c00 * c11 - c01 * c01;
-        float invDet = 1.0 / max(det, 1e-10);
-        float i00 = c11 * invDet;
-        float i01 = -c01 * invDet;
-        float i11 = c00 * invDet;
-
-        vInvCov = vec4(i00, i01, i01, i11);
-
-        float trace = c00 + c11;
-        float detM = c00 * c11 - c01 * c01;
-        float disc = max(trace * trace - 4.0 * detM, 0.0);
-        float eigMax = (trace + sqrt(disc)) * 0.5;
-        float screenRadius = sqrt(eigMax) * 3.0;
-
-        screenRadius = clamp(screenRadius, 0.5, 60.0);
-        vScreenRadius = screenRadius;
-        vColor = color;
-
-        gl_Position = projectionMatrix * mvPos;
-        gl_PointSize = screenRadius * 2.0;
-    }
-`;
-
-const fragShader = /* glsl */ `
-    varying vec4 vColor;
-    varying float vScreenRadius;
-    varying vec4 vInvCov;
-
-    void main() {
-        vec2 d = (gl_PointCoord - 0.5) * vScreenRadius * 2.0;
-
-        float mdist = d.x * d.x * vInvCov.x +
-                      d.x * d.y * (vInvCov.y + vInvCov.z) +
-                      d.y * d.y * vInvCov.w;
-
-        float alpha = vColor.a * exp(-0.5 * mdist);
-
-        if (alpha < 0.005) discard;
-        gl_FragColor = vec4(vColor.rgb, alpha);
-    }
-`;
-
-// ============================================================
-// Error handling
-// ============================================================
-function showError(msg) {
-    loadingError.textContent = '⚠ ' + msg;
-    loadingError.style.display = 'block';
-    loadingText.style.display = 'none';
-    document.querySelector('.loader').style.display = 'none';
-    console.error('3DScene error:', msg);
-}
-
-function setProgress(pct, text) {
-    progressFill.style.width = Math.min(100, pct) + '%';
-    if (text) loadingText.textContent = text;
-}
-
-// ============================================================
-// Load splat
-// ============================================================
-async function loadSplat() {
-    try {
-        setProgress(0, '正在下载场景数据...');
-
-        const resp = await fetch('Outdoor.splat');
-        if (!resp.ok) {
-            throw new Error('文件加载失败 (HTTP ' + resp.status + ')');
-        }
-
-        const total = parseInt(resp.headers.get('content-length') || '0');
-        if (total === 0) throw new Error('无法获取文件大小');
-
-        const reader = resp.body.getReader();
-        let received = 0;
-        const chunks = [];
-
-        while (true) {
-            const { done, value } = await reader.read();
-            if (done) break;
-            chunks.push(value);
-            received += value.length;
-            const pct = 5 + (received / total) * 35;
-            setProgress(pct, `下载中... ${(received/1024/1024).toFixed(1)} / ${(total/1024/1024).toFixed(1)} MB`);
-        }
-
-        // Assemble buffer
-        const buf = new ArrayBuffer(received);
-        const u8 = new Uint8Array(buf);
-        let off = 0;
-        for (const c of chunks) { u8.set(c, off); off += c.length; }
-
-        setProgress(45, '解析高斯点云数据...');
-
-        const n = Math.floor(received / 32);
-        if (n === 0) throw new Error('数据文件为空或格式错误');
-
-        const pos = new Float32Array(n * 3);
-        const scl = new Float32Array(n * 3);
-        const col = new Float32Array(n * 4);
-        const rot = new Float32Array(n * 4);
-
-        const dv = new DataView(buf);
-
-        // Find position range for camera positioning
-        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity, minZ = Infinity, maxZ = -Infinity;
-
-        for (let i = 0; i < n; i++) {
-            const b = i * 32;
-
-            const px = dv.getFloat32(b, true);
-            const py = dv.getFloat32(b + 4, true);
-            const pz = dv.getFloat32(b + 8, true);
-
-            pos[i*3] = px; pos[i*3+1] = py; pos[i*3+2] = pz;
-
-            if (px < minX) minX = px; if (px > maxX) maxX = px;
-            if (py < minY) minY = py; if (py > maxY) maxY = py;
-            if (pz < minZ) minZ = pz; if (pz > maxZ) maxZ = pz;
-
-            scl[i*3]   = Math.max(dv.getFloat32(b + 12, true), 1e-6);
-            scl[i*3+1] = Math.max(dv.getFloat32(b + 16, true), 1e-6);
-            scl[i*3+2] = Math.max(dv.getFloat32(b + 20, true), 1e-6);
-
-            col[i*4]   = dv.getUint8(b + 24) / 255;
-            col[i*4+1] = dv.getUint8(b + 25) / 255;
-            col[i*4+2] = dv.getUint8(b + 26) / 255;
-            col[i*4+3] = dv.getUint8(b + 27) / 255;
-
-            const rx = (dv.getUint8(b + 28) - 128) / 128;
-            const ry = (dv.getUint8(b + 29) - 128) / 128;
-            const rz = (dv.getUint8(b + 30) - 128) / 128;
-            const rw = (dv.getUint8(b + 31) - 128) / 128;
-            const rn = Math.sqrt(rx*rx + ry*ry + rz*rz + rw*rw) || 1;
-            rot[i*4] = rx/rn; rot[i*4+1] = ry/rn; rot[i*4+2] = rz/rn; rot[i*4+3] = rw/rn;
-        }
-
-        splatCount = n;
-        splatPositions = pos;
-        splatCountEl.textContent = n.toLocaleString();
-
-        console.log('Point cloud bounds:', {minX, maxX, minY, maxY, minZ, maxZ});
-
-        // Position camera to center of scene
-        const cx = (minX + maxX) / 2;
-        const cy = (minY + maxY) / 2;
-        const cz = (minZ + maxZ) / 2;
-        const span = Math.max(maxX - minX, maxY - minY, maxZ - minZ, 1);
-        camera.position.set(cx, cy, cz + span * 2);
-        camera.lookAt(cx, cy, cz);
-        charGroup.position.set(cx, minY - 2, cz);
-        ground.position.y = minY - 2;
-        grid.position.y = minY - 1.99;
-
-        setProgress(55, '创建渲染管线...');
-
-        const geo = new THREE.BufferGeometry();
-        geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-        geo.setAttribute('scale', new THREE.BufferAttribute(scl, 3));
-        geo.setAttribute('color', new THREE.BufferAttribute(col, 4));
-        geo.setAttribute('rotation', new THREE.BufferAttribute(rot, 4));
-
-        const mat = new THREE.ShaderMaterial({
-            vertexShader: vertShader,
-            fragmentShader: fragShader,
-            uniforms: {
-                focal: { value: 0.5 * window.innerHeight / Math.tan(0.5 * camera.fov * Math.PI / 180) }
-            },
-            transparent: true,
-            depthWrite: false,
-            depthTest: true,
-            blending: THREE.NormalBlending,
-        });
-
-        splatPoints = new THREE.Points(geo, mat);
-        scene.add(splatPoints);
-
-        setProgress(100, '准备就绪!');
-        console.log(`3DGS: ${n} splats loaded successfully`);
-
-        setTimeout(() => {
-            loadingOverlay.classList.add('hidden');
-        }, 500);
-
-    } catch (err) {
-        showError('加载失败: ' + err.message);
-        console.error(err);
-    }
-}
-
-// ============================================================
-// Sort (every 4 frames)
-// ============================================================
-let sortTick = 0;
-function sortSplats() {
-    if (!splatPoints || !splatPositions) return;
-    sortTick++;
-    if (sortTick % 4 !== 0) return;
-
-    const camPos = new THREE.Vector3(); camera.getWorldPosition(camPos);
-    const n = splatCount;
-
-    let minDist = Infinity, maxDist = -Infinity;
-    for (let i = 0; i < n; i++) {
-        const dx = splatPositions[i*3] - camPos.x;
-        const dy = splatPositions[i*3+1] - camPos.y;
-        const dz = splatPositions[i*3+2] - camPos.z;
-        const dist = dx*dx + dy*dy + dz*dz;
-        if (dist < minDist) minDist = dist;
-        if (dist > maxDist) maxDist = dist;
-    }
-    if (minDist >= maxDist) return;
-
-    // Efficient radix-like sort: allocate index + count arrays
-    const ranges = [];
-    const rangeCount = 256;
-    for (let r = 0; r < rangeCount; r++) ranges[r] = 0;
-
-    // First pass: count per range
-    const counts = new Uint32Array(rangeCount);
-    const indices = new Uint32Array(n);
-    const rangeScale = rangeCount / (maxDist - minDist + 1e-8);
-
-    for (let i = 0; i < n; i++) {
-        const dx = splatPositions[i*3] - camPos.x;
-        const dy = splatPositions[i*3+1] - camPos.y;
-        const dz = splatPositions[i*3+2] - camPos.z;
-        const dist = dx*dx + dy*dy + dz*dz;
-        const r = Math.min(rangeCount - 1, Math.floor((dist - minDist) * rangeScale));
-        counts[r]++;
-        indices[i] = r << 24; // pack range into high bits for stable sort
-    }
-
-    // Build prefix sum for bucket placement
-    let total = 0;
-    const offsets = new Uint32Array(rangeCount);
-    for (let r = 0; r < rangeCount; r++) {
-        offsets[r] = total;
-        total += counts[r];
-    }
-
-    // Fill sorted indices (near to far for correct alpha blending, we sort far-to-near actually)
-    const sorted = new Uint32Array(n);
-    for (let i = 0; i < n; i++) {
-        const r = indices[i] >> 24;
-        sorted[offsets[r]++] = i;
-    }
-
-    // Reorder: if things haven't moved much, skip
-    // For now, always reorder
-    const oP = splatPoints.geometry.attributes.position.array;
-    const oS = splatPoints.geometry.attributes.scale.array;
-    const oC = splatPoints.geometry.attributes.color.array;
-    const oR = splatPoints.geometry.attributes.rotation.array;
-
-    const nP = new Float32Array(n*3), nS = new Float32Array(n*3);
-    const nC = new Float32Array(n*4), nR = new Float32Array(n*4);
-
-    // Far to near (reverse bucket order)
-    for (let i = 0; i < n; i++) {
-        const s = sorted[n - 1 - i];
-        const i3 = i*3, s3 = s*3, i4 = i*4, s4 = s*4;
-        nP[i3]=oP[s3]; nP[i3+1]=oP[s3+1]; nP[i3+2]=oP[s3+2];
-        nS[i3]=oS[s3]; nS[i3+1]=oS[s3+1]; nS[i3+2]=oS[s3+2];
-        nC[i4]=oC[s4]; nC[i4+1]=oC[s4+1]; nC[i4+2]=oC[s4+2]; nC[i4+3]=oC[s4+3];
-        nR[i4]=oR[s4]; nR[i4+1]=oR[s4+1]; nR[i4+2]=oR[s4+2]; nR[i4+3]=oR[s4+3];
-    }
-
-    splatPoints.geometry.attributes.position.array = nP;
-    splatPoints.geometry.attributes.position.needsUpdate = true;
-    splatPoints.geometry.attributes.scale.array = nS;
-    splatPoints.geometry.attributes.scale.needsUpdate = true;
-    splatPoints.geometry.attributes.color.array = nC;
-    splatPoints.geometry.attributes.color.needsUpdate = true;
-    splatPoints.geometry.attributes.rotation.array = nR;
-    splatPoints.geometry.attributes.rotation.needsUpdate = true;
-
-    splatPositions = nP;
-}
+viewer.start();
+console.log('✅ GaussianSplats3D Viewer started');
 
 // ============================================================
 // Animation
@@ -576,11 +204,8 @@ function animate() {
     frameCount++;
     fpsTime += dt;
     if (fpsTime >= 1.0) {
-        const fps = Math.round(frameCount / fpsTime);
-        fpsEl.textContent = `FPS: ${fps}`;
-        fpsEl.className = 'fps ' + (fps < 10 ? 'warn' : fps < 30 ? '' : 'good');
-        frameCount = 0;
-        fpsTime = 0;
+        fpsEl.textContent = `FPS: ${Math.round(frameCount / fpsTime)}`;
+        frameCount = 0; fpsTime = 0;
     }
 
     // Movement
@@ -608,28 +233,17 @@ function animate() {
         if (keys['KeyD']) { mx += rgt.x; mz += rgt.z; }
         if (keys['KeyQ']) my -= 1;
         if (keys['KeyE']) my += 1;
-        camera.position.x += mx * 12 * dt;
-        camera.position.y += my * 12 * dt;
-        camera.position.z += mz * 12 * dt;
+        camera.position.x += mx * 5 * dt;
+        camera.position.y += my * 5 * dt;
+        camera.position.z += mz * 5 * dt;
         const dir = new THREE.Vector3(-Math.sin(yaw) * Math.cos(pitch), Math.sin(pitch), -Math.cos(yaw) * Math.cos(pitch));
         camera.lookAt(camera.position.clone().add(dir));
     }
 
-    sortSplats();
     renderer.render(scene, camera);
 }
 
-// ============================================================
-// Start
-// ============================================================
-console.log('3DScene: Init complete, loading splat...');
-loadSplat().then(() => {
-    console.log('3DScene: Starting render loop');
-    animate();
-}).catch(err => {
-    console.error('3DScene: Failed to start', err);
-    showError('初始化失败: ' + err.message);
-});
+animate();
 </script>
 </body>
 </html>
