@@ -2,6 +2,10 @@
 main:
   - title: "Home"
     url: /
+  - title: "小镇"
+    url: /town/
+  - title: "3D场景"
+    url: /3dscene/
   - title: "Publications"
     url: /publications/
   - title: "CV"

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D场景展示 - Z7A的个人空间</title>
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <style>
+        :root { --bg: #0a0a0f; --text: #e0e0e0; --accent: #64b5f6; --panel-bg: rgba(10,10,20,0.85); }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:var(--bg); color:var(--text); overflow:hidden; height:100vh; width:100vw; }
+        canvas { display:block; }
+        .nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:12px 24px; display:flex; align-items:center; gap:24px; background:linear-gradient(180deg,rgba(0,0,0,0.7) 0%,transparent 100%); }
+        .nav a { color:#aaa; text-decoration:none; font-size:14px; transition:color 0.2s; }
+        .nav a:hover { color:#fff; }
+        .nav a.brand { color:#fff; font-weight:600; font-size:16px; margin-right:auto; }
+        .nav a.active { color:var(--accent); }
+        .loading-overlay { position:fixed; inset:0; z-index:200; background:var(--bg); display:flex; flex-direction:column; align-items:center; justify-content:center; transition:opacity 0.5s; }
+        .loading-overlay.hidden { opacity:0; pointer-events:none; }
+        .loader { width:48px; height:48px; border:3px solid #333; border-top-color:var(--accent); border-radius:50%; animation:spin 1s linear infinite; margin-bottom:16px; }
+        @keyframes spin { to { transform:rotate(360deg); } }
+        .loading-text { color:#888; font-size:14px; }
+        .progress-bar { width:240px; height:4px; background:#222; border-radius:2px; margin-top:12px; overflow:hidden; }
+        .progress-fill { height:100%; background:var(--accent); width:0%; transition:width 0.3s; }
+        .hud { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); z-index:100; pointer-events:none; display:flex; flex-direction:column; align-items:center; gap:8px; }
+        .controls-hint { background:var(--panel-bg); border-radius:8px; padding:8px 16px; font-size:12px; color:#888; backdrop-filter:blur(8px); }
+        .controls-hint kbd { background:#333; color:#ccc; padding:2px 6px; border-radius:3px; font-family:monospace; font-size:11px; margin:0 2px; }
+        .info-panel { position:fixed; top:80px; right:16px; z-index:100; background:var(--panel-bg); border-radius:8px; padding:12px 16px; font-size:12px; backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.1); pointer-events:none; }
+        .info-panel .label { color:#666; } .info-panel .value { color:#ccc; margin-left:4px; }
+        .fps { position:fixed; bottom:16px; right:16px; z-index:100; color:#444; font-size:11px; font-family:monospace; }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <a href="/" class="brand">Z7A的个人空间</a>
+    <a href="/">Home</a>
+    <a href="/town/">小镇</a>
+    <a href="/3dscene/" class="active">3D场景</a>
+    <a href="/cv/">CV</a>
+</nav>
+
+<div class="loading-overlay" id="loading">
+    <div class="loader"></div>
+    <div class="loading-text" id="loadingText">加载 3D 场景数据...</div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+
+<div class="hud" id="hud">
+    <div class="controls-hint">
+        <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 移动 &nbsp;
+        <kbd>鼠标拖拽</kbd> 旋转 &nbsp;
+        <kbd>滚轮</kbd> 缩放 &nbsp;
+        <kbd>空格</kbd> 切换模式
+    </div>
+</div>
+
+<div class="info-panel" id="infoPanel">
+    <div><span class="label">场景:</span><span class="value">Living Room (3DGS)</span></div>
+    <div><span class="label">高斯点数:</span><span class="value">430,986</span></div>
+</div>
+
+<div class="fps" id="fpsCounter">FPS: --</div>
+
+<script type="importmap">
+{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+
+// ============================================================
+// DOM
+// ============================================================
+const loadingOverlay = document.getElementById('loading');
+const loadingText = document.getElementById('loadingText');
+const progressFill = document.getElementById('progressFill');
+const hud = document.getElementById('hud');
+const fpsEl = document.getElementById('fpsCounter');
+
+// ============================================================
+// Renderer
+// ============================================================
+const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.0;
+document.body.appendChild(renderer.domElement);
+
+// ============================================================
+// Scene
+// ============================================================
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0d0d1a);
+scene.fog = new THREE.Fog(0x0d0d1a, 40, 100);
+
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 200);
+camera.position.set(0, 0, 20);
+camera.lookAt(0, -5, 0);
+
+// ============================================================
+// Lighting for non-splat objects
+// ============================================================
+scene.add(new THREE.AmbientLight(0x404060, 2.0));
+const dirLight = new THREE.DirectionalLight(0xffffff, 1.0);
+dirLight.position.set(10, 20, 10);
+scene.add(dirLight);
+
+// ============================================================
+// Ground & Grid
+// ============================================================
+const groundGeo = new THREE.PlaneGeometry(100, 100);
+const groundMat = new THREE.MeshStandardMaterial({ color: 0x1a1a2e, roughness: 0.9 });
+const ground = new THREE.Mesh(groundGeo, groundMat);
+ground.rotation.x = -Math.PI / 2;
+ground.position.y = -25;
+ground.receiveShadow = true;
+scene.add(ground);
+
+const grid = new THREE.GridHelper(80, 40, 0x333355, 0x1a1a33);
+grid.position.y = -24.99;
+scene.add(grid);
+
+// ============================================================
+// Character (simple capsule)
+// ============================================================
+const charGroup = new THREE.Group();
+const bodyGeo = new THREE.CapsuleGeometry(0.3, 0.9, 4, 8);
+const bodyMat = new THREE.MeshStandardMaterial({ color: 0x4488ff, roughness: 0.4, metalness: 0.3 });
+const body = new THREE.Mesh(bodyGeo, bodyMat);
+body.position.y = 0.75;
+body.castShadow = true;
+charGroup.add(body);
+const headGeo = new THREE.SphereGeometry(0.22, 16, 16);
+const headMat = new THREE.MeshStandardMaterial({ color: 0xffcc99, roughness: 0.6 });
+const head = new THREE.Mesh(headGeo, headMat);
+head.position.y = 1.55;
+charGroup.add(head);
+// Direction arrow
+const arrowCone = new THREE.ConeGeometry(0.1, 0.25, 8);
+const arrowMesh = new THREE.Mesh(arrowCone, new THREE.MeshStandardMaterial({ color: 0xff4444 }));
+arrowMesh.position.set(0, 0.75, 0.45);
+arrowMesh.rotation.x = -Math.PI / 2;
+charGroup.add(arrowMesh);
+
+charGroup.position.set(0, -24, 0);
+scene.add(charGroup);
+
+// ============================================================
+// State
+// ============================================================
+let mode3rdPerson = true;
+let splatPoints = null;
+let splatCount = 0;
+let splatPositions = null;
+const keys = {};
+let yaw = 0, pitch = 0.3;
+const speed = 8.0;
+const sensitivity = 0.002;
+
+// ============================================================
+// Mouse
+// ============================================================
+let dragging = false;
+let pmx = 0, pmy = 0;
+renderer.domElement.addEventListener('pointerdown', e => {
+    if (e.button === 0 || e.button === 2) { dragging = true; pmx = e.clientX; pmy = e.clientY; }
+});
+window.addEventListener('pointerup', () => { dragging = false; });
+window.addEventListener('pointermove', e => {
+    if (!dragging) return;
+    yaw -= (e.clientX - pmx) * sensitivity;
+    pitch -= (e.clientY - pmy) * sensitivity;
+    pitch = Math.max(-1.5, Math.min(1.5, pitch));
+    pmx = e.clientX; pmy = e.clientY;
+});
+window.addEventListener('wheel', e => {
+    if (mode3rdPerson) return;
+    const fwd = new THREE.Vector3(); camera.getWorldDirection(fwd);
+    camera.position.addScaledVector(fwd, e.deltaY * 0.02);
+});
+
+// ============================================================
+// Keyboard
+// ============================================================
+window.addEventListener('keydown', e => {
+    keys[e.code] = true;
+    if (e.code === 'Space') { e.preventDefault(); mode3rdPerson = !mode3rdPerson; updateModeUI(); }
+});
+window.addEventListener('keyup', e => { keys[e.code] = false; });
+
+function updateModeUI() {
+    hud.style.display = mode3rdPerson ? 'flex' : 'none';
+}
+
+// ============================================================
+// Camera follow
+// ============================================================
+function updateCamera() {
+    if (mode3rdPerson) {
+        const cp = charGroup.position;
+        const dist = 10;
+        const cx = cp.x + Math.sin(yaw) * Math.cos(pitch) * dist;
+        const cy = cp.y + 1.5 + Math.sin(pitch) * dist;
+        const cz = cp.z + Math.cos(yaw) * Math.cos(pitch) * dist;
+        camera.position.set(cx, cy, cz);
+        camera.lookAt(cp.x, cp.y + 1.2, cp.z);
+    }
+}
+
+// ============================================================
+// Resize
+// ============================================================
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    if (splatPoints) {
+        splatPoints.material.uniforms.focal.value = 0.5 * window.innerHeight / Math.tan(0.5 * camera.fov * Math.PI / 180);
+    }
+});
+
+// ============================================================
+// Gaussian Splatting Shaders
+// ============================================================
+const vertShader = /* glsl */ `
+    attribute vec3 position;
+    attribute vec3 scale;
+    attribute vec4 color;
+    attribute vec4 rotation;
+
+    varying vec4 vColor;
+    varying float vScreenRadius;
+    varying vec4 vInvCov;  // [inv00, inv01, inv10, inv11]
+
+    uniform mat4 projectionMatrix;
+    uniform mat4 modelViewMatrix;
+    uniform float focal;
+
+    // quat to rotation matrix
+    mat3 quatToMat3(vec4 q) {
+        float x = q.x, y = q.y, z = q.z, w = q.w;
+        float x2 = x*x, y2 = y*y, z2 = z*z;
+        return mat3(
+            1.0 - 2.0*(y2 + z2), 2.0*(x*y - w*z),     2.0*(x*z + w*y),
+            2.0*(x*y + w*z),     1.0 - 2.0*(x2 + z2), 2.0*(y*z - w*x),
+            2.0*(x*z - w*y),     2.0*(y*z + w*x),     1.0 - 2.0*(x2 + y2)
+        );
+    }
+
+    void main() {
+        vec4 mvPos = modelViewMatrix * vec4(position, 1.0);
+        float depth = -mvPos.z;
+        float pixelScale = focal / max(depth, 0.01);
+
+        // 3D covariance in view space: R * diag(s^2) * R^T
+        mat3 R = quatToMat3(rotation);
+        vec3 s2 = scale * scale;
+
+        // Compute top-left 2x2 of view-space covariance
+        float c00 = R[0][0]*R[0][0]*s2.x + R[0][1]*R[0][1]*s2.y + R[0][2]*R[0][2]*s2.z;
+        float c01 = R[0][0]*R[1][0]*s2.x + R[0][1]*R[1][1]*s2.y + R[0][2]*R[1][2]*s2.z;
+        float c11 = R[1][0]*R[1][0]*s2.x + R[1][1]*R[1][1]*s2.y + R[1][2]*R[1][2]*s2.z;
+
+        // Scale to pixel space
+        float ps2 = pixelScale * pixelScale;
+        c00 = c00 * ps2 + 0.3;  // +epsilon for stability
+        c11 = c11 * ps2 + 0.3;
+        c01 = c01 * ps2;
+
+        // Invert 2x2 matrix
+        float det = c00 * c11 - c01 * c01;
+        float invDet = 1.0 / max(det, 1e-10);
+        float i00 = c11 * invDet;
+        float i01 = -c01 * invDet;
+        float i11 = c00 * invDet;
+
+        vInvCov = vec4(i00, i01, i01, i11);
+
+        // Compute screen radius (3 * sqrt(max eigenvalue))
+        float trace = c00 + c11;
+        float detM = c00 * c11 - c01 * c01;
+        float disc = max(trace * trace - 4.0 * detM, 0.0);
+        float eigMax = (trace + sqrt(disc)) * 0.5;
+        float screenRadius = sqrt(eigMax) * 3.0;
+
+        // Clamp for performance
+        screenRadius = clamp(screenRadius, 0.5, 60.0);
+
+        vScreenRadius = screenRadius;
+        vColor = color;
+
+        gl_Position = projectionMatrix * mvPos;
+        gl_PointSize = screenRadius * 2.0;
+    }
+`;
+
+const fragShader = /* glsl */ `
+    varying vec4 vColor;
+    varying float vScreenRadius;
+    varying vec4 vInvCov;
+
+    void main() {
+        // Pixel offset from sprite center
+        vec2 d = (gl_PointCoord - 0.5) * vScreenRadius * 2.0;
+
+        // Mahalanobis distance: d^T * invCov * d
+        float mdist = d.x * d.x * vInvCov.x +
+                      d.x * d.y * (vInvCov.y + vInvCov.z) +
+                      d.y * d.y * vInvCov.w;
+
+        float alpha = vColor.a * exp(-0.5 * mdist);
+
+        if (alpha < 0.005) discard;
+
+        gl_FragColor = vec4(vColor.rgb, alpha);
+    }
+`;
+
+// ============================================================
+// Load splat
+// ============================================================
+async function loadSplat(url) {
+    loadingText.textContent = '正在下载场景数据...';
+    setProgress(5);
+
+    const resp = await fetch(url);
+    const total = parseInt(resp.headers.get('content-length') || '0');
+    const reader = resp.body.getReader();
+
+    const chunks = [];
+    let received = 0;
+    while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        chunks.push(value);
+        received += value.length;
+        if (total) {
+            setProgress(5 + (received / total) * 30);
+            loadingText.textContent = `下载中... ${(received/1024/1024).toFixed(1)} / ${(total/1024/1024).toFixed(1)} MB`;
+        }
+    }
+
+    const buf = new Uint8Array(received);
+    let off = 0;
+    for (const c of chunks) { buf.set(c, off); off += c.length; }
+
+    loadingText.textContent = '解析高斯数据...';
+    setProgress(40);
+
+    const n = Math.floor(buf.length / 32);
+    const pos = new Float32Array(n * 3);
+    const scl = new Float32Array(n * 3);
+    const col = new Float32Array(n * 4);
+    const rot = new Float32Array(n * 4);
+
+    const dv = new DataView(buf.buffer);
+    for (let i = 0; i < n; i++) {
+        const b = i * 32;
+        pos[i*3]=dv.getFloat32(b,true); pos[i*3+1]=dv.getFloat32(b+4,true); pos[i*3+2]=dv.getFloat32(b+8,true);
+        scl[i*3]=dv.getFloat32(b+12,true); scl[i*3+1]=dv.getFloat32(b+16,true); scl[i*3+2]=dv.getFloat32(b+20,true);
+        col[i*4]=dv.getUint8(b+24)/255; col[i*4+1]=dv.getUint8(b+25)/255; col[i*4+2]=dv.getUint8(b+26)/255; col[i*4+3]=dv.getUint8(b+27)/255;
+        const rx=(dv.getUint8(b+28)-128)/128, ry=(dv.getUint8(b+29)-128)/128, rz=(dv.getUint8(b+30)-128)/128, rw=(dv.getUint8(b+31)-128)/128;
+        const rn=Math.sqrt(rx*rx+ry*ry+rz*rz+rw*rw)||1;
+        rot[i*4]=rx/rn; rot[i*4+1]=ry/rn; rot[i*4+2]=rz/rn; rot[i*4+3]=rw/rn;
+    }
+
+    splatCount = n;
+    splatPositions = pos;
+
+    setProgress(60);
+    loadingText.textContent = '创建渲染管线...';
+
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    geo.setAttribute('scale', new THREE.BufferAttribute(scl, 3));
+    geo.setAttribute('color', new THREE.BufferAttribute(col, 4));
+    geo.setAttribute('rotation', new THREE.BufferAttribute(rot, 4));
+
+    const mat = new THREE.ShaderMaterial({
+        vertexShader: vertShader,
+        fragmentShader: fragShader,
+        uniforms: {
+            focal: { value: 0.5 * window.innerHeight / Math.tan(0.5 * camera.fov * Math.PI / 180) }
+        },
+        transparent: true,
+        depthWrite: false,
+        depthTest: true,
+        blending: THREE.NormalBlending,
+    });
+
+    splatPoints = new THREE.Points(geo, mat);
+    scene.add(splatPoints);
+
+    setProgress(100);
+    loadingText.textContent = '准备就绪!';
+    setTimeout(() => loadingOverlay.classList.add('hidden'), 400);
+    console.log(`3DGS: ${n} splats loaded`);
+}
+
+function setProgress(pct) {
+    progressFill.style.width = Math.min(100, pct) + '%';
+}
+
+// ============================================================
+// Sort (run every 4 frames due to cost)
+// ============================================================
+let sortTick = 0;
+function sortSplats() {
+    if (!splatPoints || !splatPositions) return;
+    sortTick++;
+    if (sortTick % 4 !== 0) return;
+
+    const camPos = new THREE.Vector3(); camera.getWorldPosition(camPos);
+    const n = splatCount;
+
+    // Build depth-index pairs
+    const idx = new Uint32Array(n);
+    const dists = new Float32Array(n);
+    for (let i = 0; i < n; i++) {
+        const dx = splatPositions[i*3] - camPos.x;
+        const dy = splatPositions[i*3+1] - camPos.y;
+        const dz = splatPositions[i*3+2] - camPos.z;
+        dists[i] = dx*dx + dy*dy + dz*dz;
+        idx[i] = i;
+    }
+
+    // Sort indices (far to near)
+    const sorted = Array.from(idx);
+    sorted.sort((a, b) => dists[b] - dists[a]);
+
+    // Get old buffers
+    const oP = splatPoints.geometry.attributes.position.array;
+    const oS = splatPoints.geometry.attributes.scale.array;
+    const oC = splatPoints.geometry.attributes.color.array;
+    const oR = splatPoints.geometry.attributes.rotation.array;
+
+    const nP = new Float32Array(n*3), nS = new Float32Array(n*3), nC = new Float32Array(n*4), nR = new Float32Array(n*4);
+
+    for (let i = 0; i < n; i++) {
+        const s = sorted[i];
+        const i3=i*3, s3=s*3, i4=i*4, s4=s*4;
+        nP[i3]=oP[s3]; nP[i3+1]=oP[s3+1]; nP[i3+2]=oP[s3+2];
+        nS[i3]=oS[s3]; nS[i3+1]=oS[s3+1]; nS[i3+2]=oS[s3+2];
+        nC[i4]=oC[s4]; nC[i4+1]=oC[s4+1]; nC[i4+2]=oC[s4+2]; nC[i4+3]=oC[s4+3];
+        nR[i4]=oR[s4]; nR[i4+1]=oR[s4+1]; nR[i4+2]=oR[s4+2]; nR[i4+3]=oR[s4+3];
+    }
+
+    splatPoints.geometry.attributes.position.array = nP;
+    splatPoints.geometry.attributes.position.needsUpdate = true;
+    splatPoints.geometry.attributes.scale.array = nS;
+    splatPoints.geometry.attributes.scale.needsUpdate = true;
+    splatPoints.geometry.attributes.color.array = nC;
+    splatPoints.geometry.attributes.color.needsUpdate = true;
+    splatPoints.geometry.attributes.rotation.array = nR;
+    splatPoints.geometry.attributes.rotation.needsUpdate = true;
+
+    splatPositions = nP;
+}
+
+// ============================================================
+// Animation
+// ============================================================
+const clock = new THREE.Clock();
+let frameCount = 0, fpsTime = 0;
+
+function animate() {
+    requestAnimationFrame(animate);
+    const dt = Math.min(clock.getDelta(), 0.1);
+
+    // FPS counter
+    frameCount++;
+    fpsTime += dt;
+    if (fpsTime >= 1.0) {
+        fpsEl.textContent = `FPS: ${Math.round(frameCount/fpsTime)}`;
+        frameCount = 0; fpsTime = 0;
+    }
+
+    // Movement
+    const fwd = new THREE.Vector3(-Math.sin(yaw), 0, -Math.cos(yaw));
+    const rgt = new THREE.Vector3(Math.cos(yaw), 0, -Math.sin(yaw));
+
+    if (mode3rdPerson) {
+        let mx = 0, mz = 0;
+        if (keys['KeyW']||keys['ArrowUp']) { mx+=fwd.x; mz+=fwd.z; }
+        if (keys['KeyS']||keys['ArrowDown']) { mx-=fwd.x; mz-=fwd.z; }
+        if (keys['KeyA']||keys['ArrowLeft']) { mx-=rgt.x; mz-=rgt.z; }
+        if (keys['KeyD']||keys['ArrowRight']) { mx+=rgt.x; mz+=rgt.z; }
+        if (mx||mz) {
+            const l = Math.sqrt(mx*mx+mz*mz);
+            charGroup.position.x += mx/l * speed * dt;
+            charGroup.position.z += mz/l * speed * dt;
+            charGroup.rotation.y = Math.atan2(mx/l, mz/l);
+        }
+        charGroup.position.x = Math.max(-28, Math.min(30, charGroup.position.x));
+        charGroup.position.z = Math.max(-24, Math.min(28, charGroup.position.z));
+        updateCamera();
+    } else {
+        let mx=0,mz=0,my=0;
+        if (keys['KeyW']) { mx+=fwd.x; mz+=fwd.z; }
+        if (keys['KeyS']) { mx-=fwd.x; mz-=fwd.z; }
+        if (keys['KeyA']) { mx-=rgt.x; mz-=rgt.z; }
+        if (keys['KeyD']) { mx+=rgt.x; mz+=rgt.z; }
+        if (keys['KeyQ']) my-=1;
+        if (keys['KeyE']) my+=1;
+        camera.position.x += mx * 12 * dt;
+        camera.position.y += my * 12 * dt;
+        camera.position.z += mz * 12 * dt;
+        const dir = new THREE.Vector3(-Math.sin(yaw)*Math.cos(pitch), Math.sin(pitch), -Math.cos(yaw)*Math.cos(pitch));
+        camera.lookAt(camera.position.clone().add(dir));
+    }
+
+    sortSplats();
+    renderer.render(scene, camera);
+}
+
+// ============================================================
+// Init
+// ============================================================
+loadSplat('LivingRoom.splat').then(() => animate());
+</script>
+</body>
+</html>
