@@ -6,7 +6,5 @@ main:
     url: /town/
   - title: "3D场景"
     url: /3dscene/
-  - title: "Publications"
-    url: /publications/
   - title: "CV"
     url: /files/张清安简历.pdf
