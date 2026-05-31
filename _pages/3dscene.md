@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "3DGS场景展示"
+title: ""
 permalink: /3dscene/
 author_profile: false
 classes: wide
