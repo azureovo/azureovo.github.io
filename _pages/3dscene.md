@@ -9,8 +9,8 @@ classes: wide
 <!-- Hero Banner -->
 <div class="gs-hero">
   <div class="gs-hero-content">
-    <h1 class="gs-hero-title">🎬 3DGS 场景展示</h1>
-    <p class="gs-hero-subtitle">基于 3D Gaussian Splatting 技术的实时场景渲染与交互演示。<br>包含网页端与 Unity 引擎两种展示方式。</p>
+    <h1 class="gs-hero-title">🎬 3DGS研究</h1>
+    <p class="gs-hero-subtitle">基于 3D Gaussian Splatting 技术的实时场景渲染与交互演示。<br>包含网页端与 Unity 引擎两种展示方式，及相关研究报告。</p>
     <a href="/" class="gs-hero-back">
       <i class="fas fa-arrow-left"></i> 返回首页
     </a>
@@ -30,6 +30,13 @@ classes: wide
     <div class="gs-card-icon">🎮</div>
     <div class="gs-card-title">Unity 展示</div>
     <div class="gs-card-desc">3DGS 在 Unity 引擎中的集成效果<br>游戏场景交互演示</div>
+    <span class="gs-card-badge">Coming Soon</span>
+  </a>
+
+  <a href="/3dscene/research/" class="gs-card research">
+    <div class="gs-card-icon">📄</div>
+    <div class="gs-card-title">研究报告</div>
+    <div class="gs-card-desc">3DGS 技术调研与实验报告<br>应用场景探索与分析</div>
     <span class="gs-card-badge">Coming Soon</span>
   </a>
 </div>
@@ -158,6 +165,9 @@ classes: wide
 .gs-card.unity::before {
   background: radial-gradient(circle at 50% 0%, rgba(143, 182, 255, 0.12), transparent 70%);
 }
+.gs-card.research::before {
+  background: radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.12), transparent 70%);
+}
 
 .gs-card:hover {
   transform: translateY(-6px);
@@ -212,11 +222,18 @@ classes: wide
   color: #8fb6ff;
   border: 1px solid rgba(143, 182, 255, 0.25);
 }
+.gs-card.research .gs-card-badge {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
 
-.gs-card.unity {
+.gs-card.unity,
+.gs-card.research {
   opacity: 0.55;
 }
-.gs-card.unity:hover {
+.gs-card.unity:hover,
+.gs-card.research:hover {
   opacity: 0.75;
 }
 
