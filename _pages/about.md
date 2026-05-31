@@ -134,6 +134,14 @@ redirect_from:
 
 
 {% include experience-item.html
+   logo="/images/bytedance.png"
+   role="产品经理"
+   company="字节 · 抖音"
+   date="2026.06 - 至今"
+   details="/404code/"
+%}
+
+{% include experience-item.html
    logo="/images/tencent.png"
    role="技术产品"
    company="腾讯IEG · 技术中台 · 服务拓展组"
