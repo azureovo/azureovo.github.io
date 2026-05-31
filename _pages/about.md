@@ -50,6 +50,7 @@ redirect_from:
       <span class="interest-tag"><span class="tag-icon">🎮</span> 游戏产品</span>
       <span class="interest-tag"><span class="tag-icon">🤖</span> AI 产品</span>
       <a href="/books/" class="interest-tag interest-tag--action"><span class="tag-icon">📖</span> 阅读 <i class="fas fa-arrow-right" style="font-size:0.7em; margin-left:2px; opacity:0.6;"></i></a>
+      <a href="/town/" class="interest-tag interest-tag--action"><span class="tag-icon">🏘️</span> 小镇 <i class="fas fa-arrow-right" style="font-size:0.7em; margin-left:2px; opacity:0.6;"></i></a>
     </div>
   </div>
 </div>
