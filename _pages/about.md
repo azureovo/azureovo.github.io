@@ -62,7 +62,7 @@ redirect_from:
 <ul class="news-timeline">
   <li>
     <span class="news-date">2026.06</span>
-    进入<a href="https://www.bytedance.com/zh/">字节抖音</a>，开始暑期产品实习！
+    预计进入<a href="https://www.bytedance.com/zh/">字节抖音</a>，开始暑期产品实习！
   </li>
   <li>
     <span class="news-date">2026.04</span>
