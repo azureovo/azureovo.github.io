@@ -36,7 +36,7 @@
 
       {% if post.venue %}
       <div class="pub-venue">
-        {{ post.venue | replace: "(Highlight)", "<span class='venue-highlight'>Highlight</span>" }}
+        {{ post.venue | replace: "(Highlight)", "<span class='venue-highlight venue-hl'>Highlight</span>" | replace: "(CCF-A)", "<span class='venue-highlight venue-ccf-a'>CCF-A</span>" | replace: "(CCF-B)", "<span class='venue-highlight venue-ccf-b'>CCF-B</span>" }}
         {% if post.date %} ({{ post.date | date: "%Y" }}){% endif %}
       </div>
       {% endif %}
