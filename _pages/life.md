@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "大学生活"
+title: ""
 permalink: /life/
 author_profile: false
 classes: wide
