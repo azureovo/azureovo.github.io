@@ -22,7 +22,7 @@ classes: wide
   <a href="/3dscene/web/" class="gs-card web">
     <div class="gs-card-icon">🌐</div>
     <div class="gs-card-title">网页展示</div>
-    <div class="gs-card-desc">TriSplat Interactive Demo<br>浏览器内实时 3D 场景交互</div>
+    <div class="gs-card-desc">Interactive Demo<br>浏览器内实时 3D 场景交互</div>
     <span class="gs-card-badge">Available</span>
   </a>
 
