@@ -54,7 +54,7 @@ redirect_from:
 </div>
 
 <!-- ========== NEWS ========== -->
-<div class="section-heading">
+<div id="news" class="section-heading">
   <span class="icon">🔥</span> 最新动态
 </div>
 
@@ -84,7 +84,7 @@ redirect_from:
 <div class="section-separator"></div>
 
 <!-- ========== PUBLICATIONS ========== -->
-<div class="section-heading">
+<div id="publications" class="section-heading">
   <span class="icon">📝</span> 学术论文
 </div>
 
@@ -97,7 +97,7 @@ redirect_from:
 <div class="section-separator"></div>
 
 <!-- ========== EDUCATION ========== -->
-<div class="section-heading">
+<div id="education" class="section-heading">
   <span class="icon">🎓</span> 教育背景
 </div>
 
@@ -118,7 +118,7 @@ redirect_from:
 <div class="section-separator"></div>
 
 <!-- ========== EXPERIENCE ========== -->
-<div class="section-heading">
+<div id="experience" class="section-heading">
   <span class="icon">💼</span> 工作经历
 </div>
 
