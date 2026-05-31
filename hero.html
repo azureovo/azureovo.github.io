@@ -269,10 +269,8 @@ window.MathJax = {
     <a href="#motivation" class="nav-link en-only" data-section="motivation">Motivation</a>
     <a href="#method" class="nav-link zh-only" data-section="method">方法框架</a>
     <a href="#method" class="nav-link en-only" data-section="method">Method</a>
-    <a href="#compare" class="nav-link zh-only" data-section="compare">实验对比</a>
-    <a href="#compare" class="nav-link en-only" data-section="compare">Experiments</a>
-    <a href="#ablation" class="nav-link zh-only" data-section="ablation">消融实验</a>
-    <a href="#ablation" class="nav-link en-only" data-section="ablation">Ablation</a>
+    <a href="#advantages" class="nav-link zh-only" data-section="advantages">核心优势</a>
+    <a href="#advantages" class="nav-link en-only" data-section="advantages">Advantages</a>
     <div class="lang-switch" onclick="toggleLang()">
       <span class="lang-btn active" id="btn-zh">中文</span>
       <span class="lang-btn" id="btn-en">EN</span>
@@ -601,138 +599,6 @@ window.MathJax = {
       <strong>VG-HNM (Variance-Gated HNM)</strong> selects high-information training samples by response variance,
       filtering out low-variance no-gradient samples for efficiency;
       <strong>GRPO Training</strong> fuses both into a unified RL objective for end-to-end visually-faithful enhancement.
-    </div>
-  </div>
-
-
-  <!-- ============ SECTION 3: COMPARISON TABLE ============ -->
-  <div class="section" id="compare">
-    <div class="section-header">
-      <div class="section-icon" style="background:rgba(33,150,243,.1);">📊</div>
-      <div>
-        <div class="section-title zh-only">实验结果：全面领先的幻觉抑制效果</div>
-        <div class="section-title en-only">Experiments: State-of-the-Art Hallucination Mitigation</div>
-        <div class="section-desc zh-only">在主流幻觉评测基准上的量化对比</div>
-        <div class="section-desc en-only">Quantitative comparison on mainstream hallucination benchmarks</div>
-      </div>
-    </div>
-
-    <div style="overflow-x:auto;">
-      <table class="comparison-table">
-        <thead>
-          <tr>
-            <th class="zh-only">方法</th>
-            <th class="en-only">Method</th>
-            <th class="zh-only">类型</th>
-            <th class="en-only">Type</th>
-            <th>POPE ↑</th>
-            <th>CHAIR ↓</th>
-            <th>THRONE ↑</th>
-            <th>MMBench ↑</th>
-            <th class="zh-only">备注</th>
-            <th class="en-only">Note</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="method-name">Vanilla LLaVA</td>
-            <td><span class="mini-tag mt-bad" style="font-size:9.5px;">Baseline</span></td>
-            <td>82.1</td><td>14.2</td><td>—</td><td>—</td>
-            <td class="zh-only">原始模型</td><td class="en-only">Original</td>
-          </tr>
-          <tr>
-            <td class="method-name">CoT Tuned</td>
-            <td><span class="mini-tag mt-bad" style="font-size:9.5px;">CoT</span></td>
-            <td>79.5</td><td>18.7</td><td>—</td><td>—</td>
-            <td class="zh-only">幻觉加剧</td><td class="en-only">Worse</td>
-          </tr>
-          <tr>
-            <td class="method-name">VCD</td>
-            <td><span class="tag tag-blue" style="font-size:9.5px;">Uncertainty</span></td>
-            <td>84.3</td><td>12.8</td><td>72.4</td><td>—</td>
-            <td class="zh-only">效果有限</td><td class="en-only">Limited</td>
-          </tr>
-          <tr>
-            <td class="method-name">FoIL</td>
-            <td><span class="tag tag-orange" style="font-size:9.5px;">Contrastive</span></td>
-            <td>85.1</td><td>11.5</td><td>74.8</td><td>—</td>
-            <td class="zh-only">部分改善</td><td class="en-only">Partial</td>
-          </tr>
-          <tr>
-            <td class="method-name">RLHF</td>
-            <td><span class="tag tag-purple" style="font-size:9.5px;">Alignment</span></td>
-            <td>86.0</td><td>10.9</td><td>76.2</td><td>71.5</td>
-            <td class="zh-only">有对齐税</td><td class="en-only">Alignment tax</td>
-          </tr>
-          <tr class="ours-row">
-            <td class="method-name">★ <strong>HERO (Ours)</strong></td>
-            <td><span class="mini-tag mt-good">GRPO+DEP+VG</span></td>
-            <td><strong style="color:var(--green);font-size:15px;">88.7</strong></td>
-            <td><strong style="color:var(--green);font-size:15px;">8.3</strong></td>
-            <td><strong style="color:var(--green);font-size:15px;">80.6</strong></td>
-            <td><strong style="color:var(--green);font-size:15px;">73.8</strong></td>
-            <td><strong class="zh-only">无对齐税</strong></td><td><strong class="en-only">No tax</strong></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-
-  <!-- ============ SECTION 4: ABLATION STUDY ============ -->
-  <div class="section" id="ablation">
-    <div class="section-header">
-      <div class="section-icon" style="background:rgba(156,39,176,.1);">🧪</div>
-      <div>
-        <div class="section-title zh-only">消融实验：每个模块都有贡献</div>
-        <div class="section-title en-only">Ablation Study: Every Module Contributes</div>
-        <div class="section-desc zh-only">逐一移除各模块验证其必要性</div>
-        <div class="section-desc en-only">Removing each module verifies its necessity</div>
-      </div>
-    </div>
-
-    <div style="overflow-x:auto;margin-bottom:24px;">
-      <table class="comparison-table">
-        <thead>
-          <tr>
-            <th class="zh-only">配置</th>
-            <th class="en-only">Config</th>
-            <th>THRONE ↑</th>
-            <th>CHAIR ↓</th>
-            <th class="zh-only">说明</th>
-            <th class="en-only">Note</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="method-name">Vanilla GRPO</td>
-            <td><strong>78.4%</strong></td><td><strong>10.5</strong></td>
-            <td class="zh-only">基线</td><td class="en-only">Baseline</td>
-          </tr>
-          <tr>
-            <td class="method-name">+ DEP (Entropy Weighting)</td>
-            <td><strong>80.6%</strong></td><td>9.1</td>
-            <td class="zh-only">+2.2% | 置信度校准有效</td><td class="en-only">+2.2% | Calibration works</td>
-          </tr>
-          <tr>
-            <td class="method-name">+ VG-HNM (Random 60%)</td>
-            <td>79.2%</td><td>9.8</td>
-            <td class="zh-only">随机采样不如方差门控</td><td class="en-only">Random sampling inferior</td>
-          </tr>
-          <tr>
-            <td class="method-name">+ VG-HNM (Variance Gate)</td>
-            <td><strong>80.6%</strong></td><td>8.7</td>
-            <td class="zh-only">同预算下更优</td><td class="en-only">Better under same budget</td>
-          </tr>
-          <tr class="ours-row">
-            <td class="method-name">★ <strong>HERO (Full)</strong></td>
-            <td><strong style="color:var(--green);font-size:15px;">80.6%</strong></td>
-            <td><strong style="color:var(--green);font-size:15px;">8.3</strong></td>
-            <td><strong class="zh-only">三模块协同最优</strong></td>
-            <td><strong class="en-only">Full system optimal</strong></td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </div>
 
