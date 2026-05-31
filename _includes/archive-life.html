@@ -12,40 +12,30 @@
   {% assign title = post.title %}
 {% endif %}
 
-<div class="{{ include.type | default: "list" }}__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    {% if include.type == "grid" and teaser %}
-      <div class="archive__item-teaser">
-        <img src=
-          {% if teaser contains "://" %}
-            "{{ teaser }}"
-          {% else %}
-            "{{ teaser | prepend: base_path }}"
-          {% endif %}
-          alt="">
-      </div>
-    {% endif %}
+<div class="life-card">
+  
+  {% if teaser %}
+  <div class="life-card-image">
+    <img src="{% if teaser contains '://' %}{{ teaser }}{% else %}{{ teaser | prepend: base_path }}{% endif %}" alt="{{ title }}">
+  </div>
+  {% endif %}
 
-    <h2 class="archive__item-title" itemprop="headline">
-      {{ title }}
-    </h2>
+  <div class="life-card-body">
+    <h3 class="life-card-title">{{ title }}</h3>
     
-    <p class="page__meta" style="margin-top: 5px; text-align: center !important; color: #aaa !important;">
-      <i class="far fa-calendar-alt" aria-hidden="true"></i> 
-      
-      {% if post.duration %}
-         <strong>{{ post.duration }}</strong>
-      {% elsif post.date %}
-         <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
-      {% endif %}
-    </p>
-
     {% if post.excerpt %}
-      <p class="archive__item-excerpt" itemprop="description">
-        {{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}
-      </p>
+      <p class="life-card-excerpt">{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}</p>
     {% endif %}
 
-  </article>
+    {% if post.duration %}
+      <span class="life-card-date">
+        <i class="fas fa-calendar-alt"></i> {{ post.duration }}
+      </span>
+    {% elsif post.date %}
+      <span class="life-card-date">
+        <i class="fas fa-calendar-alt"></i> {{ post.date | date: "%Y.%m" }}
+      </span>
+    {% endif %}
+  </div>
+
 </div>
