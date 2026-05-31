@@ -40,7 +40,7 @@ redirect_from:
 
     <div class="hero-bio">
       <p>
-        我是<a href="https://cse.sysu.edu.cn/">中山大学计算机学院</a>（CSE）<a href="https://www.sysu-imsl.com/">智能与多媒体科学实验室</a>（2027应届）硕士生，师从<a href="https://cse.sysu.edu.cn/teacher/GaoChengying">高成英教授</a>。此前，我在<a href="https://sise.uestc.edu.cn/">电子科技大学信软学院</a>完成了本科学业。我的研究兴趣主要集中在非受控极端场景物体三维重建、多模态幻觉缓解等方向。我同时有丰富的产品从事经验且热爱产品岗职，目前正在寻找AI产品相关岗位。
+        我是<a href="https://cse.sysu.edu.cn/">中山大学计算机学院</a>（CSE）2027应届硕士生。此前，我在<a href="https://sise.uestc.edu.cn/">电子科技大学信软学院</a>完成了本科学业。我的研究兴趣主要集中在非受控极端场景物体三维重建、多模态幻觉缓解等方向。我同时有丰富的产品从事经验且热爱产品岗职，目前正在寻找AI产品相关岗位。
       </p>
     </div>
 
@@ -49,27 +49,32 @@ redirect_from:
       <span class="interest-tag"><span class="tag-icon">🧠</span> 多模态大模型</span>
       <span class="interest-tag"><span class="tag-icon">🎮</span> 游戏产品</span>
       <span class="interest-tag"><span class="tag-icon">🤖</span> AI 产品</span>
+      <a href="/books/" class="interest-tag interest-tag--action"><span class="tag-icon">📖</span> 阅读 <i class="fas fa-arrow-right" style="font-size:0.7em; margin-left:2px; opacity:0.6;"></i></a>
     </div>
   </div>
 </div>
 
 <!-- ========== NEWS ========== -->
-<div id="news" class="section-heading">
+<div class="section-heading" id="news">
   <span class="icon">🔥</span> 最新动态
 </div>
 
 <ul class="news-timeline">
+  <li>
+    <span class="news-date">2026.04</span>
+    🎉 一作论文 <strong>IR-HGP</strong> 被 <strong>CVPR 2026</strong> 接收为 <span style="background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em;">Highlight</span> ！
+  </li>
   <li>
     <span class="news-date">2026.02</span>
     进入<a href="https://ieg.tencent.com/2023/index.html">腾讯IEG</a>，开始技术产品工作！
   </li>
   <li>
     <span class="news-date">2025.12</span>
-    给<a href="https://www.yuanshen.com/#/">米哈游</a>外包产策一年了！
+    给<a href="https://www.yuanshen.com/#/">米哈游</a>外包产策半年了！
   </li>
   <li>
     <span class="news-date">2025.09</span>
-    当上了中山大学计算机学院量子计算与软件所研究生第二党支部组织委员。
+    成为中山大学计算机学院量子计算与软件所研究生第二党支部组织委员。
   </li>
   <li>
     <span class="news-date">2024.12</span>
@@ -84,7 +89,7 @@ redirect_from:
 <div class="section-separator"></div>
 
 <!-- ========== PUBLICATIONS ========== -->
-<div id="publications" class="section-heading">
+<div class="section-heading" id="publications">
   <span class="icon">📝</span> 学术论文
 </div>
 
@@ -97,7 +102,7 @@ redirect_from:
 <div class="section-separator"></div>
 
 <!-- ========== EDUCATION ========== -->
-<div id="education" class="section-heading">
+<div class="section-heading" id="education">
   <span class="icon">🎓</span> 教育背景
 </div>
 
@@ -118,22 +123,24 @@ redirect_from:
 <div class="section-separator"></div>
 
 <!-- ========== EXPERIENCE ========== -->
-<div id="experience" class="section-heading">
+<div class="section-heading" id="experience">
   <span class="icon">💼</span> 工作经历
 </div>
+
+
 
 {% include experience-item.html
    logo="/images/tencent.png"
    role="技术产品"
-   company="腾讯互娱 (IEG) · 服务拓展组"
-   date="2026.02 - 至今"
+   company="腾讯IEG · 技术中台 · 服务拓展组"
+   date="2026.02 - 2026.04"
    details="/404code/"
 %}
 
 {% include experience-item.html
    logo="/images/mhylogo.png"
-   role="产品体验分析与策略优化"
-   company="米哈游 (MiHoYo) · AI功能测试组"
+   role="产品分析与策略优化"
+   company="米哈游 · 在研游戏 · 功能测试组"
    date="2025.06 - 2025.12"
    details="/404code/"
 %}
@@ -182,6 +189,9 @@ redirect_from:
     📜 其他荣誉
   </a>
 </div>
+
+<!-- ========== Sparkle FX Visual Effects ========== -->
+<script src="{{ base_path }}/assets/js/sparkle-fx.js"></script>
 
 <!-- ========== Back-to-top + Scroll Animation Script ========== -->
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
