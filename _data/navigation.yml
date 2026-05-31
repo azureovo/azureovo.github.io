@@ -2,7 +2,7 @@
 main:
   - title: "Home"
     url: /
-  - title: "3DGS研究"
+  - title: "3DGS"
     url: /3dscene/
   - title: "CV"
     url: /files/张清安简历.pdf
