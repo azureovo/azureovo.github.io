@@ -5,35 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D场景展示 - Z7A的个人空间</title>
     <link rel="icon" type="image/svg+xml" href="https://azureovo.github.io/images/favicon.svg">
-    
-    <!-- Base URL: make all relative fetch() calls resolve to lhmd.top -->
+
+    <!-- Base URL: redirect all relative fetch() calls to TriSplat origin -->
     <base href="https://lhmd.top/trisplat/">
-    
-    <!-- TriSplat demo styles (remote, keeps demo looking correct) -->
-    <link rel="stylesheet" href="https://lhmd.top/trisplat/styles.css?v=29">
-    
+
     <style>
-        /* Override TriSplat page-level styles for our clean wrapper */
+        /* ============================================================
+           Global reset & base
+           ============================================================ */
         :root {
             --bg: #0a0b0a;
-            --text: #f3efe4;
-            --muted: #b2b0a6;
-            --accent: #62dfca;
+            --text: #f5efe2;
+            --muted: #b9b5a8;
+            --accent: #5ce2c7;
+            --accent-2: #dcae5a;
+            --danger: #ff7a62;
+            --panel: rgba(13, 17, 15, 0.88);
+            --line: rgba(245, 239, 226, 0.13);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #0a0b0a;
-            color: var(--text);
-            overflow: hidden;
-            height: 100vh;
+        html, body {
             width: 100vw;
-            min-width: 0;
+            height: 100vh;
+            overflow: hidden;
+            background: #080a09;
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', ui-sans-serif, sans-serif;
+            font-size: 14px;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* ---- Site Navigation ---- */
+        /* Kill all TriSplat page-level pseudo-element leaks */
+        body::before, body::after,
+        .mesh-gradient, .mesh-gradient::before, .mesh-gradient::after,
+        section:not(#playground), .hero, .hero-video-section, .site-header,
+        footer, .brand-mark, .viewer-heading, .method-grid, .result-gallery,
+        .bib-card, .media-caption, .mesh-group, .mesh-rail-shell {
+            display: none !important;
+            position: absolute !important;
+            width: 0 !important;
+            height: 0 !important;
+            overflow: hidden !important;
+            pointer-events: none !important;
+        }
+
+        /* ============================================================
+           Site Navigation (overlay)
+           ============================================================ */
         .nav {
             position: fixed;
             top: 0;
@@ -44,11 +68,11 @@
             display: flex;
             align-items: center;
             gap: 24px;
-            background: linear-gradient(180deg, rgba(10,11,10,0.92) 0%, transparent 100%);
+            background: linear-gradient(180deg, rgba(8,10,9,0.94) 0%, transparent 100%);
             pointer-events: none;
         }
         .nav a {
-            color: #aaa;
+            color: #888;
             text-decoration: none;
             font-size: 14px;
             transition: color 0.2s;
@@ -61,27 +85,11 @@
             font-size: 16px;
             margin-right: auto;
         }
-        .nav a.active { color: #62dfca; }
+        .nav a.active { color: var(--accent); }
 
-        /* ---- Attribution ---- */
-        .attribution {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 50;
-            font-size: 12px;
-            color: rgba(255,255,255,0.4);
-            pointer-events: none;
-        }
-        .attribution a {
-            color: rgba(255,255,255,0.5);
-            pointer-events: auto;
-            text-decoration: none;
-        }
-        .attribution a:hover { color: rgba(255,255,255,0.8); }
-
-        /* ---- Demo stage fills entire viewport ---- */
+        /* ============================================================
+           Demo Stage (full viewport)
+           ============================================================ */
         .teaser-sim-stage {
             position: fixed;
             inset: 0;
@@ -89,93 +97,155 @@
             height: 100vh;
         }
 
-        /* Ensure canvas fills stage */
         #teaserCanvas {
+            display: block;
             width: 100%;
             height: 100%;
-            display: block;
         }
 
-        /* Keep sim-status visible and centered */
+        /* ============================================================
+           Status chip (JS sets .is-hidden / .is-error)
+           ============================================================ */
         .sim-status {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 14px;
+            left: 18px;
             z-index: 10;
-            color: rgba(255,255,255,0.7);
-            font-size: 16px;
+            max-width: calc(100% - 72px);
+            padding: 9px 14px;
+            font-size: 0.86rem;
+            font-weight: 750;
+            color: #06100f;
+            border-radius: 999px;
+            background: rgba(92, 226, 199, 0.94);
             pointer-events: none;
+            white-space: nowrap;
         }
         .sim-status.is-hidden { display: none; }
-        .sim-status.is-error { color: #ff8068; }
+        .sim-status.is-error {
+            color: #fff;
+            background: rgba(255, 122, 98, 0.94);
+        }
 
-        /* FPV window */
+        /* ============================================================
+           FPV label & window
+           ============================================================ */
         .fpv-label {
             position: absolute;
-            top: 80px;
-            left: 16px;
+            top: 14px;
+            right: 14px;
             z-index: 10;
-        }
-        .fpv-window {
-            position: absolute;
-            top: 100px;
-            left: 16px;
-            z-index: 10;
+            width: min(48vw, 240px);
+            display: flex;
+            align-items: center;
+            padding: 0 13px;
+            height: 34px;
+            font-size: 0.76rem;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #dff4ee;
+            border: 1px solid rgba(245, 239, 226, 0.28);
+            border-bottom: 0;
+            border-radius: 6px 6px 0 0;
+            background: rgba(4, 12, 13, 0.72);
+            pointer-events: none;
         }
 
-        /* HUD */
+        .fpv-window {
+            position: absolute;
+            top: 48px;
+            right: 14px;
+            z-index: 10;
+            width: min(48vw, 240px);
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            border: 1px solid rgba(92, 226, 199, 0.36);
+            border-top: 0;
+            border-radius: 0 0 6px 6px;
+            background: #071114;
+            pointer-events: none;
+        }
+
+        #fpvCanvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ============================================================
+           HUD (agent name + speed, bottom-left)
+           ============================================================ */
         .sim-hud {
             position: absolute;
             bottom: 80px;
-            left: 16px;
+            left: 18px;
             z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text);
+            pointer-events: none;
+            text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+        }
+        .sim-hud span + span {
+            color: var(--muted);
+            font-size: 0.82rem;
         }
 
-        /* Controls panel */
+        /* ============================================================
+           Bottom controls bar (flex, centered)
+           ============================================================ */
         .sim-controls {
             position: absolute;
-            bottom: 20px;
+            bottom: 16px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
+            justify-content: center;
             gap: 10px;
             padding: 10px 16px;
-            background: rgba(20, 23, 21, 0.84);
-            border: 1px solid rgba(237, 247, 243, 0.14);
+            background: var(--panel);
+            border: 1px solid var(--line);
             border-radius: 12px;
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(14px);
+            max-width: calc(100vw - 32px);
         }
 
+        /* ---- Agent spawn buttons ---- */
         .agent-switch {
             display: flex;
             gap: 6px;
         }
 
         .agent-button {
-            min-height: 36px;
-            padding: 0 12px;
+            min-height: 38px;
+            padding: 0 14px;
             font-size: 13px;
+            font-family: inherit;
             color: var(--text);
-            border: 1px solid rgba(237, 247, 243, 0.18);
+            border: 1px solid var(--line);
             border-radius: 999px;
-            background: rgba(237, 247, 243, 0.06);
+            background: rgba(245, 239, 226, 0.06);
             cursor: pointer;
-            transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+            transition: transform 0.18s, border-color 0.18s, background 0.18s;
+            white-space: nowrap;
         }
         .agent-button:hover {
             transform: translateY(-1px);
-            border-color: rgba(98, 223, 202, 0.55);
-            background: rgba(98, 223, 202, 0.11);
+            border-color: rgba(92, 226, 199, 0.55);
+            background: rgba(92, 226, 199, 0.11);
         }
         .agent-button.is-active {
             border-color: var(--accent);
-            background: rgba(98, 223, 202, 0.18);
+            background: rgba(92, 226, 199, 0.18);
+            color: var(--accent);
         }
 
+        /* ---- Scene selector ---- */
         .scene-select {
             display: flex;
             align-items: center;
@@ -184,72 +254,180 @@
         .scene-select span {
             font-size: 13px;
             color: var(--muted);
+            white-space: nowrap;
         }
         .scene-select select {
-            min-height: 36px;
+            min-height: 38px;
             padding: 0 10px;
             font-size: 13px;
+            font-family: inherit;
             color: var(--text);
-            border: 1px solid rgba(237, 247, 243, 0.18);
+            border: 1px solid var(--line);
             border-radius: 8px;
-            background: rgba(237, 247, 243, 0.06);
+            background: rgba(245, 239, 226, 0.06);
             cursor: pointer;
+            outline: none;
+        }
+        .scene-select select:focus {
+            border-color: var(--accent);
         }
 
+        /* ---- Agent roster chips (empty by default, JS populates) ---- */
         .agent-roster {
             display: flex;
+            flex-wrap: wrap;
             gap: 6px;
+            min-height: 0;
+        }
+        .agent-roster:empty {
+            display: none;
         }
 
+        /* ---- Mark Position button ---- */
+        #dropBeacon {
+            min-height: 38px;
+            padding: 0 16px;
+            font-size: 13px;
+            font-family: inherit;
+            color: var(--text);
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: rgba(245, 239, 226, 0.06);
+            cursor: pointer;
+            transition: transform 0.18s, border-color 0.18s, background 0.18s;
+            white-space: nowrap;
+        }
+        #dropBeacon:hover {
+            transform: translateY(-1px);
+            border-color: rgba(92, 226, 199, 0.55);
+            background: rgba(92, 226, 199, 0.11);
+        }
+
+        /* ---- Drive pad (3x2 grid) ---- */
         .drive-pad {
             display: grid;
-            grid-template-columns: repeat(3, 36px);
-            grid-template-rows: repeat(2, 36px);
-            gap: 4px;
+            grid-template-columns: repeat(3, 38px);
+            grid-template-rows: repeat(2, 38px);
+            gap: 5px;
         }
         .drive-pad button {
-            width: 36px;
-            height: 36px;
-            font-size: 14px;
+            width: 38px;
+            height: 38px;
+            font-size: 15px;
+            font-family: inherit;
             color: var(--text);
-            border: 1px solid rgba(237, 247, 243, 0.18);
+            border: 1px solid var(--line);
             border-radius: 6px;
-            background: rgba(237, 247, 243, 0.06);
+            background: rgba(245, 239, 226, 0.06);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 180ms ease;
+            transition: background 0.18s;
         }
         .drive-pad button:hover {
-            background: rgba(98, 223, 202, 0.14);
+            background: rgba(92, 226, 199, 0.16);
+        }
+        .drive-pad button:active {
+            background: rgba(92, 226, 199, 0.28);
         }
 
-        .button.compact {
-            min-height: 36px;
-            padding: 0 14px;
-            font-size: 13px;
+        /* ---- Roster chips (dynamically created by JS) ---- */
+        .roster-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            font-size: 12px;
             color: var(--text);
-            border: 1px solid rgba(237, 247, 243, 0.18);
+            border: 1px solid var(--line);
             border-radius: 999px;
-            background: rgba(237, 247, 243, 0.06);
+            background: rgba(245, 239, 226, 0.06);
             cursor: pointer;
-            transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+            transition: border-color 0.18s, background 0.18s;
         }
-        .button.compact:hover {
-            transform: translateY(-1px);
-            border-color: rgba(98, 223, 202, 0.55);
-            background: rgba(98, 223, 202, 0.11);
+        .roster-chip:hover {
+            border-color: var(--accent);
+            background: rgba(92, 226, 199, 0.1);
+        }
+        .roster-chip.is-active {
+            border-color: var(--accent);
+            background: rgba(92, 226, 199, 0.18);
+            color: var(--accent);
         }
 
-        /* Hide TriSplat page-level elements that might leak via CSS */
-        .site-header, .hero, .hero-video-section, .mesh-gradient,
-        section:not(.interactive-section), footer, .brand-mark {
-            display: none !important;
+        /* ---- Beacons (position markers created by JS) ---- */
+        .beacon-marker {
+            position: absolute;
+            pointer-events: none;
+            color: var(--accent-2);
+            font-size: 0.85rem;
+        }
+
+        /* ============================================================
+           Attribution
+           ============================================================ */
+        .attribution {
+            position: fixed;
+            bottom: 102px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            font-size: 11px;
+            color: rgba(255,255,255,0.3);
+            pointer-events: none;
+            text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+        }
+        .attribution a {
+            color: rgba(255,255,255,0.4);
+            pointer-events: auto;
+            text-decoration: none;
+        }
+        .attribution a:hover { color: rgba(255,255,255,0.7); }
+
+        /* ============================================================
+           Responsive tweaks
+           ============================================================ */
+        @media (max-width: 900px) {
+            .fpv-label, .fpv-window {
+                width: calc(100vw - 28px);
+            }
+            .sim-controls {
+                gap: 6px;
+                padding: 8px 10px;
+            }
+            .agent-button {
+                min-height: 34px;
+                padding: 0 10px;
+                font-size: 12px;
+            }
+            .drive-pad {
+                grid-template-columns: repeat(3, 34px);
+                grid-template-rows: repeat(2, 34px);
+                gap: 4px;
+            }
+            .drive-pad button {
+                width: 34px;
+                height: 34px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav {
+                padding: 8px 14px;
+                gap: 12px;
+            }
+            .nav a { font-size: 12px; }
+            .nav a.brand { font-size: 14px; }
+            .sim-controls {
+                padding: 6px 8px;
+                gap: 4px;
+            }
         }
     </style>
 
-    <!-- Import map: Three.js from TriSplat's exact vendor version -->
+    <!-- Import map: Three.js vendor from TriSplat's bundle -->
     <script type="importmap">
     {
         "imports": {
@@ -321,7 +499,7 @@
 
         <div class="agent-roster" id="agentRoster" role="group" aria-label="Active agents"></div>
 
-        <button class="button compact" id="dropBeacon" type="button">Mark Position</button>
+        <button id="dropBeacon" type="button">Mark Position</button>
 
         <div class="drive-pad" aria-label="Drive pad">
             <button type="button" data-drive="rotate-left" aria-label="Rotate left">↶</button>
@@ -338,7 +516,7 @@
     Demo powered by <a href="https://lhmd.top/trisplat/" target="_blank" rel="noopener">TriSplat</a>
 </div>
 
-<!-- Load TriSplat interactive demo engine from source -->
+<!-- Load TriSplat interactive demo engine -->
 <script type="module" src="https://lhmd.top/trisplat/teaser-sim.js?v=36"></script>
 
 </body>
