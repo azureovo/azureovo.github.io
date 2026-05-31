@@ -36,8 +36,8 @@
 
       {% if post.venue %}
       <div class="pub-venue">
-        {{ post.venue | replace: "(Highlight)", "<span class='venue-highlight venue-hl'>Highlight</span>" | replace: "(CCF-A)", "<span class='venue-highlight venue-ccf-a'>CCF-A</span>" | replace: "(CCF-B)", "<span class='venue-highlight venue-ccf-b'>CCF-B</span>" | replace: "(CVPR)", "<span class='venue-highlight venue-cvpr'>CVPR</span>" | replace: "(ECCV)", "<span class='venue-highlight venue-eccv'>ECCV</span>" }}
-        {% if post.date %} ({{ post.date | date: "%Y" }}){% endif %}
+        {{ post.venue | replace: "(Highlight)", "<span class='venue-highlight venue-hl'>Highlight</span>" | replace: "(CCF-A)", "<span class='venue-highlight venue-ccf-a'>CCF-A</span>" | replace: "(CCF-B)", "<span class='venue-highlight venue-ccf-b'>CCF-B</span>" | replace: "(CVPR)", "<span class='venue-highlight venue-cvpr'>CVPR</span>" | replace: "(ECCV)", "<span class='venue-highlight venue-eccv'>ECCV</span>" | replace: "(Under Review)", "<span class='venue-highlight venue-ur'>Under Review</span>" }}
+        {% if post.date %} <span class="venue-year">({{ post.date | date: "%Y" }})</span>{% endif %}
       </div>
       {% endif %}
     </div>
