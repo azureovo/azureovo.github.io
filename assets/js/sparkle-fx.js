@@ -351,7 +351,7 @@
     StarBurst.init();         // ① Click star burst
     ParticleTrail.init();     // ② Cursor particle trail
     FloatingSparkles.init();  // ③ Hero floating sparkles
-    ButtonRipple.init();      // ④ Button ripple
+    // ButtonRipple.init();      // ④ Button ripple (disabled - causes zoom flash)
     TextShimmer.init();       // ⑤ Text shimmer
     ScrollRevealFX.init();   // ⑥ Scroll reveal enhancement
   }
