@@ -267,7 +267,7 @@
 
     onClick(e) {
       const btn = e.target.closest(
-        '.life-btn, .pub-link, .card-badge, .interest-tag--action, .back-to-top, .back-to-home-btn'
+        '.life-btn, .pub-link, .card-badge, .back-to-top, .back-to-home-btn'
       );
       if (!btn) return;
 
