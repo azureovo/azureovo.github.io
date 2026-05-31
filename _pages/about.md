@@ -190,9 +190,6 @@ redirect_from:
   </a>
 </div>
 
-<!-- ========== Sparkle FX Visual Effects ========== -->
-<script src="{{ base_path }}/assets/js/sparkle-fx.js"></script>
-
 <!-- ========== Back-to-top + Scroll Animation Script ========== -->
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
   <i class="fas fa-arrow-up"></i>
