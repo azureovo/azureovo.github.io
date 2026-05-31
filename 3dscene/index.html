@@ -5,25 +5,259 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D场景展示 - Z7A的个人空间</title>
     <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    
+    <!-- TriSplat demo styles (remote, keeps demo looking correct) -->
+    <link rel="stylesheet" href="https://lhmd.top/trisplat/styles.css?v=29">
+    
     <style>
-        :root { --bg: #0a0a0f; --text: #e0e0e0; --accent: #64b5f6; --panel-bg: rgba(10,10,20,0.85); }
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:var(--bg); color:var(--text); overflow:hidden; height:100vh; width:100vw; }
-        .nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:12px 24px; display:flex; align-items:center; gap:24px; background:linear-gradient(180deg,rgba(0,0,0,0.7) 0%,transparent 100%); }
-        .nav a { color:#aaa; text-decoration:none; font-size:14px; transition:color 0.2s; }
-        .nav a:hover { color:#fff; }
-        .nav a.brand { color:#fff; font-weight:600; font-size:16px; margin-right:auto; }
-        .nav a.active { color:var(--accent); }
-        .hud { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); z-index:100; pointer-events:none; display:flex; flex-direction:column; align-items:center; gap:8px; }
-        .controls-hint { background:var(--panel-bg); border-radius:8px; padding:8px 16px; font-size:12px; color:#888; backdrop-filter:blur(8px); }
-        .controls-hint kbd { background:#333; color:#ccc; padding:2px 6px; border-radius:3px; font-family:monospace; font-size:11px; margin:0 2px; }
-        .info-panel { position:fixed; top:80px; right:16px; z-index:100; background:var(--panel-bg); border-radius:8px; padding:12px 16px; font-size:12px; backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.1); pointer-events:none; }
-        .info-panel .label { color:#666; } .info-panel .value { color:#ccc; margin-left:4px; }
-        .fps { position:fixed; bottom:16px; right:16px; z-index:100; font-size:11px; font-family:monospace; color:#666; }
+        /* Override TriSplat page-level styles for our clean wrapper */
+        :root {
+            --bg: #0a0b0a;
+            --text: #f3efe4;
+            --muted: #b2b0a6;
+            --accent: #62dfca;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0b0a;
+            color: var(--text);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            min-width: 0;
+        }
+
+        /* ---- Site Navigation ---- */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            background: linear-gradient(180deg, rgba(10,11,10,0.92) 0%, transparent 100%);
+            pointer-events: none;
+        }
+        .nav a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+            pointer-events: auto;
+        }
+        .nav a:hover { color: #fff; }
+        .nav a.brand {
+            color: #fff;
+            font-weight: 600;
+            font-size: 16px;
+            margin-right: auto;
+        }
+        .nav a.active { color: #62dfca; }
+
+        /* ---- Attribution ---- */
+        .attribution {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 50;
+            font-size: 12px;
+            color: rgba(255,255,255,0.4);
+            pointer-events: none;
+        }
+        .attribution a {
+            color: rgba(255,255,255,0.5);
+            pointer-events: auto;
+            text-decoration: none;
+        }
+        .attribution a:hover { color: rgba(255,255,255,0.8); }
+
+        /* ---- Demo stage fills entire viewport ---- */
+        .teaser-sim-stage {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* Ensure canvas fills stage */
+        #teaserCanvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Keep sim-status visible and centered */
+        .sim-status {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            color: rgba(255,255,255,0.7);
+            font-size: 16px;
+            pointer-events: none;
+        }
+        .sim-status.is-hidden { display: none; }
+        .sim-status.is-error { color: #ff8068; }
+
+        /* FPV window */
+        .fpv-label {
+            position: absolute;
+            top: 80px;
+            left: 16px;
+            z-index: 10;
+        }
+        .fpv-window {
+            position: absolute;
+            top: 100px;
+            left: 16px;
+            z-index: 10;
+        }
+
+        /* HUD */
+        .sim-hud {
+            position: absolute;
+            bottom: 80px;
+            left: 16px;
+            z-index: 10;
+        }
+
+        /* Controls panel */
+        .sim-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px;
+            background: rgba(20, 23, 21, 0.84);
+            border: 1px solid rgba(237, 247, 243, 0.14);
+            border-radius: 12px;
+            backdrop-filter: blur(12px);
+        }
+
+        .agent-switch {
+            display: flex;
+            gap: 6px;
+        }
+
+        .agent-button {
+            min-height: 36px;
+            padding: 0 12px;
+            font-size: 13px;
+            color: var(--text);
+            border: 1px solid rgba(237, 247, 243, 0.18);
+            border-radius: 999px;
+            background: rgba(237, 247, 243, 0.06);
+            cursor: pointer;
+            transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+        }
+        .agent-button:hover {
+            transform: translateY(-1px);
+            border-color: rgba(98, 223, 202, 0.55);
+            background: rgba(98, 223, 202, 0.11);
+        }
+        .agent-button.is-active {
+            border-color: var(--accent);
+            background: rgba(98, 223, 202, 0.18);
+        }
+
+        .scene-select {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .scene-select span {
+            font-size: 13px;
+            color: var(--muted);
+        }
+        .scene-select select {
+            min-height: 36px;
+            padding: 0 10px;
+            font-size: 13px;
+            color: var(--text);
+            border: 1px solid rgba(237, 247, 243, 0.18);
+            border-radius: 8px;
+            background: rgba(237, 247, 243, 0.06);
+            cursor: pointer;
+        }
+
+        .agent-roster {
+            display: flex;
+            gap: 6px;
+        }
+
+        .drive-pad {
+            display: grid;
+            grid-template-columns: repeat(3, 36px);
+            grid-template-rows: repeat(2, 36px);
+            gap: 4px;
+        }
+        .drive-pad button {
+            width: 36px;
+            height: 36px;
+            font-size: 14px;
+            color: var(--text);
+            border: 1px solid rgba(237, 247, 243, 0.18);
+            border-radius: 6px;
+            background: rgba(237, 247, 243, 0.06);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 180ms ease;
+        }
+        .drive-pad button:hover {
+            background: rgba(98, 223, 202, 0.14);
+        }
+
+        .button.compact {
+            min-height: 36px;
+            padding: 0 14px;
+            font-size: 13px;
+            color: var(--text);
+            border: 1px solid rgba(237, 247, 243, 0.18);
+            border-radius: 999px;
+            background: rgba(237, 247, 243, 0.06);
+            cursor: pointer;
+            transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+        }
+        .button.compact:hover {
+            transform: translateY(-1px);
+            border-color: rgba(98, 223, 202, 0.55);
+            background: rgba(98, 223, 202, 0.11);
+        }
+
+        /* Hide TriSplat page-level elements that might leak via CSS */
+        .site-header, .hero, .hero-video-section, .mesh-gradient,
+        section:not(.interactive-section), footer, .brand-mark {
+            display: none !important;
+        }
     </style>
+
+    <!-- Import map: Three.js from TriSplat's exact vendor version -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://lhmd.top/trisplat/assets/vendor/three/build/three.module.js"
+        }
+    }
+    </script>
 </head>
 <body>
 
+<!-- Site Navigation -->
 <nav class="nav">
     <a href="/" class="brand">Z7A的个人空间</a>
     <a href="/">Home</a>
@@ -32,218 +266,77 @@
     <a href="/cv/">CV</a>
 </nav>
 
-<div class="hud" id="hud">
-    <div class="controls-hint">
-        <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 移动 &nbsp;
-        <kbd>鼠标拖拽</kbd> 旋转 &nbsp;
-        <kbd>滚轮</kbd> 缩放 &nbsp;
-        <kbd>空格</kbd> 切换模式
+<!-- ============================================================ -->
+<!-- Interactive Demo (TriSplat)                                   -->
+<!-- ============================================================ -->
+<div class="teaser-sim-stage">
+    <canvas id="teaserCanvas" tabindex="0"
+        aria-label="Interactive robot playground with live first-person viewport"
+        data-runtime-scene="dl3dv-1"
+        data-runtime-camera-height-scale="1">
+    </canvas>
+
+    <div class="sim-status" id="teaserStatus">Loading scene...</div>
+
+    <div class="fpv-label" aria-hidden="true">Live FPV</div>
+    <div class="fpv-window" id="fpvWindow" aria-hidden="true">
+        <canvas id="fpvCanvas"></canvas>
+    </div>
+
+    <div class="sim-hud" aria-hidden="true">
+        <span id="teaserAgentName">Humanoid Robot</span>
+        <span id="teaserSpeed">0.0 m/s</span>
+    </div>
+
+    <div class="sim-controls" aria-label="Playground controls">
+        <div class="agent-switch" role="group" aria-label="Spawn agent">
+            <button class="agent-button" type="button" data-agent="humanoid">Add Robot</button>
+            <button class="agent-button" type="button" data-agent="quadruped">Add Robot Dog</button>
+            <button class="agent-button" type="button" data-agent="rover">Add Rover</button>
+        </div>
+
+        <label class="scene-select">
+            <span>Scene</span>
+            <select id="runtimeSceneSelect" aria-label="Runtime scene">
+                <option value="dl3dv-1">DL3DV-98f</option>
+                <option value="dl3dv-9">DL3DV-389</option>
+                <option value="dl3dv-2">DL3DV-f70</option>
+                <option value="dl3dv-8">DL3DV-826</option>
+                <option value="dl3dv-5">DL3DV-374</option>
+                <option value="dl3dv-7">DL3DV-b7f</option>
+                <option value="dl3dv-3">DL3DV-fae</option>
+                <option value="dl3dv-10">DL3DV-63f</option>
+                <option value="dl3dv-4">DL3DV-779</option>
+                <option value="dl3dv-12">DL3DV-cb7</option>
+                <option value="dl3dv-6">DL3DV-9c5</option>
+                <option value="dl3dv-11">DL3DV-f35</option>
+                <option value="re10k-1">RE10K-ff8</option>
+                <option value="re10k-2">RE10K-63b</option>
+                <option value="re10k-3">RE10K-b56</option>
+            </select>
+        </label>
+
+        <div class="agent-roster" id="agentRoster" role="group" aria-label="Active agents"></div>
+
+        <button class="button compact" id="dropBeacon" type="button">Mark Position</button>
+
+        <div class="drive-pad" aria-label="Drive pad">
+            <button type="button" data-drive="rotate-left" aria-label="Rotate left">↶</button>
+            <button type="button" data-drive="forward" aria-label="Forward">▲</button>
+            <button type="button" data-drive="rotate-right" aria-label="Rotate right">↷</button>
+            <button type="button" data-drive="left" aria-label="Left">◀</button>
+            <button type="button" data-drive="backward" aria-label="Backward">▼</button>
+            <button type="button" data-drive="right" aria-label="Right">▶</button>
+        </div>
     </div>
 </div>
 
-<div class="info-panel">
-    <div><span class="label">场景:</span><span class="value">Outdoor (3DGS)</span></div>
-    <div><span class="label">引擎:</span><span class="value">GaussianSplats3D v0.4.7</span></div>
+<div class="attribution">
+    Demo powered by <a href="https://lhmd.top/trisplat/" target="_blank" rel="noopener">TriSplat</a>
 </div>
 
-<div class="fps" id="fpsCounter">FPS: --</div>
+<!-- Load TriSplat interactive demo engine from source -->
+<script type="module" src="https://lhmd.top/trisplat/teaser-sim.js?v=36"></script>
 
-<script type="importmap">
-{
-    "imports": {
-        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
-    }
-}
-</script>
-
-<script type="module">
-import * as THREE from 'three';
-import * as GaussianSplats3D from 'https://cdn.jsdelivr.net/npm/@mkkellogg/gaussian-splats-3d@0.4.7/build/gaussian-splats-3d.module.js';
-
-// ============================================================
-// DOM
-// ============================================================
-const fpsEl = document.getElementById('fpsCounter');
-const hud = document.getElementById('hud');
-
-// ============================================================
-// Scene, Camera, Renderer
-// ============================================================
-const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x1a1a2e);
-
-const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
-camera.position.set(0, 2, 8);
-
-const renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: 'high-performance' });
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.prepend(renderer.domElement);
-
-// ============================================================
-// Character
-// ============================================================
-const charGroup = new THREE.Group();
-const bodyGeo = new THREE.CapsuleGeometry(0.12, 0.4, 4, 8);
-const bodyMat = new THREE.MeshStandardMaterial({ color: 0x4488ff, roughness: 0.4 });
-const bodyMesh = new THREE.Mesh(bodyGeo, bodyMat);
-bodyMesh.position.y = 0.3;
-charGroup.add(bodyMesh);
-const headGeo = new THREE.SphereGeometry(0.1, 16, 16);
-const headMesh = new THREE.Mesh(headGeo, new THREE.MeshStandardMaterial({ color: 0xffcc99 }));
-headMesh.position.y = 0.7;
-charGroup.add(headMesh);
-charGroup.position.set(0, -1, 3);
-scene.add(charGroup);
-
-// Light
-scene.add(new THREE.AmbientLight(0x404060, 2));
-const dl = new THREE.DirectionalLight(0xffffff, 1);
-dl.position.set(5, 10, 5);
-scene.add(dl);
-
-// ============================================================
-// State
-// ============================================================
-let mode3rdPerson = true;
-const keys = {};
-let yaw = 0, pitch = 0.2;
-const speed = 3.0;
-const sensitivity = 0.002;
-
-// ============================================================
-// Mouse
-// ============================================================
-let dragging = false, pmx = 0, pmy = 0;
-renderer.domElement.addEventListener('pointerdown', e => {
-    if (e.button === 0 || e.button === 2) { dragging = true; pmx = e.clientX; pmy = e.clientY; }
-});
-window.addEventListener('pointerup', () => { dragging = false; });
-window.addEventListener('pointermove', e => {
-    if (!dragging) return;
-    yaw -= (e.clientX - pmx) * sensitivity;
-    pitch -= (e.clientY - pmy) * sensitivity;
-    pitch = Math.max(-1.5, Math.min(1.5, pitch));
-    pmx = e.clientX; pmy = e.clientY;
-});
-window.addEventListener('wheel', e => {
-    if (mode3rdPerson) {
-        const fwd = new THREE.Vector3();
-        camera.getWorldDirection(fwd);
-        camera.position.addScaledVector(fwd, e.deltaY * 0.01);
-    }
-});
-
-// ============================================================
-// Keyboard
-// ============================================================
-window.addEventListener('keydown', e => {
-    keys[e.code] = true;
-    if (e.code === 'Space') { e.preventDefault(); mode3rdPerson = !mode3rdPerson; hud.style.display = mode3rdPerson ? 'flex' : 'none'; }
-});
-window.addEventListener('keyup', e => { keys[e.code] = false; });
-
-// ============================================================
-// Camera
-// ============================================================
-function updateCamera() {
-    if (!mode3rdPerson) return;
-    const cp = charGroup.position;
-    const dist = 6;
-    const cx = cp.x + Math.sin(yaw) * Math.cos(pitch) * dist;
-    const cy = cp.y + 0.8 + Math.sin(pitch) * dist;
-    const cz = cp.z + Math.cos(yaw) * Math.cos(pitch) * dist;
-    camera.position.lerp(new THREE.Vector3(cx, cy, cz), 0.1);
-    camera.lookAt(cp.x, cp.y + 0.6, cp.z);
-}
-
-// ============================================================
-// Resize
-// ============================================================
-window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-});
-
-// ============================================================
-// Load splat with GaussianSplats3D
-// ============================================================
-const viewer = new GaussianSplats3D.Viewer({
-    'camera': camera,
-    'renderer': renderer,
-    'scene': scene,
-    'gpuAcceleratedSort': true,
-    'sharedMemoryForWorkers': false,
-    'controls': { 'disable': true },
-    'showInfo': false,
-    'cameraUp': [0, -1, 0],
-    'initialCameraPosition': [0, 2, 8],
-    'initialCameraLookAt': [0, 0, 0],
-});
-
-await viewer.addSplatScene('Outdoor.splat', {
-    'splatAlphaRemovalThreshold': 5,
-    'showLoadingUI': true,
-});
-
-viewer.start();
-console.log('✅ GaussianSplats3D Viewer started');
-
-// ============================================================
-// Animation
-// ============================================================
-const clock = new THREE.Clock();
-let frameCount = 0, fpsTime = 0;
-
-function animate() {
-    requestAnimationFrame(animate);
-    const dt = Math.min(clock.getDelta(), 0.1);
-
-    // FPS
-    frameCount++;
-    fpsTime += dt;
-    if (fpsTime >= 1.0) {
-        fpsEl.textContent = `FPS: ${Math.round(frameCount / fpsTime)}`;
-        frameCount = 0; fpsTime = 0;
-    }
-
-    // Movement
-    const fwd = new THREE.Vector3(-Math.sin(yaw), 0, -Math.cos(yaw));
-    const rgt = new THREE.Vector3(Math.cos(yaw), 0, -Math.sin(yaw));
-
-    if (mode3rdPerson) {
-        let mx = 0, mz = 0;
-        if (keys['KeyW'] || keys['ArrowUp']) { mx += fwd.x; mz += fwd.z; }
-        if (keys['KeyS'] || keys['ArrowDown']) { mx -= fwd.x; mz -= fwd.z; }
-        if (keys['KeyA'] || keys['ArrowLeft']) { mx -= rgt.x; mz -= rgt.z; }
-        if (keys['KeyD'] || keys['ArrowRight']) { mx += rgt.x; mz += rgt.z; }
-        if (mx || mz) {
-            const l = Math.sqrt(mx * mx + mz * mz);
-            charGroup.position.x += (mx / l) * speed * dt;
-            charGroup.position.z += (mz / l) * speed * dt;
-            charGroup.rotation.y = Math.atan2(mx / l, mz / l);
-        }
-        updateCamera();
-    } else {
-        let mx = 0, mz = 0, my = 0;
-        if (keys['KeyW']) { mx += fwd.x; mz += fwd.z; }
-        if (keys['KeyS']) { mx -= fwd.x; mz -= fwd.z; }
-        if (keys['KeyA']) { mx -= rgt.x; mz -= rgt.z; }
-        if (keys['KeyD']) { mx += rgt.x; mz += rgt.z; }
-        if (keys['KeyQ']) my -= 1;
-        if (keys['KeyE']) my += 1;
-        camera.position.x += mx * 5 * dt;
-        camera.position.y += my * 5 * dt;
-        camera.position.z += mz * 5 * dt;
-        const dir = new THREE.Vector3(-Math.sin(yaw) * Math.cos(pitch), Math.sin(pitch), -Math.cos(yaw) * Math.cos(pitch));
-        camera.lookAt(camera.position.clone().add(dir));
-    }
-
-    renderer.render(scene, camera);
-}
-
-animate();
-</script>
 </body>
 </html>
