@@ -821,6 +821,19 @@ h2.page-section-title::after {
   box-shadow: 0 2px 6px rgba(16,185,129,0.25);
 }
 
+.pub-venue .venue-highlight {
+  display: inline-block;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 0.82em;
+  color: #fff;
+  background: linear-gradient(135deg, #f59e0b, #ef4444);
+  padding: 2px 10px;
+  border-radius: 6px;
+  margin-left: 4px;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35);
+}
+
 .pub-links {
   display: flex;
   gap: 8px;
