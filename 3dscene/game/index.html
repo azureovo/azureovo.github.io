@@ -68,6 +68,16 @@
                 line-height: 1.6;
                 margin-bottom: 0.8rem;
             }
+            .back-hub {
+                display: inline-flex; align-items: center; gap: 6px;
+                padding: 6px 16px; margin-bottom: 1.2rem;
+                color: var(--accent); font-weight: 600; font-size: 0.85rem;
+                text-decoration: none; border: 1px solid var(--accent);
+                border-radius: 999px; transition: all .2s;
+            }
+            .back-hub:hover {
+                background: var(--accent); color: #fff;
+            }
             .subtitle {
                 font-size: 0.78rem;
                 color: var(--muted);
@@ -259,6 +269,8 @@
 
         <h1>Z7A的游戏世界</h1>
         <p class="desc">基于 Three.js 的 3D 角色控制器游戏合集，支持多人在线联机、3DGS 场景漫游与射击对战。</p>
+
+        <a href="/3dscene/" class="back-hub">← 返回 Hub</a>
 
         <div class="sections">
             <section class="section">
