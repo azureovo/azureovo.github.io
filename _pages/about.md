@@ -123,7 +123,7 @@ redirect_from:
 
 <!-- ========== EXPERIENCE ========== -->
 <div class="section-heading" id="experience">
-  <span class="icon">💼</span> 工作经历
+  <span class="icon">💼</span> 实习经历
 </div>
 
 
