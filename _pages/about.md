@@ -141,7 +141,7 @@ redirect_from:
    role="技术产品"
    company="腾讯IEG · 技术中台 · 服务拓展组"
    date="2026.02 - 2026.04"
-   details="/404code/"
+   details="/experience/tencent-ieg/"
 %}
 
 {% include experience-item.html
