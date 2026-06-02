@@ -19,18 +19,6 @@
 | [阅读](https://azureovo.github.io/books/) | 读书笔记 |
 | [CV](https://azureovo.github.io/files/%E5%BC%A0%E6%B8%85%E5%AE%89%E7%AE%80%E5%8E%86.pdf) | 简历 |
 
-## 📝 学术论文
-
-- **IR-HGP**: Physically-Aware Gaussian Inverse Rendering for High-Illumination Scenes — CVPR 2026 **Highlight**
-- **HERO**: Enhancing Multimodal Faithfulness via Dynamic Entropy-Aware RL — ECCV
-
-## 🛠 技术栈
-
-- Jekyll + GitHub Pages
-- Three.js / 3D Gaussian Splatting
-- Unity WebGL (录屏展示)
-- Firebase (多人联机)
-
 ---
 
 © 2026 张清安 (Qing'an Zhang)
