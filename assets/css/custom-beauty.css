@@ -431,6 +431,20 @@ body::after {
   text-decoration: none !important;
 }
 
+.hero-meta-icon {
+  width: 38px !important;
+  height: 38px !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  font-size: 1em !important;
+}
+.hero-meta-icon i {
+  font-size: 1.1em;
+}
+
 /* Bio text */
 .hero-bio {
   font-size: 1em;

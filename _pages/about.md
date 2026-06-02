@@ -30,25 +30,21 @@ redirect_from:
       <span class="hero-meta-item">
         <i class="fas fa-graduation-cap"></i> 中山大学 · 硕士在读
       </span>
-      <a href="mailto:zhangqan@mail2.sysu.edu.cn" class="hero-meta-item">
-        <i class="fas fa-envelope"></i> zhangqan@mail2.sysu.edu.cn
+      <a href="mailto:zhangqan@mail2.sysu.edu.cn" class="hero-meta-item hero-meta-icon" title="Email">
+        <i class="fas fa-envelope"></i>
       </a>
-      <a href="https://github.com/azureovo" class="hero-meta-item" target="_blank">
-        <i class="fab fa-github"></i> azureovo
+      <a href="https://github.com/azureovo" class="hero-meta-item hero-meta-icon" target="_blank" title="GitHub">
+        <i class="fab fa-github"></i>
       </a>
     </div>
 
     <div class="hero-bio">
       <p>
-        我是<a href="https://cse.sysu.edu.cn/">中山大学计算机学院</a>（CSE）2027应届硕士生。此前，我在<a href="https://sise.uestc.edu.cn/">电子科技大学信软学院</a>完成了本科学业。我的研究兴趣主要集中在非受控极端场景物体三维重建、多模态幻觉缓解等方向。我同时有丰富的产品从事经验且热爱产品岗职，目前正在寻找AI产品相关岗位。
+        我是<a href="https://cse.sysu.edu.cn/">中山大学计算机学院</a>2027应届硕士生。此前，我在<a href="https://sise.uestc.edu.cn/">电子科技大学信软学院</a>完成了本科学业。我的研究兴趣主要集中在非受控极端场景物体三维重建、多模态幻觉缓解等方向。我同时有丰富的产品从事经验且热爱产品岗职，目前正在寻找AI产品相关岗位。
       </p>
     </div>
 
     <div class="interest-tags">
-      <span class="interest-tag"><span class="tag-icon">🔮</span> 三维重建</span>
-      <span class="interest-tag"><span class="tag-icon">🧠</span> 多模态大模型</span>
-      <span class="interest-tag"><span class="tag-icon">🎮</span> 游戏产品</span>
-      <span class="interest-tag"><span class="tag-icon">🤖</span> AI 产品</span>
       <a href="/books/" class="interest-tag interest-tag--action"><span class="tag-icon">📖</span> 阅读 <i class="fas fa-arrow-right" style="font-size:0.7em; margin-left:2px; opacity:0.6;"></i></a>
       <a href="/town/" class="interest-tag interest-tag--action"><span class="tag-icon">🏘️</span> 小镇 <i class="fas fa-arrow-right" style="font-size:0.7em; margin-left:2px; opacity:0.6;"></i></a>
     </div>
