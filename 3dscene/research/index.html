@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>研究报告 — 3DGS研究</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
+<style>
+  :root {
+    --bg: #fff;
+    --text: #494e52;
+    --muted: #7a8288;
+    --accent: #52adc8;
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    min-height: 100vh; -webkit-font-smoothing: antialiased;
+  }
+
+  .nav {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    padding: 12px 24px; display: flex; align-items: center; gap: 24px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, transparent 100%);
+    pointer-events: none;
+  }
+  .nav a { color: var(--muted); text-decoration: none; font-size: 14px; pointer-events: auto; transition: color .2s; }
+  .nav a:hover { color: var(--text); }
+  .nav a.brand { color: var(--text); font-weight: 600; font-size: 16px; margin-right: auto; }
+
+  .page-header {
+    max-width: 900px; margin: 100px auto 0; padding: 0 24px; text-align: center;
+  }
+  .page-header h1 {
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 900;
+    letter-spacing: -0.02em; margin-bottom: 0.5rem;
+  }
+  .page-header .subtitle { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.8rem; }
+  .page-header .back-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 16px; color: var(--accent); font-weight: 600; font-size: 0.85rem;
+    text-decoration: none; border: 1px solid var(--accent);
+    border-radius: 999px; transition: all .2s;
+  }
+  .page-header .back-link:hover { background: var(--accent); color: #fff; }
+
+  .pdf-wrap {
+    max-width: 900px; margin: 2rem auto 4rem; padding: 0 24px;
+  }
+  .pdf-wrap embed {
+    width: 100%; height: 85vh; border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 12px; background: #f8f9fa;
+  }
+
+  @media (max-width:600px) {
+    .nav { padding: 8px 14px; gap: 12px; }
+    .nav a { font-size: 12px; }
+    .nav a.brand { font-size: 14px; }
+    .page-header { margin-top: 80px; }
+    .pdf-wrap embed { height: 70vh; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="https://azureovo.github.io/" class="brand">Z7A的个人空间</a>
+  <a href="https://azureovo.github.io/">Home</a>
+  <a href="https://azureovo.github.io/3dscene/">3DGS</a>
+  <a href="https://azureovo.github.io/files/%E5%BC%A0%E6%B8%85%E5%AE%89%E7%AE%80%E5%8E%86.pdf">CV</a>
+</nav>
+
+<div class="page-header">
+  <h1>📄 研究报告</h1>
+  <p class="subtitle">3DGS 在 Unity 游戏引擎中的应用边界调研与验证</p>
+  <a href="/3dscene/" class="back-link">← 返回 Hub</a>
+</div>
+
+<div class="pdf-wrap">
+  <embed src="3DGS_在_Unity_游戏引擎中的应用边界调研与验证.pdf" type="application/pdf">
+</div>
+
+</body>
+</html>

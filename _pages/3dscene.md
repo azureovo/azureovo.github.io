@@ -44,7 +44,7 @@ classes: wide
     <div class="gs-card-icon">📄</div>
     <div class="gs-card-title">研究报告</div>
     <div class="gs-card-desc">3DGS 技术调研与实验报告<br>应用场景探索与分析</div>
-    <span class="gs-card-badge">Coming Soon</span>
+    <span class="gs-card-badge">Available</span>
   </a>
 </div>
 
@@ -243,12 +243,6 @@ classes: wide
   border: 1px solid rgba(250, 96, 200, 0.25);
 }
 
-.gs-card.research {
-  opacity: 0.55;
-}
-.gs-card.research:hover {
-  opacity: 0.75;
-}
 
 /* Animations */
 @keyframes fadeInUp {
