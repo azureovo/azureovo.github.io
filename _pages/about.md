@@ -36,6 +36,8 @@ redirect_from:
       <a href="https://github.com/azureovo" class="hero-meta-item hero-meta-icon" target="_blank" title="GitHub">
         <i class="fab fa-github"></i>
       </a>
+      <a href="/books/" class="hero-meta-item"><span class="tag-icon" style="margin-right:4px;">📖</span>阅读</a>
+      <a href="/town/" class="hero-meta-item"><span class="tag-icon" style="margin-right:4px;">🏘️</span>小镇</a>
     </div>
 
     <div class="hero-bio">
@@ -44,10 +46,6 @@ redirect_from:
       </p>
     </div>
 
-    <div class="interest-tags">
-      <a href="/books/" class="interest-tag interest-tag--action"><span class="tag-icon">📖</span> 阅读 <i class="fas fa-arrow-right" style="font-size:0.7em; margin-left:2px; opacity:0.6;"></i></a>
-      <a href="/town/" class="interest-tag interest-tag--action"><span class="tag-icon">🏘️</span> 小镇 <i class="fas fa-arrow-right" style="font-size:0.7em; margin-left:2px; opacity:0.6;"></i></a>
-    </div>
   </div>
 </div>
 
