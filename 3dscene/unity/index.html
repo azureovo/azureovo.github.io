@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unity 展示 — Z7A的游戏世界</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+<style>
+  :root {
+    --bg: #fff;
+    --text: #494e52;
+    --muted: #7a8288;
+    --accent: #52adc8;
+    --accent-hover: #2f7f93;
+    --card-bg: #f8f9fa;
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Nav */
+  .nav {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    padding: 12px 24px; display: flex; align-items: center; gap: 24px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, transparent 100%);
+    pointer-events: none;
+  }
+  .nav a { color: var(--muted); text-decoration: none; font-size: 14px; pointer-events: auto; transition: color .2s; }
+  .nav a:hover { color: var(--text); }
+  .nav a.brand { color: var(--text); font-weight: 600; font-size: 16px; margin-right: auto; }
+
+  /* Page header */
+  .page-header {
+    max-width: 1100px; margin: 100px auto 0; padding: 0 24px;
+    text-align: center;
+  }
+  .page-header h1 {
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    font-weight: 900; letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .page-header .notice {
+    display: inline-block; margin-top: 0.6rem; margin-bottom: 1rem;
+    padding: 8px 18px; background: #fef3c7; color: #92400e;
+    border: 1px solid #fcd34d; border-radius: 8px;
+    font-size: 0.85rem; line-height: 1.5;
+  }
+  .page-header .back-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 18px; margin-top: 0.8rem;
+    color: var(--accent); font-weight: 600; font-size: 0.9rem;
+    text-decoration: none; border: 1px solid var(--accent);
+    border-radius: 999px; transition: all .2s;
+  }
+  .page-header .back-link:hover {
+    background: var(--accent); color: #fff;
+  }
+
+  /* Video section */
+  .videos {
+    max-width: 1100px; margin: 2.5rem auto 4rem; padding: 0 24px;
+    display: flex; flex-direction: column; gap: 2.5rem;
+  }
+  .video-card {
+    background: var(--card-bg); border-radius: 16px;
+    overflow: hidden; border: 1px solid rgba(0,0,0,0.06);
+    transition: box-shadow .3s;
+  }
+  .video-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  }
+  .video-label {
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 20px; border-bottom: 1px solid rgba(0,0,0,0.06);
+    font-size: 1rem; font-weight: 700;
+  }
+  .video-label .num {
+    display: flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--accent); color: #fff; font-size: 0.8rem; font-weight: 800;
+  }
+  .video-wrap {
+    position: relative; width: 100%; background: #000;
+    aspect-ratio: 16/9;
+  }
+  .video-wrap video {
+    width: 100%; height: 100%; object-fit: contain; display: block;
+    outline: none;
+  }
+  .video-wrap video[poster] {
+    object-fit: cover;
+  }
+
+  @media (max-width: 600px) {
+    .nav { padding: 8px 14px; gap: 12px; }
+    .nav a { font-size: 12px; }
+    .nav a.brand { font-size: 14px; }
+    .page-header { margin-top: 80px; }
+    .videos { gap: 1.5rem; margin-top: 1.5rem; }
+    .video-label { padding: 10px 14px; font-size: 0.9rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="https://azureovo.github.io/" class="brand">Z7A的个人空间</a>
+  <a href="https://azureovo.github.io/">Home</a>
+  <a href="https://azureovo.github.io/3dscene/">3DGS</a>
+</nav>
+
+<div class="page-header">
+  <h1>🎮 Unity 3DGS 游戏展示</h1>
+  <div class="notice">
+    ⚠️ Unity WebGL 打包包体过大（Shader 变体超 70G），暂时以实机录屏代替在线演示。
+  </div>
+  <a href="/3dscene/" class="back-link">← 返回 Hub</a>
+</div>
+
+<div class="videos">
+  <div class="video-card">
+    <div class="video-label"><span class="num">1</span> 进入游戏场景</div>
+    <div class="video-wrap">
+      <video src="进入游戏场景.mp4" muted autoplay loop playsinline preload="auto"></video>
+    </div>
+  </div>
+
+  <div class="video-card">
+    <div class="video-label"><span class="num">2</span> 3DGS 场景展示</div>
+    <div class="video-wrap">
+      <video src="3DGS场景展示.mp4" muted autoplay loop playsinline preload="auto"></video>
+    </div>
+  </div>
+
+  <div class="video-card">
+    <div class="video-label"><span class="num">3</span> 行为交互（VR电视等）</div>
+    <div class="video-wrap">
+      <video src="行为交互（VR电视等）.mp4" muted autoplay loop playsinline preload="auto"></video>
+    </div>
+  </div>
+</div>
+
+<script>
+/* Auto-play when in viewport; pause when out */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    const v = entry.target.querySelector('video') || entry.target;
+    if (entry.isIntersecting) {
+      v.play().catch(() => {});
+    } else {
+      v.pause();
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.video-wrap').forEach(wrap => observer.observe(wrap));
+</script>
+
+</body>
+</html>

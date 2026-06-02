@@ -30,7 +30,7 @@ classes: wide
     <div class="gs-card-icon">🎮</div>
     <div class="gs-card-title">Unity 展示</div>
     <div class="gs-card-desc">3DGS 在 Unity 引擎中的集成效果<br>游戏场景交互演示</div>
-    <span class="gs-card-badge">Coming Soon</span>
+    <span class="gs-card-badge">Available</span>
   </a>
 
   <a href="/3dscene/game/" class="gs-card game">
@@ -243,11 +243,9 @@ classes: wide
   border: 1px solid rgba(250, 96, 200, 0.25);
 }
 
-.gs-card.unity,
 .gs-card.research {
   opacity: 0.55;
 }
-.gs-card.unity:hover,
 .gs-card.research:hover {
   opacity: 0.75;
 }
