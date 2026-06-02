@@ -31,25 +31,19 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                padding: 2.5rem 2rem 4rem;
+                padding: 80px 2rem 4rem;
             }
 
-            /* ── GitHub corner ── */
-            .github-link {
-                position: fixed;
-                top: 1.2rem;
-                right: 1.4rem;
-                color: #333;
-                transition: color 0.15s;
-                z-index: 10;
+            /* ── Nav bar ── */
+            .nav {
+                position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+                padding: 12px 24px; display: flex; align-items: center; gap: 24px;
+                background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, transparent 100%);
+                pointer-events: none;
             }
-            .github-link:hover {
-                color: #000;
-            }
-            .github-link svg {
-                width: 28px;
-                height: 28px;
-            }
+            .nav a { color: var(--muted); text-decoration: none; font-size: 14px; pointer-events: auto; transition: color .2s; }
+            .nav a:hover { color: var(--text); }
+            .nav a.brand { color: var(--text); font-weight: 600; font-size: 16px; margin-right: auto; }
 
             h1 {
                 font-family: "Cinzel", serif;
@@ -261,11 +255,12 @@
         </style>
     </head>
     <body>
-        <a class="github-link" href="https://azureovo.github.io/" target="_blank" title="Z7A的个人空间">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-            </svg>
-        </a>
+        <nav class="nav">
+            <a href="https://azureovo.github.io/" class="brand">Z7A的个人空间</a>
+            <a href="https://azureovo.github.io/">Home</a>
+            <a href="https://azureovo.github.io/3dscene/">3DGS</a>
+            <a href="https://azureovo.github.io/files/%E5%BC%A0%E6%B8%85%E5%AE%89%E7%AE%80%E5%8E%86.pdf">CV</a>
+        </nav>
 
         <h1>Z7A的游戏世界</h1>
         <p class="desc">基于 Three.js 的 3D 角色控制器游戏合集，支持多人在线联机、3DGS 场景漫游与射击对战。</p>
