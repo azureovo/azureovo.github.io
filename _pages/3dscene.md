@@ -29,7 +29,7 @@ classes: wide
   <a href="/3dscene/unity/" class="gs-card unity">
     <div class="gs-card-icon">🎮</div>
     <div class="gs-card-title">Unity 展示</div>
-    <div class="gs-card-desc">3DGS 在 Unity 中集成效果 游戏场景交互演示</div>
+    <div class="gs-card-desc">3DGS 在 Unity 中集成效果<br>游戏场景交互演示</div>
     <span class="gs-card-badge">Available</span>
   </a>
 
