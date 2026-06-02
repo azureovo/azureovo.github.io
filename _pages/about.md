@@ -30,14 +30,14 @@ redirect_from:
       <span class="hero-meta-item">
         <i class="fas fa-graduation-cap"></i> 中山大学 · 硕士在读
       </span>
+      <a href="/books/" class="hero-meta-item"><span class="tag-icon" style="margin-right:4px;">📖</span>阅读</a>
+      <a href="/town/" class="hero-meta-item"><span class="tag-icon" style="margin-right:4px;">🏘️</span>小镇</a>
       <a href="mailto:zhangqan@mail2.sysu.edu.cn" class="hero-meta-item hero-meta-icon" title="Email">
         <i class="fas fa-envelope"></i>
       </a>
       <a href="https://github.com/azureovo" class="hero-meta-item hero-meta-icon" target="_blank" title="GitHub">
         <i class="fab fa-github"></i>
       </a>
-      <a href="/books/" class="hero-meta-item"><span class="tag-icon" style="margin-right:4px;">📖</span>阅读</a>
-      <a href="/town/" class="hero-meta-item"><span class="tag-icon" style="margin-right:4px;">🏘️</span>小镇</a>
     </div>
 
     <div class="hero-bio">
