@@ -149,7 +149,7 @@ redirect_from:
    role="产品分析与策略优化"
    company="米哈游 · 在研游戏 · 功能测试组"
    date="2025.06 - 2025.12"
-   details="/404code/"
+   details="/experience/mihoyo/"
 %}
 
 {% include experience-item.html
