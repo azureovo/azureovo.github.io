@@ -33,6 +33,13 @@ classes: wide
     <span class="gs-card-badge">Coming Soon</span>
   </a>
 
+  <a href="/3dscene/game/" class="gs-card game">
+    <div class="gs-card-icon">🕹️</div>
+    <div class="gs-card-title">网页游戏</div>
+    <div class="gs-card-desc">Three.js 3D Web Game<br>浏览器内实时 3D 交互游戏</div>
+    <span class="gs-card-badge">Available</span>
+  </a>
+
   <a href="/3dscene/research/" class="gs-card research">
     <div class="gs-card-icon">📄</div>
     <div class="gs-card-title">研究报告</div>
@@ -168,6 +175,9 @@ classes: wide
 .gs-card.research::before {
   background: radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.12), transparent 70%);
 }
+.gs-card.game::before {
+  background: radial-gradient(circle at 50% 0%, rgba(250, 96, 200, 0.12), transparent 70%);
+}
 
 .gs-card:hover {
   transform: translateY(-6px);
@@ -226,6 +236,11 @@ classes: wide
   background: rgba(245, 158, 11, 0.15);
   color: #f59e0b;
   border: 1px solid rgba(245, 158, 11, 0.25);
+}
+.gs-card.game .gs-card-badge {
+  background: rgba(250, 96, 200, 0.15);
+  color: #fa60c8;
+  border: 1px solid rgba(250, 96, 200, 0.25);
 }
 
 .gs-card.unity,

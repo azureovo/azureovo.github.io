@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cube Catcher — Three.js Web Game</title>
+<style>
+  :root { --bg: #0a0b0a; --text: #f5efe2; --accent: #fa60c8; --accent2: #6366f1; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    width:100vw; height:100vh; overflow:hidden;
+    background:var(--bg);
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    user-select:none; -webkit-user-select:none;
+  }
+  canvas { display:block; }
+
+  /* Nav */
+  .nav {
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:12px 24px; display:flex; align-items:center; gap:24px;
+    background:linear-gradient(180deg, rgba(10,11,10,0.94) 0%, transparent 100%);
+    pointer-events:none;
+  }
+  .nav a { color:#888; text-decoration:none; font-size:14px; pointer-events:auto; transition:color .2s; }
+  .nav a:hover { color:#fff; }
+  .nav a.brand { color:#fff; font-weight:600; font-size:16px; margin-right:auto; }
+
+  /* HUD */
+  .hud {
+    position:fixed; top:80px; left:50%; transform:translateX(-50%); z-index:20;
+    display:flex; gap:20px; pointer-events:none;
+  }
+  .hud-item { text-align:center; }
+  .hud-label { font-size:11px; color:rgba(255,255,255,.45); text-transform:uppercase; letter-spacing:.1em; }
+  .hud-value { font-size:28px; font-weight:800; color:var(--accent); line-height:1.2; }
+
+  /* Overlay */
+  .overlay {
+    position:fixed; inset:0; z-index:50;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    background:rgba(10,11,10,.88); backdrop-filter:blur(8px);
+    transition:opacity .4s;
+  }
+  .overlay.hidden { opacity:0; pointer-events:none; }
+  .overlay h2 { font-size:2.6em; font-weight:900; margin-bottom:12px; letter-spacing:-.02em; }
+  .overlay p { font-size:1em; color:rgba(255,255,255,.55); margin-bottom:28px; }
+  .overlay .score-final { font-size:3em; font-weight:900; color:var(--accent); margin-bottom:8px; }
+  .overlay .btn {
+    display:inline-block; padding:14px 36px;
+    font-size:16px; font-weight:700; font-family:inherit;
+    color:#fff; background:var(--accent);
+    border:none; border-radius:999px; cursor:pointer;
+    transition:transform .18s, box-shadow .18s;
+    box-shadow:0 4px 20px rgba(250,96,200,.35);
+  }
+  .overlay .btn:hover { transform:translateY(-2px); box-shadow:0 6px 28px rgba(250,96,200,.5); }
+
+  /* Controls hint */
+  .controls-hint {
+    position:fixed; bottom:24px; left:50%; transform:translateX(-50%); z-index:20;
+    color:rgba(255,255,255,.35); font-size:13px; pointer-events:none;
+  }
+
+  @media (max-width:600px) {
+    .nav { padding:8px 14px; gap:12px; }
+    .nav a { font-size:12px; }
+    .nav a.brand { font-size:14px; }
+    .overlay h2 { font-size:1.8em; }
+    .hud-value { font-size:22px; }
+    .hud { top:70px; gap:14px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="https://azureovo.github.io/" class="brand">Z7A的个人空间</a>
+  <a href="https://azureovo.github.io/">Home</a>
+  <a href="https://azureovo.github.io/3dscene/">3DGS</a>
+</nav>
+
+<div class="hud" id="hud">
+  <div class="hud-item">
+    <div class="hud-label">Score</div>
+    <div class="hud-value" id="score">0</div>
+  </div>
+  <div class="hud-item">
+    <div class="hud-label">Combo</div>
+    <div class="hud-value" id="combo" style="color:var(--accent2)">x1</div>
+  </div>
+  <div class="hud-item">
+    <div class="hud-label">Best</div>
+    <div class="hud-value" id="best" style="color:rgba(255,255,255,.5)">0</div>
+  </div>
+</div>
+
+<div class="overlay" id="startOverlay">
+  <h2>🕹️ Cube Catcher</h2>
+  <p>移动鼠标 / 触摸屏幕 来接住掉落的多彩方块</p>
+  <button class="btn" onclick="startGame()">开始游戏</button>
+</div>
+
+<div class="overlay hidden" id="endOverlay">
+  <h2>游戏结束</h2>
+  <div class="score-final" id="finalScore">0</div>
+  <p>个方块被接住</p>
+  <button class="btn" onclick="startGame()">再来一局</button>
+</div>
+
+<div class="controls-hint" id="controlsHint">🖱️ 鼠标 / 👆 触屏 控制</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+
+/* ========== Scene Setup ========== */
+const scene = new THREE.Scene();
+scene.background = new THREE.Color('#0a0b0a');
+
+const camera = new THREE.PerspectiveCamera(50, window.innerWidth/window.innerHeight, 0.5, 80);
+camera.position.set(0, 6, 14);
+camera.lookAt(0, 0.5, 0);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.2;
+document.body.appendChild(renderer.domElement);
+
+/* ========== Lights ========== */
+const ambientLight = new THREE.AmbientLight('#343455', 1.8);
+scene.add(ambientLight);
+const dirLight = new THREE.DirectionalLight('#ffe8ff', 3.5);
+dirLight.position.set(5, 12, -3);
+dirLight.castShadow = true;
+dirLight.shadow.mapSize.set(1024, 1024);
+dirLight.shadow.camera.near = 1;
+dirLight.shadow.camera.far = 40;
+dirLight.shadow.camera.left = -12;
+dirLight.shadow.camera.right = 12;
+dirLight.shadow.camera.top = 12;
+dirLight.shadow.camera.bottom = -2;
+scene.add(dirLight);
+const pointLight = new THREE.PointLight('#fa60c8', 8, 20);
+pointLight.position.set(0, 3, 4);
+scene.add(pointLight);
+
+/* ========== Ground ========== */
+const groundGeo = new THREE.PlaneGeometry(20, 20);
+const groundMat = new THREE.MeshStandardMaterial({ color: '#141418', roughness: 0.7, metalness: 0.1 });
+const ground = new THREE.Mesh(groundGeo, groundMat);
+ground.rotation.x = -Math.PI / 2;
+ground.position.y = -3.6;
+ground.receiveShadow = true;
+scene.add(ground);
+
+/* Grid lines */
+const gridHelper = new THREE.PolarGridHelper(10, 32, 20, 128, '#222228', '#1a1a22');
+gridHelper.position.y = -3.58;
+scene.add(gridHelper);
+
+/* ========== Side Walls (visual bounds) ========== */
+function makeWall(x, z, w, h) {
+  const geo = new THREE.PlaneGeometry(w, h);
+  const mat = new THREE.MeshStandardMaterial({ color:'#1a1a24', roughness:0.4, metalness:0.2, side:THREE.DoubleSide, transparent:true, opacity:0.35 });
+  const wall = new THREE.Mesh(geo, mat);
+  wall.position.set(x, h/2 - 3.6, z);
+  if (x !== 0) wall.rotation.y = Math.PI / 2;
+  wall.receiveShadow = true;
+  return wall;
+}
+scene.add(makeWall(0, -10.1, 20, 20));
+scene.add(makeWall(-10, 0, 20, 20));
+scene.add(makeWall(10, 0, 20, 20));
+
+/* ========== Paddle ========== */
+const paddleGeo = new THREE.BoxGeometry(2.8, 0.25, 1.2);
+const paddleMat = new THREE.MeshStandardMaterial({ color:'#fa60c8', roughness:0.15, metalness:0.5, emissive:'#fa60c8', emissiveIntensity:0.6 });
+const paddle = new THREE.Mesh(paddleGeo, paddleMat);
+paddle.position.y = -2.8;
+paddle.castShadow = true;
+paddle.receiveShadow = true;
+scene.add(paddle);
+
+/* Glow rim */
+const rimGeo = new THREE.BoxGeometry(3, 0.3, 1.4);
+const rimMat = new THREE.MeshBasicMaterial({ color:'#fa60c8', transparent:true, opacity:0.25 });
+const rim = new THREE.Mesh(rimGeo, rimMat);
+paddle.add(rim);
+
+/* ========== Falling Cubes Pool ========== */
+const cubePool = [];
+const MAX_CUBES = 30;
+const colors = [
+  '#5ce2c7','#6366f1','#f59e0b','#ef4444','#8b5cf6',
+  '#06b6d4','#84cc16','#ec4899','#f97316','#14b8a6',
+  '#a78bfa','#fb923c','#22d3ee','#facc15','#2dd4bf'
+];
+const cubeGeo = new THREE.BoxGeometry(0.5, 0.5, 0.5);
+const particleGeo = new THREE.SphereGeometry(0.06, 6, 6);
+
+function createCube() {
+  const mat = new THREE.MeshStandardMaterial({
+    color: colors[Math.floor(Math.random()*colors.length)],
+    roughness: 0.2, metalness: 0.4, emissiveIntensity: 0.3
+  });
+  const cube = new THREE.Mesh(cubeGeo, mat);
+  cube.castShadow = true;
+  cube.receiveShadow = true;
+  cube.userData = {
+    speed: 2.5 + Math.random() * 3.5,
+    rotSpeed: new THREE.Vector3(
+      (Math.random()-0.5)*4,
+      (Math.random()-0.5)*4,
+      (Math.random()-0.5)*4
+    ),
+    value: 1
+  };
+  resetCube(cube);
+  return cube;
+}
+
+function resetCube(cube) {
+  cube.position.set(
+    (Math.random() - 0.5) * 12,
+    6 + Math.random() * 4,
+    0
+  );
+  cube.rotation.set(0,0,0);
+  cube.visible = true;
+}
+
+function spawnCube() {
+  let cube = cubePool.find(c => !c.visible);
+  if (!cube) {
+    if (cubePool.length >= MAX_CUBES) return;
+    cube = createCube();
+    cubePool.push(cube);
+    scene.add(cube);
+  } else {
+    cube.material.color.set(colors[Math.floor(Math.random()*colors.length)]);
+    cube.material.emissive?.set(cube.material.color);
+    resetCube(cube);
+  }
+}
+
+/* Pre-spawn pool */
+for (let i = 0; i < 15; i++) {
+  const c = createCube();
+  c.position.y = Math.random() * 10;
+  c.visible = Math.random() > 0.3;
+  cubePool.push(c);
+  scene.add(c);
+}
+
+/* ========== Particles ========== */
+const particles = [];
+const MAX_PARTICLES = 200;
+const particleMat = new THREE.MeshBasicMaterial({ color:'#fa60c8' });
+
+function emitParticles(pos, color, count) {
+  for (let i = 0; i < count; i++) {
+    let p;
+    if (particles.length >= MAX_PARTICLES) {
+      p = particles.shift();
+      p.position.copy(pos);
+    } else {
+      p = new THREE.Mesh(particleGeo, new THREE.MeshBasicMaterial({color:color}));
+      particles.push(p);
+      scene.add(p);
+    }
+    p.userData = {
+      vel: new THREE.Vector3((Math.random()-0.5)*2, Math.random()*3+1, (Math.random()-0.5)*2),
+      life: 0.6 + Math.random() * 0.4
+    };
+    p.visible = true;
+  }
+}
+
+/* ========== Game State ========== */
+let score = 0, bestScore = 0, combo = 1, lastCatchTime = 0;
+let gameRunning = false, gamePaused = false;
+let paddleTargetX = 0;
+const COMBO_WINDOW = 1.2;
+const scoreEl = document.getElementById('score');
+const comboEl = document.getElementById('combo');
+const bestEl = document.getElementById('best');
+const startOverlay = document.getElementById('startOverlay');
+const endOverlay = document.getElementById('endOverlay');
+const finalScoreEl = document.getElementById('finalScore');
+const controlsHint = document.getElementById('controlsHint');
+
+try { bestScore = parseInt(localStorage.getItem('cubeCatcherBest')) || 0; } catch(e) {}
+bestEl.textContent = bestScore;
+
+window.startGame = function() {
+  score = 0; combo = 1; lastCatchTime = 0;
+  scoreEl.textContent = '0';
+  comboEl.textContent = 'x1';
+  paddleTargetX = 0;
+  paddle.position.x = 0;
+
+  cubePool.forEach(c => { c.visible = false; c.position.y = -10; });
+  particles.forEach(p => p.visible = false);
+
+  gameRunning = true; gamePaused = false;
+  startOverlay.classList.add('hidden');
+  endOverlay.classList.add('hidden');
+  controlsHint.style.opacity = '1';
+};
+
+/* ========== Input ========== */
+function onPointerMove(e) {
+  if (!gameRunning || gamePaused) return;
+  const x = (e.clientX / window.innerWidth) * 2 - 1;
+  paddleTargetX = THREE.MathUtils.clamp(x * 8, -7.5, 7.5);
+}
+function onTouchMove(e) {
+  if (!gameRunning || gamePaused) return;
+  e.preventDefault();
+  const x = (e.touches[0].clientX / window.innerWidth) * 2 - 1;
+  paddleTargetX = THREE.MathUtils.clamp(x * 8, -7.5, 7.5);
+}
+function onKeyDown(e) {
+  if (!gameRunning || gamePaused) return;
+  if (e.key === 'ArrowLeft' || e.key === 'a') paddleTargetX = -7.5;
+  if (e.key === 'ArrowRight' || e.key === 'd') paddleTargetX = 7.5;
+}
+function onKeyUp(e) {
+  if (!gameRunning || gamePaused) return;
+  if (['ArrowLeft','ArrowRight','a','d'].includes(e.key)) paddleTargetX = paddle.position.x;
+}
+
+window.addEventListener('pointermove', onPointerMove);
+window.addEventListener('touchmove', onTouchMove, {passive:false});
+window.addEventListener('keydown', onKeyDown);
+window.addEventListener('keyup', onKeyUp);
+
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+/* ========== Game Loop ========== */
+const clock = new THREE.Clock();
+let spawnTimer = 0;
+
+function animate() {
+  requestAnimationFrame(animate);
+
+  const dt = Math.min(clock.getDelta(), 0.1);
+
+  if (gameRunning && !gamePaused) {
+    /* Paddle movement */
+    const paddleSpeed = 12;
+    const dx = paddleTargetX - paddle.position.x;
+    if (Math.abs(dx) > 0.05) {
+      paddle.position.x += Math.sign(dx) * Math.min(Math.abs(dx), paddleSpeed * dt);
+    }
+
+    /* Spawn cubes */
+    spawnTimer += dt;
+    const spawnInterval = 0.35 - Math.min(score * 0.002, 0.18);
+    if (spawnTimer > spawnInterval) {
+      spawnTimer = 0;
+      spawnCube();
+    }
+
+    /* Update cubes */
+    const now = performance.now() / 1000;
+    for (const cube of cubePool) {
+      if (!cube.visible) continue;
+      cube.position.y -= cube.userData.speed * dt;
+      cube.rotation.x += cube.userData.rotSpeed.x * dt;
+      cube.rotation.y += cube.userData.rotSpeed.y * dt;
+      cube.rotation.z += cube.userData.rotSpeed.z * dt;
+
+      /* Miss check */
+      if (cube.position.y < -4) {
+        cube.visible = false;
+        combo = 1;
+        comboEl.textContent = 'x1';
+        continue;
+      }
+
+      /* Catch check */
+      const px = paddle.position.x;
+      const py = paddle.position.y;
+      const halfW = 1.4; const halfH = 0.3;
+      if (Math.abs(cube.position.x - px) < halfW &&
+          Math.abs(cube.position.y - py) < halfH) {
+        const timeSince = now - lastCatchTime;
+        if (timeSince < COMBO_WINDOW) combo++;
+        else combo = 1;
+        lastCatchTime = now;
+        comboEl.textContent = 'x' + combo;
+
+        score += 1 * combo;
+        scoreEl.textContent = score;
+
+        emitParticles(cube.position.clone(), cube.material.color.getStyle(), 12 + combo * 2);
+        cube.visible = false;
+
+        /* Paddle flash */
+        paddleMat.emissiveIntensity = 1.0 + combo * 0.3;
+      }
+    }
+
+    /* Update particles */
+    for (const p of particles) {
+      if (!p.visible) continue;
+      p.userData.life -= dt;
+      if (p.userData.life <= 0) { p.visible = false; continue; }
+      p.position.add(p.userData.vel.clone().multiplyScalar(dt));
+      p.userData.vel.y -= 4 * dt;
+      p.scale.setScalar(p.userData.life);
+      p.material.opacity = p.userData.life;
+      p.material.transparent = true;
+    }
+
+    /* Paddle glow decay */
+    paddleMat.emissiveIntensity = THREE.MathUtils.lerp(paddleMat.emissiveIntensity, 0.6, 3 * dt);
+
+    /* End condition: too many misses? Actually runs until all cubes missed is fine */
+    /* Game runs until user stops; no death wall - just keeps playing */
+  }
+
+  /* Animate point light */
+  pointLight.intensity = 8 + Math.sin(performance.now()*0.002) * 2;
+
+  renderer.render(scene, camera);
+}
+
+animate();
+</script>
+</body>
+</html>
