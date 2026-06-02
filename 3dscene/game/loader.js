@@ -4,7 +4,7 @@
     const baseUrl = scriptSrc.substring(0, scriptSrc.lastIndexOf("/") + 1);
     const gifUrl = baseUrl + "img/loader.gif";
     const gifSize = 120;
-    const title = "three-player-controller";
+    const title = "Z7A游戏加载中";
     const fade = 600;
 
     /* Google Fonts */
