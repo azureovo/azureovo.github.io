@@ -175,7 +175,7 @@ redirect_from:
 </div>
 
 <div class="life-buttons">
-  <a href="/life/" class="life-btn">
+  <a href="/life/" class="life-btn secondary">
     ✨ 大学生活
   </a>
   <a href="/files/成绩单.pdf" target="_blank" class="life-btn secondary">
