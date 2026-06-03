@@ -206,9 +206,7 @@
         letter-spacing: 0.3px;
         transition: color 0.3s ease;
       }
-      .explore-buttons {
-        display: none !important;
-      }
+      #explore-without-music { display: none !important; }
       .explore-button {
         padding: 15px 28px;
         border-radius: 14px;
@@ -3702,20 +3700,5 @@
       });
     </script>
 
-    <!-- Auto-start: skip intro text & auto-play with music -->
-    <script>
-      (function() {
-        var done = false;
-        var check = setInterval(function() {
-          var btn = document.getElementById('explore-with-music');
-          if (btn && !done) {
-            done = true;
-            clearInterval(check);
-            btn.click();
-          }
-        }, 100);
-        setTimeout(function() { clearInterval(check); }, 30000);
-      })();
-    </script>
   </body>
 </html>
