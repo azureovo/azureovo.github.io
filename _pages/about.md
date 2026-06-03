@@ -73,7 +73,7 @@ redirect_from:
   </li>
   <li>
     <span class="news-date">2025.09</span>
-    成为中山大学计算机学院量子计算与软件所研究生第二党支部组织委员。
+    成为中大计院量子计算与软件所研究生第二党支部组织委员。
   </li>
   <li>
     <span class="news-date">2024.12</span>
