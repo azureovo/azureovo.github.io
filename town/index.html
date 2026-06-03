@@ -317,6 +317,32 @@
         animation: controlPanelFadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)
           forwards;
       }
+
+      .home-btn {
+        position: fixed;
+        right: calc(24px + env(safe-area-inset-right, 0px));
+        bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+        z-index: 1000;
+        width: 44px; height: 44px;
+        border-radius: 14px;
+        background: linear-gradient(145deg, rgba(245,240,236,0.92), rgba(237,232,228,0.85));
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.3);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer; text-decoration: none;
+        transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1);
+        opacity: 0; transform: translateY(10px);
+        animation: controlPanelFadeIn 0.8s cubic-bezier(0.25,0.46,0.45,0.94) 1.2s forwards;
+      }
+      .home-btn:hover {
+        background: linear-gradient(145deg, #ede8e4, #e0dbd6);
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+      }
+      .home-btn svg {
+        width: 20px; height: 20px; fill: #5c5048;
+      }
       #music-control {
         width: 48px;
         height: 48px;
@@ -2039,6 +2065,9 @@
     </button>
 
     <!-- Right Side Control Panel -->
+    <a href="https://azureovo.github.io/" class="home-btn" title="返回主界面">
+      <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+    </a>
     <div id="control-panel">
       <!-- Day/Night Toggle -->
       <div id="daynight-toggle">
