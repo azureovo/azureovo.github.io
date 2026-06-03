@@ -15,7 +15,7 @@
 | [网页展示](https://azureovo.github.io/3dscene/web/) | TriSplat 3DGS 实时场景交互 Demo |
 | [Unity 展示](https://azureovo.github.io/3dscene/unity/) | Unity 3DGS 游戏实机录屏展示 |
 | [网页游戏](https://azureovo.github.io/3dscene/game/) | 基于 three-player-controller 的多人联机 3D 游戏合集 |
-| [小镇](https://azureovo.github.io/town/) | 交互式 3D 小镇 |
+| [小岛](https://azureovo.github.io/town/) | 交互式 3D 小岛 |
 | [阅读](https://azureovo.github.io/books/) | 读书笔记 |
 | [CV](https://azureovo.github.io/files/%E5%BC%A0%E6%B8%85%E5%AE%89%E7%AE%80%E5%8E%86.pdf) | 简历 |
 
