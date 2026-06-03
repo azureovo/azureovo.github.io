@@ -15,6 +15,15 @@
     {% if site.atom_feed.hide != true %}
       <li><a href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ base_path }}/feed.xml{% endif %}"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].feed_label | default: "Feed" }}</a></li>
     {% endif %}
+      <li style="margin-left:12px;color:#7a8288;font-size:0.82em;">
+        <span id="busuanzi_container_site_pv" style="display:none;">
+          👁 总访问 <span id="busuanzi_value_site_pv"></span> 次
+        </span>
+        <span style="margin:0 6px;color:#ccc;">|</span>
+        <span id="busuanzi_container_site_uv" style="display:none;">
+          访客 <span id="busuanzi_value_site_uv"></span> 人
+        </span>
+      </li>
   </ul>
 </div>
 {% endif %}
