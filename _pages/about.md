@@ -133,7 +133,6 @@ redirect_from:
    role="产品经理"
    company="字节 · 抖音"
    date="2026.06 - 至今"
-   details="/404code/"
 %}
 
 {% include experience-item.html
@@ -141,7 +140,6 @@ redirect_from:
    role="技术产品"
    company="腾讯IEG · 技术中台 · 服务拓展组"
    date="2026.02 - 2026.04"
-   details="/experience/tencent-ieg/"
 %}
 
 {% include experience-item.html
@@ -149,7 +147,6 @@ redirect_from:
    role="产品分析与策略优化"
    company="米哈游 · 在研游戏 · 功能测试组"
    date="2025.06 - 2025.12"
-   details="/experience/mihoyo/"
 %}
 
 {% include experience-item.html
@@ -157,7 +154,6 @@ redirect_from:
    role="软件工程师"
    company="四川航天技术研究院 (CASIC)"
    date="2023.05 - 2023.07"
-   details="/404code/"
 %}
 
 {% include experience-item.html
@@ -165,7 +161,6 @@ redirect_from:
    role="游戏产策"
    company="数字天空 (Digital Sky)"
    date="2021.09 - 2021.11"
-   details="/404code/"
 %}
 
 <div class="section-separator"></div>
