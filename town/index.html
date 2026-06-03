@@ -3676,29 +3676,16 @@
     <!-- Auto-start: skip intro text & auto-play with music -->
     <script>
       (function() {
-        var textOverlayRemoved = false;
-        var exploreTriggered = false;
-
-        var observer = new MutationObserver(function() {
-          // Remove the "梦想成真" text overlay as soon as it appears
-          var overlay = document.querySelector('.reveal-content');
-          if (overlay && overlay.parentElement && !textOverlayRemoved) {
-            overlay.parentElement.remove();
-            textOverlayRemoved = true;
-          }
-
-          // Auto-click "伴随音乐探索" when ready
+        var done = false;
+        var check = setInterval(function() {
           var btn = document.getElementById('explore-with-music');
-          if (btn && !exploreTriggered) {
-            var btns = document.getElementById('explore-buttons');
-            if (btns && btns.classList.contains('show')) {
-              exploreTriggered = true;
-              setTimeout(function() { btn.click(); }, 300);
-            }
+          if (btn && !done) {
+            done = true;
+            clearInterval(check);
+            btn.click();
           }
-        });
-
-        observer.observe(document.body, { childList: true, subtree: true });
+        }, 100);
+        setTimeout(function() { clearInterval(check); }, 30000);
       })();
     </script>
   </body>
