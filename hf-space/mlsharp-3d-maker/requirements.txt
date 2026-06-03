@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+python-multipart
+huggingface_hub
+sharp @ git+https://github.com/apple/ml-sharp.git
+torch
+torchvision
