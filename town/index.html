@@ -42,9 +42,15 @@
         left: 0;
         outline: none;
       }
-#shader-overlay {
-    display: none !important;
-  }
+      #shader-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1001;
+        pointer-events: none;
+      }
       #loader {
         position: fixed;
         top: 0;
@@ -206,7 +212,14 @@
         letter-spacing: 0.3px;
         transition: color 0.3s ease;
       }
-      #explore-without-music { display: none !important; }
+      .explore-buttons {
+        display: flex;
+        gap: 14px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        visibility: hidden;
+      }
       .explore-button {
         padding: 15px 28px;
         border-radius: 14px;
@@ -292,8 +305,11 @@
           transparent 70%
         );
       }
-      .explore-buttons { display: none !important; }
-
+      .explore-buttons.show {
+        opacity: 1;
+        transform: translateY(0px);
+        visibility: visible;
+      }
       .explore-button i {
         transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         font-size: 0.8rem;
@@ -315,7 +331,6 @@
         animation: controlPanelFadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)
           forwards;
       }
-
       .home-btn {
         position: fixed;
         right: calc(24px + env(safe-area-inset-right, 0px));
@@ -2112,7 +2127,7 @@
     </div>
 
     <div id="page-title">
-      <i class="fa-regular fa-square"></i>Z7A的小镇
+      <i class="fa-regular fa-square"></i>Elemental Serenity
     </div>
 
     <!-- Settings Modal -->
@@ -2848,7 +2863,7 @@
     <!-- Loader Screen -->
     <div id="loader">
       <div class="loader-title">
-        <i class="fa-regular fa-square"></i>Z7A的小镇
+        <i class="fa-regular fa-square"></i>Elemental Serenity
       </div>
       <div class="loader-progress">
         <div class="loader-progress-bar" id="progress-bar"></div>
@@ -3699,6 +3714,5 @@
         }, 1000);
       });
     </script>
-
   </body>
 </html>
