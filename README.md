@@ -10,7 +10,7 @@
 
 | 页面 | 说明 |
 |------|------|
-| [首页](https://azureovo.github.io/) | 个人简介、最新动态、论文、教育经历、工作经历 |
+| [首页](https://azureovo.github.io/) | 个人简介、最新动态、论文、教育经历、实习经历、快速浏览我 |
 | [3DGS Hub](https://azureovo.github.io/3dscene/) | 3DGS 研究展示中心：网页展示 / Unity 展示 / 网页游戏 / 研究报告 |
 | [网页展示](https://azureovo.github.io/3dscene/web/) | TriSplat 3DGS 实时场景交互 Demo |
 | [Unity 展示](https://azureovo.github.io/3dscene/unity/) | Unity 3DGS 游戏实机录屏展示 |
