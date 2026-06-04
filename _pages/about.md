@@ -192,6 +192,10 @@ redirect_from:
   </a>
 </div>
 
+## 🖼️ 快速浏览我
+
+{% include quick-gallery.html %}
+
 <!-- ========== Sparkle FX Visual Effects ========== -->
 <script src="{{ base_path }}/assets/js/sparkle-fx.js"></script>
 
