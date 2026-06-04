@@ -3583,8 +3583,7 @@ body:not(.no-js) #galaxy-container + * { /* Hide any default layout content on g
   transition: opacity 0.4s, transform 0.4s;
 }
 .life-slider .info-area .info-name {
-  font-size: 1.8rem; font-weight: 900; letter-spacing: 0.02em;
-  margin-bottom: 8px; color: #2c3e50;
+  font-size: 2.4rem; font-weight: 900; letter-spacing: 0.02em;
 }
 .life-slider .slider-btn {
   position: absolute; top: 50%; transform: translateY(-50%);
