@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "About Me"
+title: "hello，我是Z7A"
 excerpt: "About Me"
 author_profile: false
 redirect_from: 
