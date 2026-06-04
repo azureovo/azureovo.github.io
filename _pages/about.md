@@ -176,16 +176,16 @@ redirect_from:
 
 <div class="life-buttons">
   <a href="/life/" class="life-btn secondary">
-    ✨ 大学生活
+    ✨ 生活
   </a>
   <a href="/files/成绩单.pdf" target="_blank" class="life-btn secondary">
-    📄 成绩单
+    📄 成绩
   </a>
   <a href="/files/四六级成绩.pdf" target="_blank" class="life-btn secondary">
     ✏️ 四六级
   </a>
   <a href="/files/比赛获奖.pdf" target="_blank" class="life-btn secondary">
-    🏆 比赛获奖
+    🏆 比赛
   </a>
   <a href="/files/其他获奖及证书.pdf" target="_blank" class="life-btn secondary">
     📜 其他荣誉
