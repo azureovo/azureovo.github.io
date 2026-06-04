@@ -192,6 +192,7 @@ redirect_from:
   </a>
 </div>
 
+<!-- ========== GALLERY ========== -->
 <div class="section-heading" id="gallery">
   <span class="icon">🖼️</span> 快速浏览我
 </div>
