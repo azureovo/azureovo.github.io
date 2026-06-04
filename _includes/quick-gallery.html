@@ -1,36 +1,25 @@
 <style>
 .life-slider {
-  --card-width: 200px;
-  --card-height: 300px;
+  --card-width: 280px;
+  --card-height: 380px;
   --card-transition-duration: 800ms;
   --card-transition-easing: ease;
   position: relative;
-  width: 100%; min-height: 560px;
-  display: flex; justify-content: center; align-items: center;
-  overflow: hidden; margin-top: 1.5rem;
-  font-family: 'Montserrat',-apple-system,BlinkMacSystemFont,sans-serif;
+  width: 100%; min-height: 520px;
+  display: flex; align-items: center; gap: 2rem;
+  margin-top: 1.5rem; padding: 1rem 0;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
 }
-.life-slider .slider-bg {
-  position: absolute; inset: 0; z-index: 1;
-  filter: blur(8px); pointer-events: none; overflow: hidden;
-}
-.life-slider .slider-bg::before {
-  content: ""; position: absolute; inset: 0;
-  background: #000; z-index: 2; opacity: 0.8;
-}
-.life-slider .slider-bg img {
-  position: absolute; width: 180%; height: 180%; object-fit: cover;
-  left: 50%; top: 50%; transform: translate(-50%,-50%);
-  opacity: 0; transition: opacity 1s ease;
-}
-.life-slider .slider-bg img.active { opacity: 1; }
+.life-slider .slider-bg { display: none; }
 .life-slider .card-area {
-  position: relative; z-index: 10;
-  width: calc(3 * var(--card-width)); height: 100%;
+  position: relative; flex: 1 1 auto;
+  min-width: calc(var(--card-width) * 1.4 + 80px);
+  height: var(--card-height);
+  display: flex; justify-content: center; align-items: center;
 }
 .life-slider .cards-wrapper {
   position: relative; width: 100%; height: 100%;
-  perspective: 1000px;
+  perspective: 1200px;
 }
 .life-slider .life-card {
   --card-translateY-offset: 100vh;
@@ -44,78 +33,74 @@
   width: var(--card-width); height: var(--card-height);
   transition: transform var(--card-transition-duration) var(--card-transition-easing);
   user-select: none;
+  border-radius: 8px; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }
-.life-slider .life-card::before {
-  content: ""; position: absolute; inset: 0; z-index: 1;
-  background: #000;
-  transition: opacity var(--card-transition-duration) var(--card-transition-easing);
-  opacity: calc(1 - var(--opacity));
-}
+.life-slider .life-card::before { display: none; }
 .life-slider .life-card img {
   width: 100%; height: 100%; object-fit: cover; display: block;
 }
 .life-slider .life-card.current {
   --card-translateX-offset: 0;
   --card-rotation-offset: 0;
-  --card-scale-offset: 1.2;
-  --opacity: 0.8;
+  --card-scale-offset: 1;
+  --opacity: 1;
 }
 .life-slider .life-card.prev {
-  --card-translateX-offset: calc(-1 * var(--card-width) * 1.1);
-  --card-rotation-offset: 25deg;
-  --card-scale-offset: 0.9;
-  --opacity: 0.4;
+  --card-translateX-offset: calc(-1 * var(--card-width) * 1.05);
+  --card-rotation-offset: 20deg;
+  --card-scale-offset: 0.85;
+  --opacity: 0.5;
 }
 .life-slider .life-card.next {
-  --card-translateX-offset: calc(var(--card-width) * 1.1);
-  --card-rotation-offset: -25deg;
-  --card-scale-offset: 0.9;
-  --opacity: 0.4;
+  --card-translateX-offset: calc(var(--card-width) * 1.05);
+  --card-rotation-offset: -20deg;
+  --card-scale-offset: 0.85;
+  --opacity: 0.5;
 }
 .life-slider .info-area {
-  position: absolute; z-index: 20;
-  left: calc(50% + var(--card-width) * 0.55);
-  bottom: 15%;
-  pointer-events: none;
+  flex: 0 0 auto; min-width: 180px;
+  padding-right: 1rem;
 }
 .life-slider .info-area .info-text {
-  font-family: "Montserrat",-apple-system,BlinkMacSystemFont,sans-serif;
-  color: #fff; white-space: nowrap;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  color: var(--text-color, #494e52);
   transition: opacity 0.4s, transform 0.4s;
 }
 .life-slider .info-area .info-name {
-  font-size: 1.6rem; font-weight: 800; text-transform: uppercase; margin-bottom: 6px;
+  font-size: 1.8rem; font-weight: 900; letter-spacing: 0.02em;
+  margin-bottom: 8px; color: #2c3e50;
 }
 .life-slider .info-area .info-tag {
-  font-size: 0.8rem; font-weight: 600; opacity: 0.7;
-  margin-bottom: 4px;
+  font-size: 1rem; font-weight: 600; opacity: 0.8; margin-bottom: 4px;
 }
 .life-slider .info-area .info-desc {
-  font-size: 0.7rem; font-weight: 500; opacity: 0.5;
+  font-size: 0.9rem; font-weight: 400; opacity: 0.55;
 }
 .life-slider .slider-btn {
   position: absolute; top: 50%; transform: translateY(-50%);
   z-index: 30; width: 44px; height: 44px;
-  border: none; background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(8px); border-radius: 50%;
+  border: none; background: rgba(0,0,0,0.06);
+  border-radius: 50%;
   cursor: pointer; display: flex; align-items: center; justify-content: center;
   transition: all 0.3s;
 }
-.life-slider .slider-btn:hover { background: rgba(255,255,255,0.18); }
-.life-slider .slider-btn svg { width: 24px; height: 24px; fill: none; stroke: #fff; stroke-width: 3; }
-.life-slider .btn-left { left: 24px; }
-.life-slider .btn-right { right: 24px; }
-@media (max-width:800px) {
-  .life-slider { --card-width: 140px; --card-height: 220px; min-height: 400px; }
-  .life-slider .info-area { bottom: 8%; left: 10%; }
-  .life-slider .info-name { font-size: 1.2rem; }
-  .life-slider .info-tag { font-size: 0.7rem; }
-  .life-slider .info-desc { font-size: 0.65rem; }
-}
-@media (max-width:500px) {
-  .life-slider { --card-width: 110px; --card-height: 180px; min-height: 340px; }
-  .life-slider .btn-left { left: 4px; }
-  .life-slider .btn-right { right: 4px; }
+.life-slider .slider-btn:hover { background: rgba(0,0,0,0.14); }
+.life-slider .slider-btn svg { width: 22px; height: 22px; fill: none; stroke: #555; stroke-width: 2.5; }
+.life-slider .btn-left { left: 4px; }
+.life-slider .btn-right { right: 4px; }
+@media (max-width:768px) {
+  .life-slider {
+    --card-width: 200px; --card-height: 280px;
+    flex-direction: column; min-height: 440px; gap: 1rem;
+  }
+  .life-slider .card-area { min-width: 0; width: 100%; }
+  .life-slider .info-area { text-align: center; padding-right: 0; }
+  .life-slider .info-name { font-size: 1.4rem; }
+  .life-slider .info-tag { font-size: 0.9rem; }
+  .life-slider .info-desc { font-size: 0.8rem; }
+  .life-slider .btn-left { left: 0; }
+  .life-slider .btn-right { right: 0; }
 }
 </style>
 
@@ -150,7 +135,6 @@ var cards=[
 ];
 var idx=0;
 var wrapper=document.getElementById("cardsWrapper");
-var bg=document.getElementById("sliderBg");
 var nameEl=document.getElementById("infoName");
 var tagEl=document.getElementById("infoTag");
 var descEl=document.getElementById("infoDesc");
@@ -164,24 +148,11 @@ function build(){
     if(i===cards.length-1) div.classList.add("prev");
     div.innerHTML='<img src="'+c.img+'" alt="'+c.name+'" loading="lazy">';
     wrapper.appendChild(div);
-    var bgImg=document.createElement("img");
-    bgImg.src=c.img; bgImg.alt=c.name;
-    if(i===0) bgImg.classList.add("active");
-    bg.appendChild(bgImg);
   });
   updateInfo(0);
 }
-function getByClass(c){
-  var all=wrapper.querySelectorAll(".life-card");
-  var a=[];
-  for(var i=0;i<all.length;i++){
-    if(all[i].classList.contains(c)) a.push(i);
-  }
-  return a;
-}
 function render(){
   var all=wrapper.querySelectorAll(".life-card");
-  var bgImgs=bg.querySelectorAll("img");
   for(var i=0;i<all.length;i++){
     all[i].className="life-card";
     var pos=(i-idx+cards.length)%cards.length;
@@ -189,16 +160,12 @@ function render(){
     if(pos===1) all[i].classList.add("next");
     if(pos===cards.length-1) all[i].classList.add("prev");
   }
-  for(var j=0;j<bgImgs.length;j++){
-    bgImgs[j].classList.remove("active");
-  }
-  bgImgs[idx].classList.add("active");
   updateInfo(idx);
 }
 function updateInfo(i){
-  nameEl.style.opacity=0; nameEl.style.transform="translateY(20px)";
-  tagEl.style.opacity=0; tagEl.style.transform="translateY(20px)";
-  descEl.style.opacity=0; descEl.style.transform="translateY(20px)";
+  nameEl.style.opacity=0; nameEl.style.transform="translateY(12px)";
+  tagEl.style.opacity=0; tagEl.style.transform="translateY(12px)";
+  descEl.style.opacity=0; descEl.style.transform="translateY(12px)";
   setTimeout(function(){
     nameEl.textContent=cards[i].name;
     tagEl.textContent=cards[i].tag;
