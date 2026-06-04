@@ -35,6 +35,7 @@
   user-select: none;
   border-radius: 8px; overflow: hidden;
   box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  opacity: 0; pointer-events: none;
 }
 .life-slider .life-card::before { display: none; }
 .life-slider .life-card img {
@@ -44,19 +45,19 @@
   --card-translateX-offset: 0;
   --card-rotation-offset: 0;
   --card-scale-offset: 1;
-  --opacity: 1;
+  opacity: 1; pointer-events: auto;
 }
 .life-slider .life-card.prev {
   --card-translateX-offset: calc(-1 * var(--card-width) * 1.05);
   --card-rotation-offset: 20deg;
   --card-scale-offset: 0.85;
-  --opacity: 0.5;
+  opacity: 0.5; pointer-events: none;
 }
 .life-slider .life-card.next {
   --card-translateX-offset: calc(var(--card-width) * 1.05);
   --card-rotation-offset: -20deg;
   --card-scale-offset: 0.85;
-  --opacity: 0.5;
+  opacity: 0.5; pointer-events: none;
 }
 .life-slider .info-area {
   flex: 0 0 auto; min-width: 180px;
@@ -73,9 +74,6 @@
 }
 .life-slider .info-area .info-tag {
   font-size: 1rem; font-weight: 600; opacity: 0.8; margin-bottom: 4px;
-}
-.life-slider .info-area .info-desc {
-  font-size: 0.9rem; font-weight: 400; opacity: 0.55;
 }
 .life-slider .slider-btn {
   position: absolute; top: 50%; transform: translateY(-50%);
@@ -112,7 +110,6 @@
   <div class="info-area">
     <div class="info-text info-name" id="infoName"></div>
     <div class="info-text info-tag" id="infoTag"></div>
-    <div class="info-text info-desc" id="infoDesc"></div>
   </div>
   <button class="slider-btn btn-left" id="btnLeft" aria-label="Previous">
     <svg viewBox="0 0 24 24"><polyline points="15 4 7 12 15 20"/></svg>
@@ -125,19 +122,18 @@
 <script>
 (function(){
 var cards=[
-  {img:"/images/quick-gallery/drink.jpg",name:"喝酒",tag:"🍺 偶尔微醺",desc:"生活需要一点微醺"},
-  {img:"/images/quick-gallery/bike.jpg",name:"骑车",tag:"🚴 自由骑行",desc:"风与自由的味道"},
-  {img:"/images/quick-gallery/hotpot.jpg",name:"火锅",tag:"🍲 无辣不欢",desc:"没有什么是一顿火锅解决不了的"},
-  {img:"/images/quick-gallery/hiking.jpg",name:"爬山",tag:"⛰️ 登高望远",desc:"山顶的风景最值得"},
-  {img:"/images/quick-gallery/disco.jpg",name:"蹦迪",tag:"🎵 放飞自我",desc:"今夜不设防"},
-  {img:"/images/quick-gallery/outdoor.jpg",name:"户外",tag:"🏕️ 热爱自然",desc:"逃离城市喧嚣"},
-  {img:"/images/quick-gallery/travel.jpg",name:"旅行",tag:"✈️ 丈量世界",desc:"用脚步丈量每一寸土地"}
+  {img:"/images/quick-gallery/drink.jpg",name:"喝酒",tag:"🍺 偶尔微醺"},
+  {img:"/images/quick-gallery/bike.jpg",name:"骑车",tag:"🚴 自由骑行"},
+  {img:"/images/quick-gallery/hotpot.jpg",name:"火锅",tag:"🍲 无辣不欢"},
+  {img:"/images/quick-gallery/hiking.jpg",name:"爬山",tag:"⛰️ 登高望远"},
+  {img:"/images/quick-gallery/disco.jpg",name:"蹦迪",tag:"🎵 放飞自我"},
+  {img:"/images/quick-gallery/outdoor.jpg",name:"户外",tag:"🏕️ 热爱自然"},
+  {img:"/images/quick-gallery/travel.jpg",name:"旅行",tag:"✈️ 丈量世界"}
 ];
 var idx=0;
 var wrapper=document.getElementById("cardsWrapper");
 var nameEl=document.getElementById("infoName");
 var tagEl=document.getElementById("infoTag");
-var descEl=document.getElementById("infoDesc");
 
 function build(){
   cards.forEach(function(c,i){
@@ -165,14 +161,11 @@ function render(){
 function updateInfo(i){
   nameEl.style.opacity=0; nameEl.style.transform="translateY(12px)";
   tagEl.style.opacity=0; tagEl.style.transform="translateY(12px)";
-  descEl.style.opacity=0; descEl.style.transform="translateY(12px)";
   setTimeout(function(){
     nameEl.textContent=cards[i].name;
     tagEl.textContent=cards[i].tag;
-    descEl.textContent=cards[i].desc;
     nameEl.style.opacity=1; nameEl.style.transform="translateY(0)";
     tagEl.style.opacity=1; tagEl.style.transform="translateY(0)";
-    descEl.style.opacity=1; descEl.style.transform="translateY(0)";
   },200);
 }
 document.getElementById("btnLeft").addEventListener("click",function(){
