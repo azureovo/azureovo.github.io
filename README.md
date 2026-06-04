@@ -1,6 +1,6 @@
 # Z7A的个人空间
 
-基于 [academicpages](https://github.com/academicpages/academicpages.github.io) 构建的个人学术与技术主页。
+借鉴于 [academicpages](https://github.com/academicpages/academicpages.github.io) 构建的主页，但进行了疯狂的魔改😈
 
 🔗 **[azureovo.github.io](https://azureovo.github.io/)**
 
