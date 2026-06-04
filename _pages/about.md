@@ -192,7 +192,7 @@ redirect_from:
   </a>
 </div>
 
-## 🖼️ 快速浏览我
+<span class="icon">🖼️</span> 快速浏览我
 
 {% include quick-gallery.html %}
 
