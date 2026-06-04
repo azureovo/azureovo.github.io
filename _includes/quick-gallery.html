@@ -5,7 +5,6 @@
   </div>
   <div class="info-area">
     <div class="info-text info-name" id="infoName"></div>
-    <div class="info-text info-tag" id="infoTag"></div>
   </div>
   <button class="slider-btn btn-left" id="btnLeft" aria-label="Previous">
     <svg viewBox="0 0 24 24"><polyline points="15 4 7 12 15 20"/></svg>
@@ -18,18 +17,17 @@
 <script>
 (function(){
 var cards=[
-  {img:"/images/quick-gallery/drink.jpg",name:"喝酒",tag:"🍺 偶尔微醺"},
-  {img:"/images/quick-gallery/bike.jpg",name:"骑车",tag:"🚴 自由骑行"},
-  {img:"/images/quick-gallery/hotpot.jpg",name:"火锅",tag:"🍲 无辣不欢"},
-  {img:"/images/quick-gallery/hiking.jpg",name:"爬山",tag:"⛰️ 登高望远"},
-  {img:"/images/quick-gallery/disco.jpg",name:"蹦迪",tag:"🎵 放飞自我"},
-  {img:"/images/quick-gallery/outdoor.jpg",name:"户外",tag:"🏕️ 热爱自然"},
-  {img:"/images/quick-gallery/travel.jpg",name:"旅行",tag:"✈️ 丈量世界"}
+  {img:"/images/quick-gallery/drink.jpg",name:"喝酒"},
+  {img:"/images/quick-gallery/bike.jpg",name:"骑车"},
+  {img:"/images/quick-gallery/hotpot.jpg",name:"火锅"},
+  {img:"/images/quick-gallery/hiking.jpg",name:"爬山"},
+  {img:"/images/quick-gallery/disco.jpg",name:"蹦迪"},
+  {img:"/images/quick-gallery/outdoor.jpg",name:"户外"},
+  {img:"/images/quick-gallery/travel.jpg",name:"旅行"}
 ];
 var idx=0;
 var wrapper=document.getElementById("cardsWrapper");
 var nameEl=document.getElementById("infoName");
-var tagEl=document.getElementById("infoTag");
 
 function build(){
   cards.forEach(function(c,i){
@@ -56,12 +54,9 @@ function render(){
 }
 function updateInfo(i){
   nameEl.style.opacity=0; nameEl.style.transform="translateY(12px)";
-  tagEl.style.opacity=0; tagEl.style.transform="translateY(12px)";
   setTimeout(function(){
     nameEl.textContent=cards[i].name;
-    tagEl.textContent=cards[i].tag;
     nameEl.style.opacity=1; nameEl.style.transform="translateY(0)";
-    tagEl.style.opacity=1; tagEl.style.transform="translateY(0)";
   },200);
 }
 document.getElementById("btnLeft").addEventListener("click",function(){

@@ -3586,9 +3586,6 @@ body:not(.no-js) #galaxy-container + * { /* Hide any default layout content on g
   font-size: 1.8rem; font-weight: 900; letter-spacing: 0.02em;
   margin-bottom: 8px; color: #2c3e50;
 }
-.life-slider .info-area .info-tag {
-  font-size: 1rem; font-weight: 600; opacity: 0.8; margin-bottom: 4px;
-}
 .life-slider .slider-btn {
   position: absolute; top: 50%; transform: translateY(-50%);
   z-index: 30; width: 44px; height: 44px;
