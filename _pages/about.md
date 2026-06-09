@@ -27,9 +27,6 @@ redirect_from:
       <span class="hero-meta-item">
         <i class="fas fa-map-marker-alt"></i> 广州 & 深圳
       </span>
-      <span class="hero-meta-item">
-        <i class="fas fa-graduation-cap"></i> 中山大学 · 硕士在读
-      </span>
       <a href="/books/" class="hero-meta-item"><span class="tag-icon" style="margin-right:4px;">📖</span>阅读</a>
       <a href="/town/" class="hero-meta-item"><span class="tag-icon" style="margin-right:4px;">🏝️</span>小岛</a>
       <a href="mailto:zhangqan@mail2.sysu.edu.cn" class="hero-meta-item hero-meta-icon" title="Email">
