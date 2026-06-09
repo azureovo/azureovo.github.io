@@ -12,13 +12,13 @@
     --text: #494e52;
     --heading: #2c3e50;
     --muted: #7a8288;
-    --accent: #52adc8;
-    --accent-strong: #3a8ba0;
-    --card-bg: #f8f9fa;
-    --border: rgba(0,0,0,0.08);
-    --shadow: 0 1px 3px rgba(0,0,0,0.06);
-    --tag-bg: #e8f4f8;
-    --tag-text: #3a8ba0;
+  --accent: #4a90d9;
+  --accent-strong: #357abd;
+  --card-bg: #f7f9fc;
+  --border: rgba(0,0,0,0.07);
+  --shadow: 0 2px 8px rgba(0,0,0,0.05);
+  --tag-bg: #eaf2fb;
+  --tag-text: #357abd;
   }
   *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
   body {
@@ -115,6 +115,9 @@
     display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 16px;
   }
+  .findings-grid-6 {
+    grid-template-columns: repeat(3, 1fr);
+  }
   .finding-card {
     background: var(--card-bg); border-radius: 12px; padding: 24px;
     border: 1px solid var(--border); transition: box-shadow .2s;
@@ -145,6 +148,11 @@
     font-size: 0.72rem; padding: 2px 8px; border-radius: 999px; margin: 2px;
     white-space: nowrap;
   }
+  .demo-link, .game-link {
+    color: var(--accent); font-weight: 600; text-decoration: none;
+    font-size: 0.85rem; white-space: nowrap; transition: color .2s;
+  }
+  .demo-link:hover, .game-link:hover { color: var(--accent-strong); text-decoration: underline; }
 
   /* ── Pipeline steps ── */
   .pipeline {
@@ -152,8 +160,8 @@
     scroll-snap-type: x mandatory;
   }
   .pipeline-step {
-    flex: 1; min-width: 180px; scroll-snap-align: start;
-    background: var(--card-bg); border-radius: 12px; padding: 24px;
+    flex: 1 0 200px; min-width: 200px; max-width: 260px; scroll-snap-align: start;
+    background: var(--card-bg); border-radius: 12px; padding: 20px 16px;
     border: 1px solid var(--border); text-align: center;
   }
   .pipeline-step .step-num {
@@ -202,9 +210,9 @@
     display: inline-block; margin-top: 8px; font-size: 0.7rem; font-weight: 700;
     padding: 2px 10px; border-radius: 999px;
   }
-  .priority-p0 { background: #fee2e2; color: #991b1b; }
+  .priority-p0 { background: #fde8e8; color: #b91c1c; }
   .priority-p1 { background: #fef3c7; color: #92400e; }
-  .priority-p2 { background: #e0e7ff; color: #3730a3; }
+  .priority-p2 { background: #e0e7ff; color: #4338ca; }
 
   /* ── PDF section ── */
   .pdf-section {
@@ -221,10 +229,10 @@
 
   /* ── Conclusion ── */
   .conclusion {
-    background: linear-gradient(135deg, #f0f7fa 0%, #e8f4f8 100%);
+    background: linear-gradient(135deg, #f0f5fc 0%, #e8eff9 100%);
     border-radius: 12px; padding: 28px 32px; border: 1px solid var(--border);
   }
-  .conclusion h2 { color: var(--accent-strong); }
+  .conclusion h2 { color: var(--accent); }
   .conclusion ul { margin-left: 20px; margin-top: 8px; }
   .conclusion li { font-size: 0.92rem; margin-bottom: 6px; line-height: 1.6; }
 
@@ -236,6 +244,9 @@
   .footer a { color: var(--accent); text-decoration: none; }
   .footer a:hover { text-decoration: underline; }
 
+  @media (max-width:900px) {
+    .findings-grid-6 { grid-template-columns: repeat(2, 1fr); }
+  }
   @media (max-width:600px) {
     .nav { padding: 8px 14px; gap: 12px; }
     .nav a { font-size: 12px; }
@@ -246,6 +257,7 @@
     .demo-table th, .demo-table td { padding: 8px 10px; }
     .pipeline { flex-direction: column; }
     .pipeline-arrow { display: none; }
+    .findings-grid-6 { grid-template-columns: 1fr; }
     .pdf-wrap embed { height: 50vh; }
   }
 </style>
@@ -296,27 +308,37 @@
 <!-- ═══════════════ Core Findings ═══════════════ -->
 <section class="section" id="findings">
   <h2>🔑 核心发现</h2>
-  <p class="section-desc">四点关键结论，定义了 3DGS 在游戏引擎中的真实定位</p>
-  <div class="findings-grid">
+  <p class="section-desc">基于三线 Demo 实践与工具链验证的六点关键结论</p>
+  <div class="findings-grid findings-grid-6">
     <div class="finding-card">
       <div class="icon">🎯</div>
-      <h3>定位：视觉代理，非 Mesh 替代</h3>
-      <p>3DGS 不应被简单理解为"取代 Mesh"，而应放置在具体游戏开发流程中讨论。其短期价值是 <strong>充当复杂场景的视觉代理</strong>，物理、动画、碰撞仍由传统 Mesh 承担。</p>
+      <h3>定位：视觉代理而非 Mesh 替代</h3>
+      <p>3DGS 不适合直接替换完整 Mesh 管线——无连续表面、无法原生碰撞、无法动态响应光照。其正确定位是 <strong>非核心复杂场景的静态视觉层</strong>，物理/动画/碰撞由传统 Mesh 承接。</p>
     </div>
     <div class="finding-card">
       <div class="icon">⚠️</div>
-      <h3>Unity WebGL 是最大瓶颈</h3>
-      <p>URP Shader Variant 爆炸导致 WebGL 构建失败，Compute Shader 依赖使其难以跨平台。Unity Editor 能跑 ≠ Unity WebGL 能发布。</p>
+      <h3>Unity WebGL 是最大工程瓶颈</h3>
+      <p>实测 URP Shader 变体打包后超 <strong>70GB</strong>，WebGL 构建直接失败。Compute Shader 依赖 OpenGL ES 不支持的 GPU 特性，Unity Editor 能跑 ≠ WebGL 能发布。</p>
     </div>
     <div class="finding-card">
       <div class="icon">🌐</div>
-      <h3>Web 原生渲染是更优路径</h3>
-      <p>对于 Web 端轻量化产品，Three.js / WebGPU 或专用 3DGS 渲染器可能比 Unity WebGL 更适合作为短期落地技术路线。</p>
+      <h3>Web 原生 3DGS 已落地验证</h3>
+      <p>Web Demo 页已稳定承载 <strong>15 个</strong> DL3DV/RE10K 场景，支持 FPV 漫游、多机器人（Humanoid/Dog/Rover）添加、位置标记等交互，浏览器端实时渲染帧率达 30-60 fps。</p>
     </div>
     <div class="finding-card">
-      <div class="icon">🏗️</div>
-      <h3>"视觉与逻辑分离"架构</h3>
-      <p>可行 Pipeline 的核心思路是：3DGS 负责视觉呈现，Mesh Proxy 负责物理交互，两者协同而非互相替代。</p>
+      <div class="icon">🦴</div>
+      <h3>视觉-物理分离架构已工具化</h3>
+      <p>CloudCompare PoissonRecon → Blender 减面 → Unity Collider 的工具链已验证：<strong>两千万高斯点 → 3MB 碰撞体</strong>，满足 Web/移动端物理交互的轻量化需求。</p>
+    </div>
+    <div class="finding-card">
+      <div class="icon">👥</div>
+      <h3>多人联机已通过 Firebase 验证</h3>
+      <p>Three.js 游戏页面已实现 glTF + 3DGS 双场景下的 <strong>实时多人在线同步</strong>，基于 Firebase Realtime Database，验证了 3DGS 场景在社交互动场景中的可行性。</p>
+    </div>
+    <div class="finding-card">
+      <div class="icon">📊</div>
+      <h3>产品化路径优先级明确</h3>
+      <p><strong>P0 短视频 3D 背景</strong> → <strong>P1 虚拟展馆 & 社交空间</strong> → <strong>P2 UGC 场景生成工具链</strong>。从"能看"到"能交互"再到"能创作"，逐级验证产品价值。</p>
     </div>
   </div>
 </section>
@@ -324,7 +346,7 @@
 <!-- ═══════════════ Demo System ═══════════════ -->
 <section class="section" id="demos">
   <h2>🖥️ 当前 Demo 体系</h2>
-  <p class="section-desc">三线并行验证：Web 展示、Unity 集成、Three.js 游戏交互</p>
+  <p class="section-desc">三线并行验证，每条线对应一个可访问的独立 Demo 页面</p>
   <div style="overflow-x:auto;">
   <table class="demo-table">
     <thead>
@@ -332,27 +354,27 @@
         <th>Demo 类型</th>
         <th>已验证能力</th>
         <th>主要限制</th>
-        <th>适用场景</th>
+        <th>在线访问</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td class="demo-name">🌐 Web 端 3DGS 展示<br><span class="tag">TriSplat</span><span class="tag">WebGL</span></td>
-        <td>浏览器实时渲染 · 多场景切换 · 第一人称视角 · 相机控制</td>
-        <td>大场景加载时间 · 移动端性能待优化</td>
-        <td>技术主页 · 作品展示 · 虚拟展馆</td>
+        <td class="demo-name">🌐 Web 端 3DGS 展示<br><span class="tag">TriSplat</span><span class="tag">WebGL</span><span class="tag">15 场景</span></td>
+        <td>浏览器实时渲染 · DL3DV/RE10K 15 场景切换 · FPV 漫游 · 人形/机器狗/漫游车添加 · 位置标记 · 30-60 fps</td>
+        <td>大场景首屏加载较慢 · 移动端 WebGL 性能受限</td>
+        <td><a href="/3dscene/web/" class="demo-link" target="_blank">🌐 在线体验 →</a></td>
       </tr>
       <tr>
-        <td class="demo-name">🎮 Unity 端 3DGS<br><span class="tag">URP</span><span class="tag">Compute Shader</span></td>
-        <td>桌面端实时渲染 (55-70 fps) · 进入编辑器工作流</td>
-        <td>WebGL 构建失败 · 缺少原生资产生态</td>
-        <td>本地 Demo · 桌面应用 · 技术验证</td>
+        <td class="demo-name">🎮 Unity 端 3DGS 集成<br><span class="tag">URP</span><span class="tag">Compute Shader</span><span class="tag">录屏展示</span></td>
+        <td>桌面端实时渲染 (55-70 fps) · 场景漫游 · VR 电视交互 · 3DGS 与 Unity 工作流集成验证</td>
+        <td>WebGL 构建失败 (Shader 变体 &gt;70GB) · 缺原生资产管线 · 仅录屏展示</td>
+        <td><a href="/3dscene/unity/" class="demo-link" target="_blank">🎮 观看录屏 →</a></td>
       </tr>
       <tr>
-        <td class="demo-name">🕹️ Three.js 游戏交互<br><span class="tag">Rapier</span><span class="tag">3DGS</span></td>
-        <td>角色控制 · 多人联机 · 跳跃模式 · 3DGS 场景嵌入</td>
-        <td>编辑器与团队协作弱于 Unity</td>
-        <td>小游戏 · 轻量社交空间</td>
+        <td class="demo-name">🕹️ Three.js 游戏交互<br><span class="tag">Rapier</span><span class="tag">Firebase</span><span class="tag">3DGS+glTF</span></td>
+        <td>角色控制 · 多人联机同步 · glTF/3D Tiles/3DGS 多格式 · 射击对战 · 蜡笔小新/办公楼场景漫游</td>
+        <td>编辑器与团队协作弱于 Unity · 大型项目工程化待完善</td>
+        <td><a href="/3dscene/game/" class="game-link" target="_blank">🕹️ 进入游戏 →</a></td>
       </tr>
     </tbody>
   </table>
@@ -362,48 +384,48 @@
 <!-- ═══════════════ Technical Challenges ═══════════════ -->
 <section class="section" id="challenges">
   <h2>⚡ 核心技术挑战</h2>
-  <p class="section-desc">6 大关键瓶颈及其影响范围与建议对策</p>
+  <p class="section-desc">从工程实践中识别的 6 大关键瓶颈，含已验证方案与推荐对策</p>
   <ul class="challenge-list">
     <li>
       <div class="idx">1</div>
       <div class="info">
-        <h4>渲染后端不兼容</h4>
-        <p>Unity WebGL 无法复用桌面端 Compute Shader 管线。桌面用 Unity，Web 端用 Three.js / WebGPU 原生渲染器。</p>
+        <h4>渲染后端断层：桌面 vs Web</h4>
+        <p>桌面端依赖 DX12/Compute Shader 高效渲染高斯泼溅，但 WebGL (OpenGL ES 子集) 不支持 Compute Shader。结论：桌面用 Unity，Web 用 Three.js / WebGPU 原生管线，<strong>不试图将同一套渲染代码同时发布到两个平台</strong>。</p>
       </div>
     </li>
     <li>
       <div class="idx">2</div>
       <div class="info">
-        <h4>Shader 变体爆炸与构建不可控</h4>
-        <p>URP 产生亿级 Variant 导致构建时间、体积和内存失控。精简 URP 设置 + Shader Stripping + 独立渲染工程。</p>
+        <h4>Shader 变体爆炸：构建不可控</h4>
+        <p>URP + 3DGS 自定义 Shader 产生海量 Variant 组合，实测 packing 阶段提示 preparing variants (1510M / 72477M)，导致 WebGL 构建体积和时间完全失控。对策：精简 URP Feature · Shader Stripping 剔除无用 Keyword · 为 Web 独立维护最小渲染工程而非复用完整 URP 管线。</p>
       </div>
     </li>
     <li>
       <div class="idx">3</div>
       <div class="info">
-        <h4>资产生态与编辑器工具缺失</h4>
-        <p>3DGS 以 .ply/.splat 格式存储，Unity 无法原生理解。需设计自定义 Importer、压缩工具和运行时 Loader。</p>
+        <h4>资产管线断裂：格式鸿沟</h4>
+        <p>3DGS 以 .ply / .splat / .spz 格式存储高斯参数（位置/协方差/球谐/不透明度），Unity 原生不识别。缺乏 Importer、Prefab 化、LOD 生成、AssetBundle 打包等标准资产工具。需自建导入器 + 压缩工具 + 运行时 Loader，方能融入 Unity 生产管线。</p>
       </div>
     </li>
     <li>
       <div class="idx">4</div>
       <div class="info">
-        <h4>碰撞与导航系统缺失</h4>
-        <p>3DGS 无连续表面，无法直接用于精确碰撞。<strong>已验证方案</strong>：将点云导入 CloudCompare，使用 PoissonRecon 工具计算建面输出 Mesh，经 Blender 中转格式后导入 Unity。实测两千万个高斯点的场景，生成的碰撞体仅 <strong>3MB</strong>，完全满足轻量化需求。采用低模 Mesh Collider 作为物理代理，3DGS 仅负责视觉。</p>
+        <h4>碰撞与物理：点云无表面</h4>
+        <p>3DGS 本质是离散高斯椭球体集合，无 Mesh 拓扑概念，无法直接生成 Collider。<strong>已验证方案</strong>：点云 → CloudCompare PoissonRecon 建面 → Blender 减面 → Unity Mesh Collider。2000 万高斯点场景生成碰撞体仅 <strong>3MB</strong>，远小于原始点云 37MB。</p>
       </div>
     </li>
     <li>
       <div class="idx">5</div>
       <div class="info">
-        <h4>动态场景与光照一致性</h4>
-        <p>3DGS 的光照信息通常烘焙在训练结果中，无法自然响应游戏动态光源。短期内限定为静态视觉层。</p>
+        <h4>光照一致性与动态场景</h4>
+        <p>3DGS 的光照/颜色信息已烘焙在训练结果中（球谐系数），无法如 PBR 材质般实时响应场景动态光源。此外，形变/破碎/角色动画等动态需求需 4DGS 或物理仿真扩展，计算开销远超当前轻量化目标。短期定位：<strong>静态场景视觉层</strong>。</p>
       </div>
     </li>
     <li>
       <div class="idx">6</div>
       <div class="info">
-        <h4>包体与加载压力</h4>
-        <p>30-40MB 的单个 3DGS 场景在 Web/小游戏场景下首屏压力大。SPZ 压缩 + 分块流式 + LOD 渐进加载。</p>
+        <h4>包体与跨平台部署压力</h4>
+        <p>单个中等规模 3DGS 场景约 30-40MB (.splat)，面对 Web 首屏和移动端小游戏场景，加载压力显著。对策：SPZ 量化压缩 · 分块流式加载 (tile streaming) · LOD 渐进细化 · 按需剔除。需配合 CDN 分发策略和 AssetBundle 增量更新机制。</p>
       </div>
     </li>
   </ul>
@@ -423,7 +445,7 @@
     <div class="pipeline-step">
       <div class="step-num">2</div>
       <h4>轻交互游戏环境</h4>
-      <p>3DGS 视觉层 + CloudCompare/PoissonRecon 生成的轻量碰撞体（~3MB）。角色移动、跳跃、碰撞均由 Proxy Mesh 承接。</p>
+      <p>3DGS 视觉层 + PoissonRecon 碰撞体（~3MB）。角色移动/跳跃/碰撞由 Proxy Mesh 承接。</p>
     </div>
     <div class="pipeline-arrow">→</div>
     <div class="pipeline-step">
