@@ -3,67 +3,256 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>研究报告 — 3DGS研究</title>
+<title>研究报告 — 3DGS 在 Unity 游戏引擎中的应用边界调研与验证</title>
+<meta name="description" content="基于 3D Gaussian Splatting 技术在 Unity 游戏引擎中的可行性、局限性与应用边界调研。包含 Web 端展示、Unity 集成、Three.js 游戏交互三大 Demo 体系及可行 Pipeline 设计。">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
 <style>
   :root {
     --bg: #fff;
     --text: #494e52;
+    --heading: #2c3e50;
     --muted: #7a8288;
     --accent: #52adc8;
+    --accent-strong: #3a8ba0;
+    --card-bg: #f8f9fa;
+    --border: rgba(0,0,0,0.08);
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --tag-bg: #e8f4f8;
+    --tag-text: #3a8ba0;
   }
   *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
   body {
     background: var(--bg); color: var(--text);
-    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-    min-height: 100vh; -webkit-font-smoothing: antialiased;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+    min-height: 100vh; -webkit-font-smoothing: antialiased; line-height: 1.7;
   }
 
+  /* ── Navigation ── */
   .nav {
     position: fixed; top:0; left:0; right:0; z-index:100;
     padding: 12px 24px; display: flex; align-items: center; gap: 24px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, transparent 100%);
-    pointer-events: none;
+    background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
   }
-  .nav a { color: var(--muted); text-decoration: none; font-size: 14px; pointer-events: auto; transition: color .2s; }
+  .nav a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color .2s; }
   .nav a:hover { color: var(--text); }
+  .nav a.active { color: var(--accent-strong); font-weight: 600; }
   .nav a.brand { color: var(--text); font-weight: 600; font-size: 16px; margin-right: auto; }
 
-  .page-header {
-    max-width: 900px; margin: 100px auto 0; padding: 0 24px; text-align: center;
+  /* ── Container ── */
+  .container {
+    max-width: 960px; margin: 0 auto; padding: 0 24px;
   }
-  .page-header h1 {
-    font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 900;
-    letter-spacing: -0.02em; margin-bottom: 0.5rem;
+
+  /* ── Hero ── */
+  .hero {
+    padding: 100px 0 48px; text-align: center;
   }
-  .page-header .subtitle { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.8rem; }
-  .page-header .back-link {
+  .hero h1 {
+    font-size: clamp(1.6rem, 3.2vw, 2.1rem); font-weight: 900;
+    letter-spacing: -0.02em; color: var(--heading); margin-bottom: 0.6rem;
+  }
+  .hero .subtitle {
+    color: var(--muted); font-size: 0.95rem; margin-bottom: 0.3rem;
+  }
+  .hero .meta {
+    display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+    margin-top: 12px; font-size: 0.85rem; color: var(--muted);
+  }
+  .hero .meta span { display: flex; align-items: center; gap: 4px; }
+  .hero .actions {
+    margin-top: 24px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 20px; font-size: 0.9rem; font-weight: 600;
+    border-radius: 999px; text-decoration: none; transition: all .2s;
+    cursor: pointer; border: none;
+  }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-strong); }
+  .btn-outline { color: var(--accent); border: 1px solid var(--accent); background: transparent; }
+  .btn-outline:hover { background: var(--accent); color: #fff; }
+  .btn-back {
     display: inline-flex; align-items: center; gap: 6px;
     padding: 6px 16px; color: var(--accent); font-weight: 600; font-size: 0.85rem;
     text-decoration: none; border: 1px solid var(--accent);
     border-radius: 999px; transition: all .2s;
   }
-  .page-header .back-link:hover { background: var(--accent); color: #fff; }
+  .btn-back:hover { background: var(--accent); color: #fff; }
 
-  .pdf-wrap {
-    max-width: 900px; margin: 2rem auto 4rem; padding: 0 24px;
+  /* ── Section ── */
+  .section {
+    margin-bottom: 48px;
   }
+  .section h2 {
+    font-size: 1.3rem; font-weight: 700; color: var(--heading);
+    margin-bottom: 6px; letter-spacing: -0.01em;
+  }
+  .section .section-desc {
+    color: var(--muted); font-size: 0.9rem; margin-bottom: 20px;
+  }
+
+  /* ── Abstract card ── */
+  .abstract-card {
+    background: var(--card-bg); border-radius: 12px; padding: 28px 32px;
+    border: 1px solid var(--border);
+  }
+  .abstract-card p {
+    font-size: 0.95rem; line-height: 1.8; color: var(--text);
+  }
+  .abstract-card .keywords {
+    margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .abstract-card .keywords span {
+    background: var(--tag-bg); color: var(--tag-text);
+    font-size: 0.78rem; padding: 3px 12px; border-radius: 999px; font-weight: 500;
+  }
+
+  /* ── Findings grid ── */
+  .findings-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .finding-card {
+    background: var(--card-bg); border-radius: 12px; padding: 24px;
+    border: 1px solid var(--border); transition: box-shadow .2s;
+  }
+  .finding-card:hover { box-shadow: var(--shadow); }
+  .finding-card .icon { font-size: 1.4rem; margin-bottom: 8px; }
+  .finding-card h3 { font-size: 1rem; font-weight: 700; color: var(--heading); margin-bottom: 6px; }
+  .finding-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+
+  /* ── Demo table ── */
+  .demo-table {
+    width: 100%; border-collapse: collapse; font-size: 0.88rem;
+    border-radius: 12px; overflow: hidden; border: 1px solid var(--border);
+  }
+  .demo-table th {
+    background: var(--card-bg); text-align: left; padding: 12px 16px;
+    font-weight: 600; color: var(--heading); font-size: 0.82rem;
+    text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  .demo-table td {
+    padding: 12px 16px; border-top: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .demo-table tr:nth-child(even) td { background: rgba(0,0,0,0.01); }
+  .demo-table .demo-name { font-weight: 600; color: var(--heading); }
+  .demo-table .tag {
+    display: inline-block; background: var(--tag-bg); color: var(--tag-text);
+    font-size: 0.72rem; padding: 2px 8px; border-radius: 999px; margin: 2px;
+    white-space: nowrap;
+  }
+
+  /* ── Pipeline steps ── */
+  .pipeline {
+    display: flex; gap: 16px; overflow-x: auto; padding-bottom: 8px;
+    scroll-snap-type: x mandatory;
+  }
+  .pipeline-step {
+    flex: 1; min-width: 180px; scroll-snap-align: start;
+    background: var(--card-bg); border-radius: 12px; padding: 24px;
+    border: 1px solid var(--border); text-align: center;
+  }
+  .pipeline-step .step-num {
+    width: 36px; height: 36px; border-radius: 50%; background: var(--accent);
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 12px; font-weight: 700; font-size: 0.9rem;
+  }
+  .pipeline-step h4 { font-size: 0.9rem; font-weight: 700; color: var(--heading); margin-bottom: 4px; }
+  .pipeline-step p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+  .pipeline-arrow {
+    display: flex; align-items: center; font-size: 1.4rem; color: var(--accent);
+    flex-shrink: 0; padding: 0 4px;
+  }
+
+  /* ── Challenge list ── */
+  .challenge-list {
+    list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 12px;
+  }
+  .challenge-list li {
+    background: var(--card-bg); border-radius: 10px; padding: 16px 20px;
+    border: 1px solid var(--border); display: flex; gap: 12px;
+  }
+  .challenge-list li .idx {
+    flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+    background: var(--accent); color: #fff; display: flex; align-items: center;
+    justify-content: center; font-size: 0.78rem; font-weight: 700;
+  }
+  .challenge-list li .info h4 { font-size: 0.9rem; font-weight: 700; color: var(--heading); margin-bottom: 2px; }
+  .challenge-list li .info p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+  /* ── Scenario grid ── */
+  .scenario-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  .scenario-card {
+    background: var(--card-bg); border-radius: 12px; padding: 20px;
+    border: 1px solid var(--border); text-align: center;
+  }
+  .scenario-card .s-icon { font-size: 1.8rem; margin-bottom: 8px; }
+  .scenario-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--heading); margin-bottom: 4px; }
+  .scenario-card p { font-size: 0.8rem; color: var(--muted); }
+  .scenario-card .priority {
+    display: inline-block; margin-top: 8px; font-size: 0.7rem; font-weight: 700;
+    padding: 2px 10px; border-radius: 999px;
+  }
+  .priority-p0 { background: #fee2e2; color: #991b1b; }
+  .priority-p1 { background: #fef3c7; color: #92400e; }
+  .priority-p2 { background: #e0e7ff; color: #3730a3; }
+
+  /* ── PDF section ── */
+  .pdf-section {
+    background: var(--card-bg); border-radius: 12px; padding: 32px;
+    border: 1px solid var(--border); text-align: center;
+  }
+  .pdf-section h2 { margin-bottom: 8px; }
+  .pdf-section p { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+  .pdf-wrap { max-width: 100%; }
   .pdf-wrap embed {
-    width: 100%; height: 85vh; border: 1px solid rgba(0,0,0,0.1);
+    width: 100%; height: 70vh; border: 1px solid var(--border);
     border-radius: 12px; background: #f8f9fa;
   }
+
+  /* ── Conclusion ── */
+  .conclusion {
+    background: linear-gradient(135deg, #f0f7fa 0%, #e8f4f8 100%);
+    border-radius: 12px; padding: 28px 32px; border: 1px solid var(--border);
+  }
+  .conclusion h2 { color: var(--accent-strong); }
+  .conclusion ul { margin-left: 20px; margin-top: 8px; }
+  .conclusion li { font-size: 0.92rem; margin-bottom: 6px; line-height: 1.6; }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center; padding: 32px 0; color: var(--muted);
+    font-size: 0.82rem; border-top: 1px solid var(--border); margin-top: 48px;
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
 
   @media (max-width:600px) {
     .nav { padding: 8px 14px; gap: 12px; }
     .nav a { font-size: 12px; }
     .nav a.brand { font-size: 14px; }
-    .page-header { margin-top: 80px; }
-    .pdf-wrap embed { height: 70vh; }
+    .hero { padding: 80px 0 36px; }
+    .container { padding: 0 16px; }
+    .demo-table { font-size: 0.78rem; }
+    .demo-table th, .demo-table td { padding: 8px 10px; }
+    .pipeline { flex-direction: column; }
+    .pipeline-arrow { display: none; }
+    .pdf-wrap embed { height: 50vh; }
   }
 </style>
 </head>
 <body>
 
+<!-- ═══════════════ Navigation ═══════════════ -->
 <nav class="nav">
   <a href="https://azureovo.github.io/" class="brand">Z7A的个人空间</a>
   <a href="https://azureovo.github.io/">Home</a>
@@ -71,15 +260,256 @@
   <a href="https://azureovo.github.io/cv/">CV</a>
 </nav>
 
-<div class="page-header">
-  <h1>📄 研究报告</h1>
-  <p class="subtitle">3DGS 在 Unity 游戏引擎中的应用边界调研与验证</p>
-  <a href="/3dscene/" class="back-link">← 返回 Hub</a>
+<!-- ═══════════════ Hero ═══════════════ -->
+<div class="container">
+<section class="hero">
+  <h1>📄 3DGS 在 Unity 游戏引擎中的应用边界调研与验证</h1>
+  <p class="subtitle">面向抖音社交场景的 3D 高斯泼溅技术产品化探索</p>
+  <div class="meta">
+    <span>👤 张清安</span>
+    <span>🏫 中山大学 · 计算机技术硕士</span>
+    <span>📅 2026 年 6 月</span>
+  </div>
+  <div class="actions">
+    <a href="3DGS_在_Unity_游戏引擎中的应用边界调研与验证.pdf" class="btn btn-primary" download>📥 下载 PDF 报告</a>
+    <a href="#pdf-viewer" class="btn btn-outline">📖 在线预览</a>
+    <a href="/3dscene/" class="btn-back">← 返回 Hub</a>
+  </div>
+</section>
+
+<!-- ═══════════════ Abstract ═══════════════ -->
+<section class="section" id="abstract">
+  <h2>📋 摘要</h2>
+  <p class="section-desc">报告核心问题：3DGS 在 Unity 游戏引擎中能承担哪些场景表达任务，不能承担哪些？</p>
+  <div class="abstract-card">
+    <p>
+      3D Gaussian Splatting（3DGS）作为一种新型显式点云场景表示方法，在实时新视角合成、真实场景重建与轻量化可视化方面表现出较强能力。然而，游戏引擎不仅需要"看起来真实"的场景，还需要物理碰撞、动画系统、资源流式加载、编辑器工作流和跨平台部署等完整工程能力。
+      本报告基于个人在 <strong>Web 端 3DGS 展示</strong>、<strong>Unity 端 3DGS 渲染</strong> 和 <strong>Three.js 游戏交互环境</strong> 三方面的实践，围绕"3DGS 在 Unity 游戏引擎中的应用边界"展开调研与验证。报告明确指出：
+      <strong>3DGS 更适合作为游戏中非核心复杂场景的视觉代理，而非完整替代 Mesh 管线</strong>；并提出了"3DGS 视觉层 + Mesh 物理代理 + 分离管线 + Web 原生渲染"的可行 Pipeline。
+    </p>
+    <div class="keywords">
+      <span>3D Gaussian Splatting</span><span>Unity</span><span>WebGL</span><span>游戏开发工具</span><span>视觉代理</span><span>LOD</span><span>产品化技术验证</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ Core Findings ═══════════════ -->
+<section class="section" id="findings">
+  <h2>🔑 核心发现</h2>
+  <p class="section-desc">四点关键结论，定义了 3DGS 在游戏引擎中的真实定位</p>
+  <div class="findings-grid">
+    <div class="finding-card">
+      <div class="icon">🎯</div>
+      <h3>定位：视觉代理，非 Mesh 替代</h3>
+      <p>3DGS 不应被简单理解为"取代 Mesh"，而应放置在具体游戏开发流程中讨论。其短期价值是 <strong>充当复杂场景的视觉代理</strong>，物理、动画、碰撞仍由传统 Mesh 承担。</p>
+    </div>
+    <div class="finding-card">
+      <div class="icon">⚠️</div>
+      <h3>Unity WebGL 是最大瓶颈</h3>
+      <p>URP Shader Variant 爆炸导致 WebGL 构建失败，Compute Shader 依赖使其难以跨平台。Unity Editor 能跑 ≠ Unity WebGL 能发布。</p>
+    </div>
+    <div class="finding-card">
+      <div class="icon">🌐</div>
+      <h3>Web 原生渲染是更优路径</h3>
+      <p>对于 Web 端轻量化产品，Three.js / WebGPU 或专用 3DGS 渲染器可能比 Unity WebGL 更适合作为短期落地技术路线。</p>
+    </div>
+    <div class="finding-card">
+      <div class="icon">🏗️</div>
+      <h3>"视觉与逻辑分离"架构</h3>
+      <p>可行 Pipeline 的核心思路是：3DGS 负责视觉呈现，Mesh Proxy 负责物理交互，两者协同而非互相替代。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ Demo System ═══════════════ -->
+<section class="section" id="demos">
+  <h2>🖥️ 当前 Demo 体系</h2>
+  <p class="section-desc">三线并行验证：Web 展示、Unity 集成、Three.js 游戏交互</p>
+  <div style="overflow-x:auto;">
+  <table class="demo-table">
+    <thead>
+      <tr>
+        <th>Demo 类型</th>
+        <th>已验证能力</th>
+        <th>主要限制</th>
+        <th>适用场景</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="demo-name">🌐 Web 端 3DGS 展示<br><span class="tag">TriSplat</span><span class="tag">WebGL</span></td>
+        <td>浏览器实时渲染 · 多场景切换 · 第一人称视角 · 相机控制</td>
+        <td>大场景加载时间 · 移动端性能待优化</td>
+        <td>技术主页 · 作品展示 · 虚拟展馆</td>
+      </tr>
+      <tr>
+        <td class="demo-name">🎮 Unity 端 3DGS<br><span class="tag">URP</span><span class="tag">Compute Shader</span></td>
+        <td>桌面端实时渲染 (55-70 fps) · 进入编辑器工作流</td>
+        <td>WebGL 构建失败 · 缺少原生资产生态</td>
+        <td>本地 Demo · 桌面应用 · 技术验证</td>
+      </tr>
+      <tr>
+        <td class="demo-name">🕹️ Three.js 游戏交互<br><span class="tag">Rapier</span><span class="tag">3DGS</span></td>
+        <td>角色控制 · 多人联机 · 跳跃模式 · 3DGS 场景嵌入</td>
+        <td>编辑器与团队协作弱于 Unity</td>
+        <td>小游戏 · 轻量社交空间</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ═══════════════ Technical Challenges ═══════════════ -->
+<section class="section" id="challenges">
+  <h2>⚡ 核心技术挑战</h2>
+  <p class="section-desc">6 大关键瓶颈及其影响范围与建议对策</p>
+  <ul class="challenge-list">
+    <li>
+      <div class="idx">1</div>
+      <div class="info">
+        <h4>渲染后端不兼容</h4>
+        <p>Unity WebGL 无法复用桌面端 Compute Shader 管线。桌面用 Unity，Web 端用 Three.js / WebGPU 原生渲染器。</p>
+      </div>
+    </li>
+    <li>
+      <div class="idx">2</div>
+      <div class="info">
+        <h4>Shader 变体爆炸与构建不可控</h4>
+        <p>URP 产生亿级 Variant 导致构建时间、体积和内存失控。精简 URP 设置 + Shader Stripping + 独立渲染工程。</p>
+      </div>
+    </li>
+    <li>
+      <div class="idx">3</div>
+      <div class="info">
+        <h4>资产生态与编辑器工具缺失</h4>
+        <p>3DGS 以 .ply/.splat 格式存储，Unity 无法原生理解。需设计自定义 Importer、压缩工具和运行时 Loader。</p>
+      </div>
+    </li>
+    <li>
+      <div class="idx">4</div>
+      <div class="info">
+        <h4>碰撞与导航系统缺失</h4>
+        <p>3DGS 无连续表面，无法直接用于精确碰撞。采用低模 Mesh Collider 作为物理代理，3DGS 仅负责视觉。</p>
+      </div>
+    </li>
+    <li>
+      <div class="idx">5</div>
+      <div class="info">
+        <h4>动态场景与光照一致性</h4>
+        <p>3DGS 的光照信息通常烘焙在训练结果中，无法自然响应游戏动态光源。短期内限定为静态视觉层。</p>
+      </div>
+    </li>
+    <li>
+      <div class="idx">6</div>
+      <div class="info">
+        <h4>包体与加载压力</h4>
+        <p>30-40MB 的单个 3DGS 场景在 Web/小游戏场景下首屏压力大。SPZ 压缩 + 分块流式 + LOD 渐进加载。</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══════════════ Pipeline ═══════════════ -->
+<section class="section" id="pipeline">
+  <h2>🔧 可行 Pipeline 设计</h2>
+  <p class="section-desc">面向短期 Demo 和产品验证的混合式四阶段路线</p>
+  <div class="pipeline">
+    <div class="pipeline-step">
+      <div class="step-num">1</div>
+      <h4>静态场景展示</h4>
+      <p>多视角图像 → 3DGS 训练 → Web/Unity 实时展示。验证渲染质量与加载速度。</p>
+    </div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-step">
+      <div class="step-num">2</div>
+      <h4>轻交互游戏环境</h4>
+      <p>3DGS 视觉层 + Mesh Collider 物理层。角色移动、跳跃、碰撞由 Proxy Mesh 承接。</p>
+    </div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-step">
+      <div class="step-num">3</div>
+      <h4>Web 原生轻量化产品</h4>
+      <p>Three.js / WebGL 原生渲染，避开 Unity WebGL 瓶颈。适用于社交空间、小游戏场景。</p>
+    </div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-step">
+      <div class="step-num">4</div>
+      <h4>长期能力建设</h4>
+      <p>动态 3DGS · 光照解耦 · 编辑器集成 · AIGC 生成管线。面向未来的研究储备。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ Application Scenarios ═══════════════ -->
+<section class="section" id="scenarios">
+  <h2>🎯 应用场景优先级</h2>
+  <p class="section-desc">面向抖音社交与娱乐场景的产品化落地方向排序</p>
+  <div class="scenario-grid">
+    <div class="scenario-card">
+      <div class="s-icon">🎬</div>
+      <h4>短视频 3D 背景</h4>
+      <p>用户通过手机拍摄即可生成可漫游 3D 场景，用于视频创作背景素材</p>
+      <span class="priority priority-p0">P0 · 最高优先级</span>
+    </div>
+    <div class="scenario-card">
+      <div class="s-icon">🏛️</div>
+      <h4>虚拟展馆 & 社交空间</h4>
+      <p>真实空间复刻，结合 Avatar 实现线上社交、展览导览等沉浸式场景</p>
+      <span class="priority priority-p1">P1 · 高优先级</span>
+    </div>
+    <div class="scenario-card">
+      <div class="s-icon">🕹️</div>
+      <h4>网页端小游戏</h4>
+      <p>利用 3DGS 快速生成游戏场景资产，降低小游戏开发门槛</p>
+      <span class="priority priority-p1">P1 · 高优先级</span>
+    </div>
+    <div class="scenario-card">
+      <div class="s-icon">🛠️</div>
+      <h4>UGC 场景生成工具</h4>
+      <p>"文本/图片/视频 → 3D 场景 → 一键导入小游戏模板" 的工具链</p>
+      <span class="priority priority-p2">P1/P2 · 中优先级</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ Conclusion ═══════════════ -->
+<section class="section" id="conclusion">
+  <h2>💡 结论</h2>
+  <div class="conclusion">
+    <ul>
+      <li><strong>3DGS 在非核心复杂场景的视觉表达上具有明确价值</strong>，适合承担远景、背景、虚拟展馆、视频背景和关联视觉代理</li>
+      <li><strong>Unity Editor 桌面端 3DGS 渲染性能基本达标</strong>，但 Unity WebGL 因 Shader 变体爆炸和 Compute Shader 后端限制，暂不适合作为短期线上化主路线</li>
+      <li><strong>3DGS 不应被定位为 Mesh 的完整替代</strong>，而应采用"<em>3DGS 视觉层 + Mesh 物理代理 + 传统动态对象</em>"的混合架构</li>
+      <li><strong>面向抖音社交与娱乐场景</strong>，短视频 3D 背景、虚拟展馆和轻量小游戏场景生成是比"完整 3DGS 游戏"更现实的产品落地方向</li>
+      <li>总体而言，3DGS 在游戏中的短期价值是<strong>提供一种高真实感、低建模约束的静态视觉代理</strong>，让开发者更快地将真实世界或复杂场景带入交互式应用</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════ PDF Viewer ═══════════════ -->
+<section class="section" id="pdf-viewer">
+  <div class="pdf-section">
+    <h2>📖 完整报告</h2>
+    <p>20 页完整调研报告，含技术对比、Demo 截图、数据分析与风险评估</p>
+    <div style="display:flex; gap:12px; justify-content:center; margin-bottom:20px; flex-wrap:wrap;">
+      <a href="3DGS_在_Unity_游戏引擎中的应用边界调研与验证.pdf" class="btn btn-primary" download>📥 下载 PDF（约 9.4 MB）</a>
+      <a href="/3dscene/" class="btn btn-outline">← 返回 Hub</a>
+    </div>
+    <div class="pdf-wrap">
+      <embed src="3DGS_在_Unity_游戏引擎中的应用边界调研与验证.pdf" type="application/pdf">
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ Footer ═══════════════ -->
+<div class="footer">
+  <div style="margin-bottom:8px;">
+    <a href="https://azureovo.github.io/">Home</a> · <a href="https://azureovo.github.io/3dscene/">3DGS Hub</a> · <a href="https://azureovo.github.io/cv/">CV</a> · <a href="https://github.com/azureovo">GitHub</a>
+  </div>
+  <div>© 2026 张清安. Built with ❤️  · Last updated 2026-06-10</div>
 </div>
 
-<div class="pdf-wrap">
-  <embed src="3DGS_在_Unity_游戏引擎中的应用边界调研与验证.pdf" type="application/pdf">
-</div>
+</div><!-- .container -->
 
 </body>
 </html>
