@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>快速浏览我 — Z7A的个人空间</title>
+<meta name="description" content="张清安的个人照片墙，记录生活中的点滴瞬间。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖼️</text></svg>">
+<style>
+  :root {
+    --bg: #fff;
+    --text: #494e52;
+    --heading: #2c3e50;
+    --muted: #7a8288;
+    --accent: #4a90d9;
+    --accent-strong: #357abd;
+    --card-bg: #f7f9fc;
+    --border: rgba(0,0,0,0.07);
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+    min-height: 100vh; -webkit-font-smoothing: antialiased; line-height: 1.7;
+  }
+
+  /* ── Navigation ── */
+  .nav {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    padding: 12px 24px; display: flex; align-items: center; gap: 24px;
+    background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color .2s; }
+  .nav a:hover { color: var(--text); }
+  .nav a.active { color: var(--accent-strong); font-weight: 600; }
+  .nav a.brand { color: var(--text); font-weight: 600; font-size: 16px; margin-right: auto; }
+
+  /* ── Container ── */
+  .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── Hero ── */
+  .hero {
+    padding: 100px 0 32px; text-align: center;
+  }
+  .hero h1 {
+    font-size: clamp(1.6rem, 3.2vw, 2.1rem); font-weight: 900;
+    letter-spacing: -0.02em; color: var(--heading); margin-bottom: 0.4rem;
+  }
+  .hero .subtitle { color: var(--muted); font-size: 0.9rem; margin-bottom: 16px; }
+
+  .btn-back {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 16px; color: var(--accent); font-weight: 600; font-size: 0.85rem;
+    text-decoration: none; border: 1px solid var(--accent);
+    border-radius: 999px; transition: all .2s;
+  }
+  .btn-back:hover { background: var(--accent); color: #fff; }
+
+  /* ── Gallery Slider ── */
+  .gallery-wrapper {
+    padding: 16px 0 48px;
+  }
+
+  .life-slider {
+    position: relative; display: flex; align-items: center; gap: 32px;
+    max-width: 800px; margin: 0 auto; min-height: 420px;
+  }
+  .life-slider .card-area {
+    flex: 1; min-width: 0; position: relative; height: 380px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .life-slider .cards-wrapper {
+    position: relative; width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .life-slider .life-card {
+    position: absolute; width: 260px; height: 360px; border-radius: 16px;
+    overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center center;
+  }
+  .life-slider .life-card img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .life-slider .life-card.current {
+    z-index: 3; transform: translateX(0) scale(1); opacity: 1;
+  }
+  .life-slider .life-card.prev {
+    z-index: 2; transform: translateX(-140px) scale(0.85); opacity: 0.5;
+    filter: brightness(0.7);
+  }
+  .life-slider .life-card.next {
+    z-index: 2; transform: translateX(140px) scale(0.85); opacity: 0.5;
+    filter: brightness(0.7);
+  }
+  .life-slider .life-card.hidden-behind {
+    z-index: 1; transform: translateX(0) scale(0.8); opacity: 0;
+    pointer-events: none;
+  }
+
+  .life-slider .info-area {
+    flex-shrink: 0; width: 120px; text-align: center;
+  }
+  .life-slider .info-area .info-text {
+    font-size: 2.2rem; transition: opacity 0.25s, transform 0.25s;
+  }
+
+  .life-slider .slider-btn {
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 5;
+    width: 40px; height: 40px; border-radius: 50%; border: none;
+    background: rgba(255,255,255,0.85); cursor: pointer; display: flex;
+    align-items: center; justify-content: center; transition: background .2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .life-slider .slider-btn:hover { background: rgba(255,255,255,1); }
+  .life-slider .slider-btn svg { width: 20px; height: 20px; fill: none; stroke: #555; stroke-width: 2.5; }
+  .life-slider .btn-left { left: -20px; }
+  .life-slider .btn-right { right: -20px; }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center; padding: 32px 0; color: var(--muted);
+    font-size: 0.82rem; border-top: 1px solid var(--border); margin-top: 48px;
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  @media (max-width:700px) {
+    .life-slider {
+      flex-direction: column; gap: 16px; min-height: auto;
+    }
+    .life-slider .card-area { height: 300px; }
+    .life-slider .life-card { width: 200px; height: 280px; }
+    .life-slider .life-card.prev { transform: translateX(-100px) scale(0.8); }
+    .life-slider .life-card.next { transform: translateX(100px) scale(0.8); }
+    .life-slider .info-area { width: auto; }
+    .life-slider .btn-left { left: 4px; }
+    .life-slider .btn-right { right: 4px; }
+  }
+  @media (max-width:480px) {
+    .life-slider .card-area { height: 260px; }
+    .life-slider .life-card { width: 160px; height: 230px; }
+    .life-slider .life-card.prev { transform: translateX(-90px) scale(0.75); }
+    .life-slider .life-card.next { transform: translateX(90px) scale(0.75); }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="https://azureovo.github.io/" class="brand">Z7A的个人空间</a>
+  <a href="https://azureovo.github.io/">Home</a>
+  <a href="https://azureovo.github.io/3dscene/">3DGS</a>
+  <a href="https://azureovo.github.io/cv/">CV</a>
+</nav>
+
+<div class="container">
+  <section class="hero">
+    <h1>🖼️ 快速浏览我</h1>
+    <p class="subtitle">广州 & 深圳 · 记录生活中的点滴瞬间</p>
+    <a href="/" class="btn-back">← 返回首页</a>
+  </section>
+
+  <div class="gallery-wrapper">
+    <div class="life-slider" id="lifeSlider">
+      <div class="card-area">
+        <div class="cards-wrapper" id="cardsWrapper"></div>
+      </div>
+      <div class="info-area">
+        <div class="info-text" id="infoName"></div>
+      </div>
+      <button class="slider-btn btn-left" id="btnLeft" aria-label="Previous">
+        <svg viewBox="0 0 24 24"><polyline points="15 4 7 12 15 20"/></svg>
+      </button>
+      <button class="slider-btn btn-right" id="btnRight" aria-label="Next">
+        <svg viewBox="0 0 24 24"><polyline points="9 4 17 12 9 20"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div style="margin-bottom:8px;">
+      <a href="https://azureovo.github.io/">Home</a> · <a href="https://azureovo.github.io/3dscene/">3DGS</a> · <a href="https://azureovo.github.io/cv/">CV</a> · <a href="https://github.com/azureovo">GitHub</a>
+    </div>
+    <div>© 2026 张清安 · 广州 & 深圳</div>
+  </div>
+</div>
+
+<script>
+(function(){
+var cards=[
+  {img:"/images/quick-gallery/drink.jpg",name:"🍺"},
+  {img:"/images/quick-gallery/bike.jpg",name:"🚴"},
+  {img:"/images/quick-gallery/hotpot.jpg",name:"🍲"},
+  {img:"/images/quick-gallery/hiking.jpg",name:"⛰️"},
+  {img:"/images/quick-gallery/disco.jpg",name:"🎵"},
+  {img:"/images/quick-gallery/outdoor.jpg",name:"🏕️"},
+  {img:"/images/quick-gallery/travel.jpg",name:"✈️"}
+];
+var idx=0;
+var wrapper=document.getElementById("cardsWrapper");
+var nameEl=document.getElementById("infoName");
+
+function build(){
+  cards.forEach(function(c,i){
+    var div=document.createElement("div");
+    div.className="life-card";
+    if(i===0) div.classList.add("current");
+    if(i===1) div.classList.add("next");
+    if(i===cards.length-1) div.classList.add("prev");
+    for(var j=2;j<cards.length-1;j++) div.classList.add("hidden-behind");
+    div.innerHTML='<img src="'+c.img+'" alt="'+c.name+'" loading="lazy">';
+    wrapper.appendChild(div);
+  });
+  updateInfo(0);
+}
+
+function render(){
+  var all=wrapper.querySelectorAll(".life-card");
+  for(var i=0;i<all.length;i++){
+    all[i].className="life-card";
+    var pos=(i-idx+cards.length)%cards.length;
+    if(pos===0) all[i].classList.add("current");
+    if(pos===1) all[i].classList.add("next");
+    if(pos===cards.length-1) all[i].classList.add("prev");
+    if(pos>1 && pos<cards.length-1) all[i].classList.add("hidden-behind");
+  }
+  updateInfo(idx);
+}
+
+function updateInfo(i){
+  nameEl.style.opacity=0; nameEl.style.transform="translateY(12px)";
+  setTimeout(function(){
+    nameEl.textContent=cards[i].name;
+    nameEl.style.opacity=1; nameEl.style.transform="translateY(0)";
+  },200);
+}
+
+document.getElementById("btnLeft").addEventListener("click",function(){
+  idx=(idx-1+cards.length)%cards.length; render();
+});
+document.getElementById("btnRight").addEventListener("click",function(){
+  idx=(idx+1)%cards.length; render();
+});
+
+build();
+})();
+</script>
+
+</body>
+</html>

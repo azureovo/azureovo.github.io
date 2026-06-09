@@ -24,9 +24,9 @@ redirect_from:
     <p class="hero-tagline">不想每次都在触底反弹，所以要时刻保持意识。</p>
 
     <div class="hero-meta">
-      <span class="hero-meta-item">
+      <a href="/gallery/" class="hero-meta-item" title="快速浏览我">
         <i class="fas fa-map-marker-alt"></i> 广州 & 深圳
-      </span>
+      </a>
       <a href="/books/" class="hero-meta-item"><span class="tag-icon" style="margin-right:4px;">📖</span>阅读</a>
       <a href="/town/" class="hero-meta-item"><span class="tag-icon" style="margin-right:4px;">🏝️</span>小岛</a>
       <a href="mailto:zhangqan@mail2.sysu.edu.cn" class="hero-meta-item hero-meta-icon" title="Email">
@@ -188,15 +188,6 @@ redirect_from:
     📜 其他荣誉
   </a>
 </div>
-
-{% comment %}
-<!-- ========== GALLERY ========== -->
-<div class="section-heading" id="gallery">
-  <span class="icon">🖼️</span> 快速浏览我
-</div>
-
-{% include quick-gallery.html %}
-{% endcomment %}
 
 <!-- ========== Sparkle FX Visual Effects ========== -->
 <script src="{{ base_path }}/assets/js/sparkle-fx.js"></script>
