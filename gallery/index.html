@@ -70,10 +70,12 @@
   .life-slider .card-area {
     flex: 1; min-width: 0; position: relative; height: 380px;
     display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
   }
   .life-slider .cards-wrapper {
     position: relative; width: 100%; height: 100%;
     display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
   }
   .life-slider .life-card {
     position: absolute; width: 260px; height: 360px; border-radius: 16px;
@@ -102,6 +104,7 @@
 
   .life-slider .info-area {
     flex-shrink: 0; width: 120px; text-align: center;
+    position: relative; z-index: 10;
   }
   .life-slider .info-area .info-text {
     font-size: 2.2rem; transition: opacity 0.25s, transform 0.25s;
@@ -129,21 +132,28 @@
 
   @media (max-width:700px) {
     .life-slider {
-      flex-direction: column; gap: 16px; min-height: auto;
+      flex-direction: column; gap: 12px; min-height: auto;
+      position: relative;
     }
-    .life-slider .card-area { height: 300px; }
+    .life-slider .card-area { height: 300px; overflow: hidden; }
+    .life-slider .cards-wrapper { overflow: hidden; }
     .life-slider .life-card { width: 200px; height: 280px; }
     .life-slider .life-card.prev { transform: translateX(-100px) scale(0.8); }
     .life-slider .life-card.next { transform: translateX(100px) scale(0.8); }
-    .life-slider .info-area { width: auto; }
+    .life-slider .info-area { width: auto; position: relative; z-index: 10; padding: 8px 0; }
+    .life-slider .slider-btn { top: 150px; }
     .life-slider .btn-left { left: 4px; }
     .life-slider .btn-right { right: 4px; }
   }
   @media (max-width:480px) {
-    .life-slider .card-area { height: 260px; }
-    .life-slider .life-card { width: 160px; height: 230px; }
-    .life-slider .life-card.prev { transform: translateX(-90px) scale(0.75); }
-    .life-slider .life-card.next { transform: translateX(90px) scale(0.75); }
+    .life-slider .card-area { height: 250px; overflow: hidden; }
+    .life-slider .cards-wrapper { overflow: hidden; }
+    .life-slider .life-card { width: 150px; height: 210px; }
+    .life-slider .life-card.prev { transform: translateX(-80px) scale(0.75); }
+    .life-slider .life-card.next { transform: translateX(80px) scale(0.75); }
+    .life-slider .info-area { padding: 6px 0; }
+    .life-slider .info-area .info-text { font-size: 1.8rem; }
+    .life-slider .slider-btn { top: 125px; }
   }
 </style>
 </head>
