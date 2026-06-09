@@ -12,13 +12,13 @@
     --text: #494e52;
     --heading: #2c3e50;
     --muted: #7a8288;
-  --accent: #4a90d9;
-  --accent-strong: #357abd;
-  --card-bg: #f7f9fc;
+  --accent: #6366f1;
+  --accent-strong: #4f46e5;
+  --card-bg: #f8f8ff;
   --border: rgba(0,0,0,0.07);
-  --shadow: 0 2px 8px rgba(0,0,0,0.05);
-  --tag-bg: #eaf2fb;
-  --tag-text: #357abd;
+  --shadow: 0 2px 8px rgba(99,102,241,0.06);
+  --tag-bg: #eef2ff;
+  --tag-text: #4f46e5;
   }
   *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
   body {
@@ -229,7 +229,7 @@
 
   /* ── Conclusion ── */
   .conclusion {
-    background: linear-gradient(135deg, #f0f5fc 0%, #e8eff9 100%);
+    background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
     border-radius: 12px; padding: 28px 32px; border: 1px solid var(--border);
   }
   .conclusion h2 { color: var(--accent); }
@@ -468,25 +468,25 @@
   <p class="section-desc">从 3DGS 点云到轻量碰撞 Mesh 的已验证工具链，两千万高斯点 → 仅 3MB 碰撞体</p>
   <div class="pipeline">
     <div class="pipeline-step">
-      <div class="step-num" style="background:#7c8db5;">①</div>
+      <div class="step-num" style="background:#818cf8;">①</div>
       <h4>3DGS → 点云导出</h4>
       <p>从 .ply / .splat 中提取高斯中心点坐标，导出为标准点云格式（.ply / .las）</p>
     </div>
     <div class="pipeline-arrow">→</div>
     <div class="pipeline-step">
-      <div class="step-num" style="background:#7c8db5;">②</div>
+      <div class="step-num" style="background:#818cf8;">②</div>
       <h4>CloudCompare<br>PoissonRecon</h4>
       <p>点云导入 CloudCompare，使用 Poisson Surface Reconstruction 计算建面，输出 Mesh</p>
     </div>
     <div class="pipeline-arrow">→</div>
     <div class="pipeline-step">
-      <div class="step-num" style="background:#7c8db5;">③</div>
+      <div class="step-num" style="background:#818cf8;">③</div>
       <h4>Blender 格式中转</h4>
       <p>Meshlab / Blender 导入 → 减面优化 → 导出 FBX，桥接至 Unity 资产管线</p>
     </div>
     <div class="pipeline-arrow">→</div>
     <div class="pipeline-step">
-      <div class="step-num" style="background:#7c8db5;">④</div>
+      <div class="step-num" style="background:#818cf8;">④</div>
       <h4>Unity Collider<br>部署</h4>
       <p>FBX 导入 Unity → 添加 Mesh Collider → 与 3DGS 视觉层对齐，仅 <strong>3MB</strong></p>
     </div>
