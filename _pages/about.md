@@ -185,7 +185,7 @@ redirect_from:
     🏆 比赛
   </a>
   <a href="/files/其他获奖及证书.pdf" target="_blank" class="life-btn secondary">
-    📜 其他荣誉
+    📜 部分荣誉
   </a>
 </div>
 
