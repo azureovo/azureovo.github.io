@@ -4,61 +4,93 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>个人简历 — Z7A的个人空间</title>
+<meta name="description" content="张清安的个人简历，中山大学计算机技术硕士。">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
 <style>
   :root {
     --bg: #fff;
     --text: #494e52;
+    --heading: #2c3e50;
     --muted: #7a8288;
-    --accent: #52adc8;
+    --accent: #4a90d9;
+    --accent-strong: #357abd;
+    --card-bg: #f7f9fc;
+    --border: rgba(0,0,0,0.07);
   }
   *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
   body {
     background: var(--bg); color: var(--text);
-    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-    min-height: 100vh; -webkit-font-smoothing: antialiased;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+    min-height: 100vh; -webkit-font-smoothing: antialiased; line-height: 1.7;
   }
 
+  /* ── Navigation ── */
   .nav {
     position: fixed; top:0; left:0; right:0; z-index:100;
     padding: 12px 24px; display: flex; align-items: center; gap: 24px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, transparent 100%);
-    pointer-events: none;
+    background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
   }
-  .nav a { color: var(--muted); text-decoration: none; font-size: 14px; pointer-events: auto; transition: color .2s; }
+  .nav a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color .2s; }
   .nav a:hover { color: var(--text); }
   .nav a.brand { color: var(--text); font-weight: 600; font-size: 16px; margin-right: auto; }
 
-  .page-header {
-    max-width: 900px; margin: 100px auto 0; padding: 0 24px; text-align: center;
-  }
-  .page-header h1 {
-    font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 900;
-    letter-spacing: -0.02em; margin-bottom: 0.5rem;
-  }
-  .page-header .subtitle { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.8rem; }
-  .page-header .back-link {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 6px 16px; color: var(--accent); font-weight: 600; font-size: 0.85rem;
-    text-decoration: none; border: 1px solid var(--accent);
-    border-radius: 999px; transition: all .2s;
-  }
-  .page-header .back-link:hover { background: var(--accent); color: #fff; }
+  /* ── Container ── */
+  .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
 
-  .pdf-wrap {
-    max-width: 900px; margin: 2rem auto 4rem; padding: 0 24px;
+  /* ── Hero ── */
+  .hero {
+    padding: 100px 0 32px; text-align: center;
   }
+  .hero h1 {
+    font-size: clamp(1.6rem, 3.2vw, 2.1rem); font-weight: 900;
+    letter-spacing: -0.02em; color: var(--heading); margin-bottom: 0.4rem;
+  }
+  .hero .subtitle { color: var(--muted); font-size: 0.95rem; margin-bottom: 16px; }
+  .hero .meta {
+    display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+    margin-bottom: 20px; font-size: 0.85rem; color: var(--muted);
+  }
+  .hero .meta span { display: flex; align-items: center; gap: 4px; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 20px; font-size: 0.9rem; font-weight: 600;
+    border-radius: 999px; text-decoration: none; transition: all .2s;
+    cursor: pointer; border: none;
+  }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-strong); }
+  .btn-outline { color: var(--accent); border: 1px solid var(--accent); background: transparent; }
+  .btn-outline:hover { background: var(--accent); color: #fff; }
+
+  /* ── PDF ── */
+  .pdf-section {
+    background: var(--card-bg); border-radius: 12px; padding: 32px;
+    border: 1px solid var(--border); text-align: center;
+    margin-bottom: 48px;
+  }
+  .pdf-wrap { max-width: 100%; }
   .pdf-wrap embed {
-    width: 100%; height: 85vh; border: 1px solid rgba(0,0,0,0.1);
+    width: 100%; height: 80vh; border: 1px solid var(--border);
     border-radius: 12px; background: #f8f9fa;
   }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center; padding: 32px 0; color: var(--muted);
+    font-size: 0.82rem; border-top: 1px solid var(--border); margin-top: 48px;
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
 
   @media (max-width:600px) {
     .nav { padding: 8px 14px; gap: 12px; }
     .nav a { font-size: 12px; }
     .nav a.brand { font-size: 14px; }
-    .page-header { margin-top: 80px; }
-    .pdf-wrap embed { height: 70vh; }
+    .hero { padding: 80px 0 28px; }
+    .pdf-wrap embed { height: 60vh; }
   }
 </style>
 </head>
@@ -71,14 +103,32 @@
   <a href="https://azureovo.github.io/cv/">CV</a>
 </nav>
 
-<div class="page-header">
-  <h1>📄 个人简历</h1>
-  <p class="subtitle">张清安 · 中山大学 · 计算机技术硕士在读</p>
-  <a href="/files/%E5%BC%A0%E6%B8%85%E5%AE%89%E7%AE%80%E5%8E%86.pdf" class="back-link" target="_blank">📥 下载 PDF</a>
-</div>
+<div class="container">
+  <section class="hero">
+    <h1>📄 个人简历</h1>
+    <p class="subtitle">张清安 · 中山大学 · 计算机技术硕士</p>
+    <div class="meta">
+      <span>📧 zhangqan@mail2.sysu.edu.cn</span>
+      <span>📍 广州 & 深圳</span>
+    </div>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <a href="/files/%E5%BC%A0%E6%B8%85%E5%AE%89%E7%AE%80%E5%8E%86.pdf" class="btn btn-primary" target="_blank">📥 下载 PDF</a>
+      <a href="/" class="btn btn-outline">← 返回首页</a>
+    </div>
+  </section>
 
-<div class="pdf-wrap">
-  <embed src="/files/%E5%BC%A0%E6%B8%85%E5%AE%89%E7%AE%80%E5%8E%86.pdf" type="application/pdf">
+  <div class="pdf-section">
+    <div class="pdf-wrap">
+      <embed src="/files/%E5%BC%A0%E6%B8%85%E5%AE%89%E7%AE%80%E5%8E%86.pdf" type="application/pdf">
+    </div>
+  </div>
+
+  <div class="footer">
+    <div style="margin-bottom:8px;">
+      <a href="https://azureovo.github.io/">Home</a> · <a href="https://azureovo.github.io/3dscene/">3DGS</a> · <a href="https://azureovo.github.io/cv/">CV</a> · <a href="https://github.com/azureovo">GitHub</a>
+    </div>
+    <div>© 2026 张清安</div>
+  </div>
 </div>
 
 </body>
