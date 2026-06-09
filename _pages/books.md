@@ -1,6 +1,6 @@
 ---
 permalink: /books/
-title: "阅读"
+title: ""
 author_profile: false
 layout: single
 ---
@@ -244,6 +244,7 @@ if(sessionStorage.getItem('books_auth')==='1'){document.getElementById('password
   animation: fadeInUp 0.6s ease-out both;
   position: relative;
   overflow: hidden;
+  min-height: 160px;
 }
 
 .book-card::before {
@@ -354,6 +355,9 @@ if(sessionStorage.getItem('books_auth')==='1'){document.getElementById('password
   .books-hero-title { font-size: 1.5em; }
   .books-grid { grid-template-columns: 1fr; }
   .pw-card { padding: 2rem 1.5rem; }
-  .book-card { flex-direction: column; gap: 0.8rem; }
+  .book-card { flex-direction: column; gap: 0.8rem; min-height: 180px; }
+  .book-card-body { flex: 1; display: flex; flex-direction: column; }
+  .book-card-excerpt { flex: 1; }
+  .book-card-footer { margin-top: auto; }
 }
 </style>
