@@ -189,12 +189,14 @@ redirect_from:
   </a>
 </div>
 
+{% comment %}
 <!-- ========== GALLERY ========== -->
 <div class="section-heading" id="gallery">
   <span class="icon">🖼️</span> 快速浏览我
 </div>
 
 {% include quick-gallery.html %}
+{% endcomment %}
 
 <!-- ========== Sparkle FX Visual Effects ========== -->
 <script src="{{ base_path }}/assets/js/sparkle-fx.js"></script>
