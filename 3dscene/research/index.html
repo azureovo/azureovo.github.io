@@ -298,6 +298,7 @@
       3D Gaussian Splatting（3DGS）作为一种新型显式点云场景表示方法，在实时新视角合成、真实场景重建与轻量化可视化方面表现出较强能力。然而，游戏引擎不仅需要"看起来真实"的场景，还需要物理碰撞、动画系统、资源流式加载、编辑器工作流和跨平台部署等完整工程能力。
       本报告基于个人在 <strong>Web 端 3DGS 展示</strong>、<strong>Unity 端 3DGS 渲染</strong> 和 <strong>Three.js 游戏交互环境</strong> 三方面的实践，围绕"3DGS 在 Unity 游戏引擎中的应用边界"展开调研与验证。报告明确指出：
       <strong>3DGS 更适合作为游戏中非核心复杂场景的视觉代理，而非完整替代 Mesh 管线</strong>；并提出了"3DGS 视觉层 + Mesh 物理代理 + 分离管线 + Web 原生渲染"的可行 Pipeline。
+      <em style="color:var(--accent-strong);">2026 年 6 月新增：以 World Labs 出品的 Icare 3D 梦境冒险游戏为产业案例，验证上述架构在真实产品中的落地情况（见「产业案例验证」章节）。</em>
     </p>
     <div class="keywords">
       <span>3D Gaussian Splatting</span><span>Unity</span><span>WebGL</span><span>视觉代理</span><span>LOD</span><span>CloudCompare</span><span>PoissonRecon</span><span>产品化技术验证</span>
@@ -495,6 +496,106 @@
     <p style="font-size:0.88rem; color:var(--muted); text-align:center; margin:0;">
       💡 <strong>实测数据</strong>：两千万个高斯点的 3DGS 场景，经由 CloudCompare PoissonRecon 建面 + Blender 减面后，生成的碰撞体 Mesh 仅约 <strong>3MB</strong>，体积远小于原始点云（~37MB），完全满足 Web 端与移动端的轻量化碰撞需求。
     </p>
+  </div>
+</section>
+
+<!-- ═══════════════ Industry Case Study ═══════════════ -->
+<section class="section" id="case-study">
+  <h2>🏭 产业案例验证：Icare 游戏架构分析</h2>
+  <p class="section-desc">World Labs 出品的「Icare」3D 梦境冒险游戏，是「3DGS 视觉层 + Mesh 物理代理」架构的产业级实践</p>
+
+  <div class="case-study-layout">
+    <!-- Left: Overview -->
+    <div class="abstract-card" style="margin-bottom:16px;">
+      <p style="margin-bottom:12px;">
+        <strong>Icare</strong>（<a href="https://www.icare-game.world/" target="_blank" style="color:var(--accent);">icare-game.world</a>）是 李飞飞创立的 World Labs 推出的 3D 梦境冒险游戏，基于开源的 <strong>Spark 2.0</strong> 渲染器构建，玩家扮演 Icarus 在漂浮岛屿间探索、收集羽毛、与 NPC 对话、完成任务。
+      </p>
+      <p>
+        🔍 我们对其进行了完整技术拆解，发现其架构与本报告提出的「视逻分离」路线<strong>高度吻合</strong>。
+      </p>
+    </div>
+
+    <!-- Tech Stack Table -->
+    <div style="overflow-x:auto; margin-bottom:16px;">
+    <table class="demo-table">
+      <thead>
+        <tr><th>层级</th><th>技术选型</th><th>对应本报告方案</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:700;">🏔️ 场景视觉层</td>
+          <td><strong>3DGS Splats</strong> · Spark 2.0 渲染 · SPZ 格式</td>
+          <td style="color:var(--accent);">✅ 3DGS 视觉代理</td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;">🧑 角色/物品</td>
+          <td><strong>glTF/GLB 传统 Mesh</strong> · THREE.js 渲染</td>
+          <td style="color:var(--accent);">✅ Mesh 物理代理</td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;">🦴 碰撞/物理</td>
+          <td><strong>AuthoringCollisionHelpers</strong> 自定义碰撞体</td>
+          <td style="color:var(--accent);">✅ Proxy Mesh Collider</td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;">🎮 游戏逻辑</td>
+          <td>NPC 对话 · 任务系统 · 过场动画 · 骨骼动画控制器</td>
+          <td style="color:var(--accent);">✅ 传统游戏引擎层</td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;">🌐 渲染后端</td>
+          <td><strong>WebGL2</strong> + Rust/Wasm 排序（非 Unity）</td>
+          <td style="color:var(--accent);">✅ Web 原生渲染</td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;">📦 构建工具</td>
+          <td>Vite · React 组件化 · Module Preload</td>
+          <td>— 前端工程化</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <!-- Key Insights -->
+    <div class="findings-grid findings-grid-6" style="margin-bottom:16px;">
+      <div class="finding-card">
+        <div class="icon">🔬</div>
+        <h3>非 Unity，纯 Web 原生</h3>
+        <p>整个游戏没有任何 Unity/Unity WebGL 痕迹。渲染引擎 Spark 2.0 基于 THREE.js + WebGL2 + Rust/Wasm 构建，完全绕过 Shader 变体爆炸和 Compute Shader 兼容性问题。</p>
+      </div>
+      <div class="finding-card">
+        <div class="icon">🧩</div>
+        <h3>3DGS + Mesh 混合渲染</h3>
+        <p>梦境世界（山脉/浮岛/云层）用 3DGS splats 渲染，角色/NPC 用 glTF 传统模型。两者在 THREE.js 场景中共存，Spark 2.0 负责 splats 与 Mesh 间的深度排序。</p>
+      </div>
+      <div class="finding-card">
+        <div class="icon">🎯</div>
+        <h3>与你方案一致</h3>
+        <p>Icare 的架构设计恰好验证了本报告的核心论点：<strong>3DGS 不适合直接替代 Mesh，而应该充当「视觉层」</strong>，物理/动画/碰撞由传统管线承接。</p>
+      </div>
+      <div class="finding-card">
+        <div class="icon">📐</div>
+        <h3>Spark 2.0 关键技术</h3>
+        <p>GPU 虚拟内存（固定 16M splats 池，LRU 淘汰）· LoD 渐进流式加载 · Rust/Wasm 基数排序 · 单次 instanced draw call 渲染所有 splats。</p>
+      </div>
+      <div class="finding-card">
+        <div class="icon">🧪</div>
+        <h3>碰撞方案对比</h3>
+        <p>Icare 使用自定义碰撞辅助工具而非 CloudCompare/PoissonRecon。两者目标一致——生成简化碰撞体——但 Wolrd Labs 采用了编辑时人工标注 + 自动生成的方式。</p>
+      </div>
+      <div class="finding-card">
+        <div class="icon">💎</div>
+        <h3>产品化意义</h3>
+        <p>一个由 AI 领域顶级团队打造的 3DGS 游戏选择了与你方案相同的架构路线，说明「视逻分离」是当前业界共识，而非权宜之计。</p>
+      </div>
+    </div>
+
+    <!-- Tech quote -->
+    <div style="padding:16px 20px; background:linear-gradient(135deg,#f5f3ff,#ede9fe); border-radius:10px; border:1px solid rgba(99,102,241,0.15);">
+      <p style="font-size:0.88rem; color:var(--muted); text-align:center; margin:0; line-height:1.7;">
+        💡 <strong>产业验证</strong>：World Labs 的 Icare 游戏在架构选型上，与本报告提出的 <em>"3DGS 视觉层 + Mesh 物理代理 + Web 原生渲染"</em> 方案完全一致。这证明该路线不仅是实验室推测，<strong>已被顶级团队在真实产品中落地</strong>。对字节抖音 3DGS 项目而言，Icare 是一个现成的架构参照物。
+      </p>
+    </div>
   </div>
 </section>
 
