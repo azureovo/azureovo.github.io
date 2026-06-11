@@ -106,14 +106,14 @@ redirect_from:
    logo="/images/中山大学-logo-2048px.png"
    institution="中山大学 (SYSU)"
    title="计算机技术 · 硕士"
-   date="2024 - 至今"
+   date="预计2027年毕业"
 %}
 
 {% include education-item.html
    logo="/images/电子科技大学-logo-2048px.png"
    institution="电子科技大学 (UESTC)"
    title="软件工程 · 学士"
-   date="2020 - 2024"
+   date="2024年毕业"
 %}
 
 <div class="section-separator"></div>
