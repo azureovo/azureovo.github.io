@@ -360,4 +360,41 @@ if(sessionStorage.getItem('books_auth')==='1'){document.getElementById('password
   .book-card-excerpt { flex: 1; }
   .book-card-footer { margin-top: auto; }
 }
+
+@media (max-width: 480px) {
+  .books-hero { padding: 1.5rem 1.2rem; border-radius: 12px; }
+  .books-hero-title { font-size: 1.25em; margin-bottom: 0.3em; }
+  .books-back-btn { font-size: 0.8em; padding: 7px 16px; }
+  .books-grid { gap: 0.8rem; }
+  .book-card { padding: 1.2rem; gap: 0.6rem; min-height: 160px; border-radius: 12px; }
+  .book-card-icon { width: 44px; height: 44px; font-size: 1.8em; border-radius: 10px; }
+  .book-card-cat { font-size: 0.7em; padding: 2px 8px; }
+  .book-card-title { font-size: 0.95em; }
+  .book-card-excerpt { font-size: 0.8em; -webkit-line-clamp: 3; }
+  .book-card-footer { gap: 6px; }
+  .book-card-date { font-size: 0.72em; }
+  .book-card-read { font-size: 0.74em; }
+  .pw-gate { padding: 1rem; min-height: 40vh; }
+  .pw-card { padding: 2rem 1.2rem; border-radius: 16px; }
+  .pw-icon { font-size: 2.4em; }
+  .pw-title { font-size: 1.2em; }
+  .pw-subtitle { font-size: 0.82em; }
+  .pw-input { padding: 10px 14px; font-size: 0.9em; }
+  .pw-btn { width: 42px; height: 42px; }
+}
+
+@media (max-width: 360px) {
+  .books-hero { padding: 1.2rem 1rem; }
+  .books-hero-title { font-size: 1.15em; }
+  .books-back-btn { font-size: 0.76em; padding: 6px 14px; }
+  .book-card { padding: 1rem; gap: 0.5rem; min-height: 140px; border-radius: 10px; }
+  .book-card-icon { width: 38px; height: 38px; font-size: 1.5em; border-radius: 8px; }
+  .book-card-title { font-size: 0.88em; }
+  .book-card-excerpt { font-size: 0.76em; }
+  .book-card-date { font-size: 0.68em; }
+  .book-card-read { font-size: 0.7em; }
+  .pw-card { padding: 1.5rem 1rem; border-radius: 14px; }
+  .pw-icon { font-size: 2em; }
+  .pw-title { font-size: 1.1em; }
+}
 </style>
