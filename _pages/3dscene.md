@@ -10,7 +10,7 @@ classes: wide
 <div class="gs-hero">
   <div class="gs-hero-content">
     <h1 class="gs-hero-title">🎬 3DGS研究</h1>
-    <p class="gs-hero-subtitle">基于 3D Gaussian Splatting 技术的实时场景渲染与交互演示。<br>包含网页端与 Unity 引擎两种展示方式，及相关研究报告。</p>
+    <p class="gs-hero-subtitle">基于3DGS技术的实时场景渲染与交互演示。<br>包含网页端与Unity引擎两种展示方式，及相关研究报告。</p>
     <a href="/" class="gs-hero-back">
       <i class="fas fa-arrow-left"></i> 返回首页
     </a>
