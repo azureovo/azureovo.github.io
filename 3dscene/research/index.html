@@ -246,19 +246,89 @@
 
   @media (max-width:900px) {
     .findings-grid-6 { grid-template-columns: repeat(2, 1fr); }
+    .challenge-list { grid-template-columns: 1fr; }
+    .pipeline { flex-wrap: wrap; justify-content: center; }
+    .pipeline-step { flex: 1 0 220px; min-width: 180px; max-width: none; }
+    .section h2 { font-size: 1.2rem; }
   }
-  @media (max-width:600px) {
-    .nav { padding: 8px 14px; gap: 12px; }
-    .nav a { font-size: 12px; }
-    .nav a.brand { font-size: 14px; }
-    .hero { padding: 80px 0 36px; }
+  @media (max-width:700px) {
+    .hero { padding: 90px 0 32px; }
+    .hero h1 { font-size: clamp(1.3rem, 4vw, 1.6rem); }
+    .hero .subtitle { font-size: 0.85rem; }
+    .hero .meta { font-size: 0.78rem; gap: 10px; }
+    .hero .actions { gap: 8px; }
+    .hero .actions .btn { font-size: 0.82rem; padding: 7px 16px; }
+    .abstract-card { padding: 20px; }
+    .abstract-card p { font-size: 0.88rem; }
+    .section { margin-bottom: 36px; }
+    .section h2 { font-size: 1.15rem; }
+    .section .section-desc { font-size: 0.82rem; margin-bottom: 14px; }
+    .finding-card { padding: 18px; }
+    .finding-card h3 { font-size: 0.92rem; }
+    .finding-card p { font-size: 0.82rem; }
     .container { padding: 0 16px; }
-    .demo-table { font-size: 0.78rem; }
-    .demo-table th, .demo-table td { padding: 8px 10px; }
-    .pipeline { flex-direction: column; }
-    .pipeline-arrow { display: none; }
+    .findings-grid { gap: 10px; }
+    .findings-grid-6 { grid-template-columns: repeat(2, 1fr); }
+    .pipeline-step { flex: 1 0 160px; min-width: 150px; padding: 14px 10px; }
+    .pipeline-step h4 { font-size: 0.82rem; }
+    .pipeline-step p { font-size: 0.74rem; }
+    .pipeline-step .step-num { width: 30px; height: 30px; font-size: 0.8rem; margin-bottom: 8px; }
+    .challenge-list li { padding: 14px 16px; }
+    .challenge-list li .idx { width: 24px; height: 24px; font-size: 0.7rem; }
+    .challenge-list li .info h4 { font-size: 0.85rem; }
+    .challenge-list li .info p { font-size: 0.78rem; }
+    .scenario-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+    .scenario-card { padding: 16px; }
+    .scenario-card .s-icon { font-size: 1.5rem; }
+    .scenario-card h4 { font-size: 0.82rem; }
+    .scenario-card p { font-size: 0.74rem; }
+    .conclusion { padding: 20px 24px; }
+    .conclusion li { font-size: 0.84rem; }
+    .pdf-section { padding: 20px; }
+    .footer { padding: 24px 0; font-size: 0.78rem; }
+    .demo-link, .game-link { font-size: 0.78rem; }
+  }
+  @media (max-width:480px) {
+    .nav { padding: 8px 10px; gap: 10px; }
+    .nav a { font-size: 11px; }
+    .nav a.brand { font-size: 13px; }
+    .hero { padding: 76px 0 24px; }
+    .hero h1 { font-size: clamp(1.2rem, 4.5vw, 1.4rem); }
+    .hero .meta { flex-direction: column; gap: 4px; align-items: center; }
+    .hero .actions { flex-direction: column; align-items: center; gap: 6px; }
+    .hero .actions .btn { width: 100%; max-width: 260px; justify-content: center; }
+    .hero .actions .btn-back { width: 100%; max-width: 260px; justify-content: center; }
+    .container { padding: 0 12px; }
+    .abstract-card { padding: 16px; border-radius: 10px; }
+    .abstract-card p { font-size: 0.84rem; line-height: 1.7; }
+    .abstract-card .keywords span { font-size: 0.7rem; padding: 2px 8px; }
+    .section h2 { font-size: 1.1rem; }
+    .section .section-desc { font-size: 0.8rem; }
     .findings-grid-6 { grid-template-columns: 1fr; }
-    .pdf-wrap embed { height: 50vh; }
+    .findings-grid { gap: 8px; }
+    .finding-card { padding: 14px; }
+    .finding-card .icon { font-size: 1.2rem; margin-bottom: 4px; }
+    .finding-card h3 { font-size: 0.88rem; }
+    .finding-card p { font-size: 0.78rem; line-height: 1.5; }
+    .pipeline { flex-direction: column; gap: 8px; }
+    .pipeline-arrow { display: none; }
+    .pipeline-step { flex: none; min-width: 0; max-width: none; }
+    .demo-table { font-size: 0.7rem; }
+    .demo-table th, .demo-table td { padding: 8px 6px; }
+    .challenge-list li { padding: 12px 14px; gap: 8px; }
+    .challenge-list li .info h4 { font-size: 0.82rem; }
+    .challenge-list li .info p { font-size: 0.74rem; }
+    .scenario-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .scenario-card { padding: 14px 10px; border-radius: 10px; }
+    .scenario-card .s-icon { font-size: 1.3rem; margin-bottom: 4px; }
+    .conclusion { padding: 16px 18px; border-radius: 10px; }
+    .conclusion li { font-size: 0.8rem; margin-bottom: 4px; }
+    .pdf-section { padding: 14px; border-radius: 10px; }
+    .pdf-wrap embed { height: 50vh; border-radius: 8px; }
+    .footer { padding: 20px 0; font-size: 0.74rem; margin-top: 32px; }
+  }
+  @media (max-width:370px) {
+    .scenario-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
