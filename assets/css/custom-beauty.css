@@ -880,6 +880,19 @@ h2.page-section-title::after {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.pub-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.pub-meta-row .pub-venue {
+  margin-bottom: 0;
+  white-space: nowrap;
 }
 
 .pub-link {

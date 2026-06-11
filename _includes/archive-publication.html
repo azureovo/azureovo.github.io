@@ -33,36 +33,38 @@
         {{ post.authors | markdownify | remove: '<p>' | remove: '</p>' }}
       </div>
       {% endif %}
+    </div>
 
+    <div class="pub-meta-row">
       {% if post.venue %}
       <div class="pub-venue">
         {{ post.venue | replace: "(Highlight)", "<span class='venue-highlight venue-hl'>Highlight</span>" | replace: "(CCF-A)", "<span class='venue-highlight venue-ccf-a'>CCF-A</span>" | replace: "(CCF-B)", "<span class='venue-highlight venue-ccf-b'>CCF-B</span>" | replace: "(CVPR)", "<span class='venue-highlight venue-cvpr'>CVPR</span>" | replace: "(ECCV)", "<span class='venue-highlight venue-eccv'>ECCV</span>" | replace: "(Under Review)", "<span class='venue-highlight venue-ur'>Under Review</span>" | replace: "(Rebuttal中)", "<span class='venue-highlight venue-ur'>Rebuttal中</span>" }}
         {% if post.date %} <span class="venue-year">({{ post.date | date: "%Y" }})</span>{% endif %}
       </div>
       {% endif %}
-    </div>
 
-    <div class="pub-links">
-      {% if post.paperurl %}
-        <a href="{{ post.paperurl }}" class="pub-link">
-          <i class="fas fa-file-pdf"></i> PDF
-        </a>
-      {% endif %}
-      {% if post.code %}
-        <a href="{{ post.code }}" class="pub-link">
-          <i class="fab fa-github"></i> Code
-        </a>
-      {% endif %}
-      {% if post.video %}
-        <a href="{{ post.video }}" class="pub-link">
-          <i class="fas fa-play-circle"></i> Video
-        </a>
-      {% endif %}
-      {% if post.project %}
-        <a href="{{ post.project }}" class="pub-link">
-          <i class="fas fa-globe"></i> Project
-        </a>
-      {% endif %}
+      <div class="pub-links">
+        {% if post.paperurl %}
+          <a href="{{ post.paperurl }}" class="pub-link">
+            <i class="fas fa-file-pdf"></i> PDF
+          </a>
+        {% endif %}
+        {% if post.code %}
+          <a href="{{ post.code }}" class="pub-link">
+            <i class="fab fa-github"></i> Code
+          </a>
+        {% endif %}
+        {% if post.video %}
+          <a href="{{ post.video }}" class="pub-link">
+            <i class="fas fa-play-circle"></i> Video
+          </a>
+        {% endif %}
+        {% if post.project %}
+          <a href="{{ post.project }}" class="pub-link">
+            <i class="fas fa-globe"></i> Project
+          </a>
+        {% endif %}
+      </div>
     </div>
   </div>
 </div>
