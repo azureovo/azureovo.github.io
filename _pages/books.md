@@ -234,7 +234,7 @@ if(sessionStorage.getItem('books_auth')==='1'){document.getElementById('password
 .book-card {
   display: flex;
   gap: 1.2rem;
-  align-items: flex-start;
+  align-items: stretch;
   padding: 1.5rem;
   background: var(--bg-card, #fff);
   border-radius: 16px;
@@ -285,6 +285,9 @@ if(sessionStorage.getItem('books_auth')==='1'){document.getElementById('password
 .book-card-body {
   flex: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 .book-card-cat {
@@ -298,6 +301,7 @@ if(sessionStorage.getItem('books_auth')==='1'){document.getElementById('password
   margin-bottom: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 0.03em;
+  align-self: flex-start;
 }
 
 .book-card-title {
@@ -325,6 +329,7 @@ if(sessionStorage.getItem('books_auth')==='1'){document.getElementById('password
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
+  margin-top: auto;
 }
 
 .book-card-date {
@@ -356,8 +361,8 @@ if(sessionStorage.getItem('books_auth')==='1'){document.getElementById('password
   .books-grid { grid-template-columns: 1fr; }
   .pw-card { padding: 2rem 1.5rem; }
   .book-card { flex-direction: column; gap: 0.8rem; min-height: 180px; }
-  .book-card-body { flex: 1; display: flex; flex-direction: column; }
-  .book-card-excerpt { flex: 1; }
+  .book-card-body { flex: 1; }
+  .book-card-excerpt { flex: none; }
   .book-card-footer { margin-top: auto; }
 }
 
