@@ -168,7 +168,7 @@ redirect_from:
 </div>
 
 <div class="life-description">
-  我在电子科技大学信软学院读的软件工程专业，最终保研成绩为 <span class="highlight">91.05</span> 分，专业排名 <span class="highlight">5/121</span>。"大学生活"专栏记录了我在电子科技大学的一些组织活动，只记录让我开心或有价值的内容。
+  我在电子科技大学信软学院读的软件工程专业，最终保研成绩为 <span class="highlight">91.05</span> 分，专业排名 <span class="highlight">5/121</span>。详情见下述按钮。
 </div>
 
 <div class="life-buttons">
