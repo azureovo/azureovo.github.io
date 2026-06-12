@@ -54,7 +54,7 @@ redirect_from:
 <ul class="news-timeline">
   <li>
     <span class="news-date">2026.06</span>
-    预计进入<a href="https://www.bytedance.com/zh/">字节抖音</a>，开始暑期产品实习！
+    预计进入<a href="https://www.bytedance.com/zh/">字节抖音</a>！
   </li>
   <li>
     <span class="news-date">2026.04</span>
@@ -120,14 +120,14 @@ redirect_from:
 
 <!-- ========== EXPERIENCE ========== -->
 <div class="section-heading" id="experience">
-  <span class="icon">💼</span> 实习经历
+  <span class="icon">💼</span> 工作经历
 </div>
 
 
 
 {% include experience-item.html
    logo="/images/bytedance.png"
-   role="产品经理"
+   role="AI产品"
    company="字节 · 抖音"
    date="2026.06 - 至今"
 %}
@@ -141,14 +141,14 @@ redirect_from:
 
 {% include experience-item.html
    logo="/images/mhylogo.png"
-   role="产品分析与策略优化"
+   role="AI算法产策"
    company="米哈游 · 在研游戏 · 功能测试组"
    date="2025.06 - 2025.12"
 %}
 
 {% include experience-item.html
    logo="/images/航天科工logo.png"
-   role="软件工程师"
+   role="应用研究工程师"
    company="四川航天技术研究院 (CASIC)"
    date="2023.05 - 2023.07"
 %}
