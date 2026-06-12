@@ -142,7 +142,7 @@ redirect_from:
 {% include experience-item.html
    logo="/images/mhylogo.png"
    role="AI算法产策"
-   company="米哈游 · 在研游戏 · 功能测试组"
+   company="米哈游 · 在研游戏 · 功能研究组"
    date="2025.06 - 2025.12"
 %}
 
