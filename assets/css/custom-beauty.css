@@ -447,9 +447,14 @@ body::after {
 
 /* Bio text */
 .hero-bio {
-  font-size: 1em;
+  font-size: 0.9em;
   line-height: 1.85;
   color: var(--text-primary);
+}
+
+.hero-bio-label {
+  font-weight: 700;
+  color: #6366f1;
 }
 
 .hero-bio a {

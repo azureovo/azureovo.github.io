@@ -39,7 +39,7 @@ redirect_from:
 
     <div class="hero-bio">
       <p>
-        我是<a href="https://cse.sysu.edu.cn/">中山大学计算机学院</a>2027应届硕士生。我在<a href="https://sise.uestc.edu.cn/">电子科技大学信软学院</a>完成了本科学业。<br>算法：我的研究兴趣主要集中在非受控极端场景物体三维重建、多模态幻觉缓解等方向。<br>产品：我同时有丰富的产品从事经验且热爱产品岗职，目前正在寻找AI产品相关岗位。
+        我是<a href="https://cse.sysu.edu.cn/">中山大学计算机学院</a>2027应届硕士生。我在<a href="https://sise.uestc.edu.cn/">电子科技大学信软学院</a>完成了本科学业。<br><span class="hero-bio-label">算法：</span>我的研究兴趣主要集中在非受控极端场景物体三维重建、多模态幻觉缓解等方向。<br><span class="hero-bio-label">产品：</span>我同时有丰富的产品从事经验且热爱产品岗职，目前正在寻找AI产品相关岗位。
       </p>
     </div>
 
