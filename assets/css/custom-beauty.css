@@ -269,7 +269,7 @@ body::after {
   gap: 3rem;
   align-items: center;
   padding: 3rem 3rem;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
   background: var(--bg-card);
   border-radius: var(--radius-2xl);
   border: 1px solid var(--border-color);
@@ -450,6 +450,7 @@ body::after {
   font-size: 0.9em;
   line-height: 1.85;
   color: var(--text-primary);
+  margin-bottom: 0;
 }
 
 .hero-bio-label {
