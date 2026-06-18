@@ -62,7 +62,7 @@ redirect_from:
   </li>
   <li>
     <span class="news-date">2026.04</span>
-    🎉 一作论文 <strong>IR-HGP</strong> 被 <strong>CVPR 2026</strong> 接收为 <span style="background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em;">Highlight</span> ！
+    🎉 论文 <strong>IR-HGP</strong> 被 <strong>CVPR 2026</strong> 接收为 <span style="background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em;">Highlight</span> ！
   </li>
   <li>
     <span class="news-date">2026.02</span>
