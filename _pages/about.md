@@ -54,7 +54,7 @@ redirect_from:
 <ul class="news-timeline">
   <li>
     <span class="news-date">2026.06</span>
-    🎉 二作论文 <strong>HERO</strong> 被 <strong>ECCV 2026</strong> 接收！
+    🎉 论文 <strong>HERO</strong> 被 <strong>ECCV 2026</strong> 接收！
   </li>
   <li>
     <span class="news-date">2026.06</span>
