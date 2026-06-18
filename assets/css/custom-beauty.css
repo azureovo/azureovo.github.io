@@ -872,8 +872,12 @@ h2.page-section-title::after {
   box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35);
 }
 .pub-venue .venue-hl {
-  background: linear-gradient(135deg, #f59e0b, #ea580c);
-  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35);
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+}
+.pub-venue .venue-acc {
+  background: linear-gradient(135deg, #10b981, #059669);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
 }
 
 .pub-venue .venue-year {
