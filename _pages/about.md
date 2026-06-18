@@ -54,7 +54,7 @@ redirect_from:
 <ul class="news-timeline">
   <li>
     <span class="news-date">2026.06</span>
-    🎉 论文 <strong>HERO</strong> 被 <strong>ECCV 2026</strong> 接收！
+    🎉 论文 <strong>HERO</strong> 被 <strong>ECCV 2026</strong> <span style="background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;font-size:0.85em;">accepted</span> ！
   </li>
   <li>
     <span class="news-date">2026.06</span>
