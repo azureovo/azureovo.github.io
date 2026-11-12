@@ -1,0 +1,421 @@
+---
+layout: null
+permalink: /
+title: "Qing'an Zhang | 张清安"
+excerpt: "About Me"
+author_profile: false
+redirect_from:
+  - /about/
+  - /about.html
+---
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qing'an Zhang | 张清安</title>
+  <meta name="description" content="张清安的个人主页 — 中山大学计算机技术硕士，研究方向为非受控极端场景三维重建与多模态幻觉缓解。">
+  <meta name="author" content="张清安">
+  <link rel="icon" type="image/png" href="/images/profile.png">
+  <style>
+    a { color: #08338f; text-decoration: none; }
+    a:focus, a:hover { color: #496a86; }
+    ::selection { background: #d9e4ec; }
+    body, td, th, tr, p, a, li {
+      font-family: 'Lato', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Verdana, Helvetica, sans-serif;
+      font-size: 16px;
+      line-height: 1.35;
+      color: #000000;
+    }
+    body { margin: 0; padding: 0; background: #ffffff; }
+    strong { font-weight: 600; }
+    heading {
+      font-family: 'Lato', 'PingFang SC', 'Microsoft YaHei', Verdana, Helvetica, sans-serif;
+      font-size: 30px;
+      line-height: 1.2;
+      color: #000000;
+      font-weight: 400;
+    }
+    papertitle {
+      font-family: 'Lato', 'PingFang SC', 'Microsoft YaHei', Verdana, Helvetica, sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #000000;
+    }
+    .container {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    .top-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 4px 16px;
+      padding: 18px 0 6px;
+      font-size: 15px;
+    }
+    .top-nav a { color: #08338f; }
+    .top-nav a:hover { color: #496a86; }
+
+    /* ── Bio section ── */
+    .bio-section {
+      box-sizing: border-box;
+      display: grid;
+      grid-template-columns: minmax(0, calc(30% - 18px)) minmax(0, 1fr);
+      grid-template-areas:
+        "photo name"
+        "photo text"
+        "photo links";
+      gap: 10px 19px;
+      align-items: start;
+      width: 100%;
+      margin: 12px auto 20px;
+    }
+    .bio-name {
+      grid-area: name;
+      margin: 0;
+      font-size: 36px;
+      font-weight: 400;
+      line-height: 1.15;
+      text-align: center;
+    }
+    .bio-photo { grid-area: photo; align-self: start; display: block; }
+    .bio-photo img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+    .bio-copy { grid-area: text; min-width: 0; }
+    .bio-copy p { margin: 0; }
+    .bio-copy p + p { margin-top: 10px; }
+    .bio-links {
+      grid-area: links;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: center;
+      gap: 2px 14px;
+      margin: 2px 0 0;
+      text-align: center;
+    }
+    .bio-links a { white-space: nowrap; }
+    .bio-label { font-weight: 700; color: #08338f; }
+
+    /* ── Section heading ── */
+    .section-heading {
+      margin: 34px 0 12px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    /* ── News ── */
+    .news-list { list-style: none; margin: 0; padding: 0; }
+    .news-list li { margin: 0 0 8px; padding-left: 0; }
+    .news-date { font-weight: 600; color: #496a86; margin-right: 8px; }
+    .badge-accepted, .badge-highlight {
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 1px 8px;
+      border-radius: 999px;
+      background: #313164;
+      white-space: nowrap;
+    }
+
+    /* ── Publications table ── */
+    .publications-table { width: 100%; border-collapse: collapse; }
+    .publications-table tr { vertical-align: top; }
+    .paper-teaser-cell {
+      padding: 8px 12px 8px 0;
+      width: 30%;
+      vertical-align: top;
+    }
+    .paper-teaser-cell img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      display: block;
+    }
+    .paper-info-cell {
+      padding: 8px 0;
+      width: 70%;
+      vertical-align: top;
+    }
+    .paper-title { margin-bottom: 3px; }
+    .paper-authors { line-height: 1.35; margin-top: 3px; }
+    .paper-authors b { font-weight: 700; }
+    .paper-venue { margin-top: 4px; font-style: normal; }
+    .paper-venue em { font-style: italic; }
+    .paper-highlight { color: firebrick; font-weight: 400; display: inline-block; margin-left: 6px; }
+    .paper-links { margin-top: 7px; }
+    .paper-links a { margin-right: 4px; }
+
+    /* ── Education / Experience ── */
+    .edu-row, .exp-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid #f2f2f2;
+    }
+    .edu-logo, .exp-logo {
+      flex-shrink: 0;
+      width: 64px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .edu-logo img, .exp-logo img {
+      max-width: 64px;
+      max-height: 64px;
+      object-fit: contain;
+    }
+    .edu-info, .exp-info { min-width: 0; }
+    .edu-institution, .exp-company { font-weight: 700; }
+    .edu-title, .exp-role { color: #496a86; }
+    .edu-date, .exp-date { color: #888888; font-size: 15px; }
+
+    /* ── University life ── */
+    .life-description { margin: 0 0 14px; }
+    .life-description .highlight { background: #d9e4ec; padding: 0 3px; border-radius: 3px; }
+    .life-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+    .life-btn {
+      display: inline-block;
+      padding: 5px 16px;
+      border: 1px solid #08338f;
+      border-radius: 999px;
+      color: #08338f;
+      font-size: 15px;
+      text-decoration: none;
+    }
+    .life-btn:hover { background: #08338f; color: #ffffff; }
+
+    /* ── Footer ── */
+    .site-footer {
+      margin: 36px 0 28px;
+      padding-top: 14px;
+      border-top: 1px solid #e8e8e8;
+      text-align: center;
+      color: #888888;
+      font-size: 14px;
+    }
+    .site-footer a { color: #888888; }
+    .site-footer a:hover { color: #496a86; }
+
+    /* ── Responsive ── */
+    @media (max-width: 800px) {
+      .bio-section {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas: "name" "photo" "text" "links";
+        gap: 14px;
+        margin-top: 8px;
+      }
+      .bio-name { font-size: 30px; }
+      .bio-photo { justify-self: center; width: min(60%, 220px); }
+    }
+    @media (max-width: 640px) {
+      body, td, th, tr, p, a, li { font-size: 15px; }
+      heading { font-size: 25px; }
+      papertitle { font-size: 15px; }
+      .paper-teaser-cell { display: block; width: 100%; padding: 10px 0 2px; }
+      .paper-teaser-cell img { width: min(78%, 280px); margin: 0 auto; }
+      .paper-info-cell { display: block; width: 100%; padding: 2px 0 16px; }
+      .edu-row, .exp-row { flex-direction: row; }
+      .edu-logo, .exp-logo { width: 48px; height: 48px; }
+      .edu-logo img, .exp-logo img { max-width: 48px; max-height: 48px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ── Top nav ── -->
+  <div class="top-nav">
+    <a href="/">Home</a>
+    <a href="/3dscene/">3DGS</a>
+    <a href="/books/">阅读</a>
+    <a href="/cv/">CV</a>
+    <a href="/town/">小岛</a>
+  </div>
+
+  <!-- ── Bio ── -->
+  <section class="bio-section">
+    <h1 class="bio-name">Qing'an Zhang | 张清安</h1>
+    <a class="bio-photo" href="/images/profile.png">
+      <img alt="张清安" src="/images/profile.png">
+    </a>
+    <div class="bio-copy">
+      <p>
+        我是<a href="https://cse.sysu.edu.cn/">中山大学计算机学院</a>2027应届硕士生。我在<a href="https://sise.uestc.edu.cn/">电子科技大学信软学院</a>完成了本科学业。
+      </p>
+      <p>
+        <span class="bio-label">算法：</span>我的研究兴趣主要集中在非受控极端场景物体三维重建、多模态幻觉缓解等方向。
+      </p>
+      <p>
+        <span class="bio-label">产品：</span>我同时有丰富的产品从事经验且热爱产品岗职，目前正在寻找AI产品相关岗位。
+      </p>
+      <p style="color:#496a86;">
+        不想每次都在触底反弹，所以要时刻保持意识。
+      </p>
+    </div>
+    <p class="bio-links">
+      <a href="/cv/">CV</a>
+      <span>&middot;</span>
+      <a href="https://github.com/azureovo">GitHub</a>
+      <span>&middot;</span>
+      <a href="/gallery/">相册</a>
+      <span>&middot;</span>
+      <a href="/books/">阅读</a>
+      <span>&middot;</span>
+      <a href="/town/">小岛</a>
+      <span>&middot;</span>
+      <a href="mailto:zhangqan@mail2.sysu.edu.cn">Email</a>
+    </p>
+  </section>
+
+  <!-- ── News ── -->
+  <div class="section-heading">
+    <heading>最新动态</heading>
+  </div>
+  <ul class="news-list">
+    <li><span class="news-date">2026.06</span> 🎉 论文 <strong>HERO</strong> 被 <strong>ECCV 2026</strong> <span class="badge-accepted">Accepted</span></li>
+    <li><span class="news-date">2026.06</span> 预计进入<a href="https://www.bytedance.com/zh/">字节抖音</a>！</li>
+    <li><span class="news-date">2026.04</span> 🎉 论文 <strong>IR-HGP</strong> 被 <strong>CVPR 2026</strong> 接收为 <span class="badge-highlight">Highlight</span></li>
+    <li><span class="news-date">2026.02</span> 进入<a href="https://ieg.tencent.com/2023/index.html">腾讯IEG</a>，开始技术产品工作！</li>
+    <li><span class="news-date">2025.12</span> 给<a href="https://www.yuanshen.com/#/">米哈游</a>外包产策半年了！</li>
+    <li><span class="news-date">2025.09</span> 成为中大计院量子计算与软件所研究生第二党支部组织委员。</li>
+    <li><span class="news-date">2024.12</span> 进入智能与多媒体科学实验室，开始学习三维重建相关内容。</li>
+    <li><span class="news-date">2024.09</span> 保研至中山大学。</li>
+  </ul>
+
+  <!-- ── Research ── -->
+  <div class="section-heading">
+    <heading>学术论文</heading>
+  </div>
+
+  <table class="publications-table">
+    <tr>
+      <td class="paper-teaser-cell">
+        <img src="/images/HPC.png" alt="IR-HGP overview">
+      </td>
+      <td class="paper-info-cell">
+        <div class="paper-title"><papertitle>IR-HGP: Physically-Aware Gaussian Inverse Rendering for High-Illumination Scenes via Generative Priors</papertitle></div>
+        <div class="paper-authors"><b>Qing'an Zhang</b>, Wensheng Li, Chengying Gao</div>
+        <div class="paper-venue"><em>CVPR 2026</em> <span class="paper-highlight">CCF-A · Highlight</span></div>
+        <div class="paper-links">
+          <a href="/irhgp.html">project page</a> |
+          <a href="https://cvpr.thecvf.com/virtual/2026/poster/39425">poster</a>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="paper-teaser-cell">
+        <img src="/images/systemmmmmm.png" alt="HERO overview">
+      </td>
+      <td class="paper-info-cell">
+        <div class="paper-title"><papertitle>HERO: Enhancing Multimodal Faithfulness via Dynamic Entropy-Aware Reinforcement Learning</papertitle></div>
+        <div class="paper-authors">Xiongfeng Yang, <b>Qing'an Zhang</b>, Yuheng Zhang, Kun-Yu Lin, Jian-Fang Hu, Dongmei Jiang, Wei-Shi Zheng</div>
+        <div class="paper-venue"><em>ECCV 2026</em> <span class="paper-highlight">CCF-B · Accepted</span></div>
+        <div class="paper-links">
+          <a href="/hero.html">project page</a> |
+          <a href="https://github.com/400lux-cyber/HERO">code</a>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <!-- ── Education ── -->
+  <div class="section-heading">
+    <heading>教育背景</heading>
+  </div>
+  <div class="edu-row">
+    <div class="edu-logo"><img src="/images/中山大学-logo-2048px.png" alt="中山大学"></div>
+    <div class="edu-info">
+      <div class="edu-institution">中山大学 (SYSU)</div>
+      <div class="edu-title">计算机技术 · 硕士</div>
+      <div class="edu-date">预计2027年毕业</div>
+    </div>
+  </div>
+  <div class="edu-row">
+    <div class="edu-logo"><img src="/images/电子科技大学-logo-2048px.png" alt="电子科技大学"></div>
+    <div class="edu-info">
+      <div class="edu-institution">电子科技大学 (UESTC)</div>
+      <div class="edu-title">软件工程 · 学士</div>
+      <div class="edu-date">2024年毕业</div>
+    </div>
+  </div>
+
+  <!-- ── Experience ── -->
+  <div class="section-heading">
+    <heading>工作经历</heading>
+  </div>
+  <div class="exp-row">
+    <div class="exp-logo"><img src="/images/bytedance.png" alt="字节跳动"></div>
+    <div class="exp-info">
+      <div class="exp-company">字节 · 抖音</div>
+      <div class="exp-role">AI产品</div>
+      <div class="exp-date">2026.06 - 至今</div>
+    </div>
+  </div>
+  <div class="exp-row">
+    <div class="exp-logo"><img src="/images/tencent.png" alt="腾讯"></div>
+    <div class="exp-info">
+      <div class="exp-company">腾讯IEG · 技术中台 · 服务拓展组</div>
+      <div class="exp-role">技术产品</div>
+      <div class="exp-date">2026.02 - 2026.04</div>
+    </div>
+  </div>
+  <div class="exp-row">
+    <div class="exp-logo"><img src="/images/mhylogo.png" alt="米哈游"></div>
+    <div class="exp-info">
+      <div class="exp-company">米哈游 · 在研游戏 · 功能研究组</div>
+      <div class="exp-role">AI算法产策</div>
+      <div class="exp-date">2025.06 - 2025.12</div>
+    </div>
+  </div>
+  <div class="exp-row">
+    <div class="exp-logo"><img src="/images/航天科工logo.png" alt="四川航天技术研究院"></div>
+    <div class="exp-info">
+      <div class="exp-company">四川航天技术研究院 (CASIC)</div>
+      <div class="exp-role">应用研究工程师</div>
+      <div class="exp-date">2023.05 - 2023.07</div>
+    </div>
+  </div>
+  <div class="exp-row">
+    <div class="exp-logo"><img src="/images/天空logo黑色.png" alt="数字天空"></div>
+    <div class="exp-info">
+      <div class="exp-company">数字天空 (Digital Sky)</div>
+      <div class="exp-role">游戏产策</div>
+      <div class="exp-date">2021.09 - 2021.11</div>
+    </div>
+  </div>
+
+  <!-- ── University life ── -->
+  <div class="section-heading">
+    <heading>大学时光</heading>
+  </div>
+  <div class="life-description">
+    我在电子科技大学信软学院读的软件工程专业，最终保研成绩为 <span class="highlight">91.05</span> 分，专业排名 <span class="highlight">5/121</span>。详情见下述按钮。
+  </div>
+  <div class="life-buttons">
+    <a href="/life/" class="life-btn">✨ 生活</a>
+    <a href="/files/成绩单.pdf" target="_blank" class="life-btn">📄 成绩</a>
+    <a href="/files/四六级成绩.pdf" target="_blank" class="life-btn">✏️ 四六级</a>
+    <a href="/files/比赛获奖.pdf" target="_blank" class="life-btn">🏆 比赛</a>
+    <a href="/files/其他获奖及证书.pdf" target="_blank" class="life-btn">📜 部分荣誉</a>
+  </div>
+
+  <!-- ── Footer ── -->
+  <div class="site-footer">
+    © 2026 张清安 &middot; 广州 & 深圳 &middot; <a href="/3dscene/">3DGS</a> · <a href="/books/">阅读</a> · <a href="/cv/">CV</a> · <a href="https://github.com/azureovo">GitHub</a>
+  </div>
+
+</div>
+</body>
+</html>
